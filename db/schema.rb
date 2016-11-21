@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121160903) do
+ActiveRecord::Schema.define(version: 20161121181108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "competition_participants", force: :cascade do |t|
     t.integer  "competition_id"
-    t.boolean  "competitor"
+    t.boolean  "player"
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20161121160903) do
     t.datetime "updated_at",        null: false
     t.integer  "sport_id"
     t.integer  "creator_id"
+    t.integer  "champion_id"
+    t.index ["champion_id"], name: "index_competitions_on_champion_id", using: :btree
     t.index ["creator_id"], name: "index_competitions_on_creator_id", using: :btree
     t.index ["sport_id"], name: "index_competitions_on_sport_id", using: :btree
   end
@@ -87,6 +89,7 @@ ActiveRecord::Schema.define(version: 20161121160903) do
   add_foreign_key "competition_participants", "competitions"
   add_foreign_key "competition_participants", "users"
   add_foreign_key "competitions", "sports"
+  add_foreign_key "competitions", "users", column: "champion_id"
   add_foreign_key "competitions", "users", column: "creator_id"
   add_foreign_key "match_participants", "matches"
   add_foreign_key "match_participants", "users", column: "player_id"
