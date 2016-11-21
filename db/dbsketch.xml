@@ -1,5 +1,8 @@
-<!-- dbsketch
-lewagon db schema xml -->
+<!--
+dbsketch
+lewagon db schema xml
+load at: http://db.lewagon.org
+-->
 
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- SQL XML created by WWW SQL Designer, http://code.google.com/p/wwwsqldesigner/ -->
