@@ -18,9 +18,10 @@ class Competition < ApplicationRecord
 
   def create_matches
     round_number = 1
+    match_number = 0
     until self.number_of_players / 2**round_number < 1 do
       (self.number_of_players / 2**round_number).times do
-        Match.create(competition_id: self.id, round: round_number, status: "To be played")
+        Match.create(competition_id: self.id, round: round_number, status: "To be played", match_number: match_number += 1)
       end
       round_number += 1
     end

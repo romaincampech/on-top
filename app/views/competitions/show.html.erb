@@ -1,6 +1,14 @@
-<h1>Competition ID:<%= @competition.id %></h1>
+<h1>Competition <%= @competition.id %></h1>
+<div class="container-competition">
+<div class="row">
+  <% @competition.matches.first(@competition.number_of_players / 2).each do |match| %>
 
-<% @competition.matches.each do |match| %>
-  <h5>Match ID:<%=match.id %></h5>
-  <p>Round:<%= match.round %></p>
-<% end %>
+      <div class="card-match col-xs-6 col-sm-3 col-md-1">
+        <h5>Match <%=match.match_number %></h5>
+        <p>Round <%= match.round %></p>
+      </div>
+      <% end %>
+    </div>
+
+</div>
+
