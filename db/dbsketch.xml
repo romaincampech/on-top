@@ -142,7 +142,7 @@ load at: http://db.lewagon.org
 <datatype>TINYINT</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
-<row name="competitor (if not, spectator)" null="1" autoincrement="0">
+<row name="player(if not, spectator)" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
