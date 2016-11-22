@@ -10,10 +10,30 @@ class Competition < ApplicationRecord
 
   has_many :matches
 
-
-
   belongs_to :sport
   belongs_to :creator, :class_name => 'User', :foreign_key => 'creator_id'
   belongs_to :champion, :class_name => 'User', :foreign_key => 'champion_id'
+
+  def played?
+    self.champion_id?
+  end
+
+  def raw_unplayed_matches
+    self.matches.where(winner_id: nil)
+  end
+
+  def unplayed_matches
+    unplayed_matches = []
+    raw_unplayed_matches.each do |match|
+      if match.match_participants.count >= 1
+        unplayed_matches << match
+      end
+    end
+    unplayed_matches
+  end
+
+  def played_matches
+    self.matches.where.not(winner_id: nil)
+  end
 
 end
