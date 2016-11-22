@@ -1,0 +1,6 @@
+<h1>Competition ID:<%= @competition.id %></h1>
+
+<% @competition.matches.each do |match| %>
+  <h5>Match ID:<%=match.id %></h5>
+  <p>Round:<%= match.round %></p>
+<% end %>
