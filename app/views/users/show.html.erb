@@ -1,0 +1,50 @@
+<div id="profile-banner">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-5 col-md-offset-1">
+          <div class="profile-banner-left">
+            <%= image_tag "profile-avatar-default.jpg"%>
+            <ul>
+              <li><h3><%= @user.first_name %> <%= @user.last_name %></h3></li>
+              <li><i class="fa fa-map-marker"></i><span> <%= @user.city %></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-5">
+          <div class="profile-banner-right"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <div class="profile-tabs">
+          <a class="profile-tab active" data-target="#competitions">
+            <h4>My Competitions</h4>
+          </a>
+          <a class="profile-tab" data-target="#statistics">
+            <h4>My Statistics</h4>
+          </a>
+          <a class="profile-tab" data-target="#teams">
+            <h4>My Teams</h4>
+          </a>
+          <a class="profile-tab" data-target="#photos-videos">
+            <h4>My Photos/Videos</h4>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <div class="profile-tabs-container">
+          <div class="profile-tabs-content" id="competitions">Competitions</div>
+          <div class="profile-tabs-content hidden" id="statistics">Statistics</div>
+          <div class="profile-tabs-content hidden" id="teams">Teams</div>
+          <div class="profile-tabs-content hidden" id="photos-videos">Photos/Videos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
