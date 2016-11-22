@@ -14,7 +14,7 @@ class Competition < ApplicationRecord
   belongs_to :creator, :class_name => 'User', :foreign_key => 'creator_id'
   belongs_to :champion, :class_name => 'User', :foreign_key => 'champion_id'
 
-  validate :creator_id, presence: true
+  validates :creator_id, presence: true
 
   def create_matches
     round_number = 1

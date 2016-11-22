@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122153852) do
+ActiveRecord::Schema.define(version: 20161122163146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20161122153852) do
     t.integer  "creator_id"
     t.integer  "champion_id"
     t.string   "status"
+    t.string   "name"
     t.index ["champion_id"], name: "index_competitions_on_champion_id", using: :btree
     t.index ["creator_id"], name: "index_competitions_on_creator_id", using: :btree
     t.index ["sport_id"], name: "index_competitions_on_sport_id", using: :btree
