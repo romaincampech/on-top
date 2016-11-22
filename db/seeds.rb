@@ -22,6 +22,7 @@ puts "sports created"
   comp = Competition.new(category: "knockout", number_of_players: 4)
   comp.creator = me
   comp.sport = tennis
+  comp.champion = me
   comp.save
 
   # create Guv's competition
@@ -31,7 +32,7 @@ puts "sports created"
   compi.save
 
   # assign users to J's competition
-  comp_pi = CompetitionParticipant.new(player: false)
+  comp_pi = CompetitionParticipant.new(player: false) # guv is not a player on the knockout
   comp_pi.user = guv
   comp_pi.competition = comp
   comp_pi.save
@@ -47,7 +48,7 @@ puts "sports created"
   comp_piii.save
 
   # assign users to G's competition
-  compi_pi = CompetitionParticipant.new(player: true)
+  compi_pi = CompetitionParticipant.new(player: true) # guv is a player on the round robin
   compi_pi.user = guv
   compi_pi.competition = compi
   compi_pi.save
@@ -62,28 +63,48 @@ puts "sports created"
   compi_piii.competition = compi
   compi_piii.save
 
-  comp.champion = romain
-  comp.save
 # match-side testing
-
 matchy = Match.new(status: "unplayed", round: 1)
 matchy.competition = comp
 matchy.save
+
+matchj = Match.new(status: "played", round: 1)
+matchj.competition = comp
+matchj.winner = guv
+matchj.save
 
 matchy_p = MatchParticipant.new
 matchy_p.player = guv
 matchy_p.match = matchy
 matchy_p.save
 
-matchy_pi = MatchParticipant.new
-matchy_pi.player = romain
-matchy_pi.match = matchy
-matchy_pi.save
+
 
 matchx = Match.new(status: "played", round: 1)
 matchx.competition = comp
 matchx.winner = romain
 matchx.save
+
+matchy_pii = MatchParticipant.new
+matchy_pii.player = romain
+matchy_pii.match = matchx
+matchy_pii.save
+
+matchy_piii = MatchParticipant.new
+matchy_piii.player = romain
+matchy_piii.match = matchj
+matchy_piii.save
+
+matchy_pi = MatchParticipant.new
+matchy_pi.player = romain
+matchy_pi.match = matchy
+matchy_pi.save
+
+matchy_pc = MatchParticipant.new
+matchy_pc.player = guv
+matchy_pc.match = matchj
+matchy_pc.save
+
 
 puts "matches created"
 
