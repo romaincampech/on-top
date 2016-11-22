@@ -3,8 +3,7 @@
 
 <%= simple_form_for @competition, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
   <%= f.error_notification %>
-
-  <%= f.input :sport, collection: ["Tennis"], prompt: "Select Sport" %>
+  <%= f.association :sport, label_method: :name, value_method: :id, collection: Sport.all, prompt: "Select sport" %>
 
   <%= f.input :category, collection: ["Knockout"], prompt: "Select Type of Competition" %>
 
