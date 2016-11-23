@@ -34,7 +34,6 @@ class Competition < ApplicationRecord
     self.matches.where(round: 1)
   end
 
-# not able to test this so far
   def assign_matches
     player_ary = self.players.to_a
     select_round_1.each do |match|

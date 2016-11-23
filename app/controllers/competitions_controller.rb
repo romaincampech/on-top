@@ -13,6 +13,7 @@ class CompetitionsController < ApplicationController
     @competition.creator = current_user
     @competition.save
     @competition.create_matches
+    @competition.assign_matches
     redirect_to competition_path(@competition)
   end
 
