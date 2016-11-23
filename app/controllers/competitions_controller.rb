@@ -17,8 +17,8 @@ class CompetitionsController < ApplicationController
     @competition.creator = current_user
     @competition.save
     @competition.create_matches(params[:competition][:category])
-    # insert method to population competition with users(player:true) selected from form
-    #@competition.add_players(TODO INSERT FORM OUTPUT HERE AND ADAPT METHOD IF OUTPUT IS NOT ARRAY OF USER INSTANCES)
+    players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
+    @competition.add_players(players_ary)
     @competition.assign_matches
     @competition.new_chat
     redirect_to competition_path(@competition)

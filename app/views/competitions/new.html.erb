@@ -1,5 +1,4 @@
-<h1>Create a new competition</h1>
-
+<h1>Creatre a competition</h1>
 
 <%= simple_form_for @competition, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
   <%= f.error_notification %>
@@ -10,6 +9,8 @@
   <%= f.input :category, collection: ["Knockout"], prompt: "Select Type of Competition" %>
 
   <%= f.input :number_of_players, collection: [2, 4, 8, 16, 32], prompt: "Select Number of Players" %>
+
+  <%= f.association :users, collection: User.all, label_method: :email, as: :check_boxes %>
 
   <%= f.button :submit %>
 <% end %>
