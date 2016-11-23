@@ -30,8 +30,6 @@ class Match < ApplicationRecord
     self.save
   end
 
-  # def winner
-
-
-
+  def winner
+  end
 end
