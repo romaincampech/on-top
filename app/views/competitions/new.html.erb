@@ -5,6 +5,8 @@
   <%= f.error_notification %>
   <%= f.association :sport, label_method: :name, value_method: :id, collection: Sport.all, prompt: "Select sport" %>
 
+  <%= f.input :name, placeholder: "Name of your Competition" %>
+
   <%= f.input :category, collection: ["Knockout"], prompt: "Select Type of Competition" %>
 
   <%= f.input :number_of_players, collection: [2, 4, 8, 16, 32, 64], prompt: "Select Number of Players" %>

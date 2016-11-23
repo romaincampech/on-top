@@ -22,10 +22,6 @@ class CompetitionsController < ApplicationController
     params.require(:competition).permit(:number_of_players, :category, :sport_id)
   end
 
-  def sport_params
-    params.require(:competition).permit(:sport)
-  end
-
   def set_competition
     @competition = Competition.find(params[:id])
   end
