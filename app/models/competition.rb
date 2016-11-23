@@ -16,6 +16,12 @@ class Competition < ApplicationRecord
 
   validates :creator_id, presence: true
 
+  def add_players(array)
+    array.each do |user|
+      CompetitionParticipant.create(player: true, user: user, competition: self)
+    end
+  end
+
   def rem_sample(array)
     array.delete_at(rand(array.length))
   end
