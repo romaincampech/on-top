@@ -8,6 +8,7 @@
       <div class="card-match">
         <h5>Match <%=match.match_number %></h5>
         <p><%= match.players.first %> vs. <%= match.players.last %> </p>
+        <%= link_to "Input Score", edit_match_path(match) %>
       </div>
       <% end %>
     </div>
@@ -16,3 +17,19 @@
   </div>
 </div>
 
+<div class="chatbox">
+<div id="messages">
+  <%= render @chat_room.messages %>
+</div>
+
+<%= form_for [@competition, @message], remote: true do |f| %>
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: 'form-control' %>
+    <small class="text-muted">From 2 to 1000 characters</small>
+  </div>
+
+  <%= f.submit "Post", class: 'btn btn-primary btn-lg' %>
+<% end %>
+
+</div>

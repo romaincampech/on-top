@@ -4,6 +4,8 @@ class CompetitionsController < ApplicationController
 
   def show
     @rounds = @competition.number_of_rounds(@competition.category)
+    @chat_room = ChatRoom.includes(:messages).find_by(competition_id: @competition.id)
+    @message = Message.new
   end
 
   def new
@@ -20,6 +22,7 @@ class CompetitionsController < ApplicationController
     players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
     @competition.add_players(players_ary)
     @competition.assign_matches
+    @competition.new_chat
     redirect_to competition_path(@competition)
   end
 

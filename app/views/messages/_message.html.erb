@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-1">
+        <%#= TODO: put image for user here  %>
+      </div>
+      <div class="col-md-11">
+        <p class="card-text">
+          <span class="text-muted"><%= message.user.first_name + " " + message.user.last_name%> at <%= message.timestamp %> says</span><br>
+          <%= message.body %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
