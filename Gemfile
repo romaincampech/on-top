@@ -7,7 +7,7 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
-# note I changed redis to version 3.2
+# note I changed redis to version 3.2 and also added turbolinks
 gem 'redis', '~> 3.2'
 gem "pundit"
 

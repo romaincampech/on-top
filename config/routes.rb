@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   # post 'competitions', to: 'competitions#create'
   # get 'competitions/:id', to: 'competitions#show', as: 'competition'
 
-  resources :competitions, only: [:index, :new, :create, :show, :edit, :update]
-  post 'competitions/:id', to: 'messages#create', as: 'new_message'
+  resources :competitions, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :messages, only: [:create]
+  end
+
 end
