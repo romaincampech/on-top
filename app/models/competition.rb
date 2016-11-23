@@ -38,14 +38,24 @@ class Competition < ApplicationRecord
     self.matches.where.not(winner_id: nil)
   end
 
-  def create_matches
+  def number_of_rounds(category)
+    if category == "Knockout"
+      Math.log2(self.number_of_players).to_i
+    else
+    end
+  end
+
+  def create_matches(category)
+    if category == "Knockout"
     round_number = 1
     match_number = 0
-    until self.number_of_players / 2**round_number < 1 do
-      (self.number_of_players / 2**round_number).times do
-        Match.create(competition_id: self.id, round: round_number, status: "To be played", match_number: match_number += 1)
+      until self.number_of_players / 2**round_number < 1 do
+        (self.number_of_players / 2**round_number).times do
+          Match.create(competition_id: self.id, round: round_number, status: "To be played", match_number: match_number += 1)
+        end
+        round_number += 1
       end
-      round_number += 1
+    else
     end
   end
 end
