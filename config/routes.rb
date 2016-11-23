@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  get 'chat_room/new'
+
+  get 'chat_room/create'
+
   devise_for :users
   mount Attachinary::Engine => "/attachinary"
   root to: 'pages#home'
