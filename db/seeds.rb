@@ -12,6 +12,22 @@ me = User.create!(email: "juliannej@mac.com", password: "123456")
 romain = User.create!(email: "romain@mac.com", password: "123456")
 guv = User.create!(email: "guv@mac.com", password: "123456")
 
+# jj = User.create(email: "jj@mac.com", password: "123456")
+# rr = User.create(email: "r@mac.com", password: "123456")
+# gg = User.create(email: "g@mac.com", password: "123456")
+# j = User.create(email: "j@mac.com", password: "123456")
+# r = User.create(email: "ro@mac.com", password: "123456")
+# g = User.create(email: "gu@mac.com", password: "123456")
+
+# CompetitionParticipant.create(user: jj, competition: comp, player: true)
+# CompetitionParticipant.create(user: rr, competition: comp, player: true)
+# CompetitionParticipant.create(user: gg, competition: comp, player: true)
+# CompetitionParticipant.create(user: j, competition: comp, player: true)
+# CompetitionParticipant.create(user: r, competition: comp, player: true)
+# CompetitionParticipant.create(user: g, competition: comp, player: true)
+# CompetitionParticipant.create(user: me, competition: comp, player: true)
+# CompetitionParticipant.create(user: romain, competition: comp, player: true)
+
 # create sport
 tennis = Sport.create!(name: "Tennis", sport_rules: "www.google.com")
 

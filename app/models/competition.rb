@@ -16,6 +16,23 @@ class Competition < ApplicationRecord
 
   validates :creator_id, presence: true
 
+  def rem_sample(array)
+    array.delete_at(rand(array.length))
+  end
+
+  def select_round_1
+    self.matches.where(round: 1)
+  end
+
+  def assign_matches
+    player_ary = self.players.to_a
+    select_round_1.each do |match|
+      2.times do
+        MatchParticipant.create(player: rem_sample(player_ary), match: match)
+      end
+    end
+  end
+
   def played?
     self.champion_id?
   end
