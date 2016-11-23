@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_attachment :photo
+
+  has_many :messages, dependent: :destroy
 # Competition side
 
   # competitions the user is part of (playing or spectating)

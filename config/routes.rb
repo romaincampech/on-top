@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
 
-
-  get 'chat_room/new'
-
-  get 'chat_room/create'
-
   devise_for :users
   mount Attachinary::Engine => "/attachinary"
   root to: 'pages#home'
+
+  # for chat
+  mount ActionCable.server => '/cable'
 
   resources :users, only: [ :show ]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

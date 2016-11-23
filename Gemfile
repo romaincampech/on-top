@@ -7,7 +7,8 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
-gem 'redis'
+# note I changed redis to version 3.2
+gem 'redis', '~> 3.2'
 gem "pundit"
 
 gem 'sass-rails'
