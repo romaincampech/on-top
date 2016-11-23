@@ -7,6 +7,14 @@
             <ul>
               <li><h3><%= @user.first_name %> <%= @user.last_name %></h3></li>
               <li><i class="fa fa-map-marker"></i><span> <%= @user.city %></span></li>
+              <li><%= @user.friends.count %> friends</li>
+              <li>
+                <% if !current_user.friends.include?(@user) %>
+                  <%= button_to 'Add Friend', user_friend_requests_path(@user), method: :post unless current_user == @user %>
+                <% else %>
+                  <%= button_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), method: :delete, data: { confirm: "Are you sure?" } %>
+                <% end %>
+              </li>
             </ul>
           </div>
         </div>
