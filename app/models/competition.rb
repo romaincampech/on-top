@@ -1,4 +1,6 @@
 class Competition < ApplicationRecord
+  has_one :chat_room, dependent: :destroy
+
   has_many :competition_participants
   has_many :users, through: :competition_participants
 
@@ -10,11 +12,15 @@ class Competition < ApplicationRecord
 
   has_many :matches
 
-  belongs_to :sport
+  belongs_to :sport, optional: true
   belongs_to :creator, :class_name => 'User', :foreign_key => 'creator_id'
-  belongs_to :champion, :class_name => 'User', :foreign_key => 'champion_id'
+  belongs_to :champion, :class_name => 'User', :foreign_key => 'champion_id', optional: true
 
   validates :creator_id, presence: true
+
+  def new_chat
+    ChatRoom.create(competition: self)
+  end
 
   def add_players(array)
     array.each do |user|
