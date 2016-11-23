@@ -1,5 +1,12 @@
 .card-match {
-  padding: 20px;
+  padding: 3px;
   border: 1px solid #B3B3B3;
   border-radius: 4px;
+  line-height: 0.5;
+}
+
+.card-blank {
+  border-top: 2px solid #7F7F7F;
+  border-bottom: 2px solid #7F7F7F;
+  height: 60px;
 }

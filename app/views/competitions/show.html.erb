@@ -1,58 +1,17 @@
 <h1><%= @competition.name %></h1>
-<h3>Number of rounds: <%= @rounds %></h3>
-<div class="container-competition">
-  <div class="row">
-    <% @competition.matches.first(@competition.number_of_players / 2).each do |match| %>
-
-    <div class="card-match col-xs-6 col-sm-3 col-md-1">
-      <h5>Match <%=match.match_number %></h5>
-      <p>Round <%= match.round %></p>
+<div class="wrapper-competition">
+  <div class="container-competition">
+    <% round_number = 1 %>
+    <% until round_number - 1 == @rounds do %>
+    <div class=<%= "flex-" + "#{2 * @rounds - 1}" %>>
+      <% @competition.matches.select { |r| r.round == round_number }.each do |match| %>
+      <div class="card-match">
+        <h5>Match <%=match.match_number %></h5>
+        <p><%= match.players.first %> vs. <%= match.players.last %> </p>
+      </div>
+      <% end %>
     </div>
-    <% end %>
-  </div>
-  <div class="row">
-    <% @competition.matches.select { |r| r.round == 2 }.each do |match| %>
-
-    <div class="card-match col-xs-6 col-sm-3 col-md-1">
-      <h5>Match <%=match.match_number %></h5>
-      <p>Round <%= match.round %></p>
-    </div>
-    <% end %>
-  </div>
-  <div class="row">
-    <% @competition.matches.select { |r| r.round == 3 }.each do |match| %>
-
-    <div class="card-match col-xs-6 col-sm-3 col-md-1">
-      <h5>Match <%=match.match_number %></h5>
-      <p>Round <%= match.round %></p>
-    </div>
-    <% end %>
-  </div>
-  <div class="row">
-    <% @competition.matches.select { |r| r.round == 4 }.each do |match| %>
-
-    <div class="card-match col-xs-6 col-sm-3 col-md-1">
-      <h5>Match <%=match.match_number %></h5>
-      <p>Round <%= match.round %></p>
-    </div>
-    <% end %>
-  </div>
-  <div class="row">
-    <% @competition.matches.select { |r| r.round == 5 }.each do |match| %>
-
-    <div class="card-match col-xs-6 col-sm-3 col-md-1">
-      <h5>Match <%=match.match_number %></h5>
-      <p>Round <%= match.round %></p>
-    </div>
-    <% end %>
-  </div>
-  <div class="row">
-    <% @competition.matches.select { |r| r.round == 6 }.each do |match| %>
-
-    <div class="card-match col-xs-6 col-sm-3 col-md-1">
-      <h5>Match <%=match.match_number %></h5>
-      <p>Round <%= match.round %></p>
-    </div>
+    <% round_number += 1 %>
     <% end %>
   </div>
 </div>
