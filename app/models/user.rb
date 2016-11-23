@@ -64,5 +64,23 @@ class User < ApplicationRecord
   def losses
     played_matches.where.not(winner_id: id)
   end
+
+#Friend side
+  # pending friend request the user sent
+  has_many :friend_requests, dependent: :destroy
+  has_many :pending_friends, through: :friend_requests, source: :friend
+
+  # friends the user has
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships, :foreign_key => 'friend_id'
+
+  def get_friendship(friend)
+    friend.friendships.select{|fr| fr.friend == self}.first
+  end
+
+  #unfriend method
+  # def remove_friend(friend)
+  #   current_user.friends.destroy(friend)
+  # end
 end
 
