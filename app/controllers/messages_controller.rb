@@ -6,8 +6,9 @@ class MessagesController < ApplicationController
     @message.user = current_user
     if @message.save
       ActionCable.server.broadcast 'messages',
-        message: @message.body,
-        user: @message.user.first_name + " " + @message.user.last_name
+        body: @message.body,
+        user: @message.user.first_name + " " + @message.user.last_name,
+        time: @message.timestamp
       head :ok
     end
   end

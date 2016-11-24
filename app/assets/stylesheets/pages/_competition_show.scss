@@ -83,3 +83,37 @@
     margin: 0.5rem;
   }
 }
+
+#new_message {
+  margin-left: 55px;
+  margin-right: 40px;
+}
+
+#message_body {
+  background-color: #F6F6F6;
+}
+
+.chatbox {
+  background-color: white;
+  padding: 0;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px lightgray;
+  max-height: 70vh;
+}
+
+#messages {
+  background-color: #F6F6F6;
+  border-radius: 1px;
+  height: 30vh;
+  overflow-x: hidden;
+  border-style: solid;
+  border-color: #CCCCCC;
+  border-width: 1px;
+  margin-left: 5px;
+}
+
+#message-list {
+  list-style-type: none;
+  padding-left: 0px;
+  padding-right: 15px;
+}

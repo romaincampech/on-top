@@ -6,6 +6,8 @@ class MatchesController < ApplicationController
 
   def update
     @match.build_score(params)
+    @winner = @match.assign_winner(@match.score)
+    @match.save
     redirect_to competition_path(@match.competition_id)
   end
 
