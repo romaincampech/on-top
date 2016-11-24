@@ -1,30 +1,86 @@
-<h1>Creatre a competition</h1>
+<div class="competition-creation-background">
+  <div class="container-competition-creation">
+    <div class="row">
+      <h1>COMPETITION CREATION DESK</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="competition-creation-container">
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Define the basic info</h3>
+            </div>
+          </div>
+          <%= simple_form_for @competition, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
+          <%= f.error_notification %>
+          <div class="row">
+            <div class="col-md-12 text-center" style="margin: 30px 0;">
+              <%= f.input :name, placeholder: "Name of your Competition" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <%= f.association :sport, label_method: :name, value_method: :id, collection: Sport.all, prompt: "Select sport" %>
+              <%= f.input :category, collection: ["Knockout"], prompt: "Select Type of Competition" %>
+              <%= f.input :number_of_players, collection: [2, 4, 8, 16, 32], prompt: "Select Number of Players" %>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Invite the participants</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <select class="form-control select optional chosen-select" multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
+                <% current_user.friends.each do |friend| %>
+                  <option value="<%= friend.id %>" data-image="<%= cl_image_tag friend.photo.path %>"><%= friend.first_name %> <%= friend.last_name %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <%= f.button :submit %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= simple_form_for @competition, wrapper: :inline_form, html: { class: 'form-inline' } do |f| %>
-  <%= f.error_notification %>
-  <%= f.association :sport, label_method: :name, value_method: :id, collection: Sport.all, prompt: "Select sport" %>
 
-  <%= f.input :name, placeholder: "Name of your Competition" %>
+<ul id="team">
 
-  <%= f.input :category, collection: ["Knockout"], prompt: "Select Type of Competition" %>
+</ul>
 
-  <%= f.input :number_of_players, collection: [2, 4, 8, 16, 32], prompt: "Select Number of Players" %>
 
-  <%= f.association :users, collection: current_user.friends, label_method: :first_name, input_html: { data: { placeholder: 'Invite friends' }, class: 'form-control chosen-select' } %>
-
-  <%= f.button :submit %>
-<% end %>
 
 
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
-    $(document).ready(function() {
-      $('.chosen-select').chosen({
-      allow_single_deselect: true,
-      no_results_text: 'No results matched',
-      width: '200px'
-      });
+    $(document).ready(function () {
+     $('.chosen-select').chosen({
+       allow_single_deselect: true,
+       no_results_text: 'No results matched',
+       width: '300px',
+       placeholder_text_single: 'Search by name'
+     });
+     $('.chosen-select').chosen().change(function(){
+        $("#team").empty();
+        $(".chosen-choices a").each(function(index, link){
+          var playerIndex = parseInt($(link).attr("data-option-array-index"));
+          var image = $(".chosen-select option").eq(playerIndex).data("image");
+          var id = $(".chosen-select option").eq(playerIndex).val();
+          var li = $("<li" + " user-id=" + id +  ">").text(image);
+          $("#team").append(li);
+        });
+     })
     });
   <% end %>
 <% end %>
+
+

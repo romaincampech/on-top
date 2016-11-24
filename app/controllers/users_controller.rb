@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   def show
   end
 
+  def infos
+    # todo get user from query name
+    render json: { first_name: User.last.first_name }
+  end
+
   private
 
   def find_user

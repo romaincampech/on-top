@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [ :show ] do
     resources :friend_requests, only: [ :create ]
+    get "/infos", to: "users#infos"
   end
   resources :friendships, only: [ :destroy ]
 
