@@ -32,7 +32,7 @@ class Match < ApplicationRecord
     self.save
   end
 
-  def winner(score)
+  def assign_winner(score)
     if score["set1"]["player_1"] > score["set1"]["player_2"] && score["set2"]["player_1"] > score["set2"]["player_2"]
       self.winner_id = self.players.first.id
     elsif score["set1"]["player_1"] > score["set1"]["player_2"] && score["set3"]["player_1"] > score["set3"]["player_2"]
@@ -42,7 +42,6 @@ class Match < ApplicationRecord
     else
       self.winner_id = self.players.last.id
     end
-    return User.find(winner_id).first_name
   end
 
   def set_next_round
