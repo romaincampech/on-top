@@ -45,6 +45,24 @@
       <%= render 'messages/form', competition: @competition, message: @message %>
     </div>
     </div>
+        <div class="col-sm-2 col-sm-offset-1">
+      <div class="participants">
+        <div class="row">
+          <div class="col-sm-12"><h4 style="text-align: center;">Participants</h4></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <ul>
+              <% @competition.players.each do |player| %>
+              <li>
+                <%= link_to "#{player.first_name} #{player.last_name}", user_path(player) %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </div>
