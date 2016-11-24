@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_attachment :photo
 
   has_many :messages, dependent: :destroy
+
 # Competition side
 
   # competitions the user is part of (playing or spectating)
@@ -78,9 +79,8 @@ class User < ApplicationRecord
     friend.friendships.select{|fr| fr.friend == self}.first
   end
 
-  #unfriend method
-  # def remove_friend(friend)
-  #   current_user.friends.destroy(friend)
-  # end
+#Search side
+
+
 end
 

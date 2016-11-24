@@ -10,7 +10,21 @@
 
   <%= f.input :number_of_players, collection: [2, 4, 8, 16, 32], prompt: "Select Number of Players" %>
 
-  <%= f.association :users, collection: User.all, label_method: :email, as: :check_boxes %>
+  <%= f.association :users, collection: current_user.friends, label_method: :first_name, input_html: { data: { placeholder: 'Invite friends' }, class: 'form-control chosen-select' } %>
 
   <%= f.button :submit %>
+<% end %>
+
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      $('.chosen-select').chosen({
+      allow_single_deselect: true,
+      no_results_text: 'No results matched',
+      width: '200px'
+      });
+    });
+  <% end %>
 <% end %>
