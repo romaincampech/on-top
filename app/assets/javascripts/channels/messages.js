@@ -1,7 +1,8 @@
   $(document).ready(function() {
 
 // this code makes it so it load the chat at the bottom of the page
-  $('#messages').scrollTop($('#messages')[0].scrollHeight)
+  $('#messages').scrollTop($('#messages')[0].scrollHeight),
+
 
 
 // this code is for the ActionCable

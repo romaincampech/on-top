@@ -6,7 +6,13 @@
         </div>
         <div class="col-md-11">
           <p class="message-text">
-            <span class="text-muted"><%= message.user.first_name + " " + message.user.last_name%> <br> <%= message.timestamp %></span><br>
+            <span class="text-muted"><%= message.user.first_name + " " + message.user.last_name%> <br> <%= message.timestamp%>
+            <% if DateTime.now.to_date != message.created_at.to_date %>
+            <%= " " + message.daystamp   %>
+            <% elsif DateTime.now.to_date - 1 == message.created_at.to_date %>
+            <%= " yesterday" %>
+            <% end %>
+            </span><br>
             <%= message.body %>
           </p>
         </div>
