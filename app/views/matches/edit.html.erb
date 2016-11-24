@@ -1,0 +1,11 @@
+<h1>Enter the score for you match</h1>
+
+<%= form_tag match_path(@match), method: :patch do %>
+  <p>Set One - Player 1 won <%= select_tag "set1player1", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 1" %> games</p>
+  <p>Set One - Player 2 won <%= select_tag "set1player2", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 2" %> games</p>
+  <p>Set Two - Player 1 won <%= select_tag "set2player1", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 1" %> games</p>
+  <p>Set Two - Player 2 won <%= select_tag "set2player2", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 1" %> games</p>
+  <p>Set Three - Player 1 won <%= select_tag "set3player1", options_for_select([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), label: "Set One, Player 1" %> games</p>
+  <p>Set Three - Player 2 won <%= select_tag "set3player2", options_for_select([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), label: "Set One, Player 1" %> games</p>
+  <%= submit_tag 'Submit' %>
+<% end %>

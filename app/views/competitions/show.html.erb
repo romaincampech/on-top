@@ -8,6 +8,7 @@
       <div class="card-match">
         <h5>Match <%=match.match_number %></h5>
         <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.first %> </p>
+        <%= link_to "Input Score", edit_match_path(match) %>
       </div>
       <% end %>
     </div>
