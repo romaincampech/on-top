@@ -20,19 +20,31 @@
   </div>
 </div>
 
-<div class="chatbox">
-<div id="messages">
-  <%= render @chat_room.messages %>
-</div>
+<div class="message-board">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+    <div class="chatbox">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4 style="text-align: center; margin: 20px;">Message Board</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div id="messages">
+            <ul style="padding:0;list-style-type: none;">
+            <% @chat_room.messages.order("created_at asc").each do |message| %>
+            <%= render message, message: message %>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-<%= form_for [@competition, @message], remote: true do |f| %>
-  <div class="form-group">
-    <%= f.label :body %>
-    <%= f.text_area :body, class: 'form-control' %>
-    <small class="text-muted">From 2 to 1000 characters</small>
+      <%= render 'messages/form', competition: @competition, message: @message %>
+    </div>
+    </div>
   </div>
-
-  <%= f.submit "Post", class: 'btn btn-primary btn-lg' %>
-<% end %>
-
+</div>
 </div>
