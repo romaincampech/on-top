@@ -62,6 +62,10 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.6)
+    chosen-rails (1.5.2)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     cloudinary (1.1.0)
       aws_cf_signer
       rest-client
@@ -225,6 +229,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  chosen-rails
   cloudinary (= 1.1.0)
   coffee-rails
   devise
