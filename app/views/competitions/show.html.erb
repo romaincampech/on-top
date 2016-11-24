@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
           <div id="messages">
-            <ul style="list-style-type: none; padding: 0; padding-right: 15px;">
+            <ul id="message-list">
             <% @chat_room.messages.order("created_at asc").each do |message| %>
             <%= render message, message: message %>
             <% end %>
