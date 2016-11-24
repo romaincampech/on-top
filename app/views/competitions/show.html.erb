@@ -7,7 +7,7 @@
       <% @competition.matches.where(round: round_number).each do |match| %>
       <div class="card-match">
         <h5>Match <%=match.match_number %></h5>
-        <p><%= match.players.first.email if match.players.first %> vs. <%= match.players.last.email if match.players.first %> </p>
+        <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.first %> </p>
       </div>
       <% end %>
     </div>
