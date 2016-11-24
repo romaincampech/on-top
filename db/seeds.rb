@@ -8,6 +8,9 @@
 
 User.destroy_all
 Friendship.destroy_all
+Sport.destroy_all
+
+Sport.create!(name: "Tennis")
 
 
 user = User.new(first_name: "Julianne", last_name: "Joswiak", email: "Julianne@test.com", password: "123456", city: "London")
