@@ -6,6 +6,7 @@ class CompetitionsController < ApplicationController
     @rounds = @competition.number_of_rounds(@competition.category)
     @chat_room = ChatRoom.includes(:messages).find_by(competition_id: @competition.id)
     @message = Message.new
+    @competition.winner_match_assignment
   end
 
   def new

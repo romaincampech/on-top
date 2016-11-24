@@ -45,6 +45,29 @@ class Competition < ApplicationRecord
     end
   end
 
+ def winner_match_assignment
+  self.matches.each do |match|
+      if match.match_number == 1 && match.played?
+        MatchParticipant.create(player: match.winner, match: self.matches.where(match_number: (self.number_of_players / 2 + 1)).first)
+      elsif
+        mn = 2
+        x = 1
+        until mn == self.number_of_players
+          if match.played?
+            MatchParticipant.create(player: self.matches.where(match_number: mn).first.winner, match: self.matches.where(match_number: mn + number_of_players / 2 - x).first)
+          end
+          mn += 1
+          if match.played?
+            MatchParticipant.create(player: self.matches.where(match_number: mn).first.winner, match: self.matches.where(match_number: mn + number_of_players / 2 - x).first)
+          end
+          mn += 1
+          x += 1
+        end
+      end
+    end
+  end
+
+
   def played?
     self.champion_id?
   end
