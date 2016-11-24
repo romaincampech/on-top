@@ -6,123 +6,115 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+Friendship.destroy_all
+Sport.destroy_all
 
-# create users
-me = User.create!(email: "juliannej@mac.com", password: "123456")
-romain = User.create!(email: "romain@mac.com", password: "123456")
-guv = User.create!(email: "guv@mac.com", password: "123456")
-
-# jj = User.create(email: "jj@mac.com", password: "123456")
-# rr = User.create(email: "r@mac.com", password: "123456")
-# gg = User.create(email: "g@mac.com", password: "123456")
-# j = User.create(email: "j@mac.com", password: "123456")
-# r = User.create(email: "ro@mac.com", password: "123456")
-# g = User.create(email: "gu@mac.com", password: "123456")
-
-# CompetitionParticipant.create(user: jj, competition: comp, player: true)
-# CompetitionParticipant.create(user: rr, competition: comp, player: true)
-# CompetitionParticipant.create(user: gg, competition: comp, player: true)
-# CompetitionParticipant.create(user: j, competition: comp, player: true)
-# CompetitionParticipant.create(user: r, competition: comp, player: true)
-# CompetitionParticipant.create(user: g, competition: comp, player: true)
-# CompetitionParticipant.create(user: me, competition: comp, player: true)
-# CompetitionParticipant.create(user: romain, competition: comp, player: true)
-
-# create sport
-tennis = Sport.create!(name: "Tennis", sport_rules: "www.google.com")
-
-puts "sports created"
-
-# competition-side testing
-  # create Julianne's competition
-  comp = Competition.new(category: "knockout", number_of_players: 4)
-  comp.creator = me
-  comp.sport = tennis
-  comp.champion = me
-  comp.save
-
-  # create Guv's competition
-  compi = Competition.new(category: "round robin", number_of_players: 8)
-  compi.creator = guv
-  compi.sport = tennis
-  compi.save
-
-  # assign users to J's competition
-  comp_pi = CompetitionParticipant.new(player: false) # guv is not a player on the knockout
-  comp_pi.user = guv
-  comp_pi.competition = comp
-  comp_pi.save
-
-  comp_pii = CompetitionParticipant.new(player: true)
-  comp_pii.user = romain
-  comp_pii.competition = comp
-  comp_pii.save
-
-  comp_piii = CompetitionParticipant.new(player: true)
-  comp_piii.user = me
-  comp_piii.competition = comp
-  comp_piii.save
-
-  # assign users to G's competition
-  compi_pi = CompetitionParticipant.new(player: true) # guv is a player on the round robin
-  compi_pi.user = guv
-  compi_pi.competition = compi
-  compi_pi.save
-
-  compi_pii = CompetitionParticipant.new(player: true)
-  compi_pii.user = romain
-  compi_pii.competition = compi
-  compi_pii.save
-
-  compi_piii = CompetitionParticipant.new(player: true)
-  compi_piii.user = me
-  compi_piii.competition = compi
-  compi_piii.save
-
-# match-side testing
-matchy = Match.new(status: "unplayed", round: 1)
-matchy.competition = comp
-matchy.save
-
-matchj = Match.new(status: "played", round: 1)
-matchj.competition = comp
-matchj.winner = guv
-matchj.save
-
-matchy_p = MatchParticipant.new
-matchy_p.player = guv
-matchy_p.match = matchy
-matchy_p.save
+Sport.create!(name: "Tennis")
 
 
+user = User.new(first_name: "Julianne", last_name: "Joswiak", email: "Julianne@test.com", password: "123456", city: "London")
+url = "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/7/005/064/0ec/1749a12.jpg"
+user.photo_url = url
+user.save
 
-matchx = Match.new(status: "played", round: 1)
-matchx.competition = comp
-matchx.winner = romain
-matchx.save
+user = User.new(first_name: "Romain", last_name: "Campech", email: "Romain@test.com", password: "123456", city: "London")
+url = "https://scontent.xx.fbcdn.net/v/t1.0-9/396662_4904536692155_1483845542_n.jpg?oh=28d073dc50b821c20b8cd4313af04e4d&oe=58BBBD8F"
+user.photo_url = url
+user.save
 
-matchy_pii = MatchParticipant.new
-matchy_pii.player = romain
-matchy_pii.match = matchx
-matchy_pii.save
-
-matchy_piii = MatchParticipant.new
-matchy_piii.player = romain
-matchy_piii.match = matchj
-matchy_piii.save
-
-matchy_pi = MatchParticipant.new
-matchy_pi.player = romain
-matchy_pi.match = matchy
-matchy_pi.save
-
-matchy_pc = MatchParticipant.new
-matchy_pc.player = guv
-matchy_pc.match = matchj
-matchy_pc.save
+user = User.new(first_name: "Guv", last_name: "Marwaha", email: "Guv@test.com", password: "123456", city: "London")
+url = "https://avatars1.githubusercontent.com/u/22517547?v=3&s=400"
+user.photo_url = url
+user.save
 
 
-puts "matches created"
+user = User.new(first_name: "Sian", last_name: "Ditchfield", email: "Sian@test.com", password: "123456", city: "London")
+url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1536608_10151972665337736_261307068_n.jpg?oh=b809c069322a6f767130f3f9962d8ebc&oe=58CD125E"
+user.photo_url = url
+user.save
+
+user = User.new(first_name: "Ben", last_name: "Taylor", email: "Ben@test.com", password: "123456", city: "London")
+url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1374283_10151576261717242_1484652063_n.jpg?oh=729ff13950789f2e08a5d6a13410158e&oe=58AFFDA3"
+user.photo_url = url
+user.save
+
+user = User.new(first_name: "Cameron", last_name: "Flewitt", email: "Cameron@test.com", password: "123456", city: "London")
+url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1376606_10200857745604858_408929695_n.jpg?oh=470424313966445601919097678f0a12&oe=58B74318"
+user.photo_url = url
+user.save
+
+user = User.new(first_name: "Marco", last_name: "Gigantino", email: "Marco@test.com", password: "123456", city: "London")
+url = "https://scontent.xx.fbcdn.net/v/t1.0-9/12507116_10208305928195365_2752709793386925212_n.jpg?oh=954eec3202c9985461be4e8fbff84559&oe=58B8D2D8"
+user.photo_url = url
+user.save
+
+user = User.new(first_name: "Greg", last_name: "Street", email: "Greg@test.com", password: "123456", city: "London")
+url = "https://scontent.xx.fbcdn.net/v/t1.0-9/316010_268794049816617_5508651_n.jpg?oh=a7b4c82d608441c323bee27df1b113f6&oe=58BC4371"
+user.photo_url = url
+user.save
+
+user = User.new(first_name: "Francine", last_name: "Counsell", email: "Francine@test.com", password: "123456", city: "London")
+url = "https://scontent.xx.fbcdn.net/v/t1.0-9/14141888_10157293299700487_1562368623698011705_n.jpg?oh=ba019140c0174392980ee0bebf373eaf&oe=58C1D4ED"
+user.photo_url = url
+user.save
+
+user = User.new(first_name: "Freddie", last_name: "Wright", email: "Freddie@test.com", password: "123456", city: "London")
+url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1497525_10203587590113762_609128032_n.jpg?oh=9941bf5266cad7add79fce1e29d20733&oe=58BC319C"
+user.photo_url = url
+user.save
+
+user = User.new(first_name: "Mark", last_name: "Rickerby", email: "Mark@test.com", password: "123456", city: "London")
+url = "https://scontent.xx.fbcdn.net/v/t1.0-9/12219451_10156322462565106_9189074120115918006_n.jpg?oh=d7f13d2ca7afe9d723ed3534a87b3aab&oe=58C98A4D"
+user.photo_url = url
+user.save
+
+user = User.new(first_name: "Tina", last_name: "Lasisi", email: "Tina@test.com", password: "123456", city: "London")
+url = "https://scontent.xx.fbcdn.net/v/t1.0-9/384245_10153800203112748_2892637335954867492_n.jpg?oh=94c74543c2b75d60d2b7f6a297f16a03&oe=58D05F19"
+user.photo_url = url
+user.save
+
+puts "'real' users seeded"
+
+users_urls = [
+"http://blog.psychicsforetell.com/wp-content/uploads/2012/11/Feminist-Ryan-Gosling-269x300.jpg",
+"http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=38096302",
+"http://timothywhite.com/sites/default/files/styles/gallery_1000/public/images/portfolio/Bruce-Willis.jpg",
+"http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=12862344",
+"https://pmchollywoodlife.files.wordpress.com/2015/05/jessica-alba-bio-photo.jpg?w=600",
+"https://timeentertainment.files.wordpress.com/2013/06/157841774.jpg?w=260",
+"http://ets2.lt/wp-content/uploads/2013/02/star.jpg",
+"https://pmchollywoodlife.files.wordpress.com/2015/06/colin-farrell-bio-photo.jpg?w=330",
+"http://i.dailymail.co.uk/i/pix/2012/05/23/article-0-00DD8F7700000578-631_306x378.jpg",
+"http://images.thehairstyler.com/attachment_resources/attachments/110/original/Celebrity_4298.jpg",
+"https://s-media-cache-ak0.pinimg.com/236x/0d/3d/3e/0d3d3e6b4f4b79023f1012e4fcb7d75c.jpg",
+"https://pmchollywoodlife.files.wordpress.com/2015/08/salma-hayek-bio-photo.jpg?w=330",
+"https://s-media-cache-ak0.pinimg.com/236x/0a/79/44/0a7944d75ef6357aa115fe8767785fb7.jpg",
+"http://i.dailymail.co.uk/i/pix/2015/01/25/2506543700000578-0-image-m-36_1422177963594.jpg",
+"https://s-media-cache-ak0.pinimg.com/564x/62/20/d1/6220d1d825e63ec484bcf81eb0d57217.jpg",
+"http://i.imgur.com/zj0t895.jpg",
+"http://www.amiaceleb.com/media/galleries/197/675_profile.jpg",
+"http://www.amiaceleb.com/media/galleries/182/629_profile.jpg"
+]
+
+users_urls.each do |user_url|
+  user = User.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "123456", city: "London")
+  user.photo_url = user_url
+  user.save
+end
+
+puts "fake users seeded"
+
+# create friendships
+id = User.find_by(email: "guv@test.com").id + 1
+20.times {
+  Friendship.create!(user: User.find_by(email: "julianne@test.com"), friend_id: id)
+  Friendship.create!(user: User.find_by(email: "romain@test.com"), friend_id: id)
+  Friendship.create!(user: User.find_by(email: "guv@test.com"), friend_id: id)
+  id += 1
+}
+
+puts "friendships between us and other users should be seeded"
 
 
 

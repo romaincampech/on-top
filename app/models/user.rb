@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_attachment :photo
 
   has_many :messages, dependent: :destroy
+
 # Competition side
 
   # competitions the user is part of (playing or spectating)
@@ -64,5 +65,22 @@ class User < ApplicationRecord
   def losses
     played_matches.where.not(winner_id: id)
   end
+
+#Friend side
+  # pending friend request the user sent
+  has_many :friend_requests, dependent: :destroy
+  has_many :pending_friends, through: :friend_requests, source: :friend
+
+  # friends the user has
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships, :foreign_key => 'friend_id'
+
+  def get_friendship(friend)
+    friend.friendships.select{|fr| fr.friend == self}.first
+  end
+
+#Search side
+
+
 end
 

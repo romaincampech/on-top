@@ -7,7 +7,7 @@
       <% @competition.matches.order("match_number asc").select { |r| r.round == round_number }.each do |match| %>
       <div class="card-match" id=<%= "#{match.match_number}" %>>
         <h5>Match <%=match.match_number %></h5>
-        <p><%= match.players.first %> vs. <%= match.players.last %> </p>
+        <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.first %> </p>
         <% if match.played? %>
           <p>Winner: <%= match.winner %></p>
         <% end %>

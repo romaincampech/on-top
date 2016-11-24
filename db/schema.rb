@@ -62,6 +62,24 @@ ActiveRecord::Schema.define(version: 20161124123008) do
     t.index ["sport_id"], name: "index_competitions_on_sport_id", using: :btree
   end
 
+  create_table "friend_requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friend_requests_on_friend_id", using: :btree
+    t.index ["user_id"], name: "index_friend_requests_on_user_id", using: :btree
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+    t.index ["user_id"], name: "index_friendships_on_user_id", using: :btree
+  end
+
   create_table "match_participants", force: :cascade do |t|
     t.integer  "player_id"
     t.integer  "match_id"
@@ -117,7 +135,7 @@ ActiveRecord::Schema.define(version: 20161124123008) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "city"
-    t.boolean  "admin",                  default: false
+    t.boolean  "admin",                  default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -128,6 +146,10 @@ ActiveRecord::Schema.define(version: 20161124123008) do
   add_foreign_key "competitions", "sports"
   add_foreign_key "competitions", "users", column: "champion_id"
   add_foreign_key "competitions", "users", column: "creator_id"
+  add_foreign_key "friend_requests", "users"
+  add_foreign_key "friend_requests", "users", column: "friend_id"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "match_participants", "matches"
   add_foreign_key "match_participants", "users", column: "player_id"
   add_foreign_key "matches", "competitions"
