@@ -9,6 +9,7 @@
         <h5>Match <%=match.match_number %></h5>
         <p><%= match.players.first %> vs. <%= match.players.last %> </p>
         <%= link_to "Input Score", edit_match_path(match) %>
+        <p>WINNER: <%= match.winner_id %> </p>
       </div>
       <% end %>
     </div>
