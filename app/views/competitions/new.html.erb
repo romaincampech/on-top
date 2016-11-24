@@ -33,7 +33,7 @@
             <div class="col-md-12 text-center">
               <select class="form-control select optional chosen-select" multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
                 <% current_user.friends.each do |friend| %>
-                  <option value="<%= friend.id %>" data-image="<%= cl_image_tag friend.photo.path %>"><%= friend.first_name %> <%= friend.last_name %>
+                  <option value="<%= friend.id %>" data-image="<%= cl_image_path(friend.photo) %>"><%= friend.first_name %> <%= friend.last_name %>
                   </option>
                 <% end %>
               </select>

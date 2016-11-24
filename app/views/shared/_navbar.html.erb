@@ -1,24 +1,49 @@
-<div class="navbar-wagon">
+<div class="navbar">
+
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
+  <%= link_to root_path, class: "navbar-logo" do %>
+    <%= image_tag "on-top-logo.png" %>
   <% end %>
 
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+  <!-- Creation buttons -->
+  <div class="navbar-middle">
+    <%= button_to "Create a competition", new_competition_path, class: "navbar-competition-btn", method: :get %>
+    <%= button_to "Create a team", root_path, class: "navbar-team-btn", method: :get %>
+  </div>
+
+  <!-- Right navigation -->
+  <div class="navbar-right">
 
     <!-- Search form -->
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
+    <form action="" class="navbar-search">
+      <input type="text" class="navbar-search-input" placeholder="Search...">
+      <button type="submit" class="navbar-search-btn">
         <i class="fa fa-search"></i>
       </button>
     </form>
 
-    <!-- Different navigation if login or not -->
+  <!-- Different navigation if user is logged in or not -->
+<!--     <% if user_signed_in? %>
+
+    <% end %> -->
+  </div>
+</div>
+
+
+
+
+<!-- <div class="navbar-wagon">
+
+
+  Right Navigation
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+
+
+    Different navigation if login or not
     <% if user_signed_in? %>
 
-      <!-- Notification -->
+      Notification
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i class="fa fa-envelope-o"></i>
@@ -26,7 +51,7 @@
         </div>
       <% end %>
 
-      <!-- Profile picture and dropdown -->
+      Profile picture and dropdown
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
@@ -52,16 +77,16 @@
 
     <% else %>
 
-      <!-- Login text link -->
+      Login text link
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% end %>
 
-    <!-- Button (call-to-action) -->
+    Button (call-to-action)
     <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
   </div>
 
-  <!-- Dropdown list appearing on mobile only -->
+  Dropdown list appearing on mobile only
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
@@ -74,3 +99,4 @@
   </div>
 </div>
 
+ -->
