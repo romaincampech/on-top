@@ -45,6 +45,4 @@ class Match < ApplicationRecord
     end
   end
 
-  def set_next_round
-  end
 end
