@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function(){
 
   $(".profile-tab").on("click", function(e){
     // Change active tab

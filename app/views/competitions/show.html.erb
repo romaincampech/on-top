@@ -19,14 +19,17 @@
 
 <div class="chatbox">
 <div id="messages">
-  <%= render @chat_room.messages %>
+  <ul>
+  <% @chat_room.messages.order("created_at asc").each do |message| %>
+  <%= render message, message: message %>
+  <% end %>
+  </ul>
 </div>
 
 <%= form_for [@competition, @message], remote: true do |f| %>
   <div class="form-group">
     <%= f.label :body %>
-    <%= f.text_area :body, class: 'form-control' %>
-    <small class="text-muted">From 2 to 1000 characters</small>
+    <%= f.text_area :body, class: 'form-control', id: 'writing' %>
   </div>
 
   <%= f.submit "Post", class: 'btn btn-primary btn-lg' %>
