@@ -9,10 +9,35 @@
         <h5>Match <%=match.match_number %></h5>
         <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %> </p>
         <% if match.played? %>
-          <p>Winner: <%= match.winner.first_name %></p>
+        <p>Winner: <%= match.winner.first_name %></p>
         <% end %>
-        <%= link_to "Input Score", edit_match_path(match), remote: true, :class => 'btn btn-sm btn-info' %>
+        <%= link_to "Input Score", edit_match_path(match), remote: true, :class => 'btn btn-sm btn-info', 'data-toggle' => 'modal', 'data-target' => '#basicModal' %>
 
+      </div>
+      <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">Enter score:</h4>
+            </div>
+            <div class="modal-body">
+              <%= form_tag match_path(match), method: :patch do %>
+              <p>Set One - Player 1 won <%= select_tag "set1player1", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 1" %> games</p>
+              <p>Set One - Player 2 won <%= select_tag "set1player2", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 2" %> games</p>
+              <p>Set Two - Player 1 won <%= select_tag "set2player1", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 1" %> games</p>
+              <p>Set Two - Player 2 won <%= select_tag "set2player2", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 1" %> games</p>
+              <p>(If) Set Three - Player 1 won <%= select_tag "set3player1", options_for_select([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), label: "Set One, Player 1" %> games</p>
+              <p>(If) Set Three - Player 2 won <%= select_tag "set3player2", options_for_select([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), label: "Set One, Player 1" %> games</p>
+              <%= submit_tag 'Submit' %>
+              <% end %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
       </div>
       <% end %>
     </div>
@@ -22,32 +47,30 @@
 </div>
 
 <div class="message-board">
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-    <div class="chatbox">
-      <div class="row">
-        <div class="col-sm-12">
-          <h4 style="text-align: center; margin: 20px;">Message Board</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-          <div id="messages">
-            <ul id="message-list">
-            <% @chat_room.messages.order("created_at asc").each do |message| %>
-            <%= render message, message: message %>
-            <% end %>
-            </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="chatbox">
+          <div class="row">
+            <div class="col-sm-12">
+              <h4 style="text-align: center; margin: 20px;">Message Board</h4>
+            </div>
           </div>
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <div id="messages">
+                <ul id="message-list">
+                  <% @chat_room.messages.order("created_at asc").each do |message| %>
+                  <%= render message, message: message %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <%= render 'messages/form', competition: @competition, message: @message %>
         </div>
       </div>
-
-      <%= render 'messages/form', competition: @competition, message: @message %>
-    </div>
     </div>
   </div>
 </div>
-</div>
-
-

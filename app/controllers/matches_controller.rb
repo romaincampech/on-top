@@ -2,10 +2,6 @@ class MatchesController < ApplicationController
   before_action :set_match
 
   def edit
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def update
