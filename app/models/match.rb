@@ -1,5 +1,3 @@
-require 'JSON'
-
 class Match < ApplicationRecord
   belongs_to :competition
   has_one :sport, through: :competition
