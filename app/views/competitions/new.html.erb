@@ -33,7 +33,7 @@
             <div class="col-md-12 text-center">
               <select class="form-control select optional chosen-select" multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
                 <% current_user.friends.each do |friend| %>
-                  <option value="<%= friend.id %>" data-image="<%= cl_image_path(friend.photo) %>"><%= friend.first_name %> <%= friend.last_name %>
+                  <option value="<%= friend.id %>"><%= friend.first_name %> <%= friend.last_name %>
                   </option>
                 <% end %>
               </select>
@@ -53,7 +53,6 @@
 
 
 <ul id="team">
-
 </ul>
 
 
@@ -61,26 +60,36 @@
 
 
 <% content_for(:after_js) do %>
-  <%= javascript_tag do %>
+  <script>
+    // Friend Library
+    var friends_cards = {};
+    var total_friends = <%= current_user.friends.count %>
+
+    <% current_user.friends.each do |friend| %>
+      friends_cards["<%= friend.id %>"] = "<%= j render 'friend_card', friend: friend %>"
+    <% end %>
+
     $(document).ready(function () {
-     $('.chosen-select').chosen({
-       allow_single_deselect: true,
-       no_results_text: 'No results matched',
-       width: '300px',
-       placeholder_text_single: 'Search by name'
-     });
-        $('.chosen-select').chosen().change(function(){
+      $('.chosen-select').chosen({
+        allow_single_deselect: true,
+        no_results_text: 'No results matched',
+        width: '300px',
+        placeholder_text_single: 'Search by name'
+      });
+      $('.chosen-select').chosen().change(function(){
         $("#team").empty();
-        $(".chosen-choices a").each(function(index, link){
-          var playerIndex = parseInt($(link).attr("data-option-array-index"));
-          var image = $(".chosen-select option").eq(playerIndex).data("image");
-          var id = $(".chosen-select option").eq(playerIndex).val();
-          var li = $("<li" + " user-id=" + id +  ">").text(image);
-          $("#team").append(li);
-        });
+        var delay=01;
+        setTimeout(function() {
+          $(".chosen-choices a").each(function(index, link){
+            var playerIndex = parseInt($(link).attr("data-option-array-index"));
+            var id = $(".chosen-select option").eq(playerIndex).val();
+            $("#team").append(friends_cards[id]);
+          });
+        }, delay);
+
      })
     });
-  <% end %>
+  </script>
 <% end %>
 
 

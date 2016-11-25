@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_attachment :photo
 
+  after_create :own_friend
+
   has_many :messages, dependent: :destroy
 
 # Competition side
@@ -75,8 +77,13 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships, :foreign_key => 'friend_id'
 
+
   def get_friendship(friend)
     friend.friendships.select{|fr| fr.friend == self}.first
+  end
+
+  def own_friend
+    Friendship.create(user: self, friend: self)
   end
 
 #Search side
