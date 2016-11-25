@@ -69,7 +69,7 @@
        width: '300px',
        placeholder_text_single: 'Search by name'
      });
-     $('.chosen-select').chosen().change(function(){
+        $('.chosen-select').chosen().change(function(){
         $("#team").empty();
         $(".chosen-choices a").each(function(index, link){
           var playerIndex = parseInt($(link).attr("data-option-array-index"));
