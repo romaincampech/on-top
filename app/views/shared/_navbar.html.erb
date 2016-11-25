@@ -49,7 +49,7 @@
         //value to be displayed in input control after user's suggestion selection
         displayKey: function(suggestion) { return suggestion.first_name + " " + suggestion.last_name},
         //hash of templates used when rendering dataset
-        templates: {
+     templates: {
             //'suggestion' templating function used to render a single suggestion
             suggestion: function(suggestion) {
               var link = "<form action='<%= ENV['HOST'] %>users/" + suggestion.id + "/friend_requests' method='post' id='addfriend' style='color: lightgreen'> <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'> <button type='submit' name='user_id' value='" + suggestion.id + "' class='btn-link'>Add</button></form>";
@@ -63,7 +63,7 @@
     }]).on('autocomplete:selected', function(event, suggestion, dataset) {
         var url = "<%= ENV['HOST'] %>/users/";
         // need to extract this to have different url for development vs production
-        window.location.assign(url + suggestion.id)});
+        window.location.assign(url + suggestion.objectID)});
 
 
 
