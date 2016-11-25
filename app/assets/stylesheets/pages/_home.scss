@@ -6,3 +6,45 @@ body {
   background-color: #EFEFEF;
   min-height: 100%;
 }
+
+.home-page-background {
+  background: url('field-home.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-position: 50% 30%;
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  filter: grayscale(0.2);
+}
+
+h1 {
+  color: white;
+  font-size: 80px;
+  font-weight: 900;
+  font-family: 'Coda', cursive;
+}
+
+h3 {
+  color: white;
+  font-size: 50px;
+  font-weight: 700;
+  font-family: 'Coda', cursive;
+}
+
+.home-signup-btn {
+  background-color: #53C75C;
+  opacity: 0.9;
+  color: white;
+  border: none;
+  width: 180px;
+  padding: 10px;
+  margin: 0 5px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+}
+
+.home-content {
+  padding-bottom: 100px;
+}

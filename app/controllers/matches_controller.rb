@@ -8,7 +8,6 @@ class MatchesController < ApplicationController
     @match.build_score(params)
     @winner = @match.assign_winner(@match.score)
     @match.save
-    binding.pry
     redirect_to competition_path(@match.competition_id)
   end
 
