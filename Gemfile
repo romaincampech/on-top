@@ -7,8 +7,7 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
-# note I changed redis to version 3.2 and also added turbolinks
-gem 'redis', '~> 3.2'
+gem 'redis'
 gem "pundit"
 
 gem 'sass-rails'
@@ -24,6 +23,7 @@ gem "attachinary", github: "assembler/attachinary"
 gem "jquery-fileupload-rails"
 gem "coffee-rails"
 gem 'faker'
+gem "algoliasearch-rails"
 
 gem 'chosen-rails'
 
