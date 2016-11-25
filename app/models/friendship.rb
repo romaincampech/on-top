@@ -8,7 +8,7 @@ class Friendship < ApplicationRecord
   validates :user, presence: true
   validates :friend, presence: true, uniqueness: { scope: :user }
 
-  validate :not_self
+  # validate :not_self
 
   private
 
@@ -21,7 +21,7 @@ class Friendship < ApplicationRecord
     friendship.destroy if friendship
   end
 
-  def not_self
-    errors.add(:friend, "can't be equal to user") if user == friend
-  end
+  # def not_self
+  #   errors.add(:friend, "can't be equal to user") if user == friend
+  # end
 end

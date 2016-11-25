@@ -1,7 +1,9 @@
   $(document).ready(function() {
 
 // this code makes it so it load the chat at the bottom of the page
-  $('#messages').scrollTop($('#messages')[0].scrollHeight),
+  if ($('#messages').length > 0) {
+    $('#messages').scrollTop($('#messages')[0].scrollHeight);
+  }
 
 
 
