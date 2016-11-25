@@ -9,7 +9,6 @@ class FriendRequestsController < ApplicationController
   def create
     friend = User.find(params[:user_id])
     @friend_request = current_user.friend_requests.new(friend: friend)
-    binding.pry
     @friend_request.save
     authorize(@friend_request)
 

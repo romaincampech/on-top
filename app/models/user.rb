@@ -91,8 +91,8 @@ class User < ApplicationRecord
   include AlgoliaSearch
 
   algoliasearch do
-    attribute :first_name, :last_name, :email, :photo, :id
-    attributesToIndex ['first_name', 'last_name', 'email', 'photo', 'id']
+    attribute :first_name, :last_name, :email, :id, :photo
+    attributesToIndex ['first_name', 'last_name', 'email', 'id', 'photo']
     # customRanking ['desc(likes_count)']
   end
 
