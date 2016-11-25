@@ -64,6 +64,7 @@
         var url = "<%= ENV['HOST'] %>users/";
         // need to extract this to have different url for development vs production
         window.location.assign(url + suggestion.id)});
+        // $(document).prepend("<%= flash[:notice] = "Friend request sent" %>")
 
 
 

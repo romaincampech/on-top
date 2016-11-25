@@ -12,7 +12,7 @@ class FriendRequestsController < ApplicationController
     @friend_request.save
     authorize(@friend_request)
 
-    redirect_to user_path(friend)
+    # redirect_to user_path(friend)
   end
 
   def update
