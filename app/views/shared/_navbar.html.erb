@@ -63,7 +63,7 @@
     }]).on('autocomplete:selected', function(event, suggestion, dataset) {
         var url = "<%= ENV['HOST'] %>/users/";
         // need to extract this to have different url for development vs production
-        window.location.assign(url + suggestion.id)});
+        window.location.assign(url + suggestion.objectID)});
 
 
 
