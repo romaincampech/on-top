@@ -11,7 +11,8 @@
         <% if match.played? %>
           <p>Winner: <%= match.winner.first_name %></p>
         <% end %>
-        <%= link_to "Input Score", edit_match_path(match) %>
+        <%= link_to "Input Score", edit_match_path(match), remote: true, :class => 'btn btn-sm btn-info' %>
+
       </div>
       <% end %>
     </div>
@@ -48,3 +49,5 @@
   </div>
 </div>
 </div>
+
+
