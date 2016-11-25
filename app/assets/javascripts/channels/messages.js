@@ -1,4 +1,4 @@
-  $(document).ready(function() {
+$(document).ready(function() {
 
 // this code makes it so it load the chat at the bottom of the page
   if ($('#messages').length > 0) {
