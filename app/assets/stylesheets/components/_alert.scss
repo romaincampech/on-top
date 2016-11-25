@@ -8,8 +8,15 @@
   color: white;
 }
 .alert-info {
-  background: $green;
+  background: #58D063;
 }
 .alert-warning {
-  background: $red;
+  background: #FF3D42;
+}
+
+#sign-up {
+  text-align: center;
+  p {
+    padding-top: 15px;
+  }
 }

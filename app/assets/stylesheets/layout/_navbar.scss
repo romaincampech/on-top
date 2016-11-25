@@ -1,9 +1,9 @@
 /* Main class */
 .navbar {
-  background-color: white;
+  background-color: #F7F7F7;
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
   height: 70px;
-  padding: 0 30px;
+  padding: 0 5px;
   margin: 0;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@
 /* Navbar middle section */
 .navbar-middle {
   display: flex;
-  align-items: center;
+  align-items: justify;
   justify-content: space-between;
 }
 
@@ -48,6 +48,19 @@
     border-radius: 3px;
     box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
   }
+
+  /* Navbar Sign Out Button */
+.navbar-signout-btn {
+  background-color: #FF3D42;
+  opacity: 0.9;
+  color: white;
+  border: none;
+  width: 100px;
+  padding: 7px;
+  margin: 0 5px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+}
 
 /* Navbar right section */
   .navbar-right {

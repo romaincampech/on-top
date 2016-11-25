@@ -21,7 +21,9 @@
         <i class="fa fa-search"></i>
       </button>
     </form>
-
+  <div class='signout-button'>
+    <%= button_to "Sign Out", destroy_user_session_path, class: "navbar-signout-btn", method: :delete %>
+  </div>
   <!-- Different navigation if user is logged in or not -->
 <!--     <% if user_signed_in? %>
 
