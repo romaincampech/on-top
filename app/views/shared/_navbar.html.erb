@@ -15,12 +15,10 @@
   <div class="navbar-right">
 
     <!-- Search form -->
-    <form action="" class="navbar-search">
-      <input type="text" class="navbar-search-input" placeholder="Search...">
-      <button type="submit" class="navbar-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
+
+      <%= render 'shared/searchform' %>
+
+
   <% if current_user.nil? %>
     <%= button_to "Log In", new_user_session_path, class: "navbar-competition-btn", method: :get %>
   <% else %>
@@ -32,77 +30,46 @@
 <!--     <% if user_signed_in? %>
 
     <% end %> -->
+
   </div>
+
+
+
 </div>
 
+<% content_for(:after_js) do %>
+    <script>
+    var client = algoliasearch("<%= ENV['ALGOLIA_API'] %>", "<%= ENV['ALGOLIA_SECRET'] %>");
+    var index = client.initIndex('User');
+
+
+    //initialize autocomplete on search input (ID selector must match)
+    autocomplete('#aa-search-input',
+    { hint: false }, [{
+        source: autocomplete.sources.hits(index, {hitsPerPage: 5}),
+        //value to be displayed in input control after user's suggestion selection
+        displayKey: function(suggestion) { return suggestion.first_name + " " + suggestion.last_name},
+        //hash of templates used when rendering dataset
+        templates: {
+            //'suggestion' templating function used to render a single suggestion
+            suggestion: function(suggestion) {
+              var link = "<form action='<%= ENV['HOST'] %>users/" + suggestion.objectID + "/friend_requests' method='post' id='addfriend' style='color: lightgreen'><button type='submit' name='user_id' value='" + suggestion.objectID + "' class='btn-link'>Add</button></form>";
+              var card = "<span>" + "<img src=http://res.cloudinary.com/dkyjujcrz/image/upload/w_400,h_400/" + suggestion.photo.path + " alt='' class='avatar'> " +
+                suggestion._highlightResult.first_name.value + " " + suggestion._highlightResult.last_name.value + "</span><span>" + link +"</span>";
+
+              console.log(card)
+              return card
+
+            }
+        }
+    }]).on('autocomplete:selected', function(event, suggestion, dataset) {
+        var url = "<%= ENV['HOST'] %>/users/";
+        // need to extract this to have different url for development vs production
+        window.location.assign(url + suggestion.objectID)});
 
 
 
-<!-- <div class="navbar-wagon">
+    </script>
+<% end %>
 
 
-  Right Navigation
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-
-
-    Different navigation if login or not
-    <% if user_signed_in? %>
-
-      Notification
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-          <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
-        </div>
-      <% end %>
-
-      Profile picture and dropdown
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-    <% else %>
-
-      Login text link
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
-    <% end %>
-
-    Button (call-to-action)
-    <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
-  </div>
-
-  Dropdown list appearing on mobile only
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
- -->

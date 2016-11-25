@@ -86,7 +86,15 @@ class User < ApplicationRecord
     Friendship.create(user: self, friend: self)
   end
 
-#Search side
+
+# Search
+  include AlgoliaSearch
+
+  algoliasearch do
+    attribute :first_name, :last_name, :email, :photo
+    attributesToIndex ['first_name', 'last_name', 'email', 'photo']
+    # customRanking ['desc(likes_count)']
+  end
 
 
 end
