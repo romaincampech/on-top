@@ -21,7 +21,13 @@
         <i class="fa fa-search"></i>
       </button>
     </form>
-
+  <% if current_user.nil? %>
+    <%= button_to "Log In", new_user_session_path, class: "navbar-competition-btn", method: :get %>
+  <% else %>
+    <div class='signout-button'>
+      <%= button_to "Sign Out", destroy_user_session_path, class: "navbar-signout-btn", method: :delete %>
+    </div>
+  <% end %>
   <!-- Different navigation if user is logged in or not -->
 <!--     <% if user_signed_in? %>
 
