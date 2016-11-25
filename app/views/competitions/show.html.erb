@@ -9,10 +9,12 @@
         <h5>Match <%=match.match_number %></h5>
         <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %> </p>
         <% if match.played? %>
-          <p>Winner: <%= match.winner.first_name %></p>
+        <p>Winner: <%= match.winner.first_name %></p>
         <% end %>
-        <%= link_to "Input Score", edit_match_path(match) %>
-      </div>
+        <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm btn-success', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+
+      <%= render 'matches/edit', match: match %>
+        </div>
       <% end %>
     </div>
     <% round_number += 1 %>
@@ -21,29 +23,30 @@
 </div>
 
 <div class="message-board">
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-    <div class="chatbox">
-      <div class="row">
-        <div class="col-sm-12">
-          <h4 style="text-align: center; margin: 20px;">Message Board</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-          <div id="messages">
-            <ul id="message-list">
-            <% @chat_room.messages.order("created_at asc").each do |message| %>
-            <%= render message, message: message %>
-            <% end %>
-            </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="chatbox">
+          <div class="row">
+            <div class="col-sm-12">
+              <h4 style="text-align: center; margin: 20px;">Message Board</h4>
+            </div>
           </div>
+          <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+              <div id="messages">
+                <ul id="message-list">
+                  <% @chat_room.messages.order("created_at asc").each do |message| %>
+                  <%= render message, message: message %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <%= render 'messages/form', competition: @competition, message: @message %>
         </div>
       </div>
-
-      <%= render 'messages/form', competition: @competition, message: @message %>
-    </div>
     </div>
         <div class="col-sm-2 col-sm-offset-1">
       <div class="participants">
@@ -65,7 +68,7 @@
     </div>
   </div>
 </div>
-</div>
+
 
 <% content_for(:after_js) do %>
 <script>
@@ -111,3 +114,4 @@ $('#messages').scrollTop($('#messages')[0].scrollHeight)
 
 <% end %>
 </script>
+
