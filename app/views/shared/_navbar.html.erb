@@ -42,7 +42,6 @@
     var client = algoliasearch("<%= ENV['ALGOLIA_API'] %>", "<%= ENV['ALGOLIA_SECRET'] %>");
     var index = client.initIndex('User');
 
-
     //initialize autocomplete on search input (ID selector must match)
     autocomplete('#aa-search-input',
     { hint: false }, [{
@@ -53,11 +52,10 @@
         templates: {
             //'suggestion' templating function used to render a single suggestion
             suggestion: function(suggestion) {
-              var link = "<form action='<%= ENV['HOST'] %>users/" + suggestion.objectID + "/friend_requests' method='post' id='addfriend' style='color: lightgreen'><button type='submit' name='user_id' value='" + suggestion.objectID + "' class='btn-link'>Add</button></form>";
+              var link = "<form action='<%= ENV['HOST'] %>users/" + suggestion.id + "/friend_requests' method='post' id='addfriend' style='color: lightgreen'> <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'> <button type='submit' name='user_id' value='" + suggestion.id + "' class='btn-link'>Add</button></form>";
               var card = "<span>" + "<img src=http://res.cloudinary.com/dkyjujcrz/image/upload/w_400,h_400/" + suggestion.photo.path + " alt='' class='avatar'> " +
                 suggestion._highlightResult.first_name.value + " " + suggestion._highlightResult.last_name.value + "</span><span>" + link +"</span>";
 
-              console.log(card)
               return card
 
             }
@@ -65,7 +63,7 @@
     }]).on('autocomplete:selected', function(event, suggestion, dataset) {
         var url = "<%= ENV['HOST'] %>/users/";
         // need to extract this to have different url for development vs production
-        window.location.assign(url + suggestion.objectID)});
+        window.location.assign(url + suggestion.id)});
 
 
 
