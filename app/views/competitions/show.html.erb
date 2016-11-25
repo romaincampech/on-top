@@ -11,34 +11,10 @@
         <% if match.played? %>
         <p>Winner: <%= match.winner.first_name %></p>
         <% end %>
-        <%= link_to "Input Score", edit_match_path(match), remote: true, :class => 'btn btn-sm btn-info', 'data-toggle' => 'modal', 'data-target' => '#basicModal' %>
+        <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm btn-success', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
 
-      </div>
-      <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">Enter score:</h4>
-            </div>
-            <div class="modal-body">
-              <%= form_tag match_path(match), method: :patch do %>
-              <p>Set One - Player 1 won <%= select_tag "set1player1", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 1" %> games</p>
-              <p>Set One - Player 2 won <%= select_tag "set1player2", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 2" %> games</p>
-              <p>Set Two - Player 1 won <%= select_tag "set2player1", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 1" %> games</p>
-              <p>Set Two - Player 2 won <%= select_tag "set2player2", options_for_select([0, 1, 2, 3, 4, 5, 6, 7]), label: "Set One, Player 1" %> games</p>
-              <p>(If) Set Three - Player 1 won <%= select_tag "set3player1", options_for_select([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), label: "Set One, Player 1" %> games</p>
-              <p>(If) Set Three - Player 2 won <%= select_tag "set3player2", options_for_select([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), label: "Set One, Player 1" %> games</p>
-              <%= submit_tag 'Submit' %>
-              <% end %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
+      <%= render 'matches/edit', match: match %>
         </div>
-      </div>
       <% end %>
     </div>
     <% round_number += 1 %>
