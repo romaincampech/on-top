@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4 col-md-offset-4" id="competition-show-name">
+    <div class="col-md-4" id="competition-show-name">
       <h1><%= @competition.name %></h1>
     </div>
+    <div class="col-md-3"></div>
     <div class="col-md-4" id="competition-show-info">
       <div class="row">
         <div class="col-md-6">
@@ -26,24 +27,23 @@
     <% until round_number - 1 == @rounds do %>
     <div class=<%= "flex-" + "#{2 * @rounds - 1}" %>>
       <% @competition.matches.order("match_number asc").select { |r| r.round == round_number }.each do |match| %>
-      <div class="card-match" id=<%= "#{match.match_number}" %>>
+      <div class="card-match" id=<% if match.played? %>
+      <%= "card-played" %>
+      <% else %>
+      <%= "#{match.match_number}" %>
+      <% end %>>
         <% if match.played? %>
         <%= render 'matches/score_tennis', match: match %>
         <% else %>
-        <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %> </p>
+        <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %> </p><hr>
         <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
         <%= render 'matches/edit', match: match %>
         <% end %>
-        </div>
-        <% end %>
-        </div>
-        <% round_number += 1 %>
-
-        <% end %>
-
-
-
-
+      </div>
+      <% end %>
+    </div>
+    <% round_number += 1 %>
+    <% end %>
   </div>
 </div>
 
@@ -88,7 +88,7 @@
           </div>
         </div>
       </div>
-  </div>
+    </div>
   </div>
 </div>
 

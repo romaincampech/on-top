@@ -4,22 +4,24 @@
   color: #5EABE9;
   font-weight: bolder;
   font-size: 55px;
+  padding-top: 10px;
+  padding-left: 50px;
 }
 
 #competition-show-info {
   background-color: white;
-  margin: 30px 0;
+  margin: 10px 0;
   padding: 10px;
   box-shadow: 1px 1px 3px  #bfbfbf;
-}
-#competition-show-info p {
+  p {
   font-size: 13px;
+  }
 }
 
 /* Middle section (competition table) */
 .wrapper-competition-table {
   background-color: white;
-  margin: 0 120px 20px 120px;
+  margin: 0 100px 20px 120px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

@@ -5,7 +5,7 @@ table {
   th, td {
     color: #999;
     border: 1px solid #CDCDCD;
-    padding: 5px 10px;
+    padding: 8px 10px;
     border-collapse: collapse;
     text-align: center;
     font-size: 14px;
@@ -13,4 +13,13 @@ table {
   th {
     font-weight: 600;
   }
+}
+
+.score-form-tennis {
+  display: flex;
+  justify-content: center;
+}
+
+.highlight {
+  background: yellow;
 }

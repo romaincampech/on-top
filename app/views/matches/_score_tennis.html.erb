@@ -11,14 +11,14 @@
   <tbody>
     <tr>
       <th><%= match.players.first.first_name %></th>
-      <th>2</th>
+      <th><%= match.score["player_set_total"]["player_1"] %></th>
       <td><%= match.score["set1"]["player_1"] %></td>
       <td><%= match.score["set2"]["player_1"] %></td>
       <td><%= match.score["set3"]["player_1"] %></td>
     </tr>
     <tr>
       <th><%= match.players.last.first_name %></th>
-      <th>1</th>
+      <th><%= match.score["player_set_total"]["player_2"] %></th>
       <td><%= match.score["set1"]["player_2"] %></td>
       <td><%= match.score["set2"]["player_2"] %></td>
       <td><%= match.score["set3"]["player_2"] %></td>
