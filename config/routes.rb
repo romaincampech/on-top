@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  resources :matches, only: [:update, :edit]
+  resources :matches, only: [:update, :edit, :show]
 
   devise_for :users
   mount Attachinary::Engine => "/attachinary"
