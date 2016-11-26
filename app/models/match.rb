@@ -27,20 +27,51 @@ class Match < ApplicationRecord
     set_3[:player_2] = params["set3player2"].to_i
     score[:set3] = set_3
 
+    player_set_total = {}
+
+    player_set_total[:player_1] = 0
+    player_set_total[:player_2] = 0
+    if score[:set1][:player_1] > score[:set1][:player_2]
+      player_set_total[:player_1] += 1
+    else
+      player_set_total[:player_2] += 1
+    end
+
+    if score[:set2][:player_1] > score[:set2][:player_2]
+      player_set_total[:player_1] += 1
+    else
+      player_set_total[:player_2] += 1
+    end
+
+    if score[:set3][:player_1] > score[:set3][:player_2]
+      player_set_total[:player_1] += 1
+    elsif score[:set3][:player_2] > score[:set3][:player_1]
+      player_set_total[:player_2] += 1
+    end
+
+    score[:player_set_total] = player_set_total
+
     self.score = score
     self.save
   end
 
   def assign_winner(score)
-    if score["set1"]["player_1"] > score["set1"]["player_2"] && score["set2"]["player_1"] > score["set2"]["player_2"]
-      self.winner_id = self.players.first.id
-    elsif score["set1"]["player_1"] > score["set1"]["player_2"] && score["set3"]["player_1"] > score["set3"]["player_2"]
-      self.winner_id = self.players.first.id
-    elsif score["set2"]["player_1"] > score["set2"]["player_2"] && score["set3"]["player_1"] > score["set3"]["player_2"]
+    # if score["set1"]["player_1"] > score["set1"]["player_2"] && score["set2"]["player_1"] > score["set2"]["player_2"]
+    #   self.winner_id = self.players.first.id
+    # elsif score["set1"]["player_1"] > score["set1"]["player_2"] && score["set3"]["player_1"] > score["set3"]["player_2"]
+    #   self.winner_id = self.players.first.id
+    # elsif score["set2"]["player_1"] > score["set2"]["player_2"] && score["set3"]["player_1"] > score["set3"]["player_2"]
+    #   self.winner_id = self.players.first.id
+    # else
+    #   self.winner_id = self.players.last.id
+    # end
+
+    if score["player_set_total"]["player_1"] > score["player_set_total"]["player_2"]
       self.winner_id = self.players.first.id
     else
       self.winner_id = self.players.last.id
     end
+
   end
 
 end

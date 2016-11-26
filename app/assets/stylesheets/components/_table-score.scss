@@ -1,0 +1,31 @@
+table {
+  border-collapse: collapse;
+  border: 1px solid #CDCDCD;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.10);
+  height: 71px;
+  width: 220px;
+  th, td {
+    color: #999;
+    border: 1px solid #CDCDCD;
+    padding: 8px 8px;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 14px;
+  }
+  th {
+    font-weight: 600;
+  }
+}
+
+.score-form-tennis {
+  display: flex;
+  justify-content: center;
+}
+
+.highlight {
+  background: #FED83E;
+}
+
+.loser {
+  opacity: 0.4;
+}

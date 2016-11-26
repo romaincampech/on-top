@@ -49,7 +49,7 @@ class Competition < ApplicationRecord
   self.matches.each do |match|
       if match.match_number == 1 && match.played?
         MatchParticipant.create(player: match.winner, match: self.matches.where(match_number: (self.number_of_players / 2 + 1)).first)
-      elsif
+      else
         mn = 2
         x = 1
         until mn == self.number_of_players

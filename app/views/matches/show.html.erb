@@ -1,2 +1,31 @@
 <h1>Matches#show</h1>
 <p>Find me in app/views/matches/show.html.erb</p>
+<% if @match.played? %>
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Sets</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><%= @match.players.first.first_name %></th>
+      <th><%= score["player_set_total"]["player_1"] %></th>
+      <td><%= score["set1"]["player_1"] %></td>
+      <td><%= score["set2"]["player_1"] %><td>
+      <td><%= score["set3"]["player_1"] %></td>
+    </tr>
+    <tr>
+      <th><%= @match.players.last.first_name %></th>
+      <th><%= score["player_set_total"]["player_2"] %></th>
+      <td><%= score["set1"]["player_2"] %></td>
+      <td><%= score["set2"]["player_2"] %><td>
+      <td><%= score["set3"]["player_2"] %><
+    </tr>
+  </tbody>
+</table>
+<% end %>
