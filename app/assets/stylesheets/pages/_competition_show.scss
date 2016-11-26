@@ -159,3 +159,17 @@
   box-shadow: 1px 1px 3px  #bfbfbf;
   min-height: 59vh;
 }
+
+.champion {
+  background-size: cover;
+  background-image: linear-gradient(-225deg, rgba(0,128,214,0.6) 0%, rgba(186,166,24,0.6) 50%), url('champion.jpeg');
+  padding: 5px;
+  padding-top: 60px;
+  // line-height: 0.5;
+  color: white;
+  margin-top: -170px;
+  height: 120px;
+  width: 220px;
+  // background-color: #FED83E;
+  box-shadow: 0px 0px 3px 3px #B7BA5D;
+}

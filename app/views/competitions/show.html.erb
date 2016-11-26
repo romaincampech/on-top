@@ -35,11 +35,13 @@
         <% if match.played? %>
         <%= render 'matches/score_tennis', match: match %>
         <% else %>
-        <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %> </p><hr>
+        <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %> </p>
         <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
         <%= render 'matches/edit', match: match %>
         <% end %>
       </div>
+
+      <%= render 'champion', match: match if match.played? && round_number == @rounds %>
       <% end %>
     </div>
     <% round_number += 1 %>

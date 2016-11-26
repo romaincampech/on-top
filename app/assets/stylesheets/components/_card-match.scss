@@ -1,11 +1,13 @@
 .card-match {
   padding: 5px;
+  padding-top: 10px;
   border: 1px solid #d9d9d9;
   line-height: 0.5;
   box-shadow: 1px 1px 3px #EFEFEF;
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: space-around;
   height: 71px;
+  width: 220px;
 }
 
 #card-played {
