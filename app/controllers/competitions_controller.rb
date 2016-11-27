@@ -18,6 +18,7 @@ class CompetitionsController < ApplicationController
     authorize @competition
     @competition.creator = current_user
     @competition.save
+    @competition.create_activity :create, owner: current_user
     @competition.create_matches(params[:competition][:category])
     players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
     @competition.add_players(players_ary)

@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   has_many :messages, dependent: :destroy
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 # Competition side
 
   # competitions the user is part of (playing or spectating)
