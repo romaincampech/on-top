@@ -18,6 +18,8 @@ class Competition < ApplicationRecord
 
   validates :creator_id, presence: true
 
+  include PublicActivity::Common
+
   def new_chat
     ChatRoom.create(competition: self)
   end
