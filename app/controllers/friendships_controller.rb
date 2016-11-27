@@ -1,5 +1,4 @@
 class FriendshipsController < ApplicationController
-
   # def index
   #   @friends = current_user.friends
   # end
@@ -10,6 +9,4 @@ class FriendshipsController < ApplicationController
     @friendship.destroy
     redirect_to user_path(User.find(params[:user_id]))
   end
-
-
 end

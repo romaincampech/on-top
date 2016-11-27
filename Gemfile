@@ -26,6 +26,7 @@ gem 'faker'
 gem "algoliasearch-rails"
 
 gem 'chosen-rails'
+gem 'public_activity'
 
 
 group :development, :test do

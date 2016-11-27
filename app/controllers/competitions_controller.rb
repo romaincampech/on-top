@@ -1,7 +1,6 @@
 class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show]
 
-
   def show
     @rounds = @competition.number_of_rounds(@competition.category)
     @chat_room = ChatRoom.includes(:messages).find_by(competition_id: @competition.id)
