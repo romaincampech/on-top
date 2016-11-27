@@ -1,27 +1,63 @@
-.competition-creation-background {
-  background: url('competition-new-background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  background-position: 50% 30%;
-  min-height: 100vh;
-}
-
-.container-competition-creation h1 {
+.competition-new-title h1 {
   text-align: center;
+  color: white;
   font-size: 40px;
   font-weight: bolder;
-  color: white;
-  margin: 30px;
+  margin: 30px 0 30px 0;
 }
 
-.competition-creation-container {
+.competition-new-board {
   background-color: white;
-  border-radius: 4px;
-  min-height: 60vh;
+  border-radius: 2px;
+
+  h3 {
+    text-align: center;
+    color: #5EABE9;
+    margin-bottom: 35px;
+  }
+  h6 {
+    font-weight: bolder;
+    margin-top: 30px;
+  }
+  .label-style {
+  font-size: 14px;
+  margin-top: 25px;
+  }
+  .competition-new-btn {
+    background-color: #58D063;
+    opacity: 0.9;
+    color: white;
+    margin: 30px;
+    padding: 15px;
+    font-weight: bolder;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+      &:hover {
+    background-color: #38c746;
+    box-shadow: 1px 1px 3px rgba(80,80,80,0.5);
+    }
+  }
+  .competition-new-participants {
+    margin-top:20px;
+
+    li {
+    list-style: none;
+    display: inline;
+    margin: 0 5px 0 5px;
+
+      .competition-new-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+        background-repeat: no-repeat;
+        background-position: 50%;
+      }
+    }
+  }
 }
 
-.competition-creation-container h3 {
-  text-align: center;
-  font-size: 30px;
-  color: #5EABE9;
-}
+
+
 
