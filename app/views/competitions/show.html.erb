@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4" id="competition-show-name">
+    <div class="col-md-6" id="competition-show-name">
       <h1><%= @competition.name %></h1>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-1"></div>
     <div class="col-md-4" id="competition-show-info">
       <div class="row">
         <div class="col-md-6">
@@ -28,15 +28,21 @@
     <div class=<%= "flex-" + "#{2 * @rounds - 1}" %>>
       <% @competition.matches.order("match_number asc").select { |r| r.round == round_number }.each do |match| %>
       <div class="card-match" id=<% if match.played? %>
-      <%= "card-played" %>
-      <% else %>
-      <%= "#{match.match_number}" %>
-      <% end %>>
+        <%= "card-played" %>
+        <% else %>
+        <%= "#{match.match_number}" %>
+        <% end %>>
         <% if match.played? %>
         <%= render 'matches/score_tennis', match: match %>
         <% else %>
         <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %> </p>
+        <% if current_user == @competition.creator %>
         <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+        <% elsif current_user == match.players.first || current_user == match.players.last %>
+        <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+        <% else %>
+        <p><em><%= match.status %></em></p>
+        <% end %>
         <%= render 'matches/edit', match: match %>
         <% end %>
       </div>
@@ -97,43 +103,43 @@
 
 <% content_for(:after_js) do %>
 <script>
-$(document).ready(function() {
+  $(document).ready(function() {
 
 // this code makes it so it load the chat at the bottom of the page
 $('#messages').scrollTop($('#messages')[0].scrollHeight)
 
 // this code is for the ActionCable
-  App.messages = App.cable.subscriptions.create('MessagesChannel', {
-    received: function(data) {
-      return $('#messages ul').append(this.renderMessage(data)),
+App.messages = App.cable.subscriptions.create('MessagesChannel', {
+  received: function(data) {
+    return $('#messages ul').append(this.renderMessage(data)),
 // scrolling to bottom of page with every message render
-      $('#messages').scrollTop($('#messages')[0].scrollHeight)
-    },
+$('#messages').scrollTop($('#messages')[0].scrollHeight)
+},
 // how the message displays
-    renderMessage: function(data) {
-      return "<li><div class='message'> \
-      <div class='message-block'> \
-        <div class='row'> \
-          <div class='col-md-1'> \
-          </div> \
-          <div class='col-md-11'> \
-            <p class='message-text'> \
-              <span class='text-muted'>"
-              + data.user +
-              "<br>"
-              + data.time +
-              "</span><br>"
-              + data.body +
+renderMessage: function(data) {
+  return "<li><div class='message'> \
+  <div class='message-block'> \
+    <div class='row'> \
+      <div class='col-md-1'> \
+      </div> \
+      <div class='col-md-11'> \
+        <p class='message-text'> \
+          <span class='text-muted'>"
+            + data.user +
+            "<br>"
+            + data.time +
+            "</span><br>"
+            + data.body +
             "</p> \
           </div> \
         </div> \
       </div> \
-  </div></li> ";
-    }
-  });
+    </div></li> ";
+  }
+});
 
 });
 
-<% end %>
+  <% end %>
 </script>
 

@@ -11,7 +11,7 @@ class Match < ApplicationRecord
     self.winner_id?
   end
 
-  def build_score(params)
+  def set_build_score(params)
     score = {}
 
     set_1 = {}
@@ -26,6 +26,14 @@ class Match < ApplicationRecord
     set_3[:player_1] = params["set3player1"].to_i
     set_3[:player_2] = params["set3player2"].to_i
     score[:set3] = set_3
+    set_4 = {}
+    set_4[:player_1] = params["set4player1"].to_i
+    set_4[:player_2] = params["set4player2"].to_i
+    score[:set2] = set_4
+    set_5 = {}
+    set_5[:player_1] = params["set5player1"].to_i
+    set_5[:player_2] = params["set5player2"].to_i
+    score[:set3] = set_5
 
     player_set_total = {}
 
