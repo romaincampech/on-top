@@ -5,6 +5,7 @@ class Team < ApplicationRecord
   has_many :users, through: :team_memberships
   validates_associated :captain
   validates_presence_of :captain
+  has_attachment :photo
 
   def members
     self.users
