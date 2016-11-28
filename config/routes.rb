@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   resources :matches, only: [:update, :edit, :show]
 
   devise_for :users
@@ -12,6 +11,8 @@ Rails.application.routes.draw do
     get "/infos", to: "users#infos"
   end
   resources :friendships, only: [ :destroy ]
+
+  resources :activities
 
   # for chat
   mount ActionCable.server => '/cable'

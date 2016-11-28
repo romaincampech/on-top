@@ -1,7 +1,6 @@
 class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show]
 
-
   def show
     @rounds = @competition.number_of_rounds(@competition.category)
     @chat_room = ChatRoom.includes(:messages).find_by(competition_id: @competition.id)
@@ -19,6 +18,7 @@ class CompetitionsController < ApplicationController
     authorize @competition
     @competition.creator = current_user
     @competition.save
+    @competition.create_activity :create, owner: current_user
     @competition.create_matches_knockout(params[:competition][:category])
     players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
     @competition.add_players(players_ary)
