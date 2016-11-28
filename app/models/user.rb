@@ -93,6 +93,20 @@ class User < ApplicationRecord
     Friendship.create(user: self, friend: self)
   end
 
+  def friend_captain_teams_for(sport)
+    captains = []
+    self.friends.each do |friend|
+      captains << friend if friend.owned_teams.length > 0
+    end
+    teams = []
+    captains.each do |captain|
+      captain.owned_teams.each do |team|
+        teams << team if team.sport == sport
+      end
+    end
+    return teams
+  end
+
 
 # Search
   include AlgoliaSearch

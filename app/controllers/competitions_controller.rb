@@ -14,7 +14,6 @@ class CompetitionsController < ApplicationController
   end
 
   def create
-    binding.pry
     @competition = Competition.new(competition_params)
     authorize @competition
     @competition.creator = current_user
@@ -31,7 +30,7 @@ class CompetitionsController < ApplicationController
   private
 
   def competition_params
-    params.require(:competition).permit(:number_of_players, :category, :sport_id, :name)
+    params.require(:competition).permit(:number_of_players, :category, :sport_id, :name, :team_competition)
   end
 
   def set_competition

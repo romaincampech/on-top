@@ -5,32 +5,19 @@
 </div>
 <div class="col-md-3">
   <%= simple_form_for competition do |f| %>
-     <%= f.input :number_of_players, label: 'Choose a # of players:', :label_html => {:class => 'label-style'}, collection: [2, 4, 8, 16, 32], selected: '8' %>
+     <%= f.input :number_of_players, label: 'Choose a # of teams:', :label_html => {:class => 'label-style'}, collection: [2, 4, 8, 16, 32], selected: '8' %>
 </div>
 <div class="row">
-  <div class="col-md-12 text-center">
-    <select class="form-control select optional chosen-select" data-placeholder=" " multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
-    <!-- TODO:  -->
-    <%#= Get all friends who are team_captains (teams.owned_competitions > 0) %>
-    <%#= Go through them to get each team intsance where sport matches; display that image and that team name
-    maybe also provide some information about the captain? or at least Captain: captain's name  %>
-      <% captains = [] %>
-      <% current_user.friends.each do |friend| %>
-        <% captains << friend if friend.owned_teams.length > 0 %>
-      <% end %>
-      <% teams = [] %>
-      <% captains.each do |captain| %>
-          <% captain.owned_teams.each do |team| %>
-            <% # teams << team  if team.sport == sport %>
-            <!-- sport? -->
-           <% end  %>
-        <% end %>
-      <% teams.each do |team| %>
-          <option value="<%= team.captain.id %>"><%= team.name %>
-          </option>
-      <% end %>
+  <% Sport.all.each do |sport| %>
+  <div class="col-md-12 text-center hide team-dropdown-selection" id="dropdown-selection-<%= sport.id %>">
+   <select class="form-control select optional chosen-select" data-placeholder=" " multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
+    <% current_user.friend_captain_teams_for(sport).each do |team| %>
+      <option value="<%= team.captain.id %>"><%= team.name %></option>
+    <% end %>
     </select>
-  </div>
+    </div>
+  <% end %>
+
 </div>
 <div class="row">
   <div class="col-md-8 col-md-offset-2">

@@ -1,4 +1,4 @@
-<body class="competition-new">
+<div class="competition-new">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 competition-new-title">
@@ -21,7 +21,7 @@
           </div>
           <div class="row">
             <div class="col-md-4 col-md-offset-2">
-              <%= f.association :sport, label: 'Choose a sport:', :label_html => {:class => 'label-style'}, collection: Sport.all, selected: 'Tennis' %>
+              <%= f.association :sport, label: 'Choose a sport:', :label_html => {:class => 'label-style'}, collection: Sport.all, value_method: :id, include_blank: true %>
             </div>
             <div class="col-md-4">
             <%= f.input :category, label: 'Choose a type of competition:', :label_html => {:class => 'label-style'}, collection: ["Knockout"], selected: 'Knockout' %>
@@ -38,39 +38,35 @@
             </div>
           </div>
           <div class="row">
-            <%= f.button :submit, "Next", id: "competition-next-btn" %>
+            <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="team_competition_partial">
+              <%= render "team_competition_new", competition: @competition %>
+            </div>
+            <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="individual_competition_partial">
+              <%= render "individual_competition_new", competition: @competition %>
+            </div>
           </div>
         <% end %>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="team_competition_partial">
-        <%= render "team_competition_new", competition: @competition %>
-      </div>
-      <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="individual_competition_partial">
-        <%= render "individual_competition_new", competition: @competition %>
-      </div>
-    </div>
   </div>
-</body>
-
-
-
-
-
+</div>
 
 <% content_for(:after_js) do %>
   <script>
+
+    // Team vs Indiv Select
     $("select[name='competition[team_competition]']").change(function(){
       if ($(this).val() == "false"){
-        alert("you chose false / individual competition");
+       $('#individual_competition_partial').removeClass('hide');
+       $('#team_competition_partial').addClass('hide');
       }
       else if ($(this).val() == "true"){
-        alert("you chose true / team competition");
-
+        $('#team_competition_partial').removeClass('hide');
+        $('#individual_competition_partial').addClass('hide');
       }
     });
 
+    // Chosen.js for friends selection with list append
     var friends_cards = {};
     var total_friends = <%= current_user.friends.count %>
 
@@ -94,8 +90,14 @@
             $(".competition-new-participants").append(friends_cards[id]);
           });
         }, delay);
-
      })
+    });
+
+    // Invite Teams DropDowns
+    $("select[name='competition[sport_id]']").change(function () {
+        var sportID = $(this).val();
+        $(".team-dropdown-selection").addClass("hide");
+        $("#dropdown-selection-" + sportID).removeClass("hide");
     });
   </script>
 <% end %>
