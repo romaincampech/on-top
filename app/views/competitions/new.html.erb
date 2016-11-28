@@ -39,8 +39,7 @@
           <div class="col-md-12 text-center">
             <select class="form-control select optional chosen-select" data-placeholder=" " multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
               <% current_user.friends.each do |friend| %>
-                <option value="<%= friend.id %>"><%= friend.first_name %> <%= friend.last_name %>
-                </option>
+                <option value="<%= friend.id %>"><%= friend.full_name %></option>
               <% end %>
             </select>
           </div>

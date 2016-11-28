@@ -17,6 +17,7 @@ class CompetitionsController < ApplicationController
     @competition = Competition.new(competition_params)
     authorize @competition
     @competition.creator = current_user
+    @competition.status = "In progress"
     @competition.save
     @competition.create_activity :create, owner: current_user
     @competition.create_matches_knockout(params[:competition][:category])
