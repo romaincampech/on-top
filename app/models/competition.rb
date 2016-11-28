@@ -46,8 +46,20 @@ class Competition < ApplicationRecord
           MatchParticipant.create(player: rem_sample(player_ary), match: match)
         end
       end
-    elsif category == "League"
-
+    else
+      home = 1
+      (self.number_of_players - 1).times do
+        match_number = home
+        away = home
+        (self.number_of_players - home).times do
+          MatchParticipant.create(player: self.players[home - 1], match: self.matches.where(match_number: match_number).first)
+          MatchParticipant.create(player: self.players[away], match: self.matches.where(match_number: match_number).first)
+          away += 1
+          match_number += (self.number_of_players / 2)
+        end
+        home += 1
+      end
+    end
   end
 
  def winner_match_assignment
@@ -98,31 +110,28 @@ class Competition < ApplicationRecord
   def number_of_rounds(category)
     if category == "Knockout"
       Math.log2(self.number_of_players).to_i
-    else
+    elsif category == "League"
+      self.number_of_players - 1
     end
   end
 
-  def create_matches(category)
-    if category == "Knockout"
+  def create_matches(params)
     round_number = 1
     match_number = 0
-      until self.number_of_players / 2**round_number < 1 do
+    if self.category == "Knockout"
+      until self.number_of_players / 2**round_number < 1
         (self.number_of_players / 2**round_number).times do
           Match.create(competition_id: self.id, round: round_number, status: "To be played", match_number: match_number += 1)
           end
           round_number += 1
         end
-      end
-    elsif category = "League"
-      round_number = 1
-      match_number = 0
-      until round_number = number_of_players do
-        (number_of_players - 1).times do
+    else
+      until round_number == self.number_of_players
+        (self.number_of_players / 2).times do
           Match.create(competition_id: self.id, round: round_number, status: "To be played", match_number: match_number += 1)
           end
           round_number += 1
         end
-      end
     end
   end
 end
