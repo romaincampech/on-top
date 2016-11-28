@@ -9,8 +9,10 @@
               <li><i class="fa fa-map-marker"></i><span> <%= @user.city %></span></li>
               <li><%= @user.friends.count %> friends</li>
               <li>
-                <% if !current_user.friends.include?(@user) %>
-                  <%= button_to 'Add Friend', user_friend_requests_path(@user), method: :post unless current_user == @user %>
+                <% if current_user.pending_friends.include?(@user) %>
+                  Friend request sent
+                <% elsif !current_user.friends.include?(@user) %>
+                <%= button_to 'Add Friend', user_friend_requests_path(@user), method: :post unless current_user == @user %>
                 <% else %>
                   <%= button_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), method: :delete, data: { confirm: "Are you sure?" } %>
                 <% end %>
@@ -19,7 +21,17 @@
           </div>
         </div>
         <div class="col-xs-12 col-md-5">
-          <div class="profile-banner-right"></div>
+          <div class="profile-banner-right">
+            <ul>
+              <% @user.friend_requests.each do |friend_request| %>
+                <li>
+                  <%= link_to friend_request.user.full_name %>
+                  wants to be your friend:
+                  <%= button_to 'Accept', friend_request_path(friend_request), method: :patch %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

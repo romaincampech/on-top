@@ -7,7 +7,7 @@ class FriendRequest < ApplicationRecord
 
   validate :not_self
   validate :not_pending
-  validate :not_friends
+  # validate :not_friends
 
   def accept
     Friendship.create(user: self.user, friend: self.friend)
@@ -24,7 +24,7 @@ class FriendRequest < ApplicationRecord
     errors.add(:friend, "already requested friendship") if friend.pending_friends.include?(user)
   end
 
-  def not_friends
-    errors.add(:friend, "is aldready added") if user.friends.include?(friend)
-  end
+  # def not_friends
+  #   errors.add(:friend, "is aldready added") if user.friends.include?(friend)
+  # end
 end

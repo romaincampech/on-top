@@ -74,8 +74,9 @@ class User < ApplicationRecord
 
 #Friend side
   # pending friend request the user sent
-  has_many :friend_requests, dependent: :destroy
-  has_many :pending_friends, through: :friend_requests, source: :friend
+  has_many :friend_requests, dependent: :destroy, foreign_key: :friend_id
+  has_many :pending_friends_requests, class_name: 'FriendRequest', dependent: :destroy, foreign_key: :user_id
+  has_many :pending_friends, through: :pending_friends_requests, source: :friend
 
   # friends the user has
   has_many :friendships, dependent: :destroy
