@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   resources :competitions, only: [:index, :new, :create, :show, :edit, :update] do
     resources :messages, only: [:create]
   end
+
+  resources :teams, only: [:new, :create, :show] do
+    resources :messages, only: [:create]
+  end
 end

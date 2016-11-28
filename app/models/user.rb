@@ -8,6 +8,8 @@ class User < ApplicationRecord
   after_create :own_friend
 
   has_many :messages, dependent: :destroy
+  has_many :team_memberships
+  has_many :teams, through: :team_memberships
 
   def full_name
     "#{first_name} #{last_name}"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161127210757) do
+ActiveRecord::Schema.define(version: 20161128121711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,9 +48,12 @@ ActiveRecord::Schema.define(version: 20161127210757) do
 
   create_table "chat_rooms", force: :cascade do |t|
     t.integer  "competition_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "team_chat",      default: false, null: false
+    t.integer  "team_id"
     t.index ["competition_id"], name: "index_chat_rooms_on_competition_id", using: :btree
+    t.index ["team_id"], name: "index_chat_rooms_on_team_id", using: :btree
   end
 
   create_table "competition_participants", force: :cascade do |t|
@@ -66,13 +69,14 @@ ActiveRecord::Schema.define(version: 20161127210757) do
   create_table "competitions", force: :cascade do |t|
     t.string   "category"
     t.integer  "number_of_players"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "sport_id"
     t.integer  "creator_id"
     t.integer  "champion_id"
     t.string   "status"
     t.string   "name"
+    t.boolean  "team_sport",        default: false, null: false
     t.index ["champion_id"], name: "index_competitions_on_champion_id", using: :btree
     t.index ["creator_id"], name: "index_competitions_on_creator_id", using: :btree
     t.index ["sport_id"], name: "index_competitions_on_sport_id", using: :btree
@@ -135,6 +139,27 @@ ActiveRecord::Schema.define(version: 20161127210757) do
     t.string   "sport_rules"
   end
 
+  create_table "team_memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.boolean  "captain",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["team_id"], name: "index_team_memberships_on_team_id", using: :btree
+    t.index ["user_id"], name: "index_team_memberships_on_user_id", using: :btree
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.integer  "captain_id"
+    t.string   "name"
+    t.string   "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "sport_id"
+    t.index ["captain_id"], name: "index_teams_on_captain_id", using: :btree
+    t.index ["sport_id"], name: "index_teams_on_sport_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -157,6 +182,7 @@ ActiveRecord::Schema.define(version: 20161127210757) do
   end
 
   add_foreign_key "chat_rooms", "competitions"
+  add_foreign_key "chat_rooms", "teams"
   add_foreign_key "competition_participants", "competitions"
   add_foreign_key "competition_participants", "users"
   add_foreign_key "competitions", "sports"
@@ -172,4 +198,8 @@ ActiveRecord::Schema.define(version: 20161127210757) do
   add_foreign_key "matches", "users", column: "winner_id"
   add_foreign_key "messages", "chat_rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "team_memberships", "teams"
+  add_foreign_key "team_memberships", "users"
+  add_foreign_key "teams", "sports"
+  add_foreign_key "teams", "users", column: "captain_id"
 end
