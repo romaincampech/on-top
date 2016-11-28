@@ -1,0 +1,15 @@
+$(document).ready(function() {
+  $('#competition-next-btn').click(function(event) {
+    event.preventDefault();
+    var team_competition = $("select[name='competition[team_competition]']").val();
+
+    $("#team_competition_partial").removeClass("hide");
+    $("#individual_competition_partial").removeClass("hide");
+
+    if (team_competition == "true") {
+      $("#individual_competition_partial").addClass("hide");
+    } else if (team_competition == "false") {
+      $("#team_competition_partial").addClass("hide");
+    }
+  });
+});

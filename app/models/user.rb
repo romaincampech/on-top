@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :team_memberships
   has_many :teams, through: :team_memberships
+  has_many :owned_teams, :class_name => 'Team', :foreign_key => 'captain_id'
 
   def full_name
     "#{first_name} #{last_name}"

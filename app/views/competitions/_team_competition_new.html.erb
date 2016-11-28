@@ -1,30 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
-    <h3>Define the basic info</h3>
-  </div>
-</div>
-<%= simple_form_for @competition do |f| %>
-<% f.error_notification %>
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <%= f.input :name, label: false, placeholder: "Name your competition" %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-3 col-md-offset-1">
-    <%= f.association :sport, label: 'Choose a sport:', :label_html => {:class => 'label-style'}, collection: Sport.all, selected: 'Tennis' %>
-  </div>
-  <div class="col-md-4">
-    <%= f.input :category, label: 'Choose a type of competition:', :label_html => {:class => 'label-style'}, collection: ["Knockout"], selected: 'Knockout' %>
-  </div>
-  <div class="col-md-3">
-     <%= f.input :number_of_players, label: 'Choose a # of teams:', :label_html => {:class => 'label-style'}, collection: [2, 4, 8, 16, 32], selected: '8' %>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
     <h3>Invite the participants</h3>
   </div>
+</div>
+<div class="col-md-3">
+  <%= simple_form_for competition do |f| %>
+     <%= f.input :number_of_players, label: 'Choose a # of players:', :label_html => {:class => 'label-style'}, collection: [2, 4, 8, 16, 32], selected: '8' %>
 </div>
 <div class="row">
   <div class="col-md-12 text-center">
@@ -33,9 +14,20 @@
     <%#= Get all friends who are team_captains (teams.owned_competitions > 0) %>
     <%#= Go through them to get each team intsance where sport matches; display that image and that team name
     maybe also provide some information about the captain? or at least Captain: captain's name  %>
+      <% captains = [] %>
       <% current_user.friends.each do |friend| %>
-        <option value="<%= friend.id %>"><%= friend.first_name %> <%= friend.last_name %>
-        </option>
+        <% captains << friend if friend.owned_teams.length > 0 %>
+      <% end %>
+      <% teams = [] %>
+      <% captains.each do |captain| %>
+          <% captain.owned_teams.each do |team| %>
+            <% # teams << team  if team.sport == sport %>
+            <!-- sport? -->
+           <% end  %>
+        <% end %>
+      <% teams.each do |team| %>
+          <option value="<%= team.captain.id %>"><%= team.name %>
+          </option>
       <% end %>
     </select>
   </div>
@@ -48,6 +40,6 @@
 <div class="row">
   <div class="col-xs-12 text-center">
     <%= f.button :submit, class: 'competition-new-btn' %>
+    <% end %>
   </div>
 </div>
-<% end %>

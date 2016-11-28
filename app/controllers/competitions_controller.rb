@@ -14,6 +14,7 @@ class CompetitionsController < ApplicationController
   end
 
   def create
+    binding.pry
     @competition = Competition.new(competition_params)
     authorize @competition
     @competition.creator = current_user
