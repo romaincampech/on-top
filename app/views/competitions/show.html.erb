@@ -33,7 +33,7 @@
         <%= "#{match.match_number}" %>
         <% end %>>
         <% if match.played? %>
-        <%= render 'matches/score_tennis', match: match %>
+        <%= render "matches/final_score_#{@competition.sport.name.downcase}", match: match %>
         <% else %>
         <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %> </p>
         <% if current_user == @competition.creator %>
