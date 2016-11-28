@@ -38,13 +38,16 @@ class Competition < ApplicationRecord
     self.matches.where(round: 1)
   end
 
-  def assign_matches
-    player_ary = self.players.to_a
-    select_round_1.each do |match|
-      2.times do
-        MatchParticipant.create(player: rem_sample(player_ary), match: match)
+  def assign_matches(category)
+    if category == "Knockout"
+      player_ary = self.players.to_a
+      select_round_1.each do |match|
+        2.times do
+          MatchParticipant.create(player: rem_sample(player_ary), match: match)
+        end
       end
-    end
+    elsif category == "League"
+
   end
 
  def winner_match_assignment
@@ -99,17 +102,27 @@ class Competition < ApplicationRecord
     end
   end
 
-  def create_matches_knockout(category)
+  def create_matches(category)
     if category == "Knockout"
     round_number = 1
     match_number = 0
       until self.number_of_players / 2**round_number < 1 do
         (self.number_of_players / 2**round_number).times do
           Match.create(competition_id: self.id, round: round_number, status: "To be played", match_number: match_number += 1)
+          end
+          round_number += 1
         end
-        round_number += 1
       end
-    else
+    elsif category = "League"
+      round_number = 1
+      match_number = 0
+      until round_number = number_of_players do
+        (number_of_players - 1).times do
+          Match.create(competition_id: self.id, round: round_number, status: "To be played", match_number: match_number += 1)
+          end
+          round_number += 1
+        end
+      end
     end
   end
 end
