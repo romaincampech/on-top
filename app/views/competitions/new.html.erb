@@ -39,10 +39,10 @@
           </div>
           <div class="row">
             <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="team_competition_partial">
-              <%= render "team_competition_new", competition: @competition %>
+              <%= render "team_competition_new", competition: @competition, f: f %>
             </div>
             <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="individual_competition_partial">
-              <%= render "individual_competition_new", competition: @competition %>
+              <%= render "individual_competition_new", competition: @competition, f: f %>
             </div>
           </div>
         <% end %>

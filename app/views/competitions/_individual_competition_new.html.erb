@@ -1,12 +1,11 @@
-
 <div class="row">
   <div class="col-xs-12">
     <h3>Invite the participants</h3>
   </div>
 </div>
-<%= simple_form_for competition do |f| %>
+
 <div class="col-md-3">
-     <%= f.input :number_of_players, label: 'Choose a # of players:', :label_html => {:class => 'label-style'}, collection: [2, 4, 8, 16, 32], selected: '8' %>
+  <%= f.input :number_of_players, label: 'Choose a # of players:', :label_html => {:class => 'label-style'}, collection: [2, 4, 8, 16, 32] %>
 </div>
 <div class="row">
   <div class="col-md-12 text-center">
@@ -26,7 +25,6 @@
 <div class="row">
   <div class="col-xs-12 text-center">
     <%= f.button :submit, class: 'competition-new-btn' %>
+
   </div>
 </div>
-
-<% end %>
