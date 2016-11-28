@@ -8,4 +8,9 @@ class FriendRequestPolicy < ApplicationPolicy
   def create?
     true
   end
+
+  def update?
+    # @friend_request.friend == @user
+    true
+  end
 end

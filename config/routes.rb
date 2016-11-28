@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :friend_requests, only: [ :create ]
     get "/infos", to: "users#infos"
   end
+  resources :friend_requests, only: [:update]
   resources :friendships, only: [ :destroy ]
 
   resources :activities
