@@ -29,11 +29,11 @@ class Match < ApplicationRecord
     set_4 = {}
     set_4[:player_1] = params["set4player1"].to_i
     set_4[:player_2] = params["set4player2"].to_i
-    score[:set2] = set_4
+    score[:set4] = set_4
     set_5 = {}
     set_5[:player_1] = params["set5player1"].to_i
     set_5[:player_2] = params["set5player2"].to_i
-    score[:set3] = set_5
+    score[:set5] = set_5
 
     player_set_total = {}
 
@@ -57,6 +57,17 @@ class Match < ApplicationRecord
       player_set_total[:player_2] += 1
     end
 
+    if score[:set4][:player_1] > score[:set4][:player_2]
+      player_set_total[:player_1] += 1
+    elsif score[:set4][:player_2] > score[:set4][:player_1]
+      player_set_total[:player_2] += 1
+    end
+
+    if score[:set5][:player_1] > score[:set5][:player_2]
+      player_set_total[:player_1] += 1
+    elsif score[:set5][:player_2] > score[:set5][:player_1]
+      player_set_total[:player_2] += 1
+    end
     score[:player_set_total] = player_set_total
 
     self.score = score

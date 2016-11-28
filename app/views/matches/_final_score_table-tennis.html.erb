@@ -1,0 +1,42 @@
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Sets</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class=<% if match.players.first == match.winner %>
+    <%= "highlight" %>
+    <% else %>
+    <%= "loser" %>
+    <% end %>>
+      <th><%= match.players.first.first_name %></th>
+      <th><%= match.score["player_set_total"]["player_1"] %></th>
+      <td><%= match.score["set1"]["player_1"] %></td>
+      <td><%= match.score["set2"]["player_1"] %></td>
+      <td><%= match.score["set3"]["player_1"] %></td>
+      <td><%= match.score["set4"]["player_1"] %></td>
+      <td><%= match.score["set5"]["player_1"] %></td>
+    </tr>
+    <tr class=<% if match.players.last == match.winner %>
+    <%= "highlight" %>
+    <% else %>
+    <%= "loser" %>
+    <% end %>>
+      <th><%= match.players.last.first_name %></th>
+      <th><%= match.score["player_set_total"]["player_2"] %></th>
+      <td><%= match.score["set1"]["player_2"] %></td>
+      <td><%= match.score["set2"]["player_2"] %></td>
+      <td><%= match.score["set3"]["player_2"] %></td>
+      <td><%= match.score["set4"]["player_2"] %></td>
+      <td><%= match.score["set5"]["player_2"] %></td>
+    </tr>
+  </tbody>
+</table>
+
