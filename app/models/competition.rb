@@ -97,7 +97,7 @@ class Competition < ApplicationRecord
     end
   end
 
-  def create_matches(category)
+  def create_matches_knockout(category)
     if category == "Knockout"
     round_number = 1
     match_number = 0

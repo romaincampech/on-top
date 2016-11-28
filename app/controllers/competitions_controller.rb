@@ -19,7 +19,7 @@ class CompetitionsController < ApplicationController
     authorize @competition
     @competition.creator = current_user
     @competition.save
-    @competition.create_matches(params[:competition][:category])
+    @competition.create_matches_knockout(params[:competition][:category])
     players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
     @competition.add_players(players_ary)
     @competition.assign_matches if @competition.players.count == @competition.number_of_players

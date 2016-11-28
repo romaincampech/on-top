@@ -38,10 +38,10 @@
         <p><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %> </p>
         <% if current_user == @competition.creator %>
         <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
-        <% elsif current_user == match.players.first || match.players.last %>
+        <% elsif current_user == match.players.first || current_user == match.players.last %>
         <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
         <% else %>
-        <p>Shit</p>
+        <p><em><%= match.status %></em></p>
         <% end %>
         <%= render 'matches/edit', match: match %>
         <% end %>
