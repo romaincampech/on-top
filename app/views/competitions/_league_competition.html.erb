@@ -25,6 +25,7 @@
       <td>1</td>
       <td><strong>0</strong></td>
     </tr>
+    <% x += 1 %>
     <% end %>
   </tbody>
 </table>
@@ -35,7 +36,7 @@
 <% round_number = 1 %>
 <% until round_number == @competition.number_of_players %>
 <div class="container">
-  <div class=row class="col-xs-3">
+<div class="col-md-3">
     <h4>Round: <%= round_number %></h4>
     <% @competition.matches.where(round: round_number).each do |match| %>
 
@@ -44,7 +45,7 @@
     </ul>
 
     <% end %>
-  </div>
+</div>
 </div>
 <% round_number += 1 %>
 <% end %>
