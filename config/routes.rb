@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   resources :matches, only: [:update, :edit, :show]
 
-  devise_for :users
+  devise_for :users,
+    controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   mount Attachinary::Engine => "/attachinary"
   root to: 'pages#home'
 
