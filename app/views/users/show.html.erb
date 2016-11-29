@@ -75,7 +75,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <% @user.competitions.where(status: "In progress").order("created_at ASC").each do |competition| %>
+                        <% @user.unplayed_competitions.order("created_at ASC").each do |competition| %>
                           <tr>
                             <td>
                               <%= link_to competition.name, competition_path(competition) %>
@@ -113,10 +113,11 @@
                           <th>Sport</th>
                           <th>Category</th>
                           <th># of players</th>
+                          <th>Winner</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <% @user.competitions.where(status: "Completed").order("created_at DESC").each do |competition| %>
+                        <% @user.played_competitions.order("created_at DESC").each do |competition| %>
                           <tr>
                             <td>
                               <%= link_to competition.name, competition_path(competition) %>
@@ -129,6 +130,9 @@
                             </td>
                             <td>
                               <%= competition.number_of_players %>
+                            </td>
+                            <td>
+                              <%= link_to competition.champion.full_name, user_path(competition.champion) %>
                             </td>
                           </tr>
                         <% end %>
@@ -152,19 +156,19 @@
                   <tbody>
                     <tr>
                       <th scope="row">matches</th>
-                      <td style="text-align: center;"><%= @user.played_matches.count %></td>
+                      <td style="text-align: center;"><%= @user.played_matches_for("Tennis").count %></td>
                     </tr>
                     <tr>
                       <th scope="row">wins</th>
-                      <td style="text-align: center;"><%= @user.wins.count %></td>
+                      <td style="text-align: center;"><%= @user.wins_for("Tennis").count %></td>
                     </tr>
                     <tr>
                       <th scope="row">losses</th>
-                      <td style="text-align: center;"><%= @user.wins.count %></td>
+                      <td style="text-align: center;"><%= @user.losses_for("Tennis").count %></td>
                     </tr>
                     <tr>
                       <th scope="row">cups</th>
-                      <td style="text-align: center;"><%= @user.championships.count %></td>
+                      <td style="text-align: center;"><%= @user.championships_for("Tennis").count %></td>
                     </tr>
                   </tbody>
                 </table>
@@ -180,19 +184,75 @@
                   <tbody>
                     <tr>
                       <th scope="row">matches</th>
-                      <td style="text-align: center;"><%= @user.played_matches.count %></td>
+                      <td style="text-align: center;"><%= @user.played_matches_for("Squash").count %></td>
                     </tr>
                     <tr>
                       <th scope="row">wins</th>
-                      <td style="text-align: center;"><%= @user.wins.count %></td>
+                      <td style="text-align: center;"><%= @user.wins_for("Squash").count %></td>
                     </tr>
                     <tr>
                       <th scope="row">losses</th>
-                      <td style="text-align: center;"><%= @user.wins.count %></td>
+                      <td style="text-align: center;"><%= @user.losses_for("Squash").count %></td>
                     </tr>
                     <tr>
                       <th scope="row">cups</th>
-                      <td style="text-align: center;"><%= @user.championships.count %></td>
+                      <td style="text-align: center;"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm-2 col-sm-offset-1">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>TableTennis</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">matches</th>
+                      <td style="text-align: center;"><%= @user.played_matches_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">wins</th>
+                      <td style="text-align: center;"><%= @user.wins_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">losses</th>
+                      <td style="text-align: center;"><%= @user.losses_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">cups</th>
+                      <td style="text-align: center;"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm-2 col-sm-offset-1">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Football</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">matches</th>
+                      <td style="text-align: center;"><%= @user.played_matches_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">wins</th>
+                      <td style="text-align: center;"><%= @user.wins_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">losses</th>
+                      <td style="text-align: center;"><%= @user.losses_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">cups</th>
+                      <td style="text-align: center;"></td>
                     </tr>
                   </tbody>
                 </table>

@@ -93,4 +93,11 @@ class Match < ApplicationRecord
 
   end
 
+  def last_match_knockout(competition)
+    if self.round == Math.log2(competition.number_of_players).to_i
+      competition.champion = self.winner
+      competition.save
+    end
+  end
+
 end

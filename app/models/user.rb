@@ -36,7 +36,7 @@ class User < ApplicationRecord
 
   # competitions the player has played in that have an assigned winner
   def played_competitions
-    self.playing_competitions.where.not(champion_id: nil)
+    self.playing_competitions.where.not(champion_id: nil).distinct
   end
 
   # competitions the player has played in that DO NOT have an assigned winner
@@ -47,6 +47,16 @@ class User < ApplicationRecord
   # competitions the player has not been the winner of
   def lost_championships
     played_competitions.where.not(champion_id: id)
+  end
+
+  # competitions the player has been the winner of (by sport)
+  def championships_for(sport_name_string)
+    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_championships = []
+    self.championships.each do |championship|
+      sport_championships << championship if championship.sport == sport_to_search
+    end
+    return sport_championships
   end
 
 # Match side
@@ -69,7 +79,7 @@ class User < ApplicationRecord
 
   # matches the player has played in that HAVE an assigned winner
   def played_matches
-    self.matches.where.not(winner_id: nil)
+    self.matches.where.not(winner_id: nil).distinct
   end
 
   # mathces the player has played in that HAVE an assigned winner (by sport)
