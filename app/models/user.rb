@@ -9,9 +9,9 @@ class User < ApplicationRecord
   after_create :own_friend
 
   has_many :messages, dependent: :destroy
-  has_many :team_memberships
+  has_many :team_memberships, dependent: :destroy
   has_many :teams, through: :team_memberships
-  has_many :owned_teams, :class_name => 'Team', :foreign_key => 'captain_id'
+  has_many :owned_teams, :class_name => 'Team', :foreign_key => 'captain_id', dependent: :destroy
 
   def full_name
     "#{first_name} #{last_name}"
@@ -40,7 +40,7 @@ class User < ApplicationRecord
 # Competition side
 
   # competitions the user is part of (playing or spectating)
-  has_many :competition_participants
+  has_many :competition_participants, dependent: :destroy
   has_many :competitions, through: :competition_participants
 
   # competitions the user is playing in (all statuses of completion and incompletion)
@@ -52,7 +52,7 @@ class User < ApplicationRecord
   has_many :spectating_competitions, through: :competition_nonparticipations, source: :competition
 
   # competitions the user has created
-  has_many :created_competitions, :class_name => 'Competition', :foreign_key => 'creator_id'
+  has_many :created_competitions, :class_name => 'Competition', :foreign_key => 'creator_id', dependent: :destroy
 
   # competitions the user has won
   has_many :championships, :class_name => 'Competition', :foreign_key => 'champion_id'
@@ -75,7 +75,7 @@ class User < ApplicationRecord
 
 # Match side
   # matches the user is playing in (only participation option is playing)
-  has_many :match_participants, :class_name => 'MatchParticipant', :foreign_key => 'player_id'
+  has_many :match_participants, :class_name => 'MatchParticipant', :foreign_key => 'player_id', dependent: :destroy
   has_many :matches, through: :match_participants
 
   # matches the player has won
@@ -98,7 +98,7 @@ class User < ApplicationRecord
 
 #Friend side
   # pending friend request the user sent
-  has_many :friend_requests, dependent: :destroy, foreign_key: :friend_id
+  has_many :friend_requests, foreign_key: :friend_id, dependent: :destroy
   has_many :pending_friends_requests, class_name: 'FriendRequest', dependent: :destroy, foreign_key: :user_id
   has_many :pending_friends, through: :pending_friends_requests, source: :friend
 
