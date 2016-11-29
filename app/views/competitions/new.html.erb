@@ -56,6 +56,10 @@
 
     // Team vs Indiv Select
     $("select[name='competition[team_competition]']").change(function(){
+      // unselect all choices if change from one hidden form to another
+       $.each( $(".search-choice"), function( key, value ) {
+          $(".search-choice-close").click();
+        });
       if ($(this).val() == "false"){
        $('#individual_competition_partial').removeClass('hide');
        $('#team_competition_partial').addClass('hide');
@@ -74,6 +78,7 @@
       friends_cards["<%= friend.id %>"] = "<%= j render 'friend_card', friend: friend %>"
     <% end %>
 
+    // Selection of teams and individuals
     $(document).ready(function () {
       $('.chosen-select').chosen({
         allow_single_deselect: true,
@@ -86,14 +91,16 @@
         setTimeout(function() {
           $(".chosen-choices a").each(function(index, link){
             var playerIndex = parseInt($(link).attr("data-option-array-index"));
-            var id = $(".chosen-select option").eq(playerIndex).val();
+            // only individuals have pictures.. need to write something for teams to have pics too
+            // need to make teams_card[id]
+            var id = $(".individual-chosen-select option").eq(playerIndex).val();
             $(".competition-new-participants").append(friends_cards[id]);
           });
         }, delay);
      })
     });
 
-    // Invite Teams DropDowns
+    // Invite Teams DropDowns based on which sport it is
     $("select[name='competition[sport_id]']").change(function () {
         var sportID = $(this).val();
         $(".team-dropdown-selection").addClass("hide");

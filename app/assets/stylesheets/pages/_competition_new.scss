@@ -27,7 +27,7 @@
     background-color: #58D063;
     opacity: 0.9;
     color: white;
-    margin: 30px;
+    margin: 24px;
     padding: 15px;
     font-weight: bolder;
     border: none;
@@ -37,6 +37,9 @@
     background-color: #38c746;
     box-shadow: 1px 1px 3px rgba(80,80,80,0.5);
     }
+  }
+  .btn-individual {
+  margin-top: 15px;
   }
   .competition-new-participants {
     margin-top:20px;
@@ -58,6 +61,13 @@
   }
 }
 
+.margin-me {
+  margin-bottom: 30px;
+}
+
+.margin-me-individ {
+  margin-bottom: 15px;
+}
 
 
 
