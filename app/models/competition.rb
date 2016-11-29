@@ -53,7 +53,7 @@ class Competition < ApplicationRecord
       until y == self.number_of_players
         round = []
         mn = 0
-        until round.count == 4
+        until round.count == (self.number_of_players / 2)
           unless round.flatten.include?(games[mn][0]) || round.flatten.include?(games[mn][1])
             round << games[mn]
             games.delete_at(mn)
@@ -61,7 +61,7 @@ class Competition < ApplicationRecord
             mn += 1
           end
         end
-        x = (4*y - 3)
+        x = ((self.number_of_players / 2)*y - ((self.number_of_players / 2) - 1))
         round.each do |fixture|
           MatchParticipant.create(player: fixture[0], match: self.matches.where(match_number: x).first)
           MatchParticipant.create(player: fixture[1], match: self.matches.where(match_number: x).first)
@@ -71,7 +71,6 @@ class Competition < ApplicationRecord
         y += 1
       end
     end
-    binding.pry
   end
 
  def winner_match_assignment
