@@ -26,85 +26,81 @@
       }
     }
   }
+
+  .profile-banner-right {
+    background-color: white;
+    height: 25vh;
+    margin: 20px 0;
+    border-radius: 2px;
+
+    ul {
+      list-style: none;
+    }
+  }
 }
 
+.profile-tabs {
+  background: transparent;
+  display: flex;
+  padding: 10px 10px 0 10px;
 
-// .profile-banner {
-//   background-color: #404040;
-//   height: 30vh;
+  .profile-tab {
+    flex: 0 0 25%;
+    background-color: #CACACA;
+    text-align: center;
+    margin-top: 15px;
+    padding: 15px 0;
+    color: white;
 
-//   .profile-banner-left {
-//     display: flex;
-//     align-items: center;
-//     margin: 20px 0;
+    &:first-child {
+      border-radius: 3px 0 0 0;
+    }
+    &:last-child {
+      border-radius: 0 3px 0 0;
+    }
+    &.active {
+      background-color: #65D06E;
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+  }
+}
+.profile-tabs-container {
+  background-color: white;
+  height: 50vh;
+  margin: 0 10px 50px 10px;
+  border-radius: 0 0 3px 3px;
 
-//     img {
-//       width: 24vh;
-//       height: auto;
-//       border-radius: 50%;
-//     }
+  .active-competitions-tab {
+    height: 25vh;
+    border-bottom: 0.5px solid #404040;
 
-//     ul {
-//       list-style: none;
-//       padding-left: 20px;
-//       margin-bottom: 60px;
-//       color: white;
-//     }
+    h4 {
+      text-align: center;
+      font-weight: bolder;
+    }
 
-//     li {
-//       margin-bottom: 16px;
-//     }
+    .table-scroll {
+      height: 18vh;
+      overflow: scroll;
+    }
+  }
 
-//     .fa-map-marker {
-//       font-size: 20px;
-//     }
-//   }
+  .previous-competitions-tab {
+    height: 25vh;
 
-//   .profile-banner-right {
-//     height: 100%;
-//     margin: 30px 0;
-//     background-color: white;
-//     height: 160px;
-//     border-radius: 3px;
-//   }
+    h4 {
+      text-align: center;
+      font-weight: bolder;
+    }
 
-// }
-
-// .profile-tabs {
-//   background: transparent;
-//   display: flex;
-//   margin-top: 15px;
-// }
-
-// .profile-tabs a {
-//   color: white;
-//   cursor: pointer;
-// }
-
-// .profile-tabs a:hover {
-//   text-decoration: none;
-//   opacity: 0.8;
-// }
-
-// .profile-tab {
-//   background-color: #CACACA;
-//   flex: 0 0 25%;
-//   text-align: center;
-//   padding: 5px 0;
-
-//   &:first-child {
-//     border-radius: 4px 0 0 0;
-//   }
-//   &:last-child {
-//     border-radius: 0 4px 0 0;
-//   }
-//   &.active {
-//     background-color: #65D06E;
-//   }
-// }
-
-// .profile-tabs-container {
-//   background-color: white;
-//   border-radius: 0 0 3px 3px;
-//   min-height: 50vh;
-// }
+    .table-scroll {
+      height: 18vh;
+      overflow: scroll;
+    }
+  }
+}
