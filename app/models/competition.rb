@@ -47,19 +47,31 @@ class Competition < ApplicationRecord
         end
       end
     else
-      home = 1
-      (self.number_of_players - 1).times do
-        match_number = home
-        away = home
-        (self.number_of_players - home).times do
-          MatchParticipant.create(player: self.players[home - 1], match: self.matches.where(match_number: match_number).first)
-          MatchParticipant.create(player: self.players[away], match: self.matches.where(match_number: match_number).first)
-          away += 1
-          match_number += (self.number_of_players / 2)
+      games = self.players.to_a.combination(2).to_a
+      fixtures = {}
+      y = 1
+      until y == self.number_of_players
+        round = []
+        mn = 0
+        until round.count == 4
+          unless round.flatten.include?(games[mn][0]) || round.flatten.include?(games[mn][1])
+            round << games[mn]
+            games.delete_at(mn)
+          else
+            mn += 1
+          end
         end
-        home += 1
+        x = (4*y - 3)
+        round.each do |fixture|
+          MatchParticipant.create(player: fixture[0], match: self.matches.where(match_number: x).first)
+          MatchParticipant.create(player: fixture[1], match: self.matches.where(match_number: x).first)
+          x += 1
+        end
+        fixtures["round_#{y}"] = round
+        y += 1
       end
     end
+    binding.pry
   end
 
  def winner_match_assignment

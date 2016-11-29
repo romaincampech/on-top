@@ -1,16 +1,53 @@
+<div class="container">
+<div class="row">
+<table class= "col-md-8 col-md-offset-2">
+  <thead>
+    <tr>
+      <td>Pos.</td>
+      <td>Team/Player</td>
+      <td>Pl</td>
+      <td>W</td>
+      <td>D</td>
+      <td>L</td>
+      <td><strong>Pts</strong></td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% x = 1 %>
+    <% @competition.players.each do |player| %>
+    <tr>
+      <td><%= x %></td>
+      <td><%= player.first_name %></td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td><strong>0</strong></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+<div class="row">
 <% round_number = 1 %>
 <% until round_number == @competition.number_of_players %>
 <div class="container">
-<div class=row class="col-xs-3">
-<h4>Round: <%= round_number %></h4>
-<% @competition.matches.where(round: round_number).each do |match| %>
+  <div class=row class="col-xs-3">
+    <h4>Round: <%= round_number %></h4>
+    <% @competition.matches.where(round: round_number).each do |match| %>
 
-<ul>
-  <li><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %></li>
-  </ul>
+    <ul>
+      <li><%= match.players.first.first_name if match.players.first %> vs. <%= match.players.last.first_name if match.players.last != match.players.first %></li>
+    </ul>
 
-<% end %>
+    <% end %>
   </div>
-  </div>
+</div>
 <% round_number += 1 %>
 <% end %>
+</div>
+
+</div>
