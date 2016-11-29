@@ -1,70 +1,288 @@
-<div id="profile-banner">
-  <div class="container-fluid">
+<div class="container">
+  <div class="profile-banner">
     <div class="row">
-      <div class="col-xs-12 col-md-5 col-md-offset-1">
-          <div class="profile-banner-left">
-            <%= image_tag "profile-avatar-default.jpg"%>
-            <ul>
-              <li><h3><%= @user.first_name %> <%= @user.last_name %></h3></li>
-              <li><i class="fa fa-map-marker"></i><span> <%= @user.city %></span></li>
-              <li><%= @user.friends.count %> friends</li>
-              <li>
-                <% if current_user.pending_friends.include?(@user) %>
-                  Friend request sent
-                <% elsif !current_user.friends.include?(@user) %>
-                <%= button_to 'Add Friend', user_friend_requests_path(@user), method: :post unless current_user == @user %>
-                <% else %>
-                  <%= button_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), method: :delete, data: { confirm: "Are you sure?" } %>
+      <div class="col-sm-5 col-sm-offset-1">
+        <div class="profile-banner-left">
+          <% if @user.photo? %>
+            <%= cl_image_tag @user.photo.path %>
+          <% else %>
+            <%= image_tag "profile-avatar-default.jpg" %>
+          <% end %>
+          <ul>
+            <li><h3><%= @user.full_name %></h3></li>
+            <li><i class="fa fa-map-marker"></i> <h4 style="display: inline;"><%= @user.city %></h4></li>
+            <li><i class="fa fa-users" aria-hidden="true"></i>
+              <p style="display: inline;">
+                <%= link_to "#" do %>
+                  <%= @user.friends.count - 1 %> friends
                 <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-5">
-          <div class="profile-banner-right">
-            <ul>
-              <% @user.friend_requests.each do |friend_request| %>
-                <li>
-                  <%= link_to friend_request.user.full_name %>
-                  wants to be your friend:
-                  <%= button_to 'Accept', friend_request_path(friend_request), method: :patch %>
-                </li>
+              </p>
+            </li>
+            <li>
+              <% if current_user.pending_friends.include?(@user) %>
+                <div class="request-sent">
+                  Friend request sent
+                </div>
+              <% elsif !current_user.friends.include?(@user) %>
+                <%= button_to 'Add Friend', user_friend_requests_path(@user), method: :post unless current_user == @user %>
+              <% else %>
+                <%= button_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), method: :delete, data: { confirm: "Are you sure?" } unless current_user == @user %>
               <% end %>
-            </ul>
-          </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <div class="profile-banner-right">
+
         </div>
       </div>
     </div>
   </div>
 </div>
-  <div class="container-fluid">
+
+<div class="container">
     <div class="row">
-      <div class="col-xs-10 col-xs-offset-1">
+      <div class="col-sm-10 col-sm-offset-1">
         <div class="profile-tabs">
-          <a class="profile-tab active" data-target="#competitions">
-            <h4>My Competitions</h4>
-          </a>
-          <a class="profile-tab" data-target="#statistics">
-            <h4>My Statistics</h4>
-          </a>
-          <a class="profile-tab" data-target="#teams">
-            <h4>My Teams</h4>
-          </a>
-          <a class="profile-tab" data-target="#photos-videos">
-            <h4>My Photos/Videos</h4>
-          </a>
+          <a class="profile-tab active" data-target="#competitions">Competitions</a>
+          <a class="profile-tab" data-target="#statistics">Statistics</a>
+          <a class="profile-tab" data-target="#teams">Teams</a>
+          <a class="profile-tab" data-target="#photos-videos">Photos/Videos</a>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-10 col-xs-offset-1">
+      <div class="col-sm-10 col-sm-offset-1">
         <div class="profile-tabs-container">
-          <div class="profile-tabs-content" id="competitions">Competitions</div>
-          <div class="profile-tabs-content hidden" id="statistics">Statistics</div>
-          <div class="profile-tabs-content hidden" id="teams">Teams</div>
-          <div class="profile-tabs-content hidden" id="photos-videos">Photos/Videos</div>
+          <div class="profile-tabs-content" id="competitions">
+            <div class="active-competitions-tab">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h4>Active</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="table-scroll">
+                    <table class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Sport</th>
+                          <th>Category</th>
+                          <th># of players</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @user.unplayed_competitions.order("created_at ASC").each do |competition| %>
+                          <tr>
+                            <td>
+                              <%= link_to competition.name, competition_path(competition) %>
+                            </td>
+                            <td>
+                              <%= competition.sport.name %>
+                            </td>
+                            <td>
+                              <%= competition.category %>
+                            </td>
+                            <td>
+                              <%= competition.number_of_players %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="previous-competitions-tab">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h4>Previous</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                  <div class="table-scroll">
+                    <table class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Sport</th>
+                          <th>Category</th>
+                          <th># of players</th>
+                          <th>Winner</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @user.played_competitions.order("created_at DESC").each do |competition| %>
+                          <tr>
+                            <td>
+                              <%= link_to competition.name, competition_path(competition) %>
+                            </td>
+                            <td>
+                              <%= competition.sport.name %>
+                            </td>
+                            <td>
+                              <%= competition.category %>
+                            </td>
+                            <td>
+                              <%= competition.number_of_players %>
+                            </td>
+                            <td>
+                              <%= link_to competition.champion.full_name, user_path(competition.champion) %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="profile-tabs-content hidden" id="statistics">
+            <div class="row">
+              <div class="col-sm-2 col-sm-offset-1">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Tennis</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">matches</th>
+                      <td style="text-align: center;"><%= @user.played_matches_for("Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">wins</th>
+                      <td style="text-align: center;"><%= @user.wins_for("Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">losses</th>
+                      <td style="text-align: center;"><%= @user.losses_for("Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">cups</th>
+                      <td style="text-align: center;"><%= @user.championships_for("Tennis").count %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm-2 col-sm-offset-1">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Squash</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">matches</th>
+                      <td style="text-align: center;"><%= @user.played_matches_for("Squash").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">wins</th>
+                      <td style="text-align: center;"><%= @user.wins_for("Squash").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">losses</th>
+                      <td style="text-align: center;"><%= @user.losses_for("Squash").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">cups</th>
+                      <td style="text-align: center;"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm-2 col-sm-offset-1">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>TableTennis</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">matches</th>
+                      <td style="text-align: center;"><%= @user.played_matches_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">wins</th>
+                      <td style="text-align: center;"><%= @user.wins_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">losses</th>
+                      <td style="text-align: center;"><%= @user.losses_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">cups</th>
+                      <td style="text-align: center;"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm-2 col-sm-offset-1">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Football</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">matches</th>
+                      <td style="text-align: center;"><%= @user.played_matches_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">wins</th>
+                      <td style="text-align: center;"><%= @user.wins_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">losses</th>
+                      <td style="text-align: center;"><%= @user.losses_for("Table-Tennis").count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">cups</th>
+                      <td style="text-align: center;"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="profile-tabs-content hidden" id="teams"></div>
+          <div class="profile-tabs-content hidden" id="photos-videos"></div>
         </div>
       </div>
     </div>
-  </div>
 </div>
+
+
+
+
+
+
+<!--
+                      <div class="col-xs-12 col-md-5">
+                        <div class="profile-banner-right">
+                          <ul>
+                            <% @user.friend_requests.each do |friend_request| %>
+                              <li>
+                                <%= link_to friend_request.user.full_name %>
+                                wants to be your friend:
+                                <%= button_to 'Accept', friend_request_path(friend_request), method: :patch %>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
+                      </div>
+    -->

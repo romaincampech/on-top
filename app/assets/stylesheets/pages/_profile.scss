@@ -1,78 +1,110 @@
-#profile-banner {
-  background-color: #4C4C4C;
+.profile-banner {
+  background-color: #404040;
+  height: 30vh;
 
   .profile-banner-left {
     display: flex;
     align-items: center;
-    margin: 20px 0;
+    margin: 29px 0;
 
     img {
-      width: 24vh;
-      height: auto;
+      width: 12vw;
       border-radius: 50%;
     }
 
     ul {
       list-style: none;
-      padding-left: 20px;
-      margin-bottom: 60px;
       color: white;
-    }
+      padding-left: 15px;
 
-    li {
-      margin-bottom: 16px;
-    }
-
-    .fa-map-marker {
-      font-size: 20px;
+      li {
+        text-decoration: none;
+        margin: 10px;
+        h4, p {
+          font-weight: lighter;
+        }
+      }
     }
   }
 
   .profile-banner-right {
-    height: 100%;
-    margin: 30px 0;
     background-color: white;
-    height: 160px;
-    border-radius: 3px;
-  }
+    height: 25vh;
+    margin: 20px 0;
+    border-radius: 2px;
 
+    ul {
+      list-style: none;
+    }
+  }
 }
 
 .profile-tabs {
   background: transparent;
   display: flex;
-  margin-top: 15px;
-}
+  padding: 10px 10px 0 10px;
 
-.profile-tabs a {
-  color: white;
-  cursor: pointer;
-}
+  .profile-tab {
+    flex: 0 0 25%;
+    background-color: #CACACA;
+    text-align: center;
+    margin-top: 15px;
+    padding: 15px 0;
+    color: white;
 
-.profile-tabs a:hover {
-  text-decoration: none;
-  opacity: 0.8;
-}
-
-.profile-tab {
-  background-color: #CACACA;
-  flex: 0 0 25%;
-  text-align: center;
-  padding: 5px 0;
-
-  &:first-child {
-    border-radius: 4px 0 0 0;
-  }
-  &:last-child {
-    border-radius: 0 4px 0 0;
-  }
-  &.active {
-    background-color: #65D06E;
+    &:first-child {
+      border-radius: 3px 0 0 0;
+    }
+    &:last-child {
+      border-radius: 0 3px 0 0;
+    }
+    &.active {
+      background-color: #65D06E;
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none;
+      opacity: 0.8;
+      cursor: pointer;
+    }
   }
 }
-
 .profile-tabs-container {
   background-color: white;
+  height: 50vh;
+  margin: 0 10px 50px 10px;
   border-radius: 0 0 3px 3px;
-  min-height: 50vh;
+
+  .active-competitions-tab {
+    height: 25vh;
+    border-bottom: 0.5px solid #404040;
+
+    h4 {
+      text-align: center;
+      font-weight: bolder;
+    }
+
+    .table-scroll {
+      height: 18vh;
+      overflow: scroll;
+    }
+  }
+
+  .previous-competitions-tab {
+    height: 25vh;
+
+    h4 {
+      text-align: center;
+      font-weight: bolder;
+    }
+
+    .table-scroll {
+      height: 18vh;
+      overflow: scroll;
+    }
+  }
+
+  #statistics .col-sm-2 {
+    margin-left: 80px;
+  }
 }
