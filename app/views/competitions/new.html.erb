@@ -1,4 +1,4 @@
-<body class="competition-new">
+<div class="competition-new">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 competition-new-title">
@@ -13,62 +13,64 @@
           </div>
         </div>
         <%= simple_form_for @competition do |f| %>
-        <% f.error_notification %>
-        <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-            <%= f.input :name, label: false, placeholder: "Name your competition" %>
+          <% f.error_notification %>
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+              <%= f.input :name, label: false, placeholder: "Name your competition" %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3 col-md-offset-1">
-            <%= f.association :sport, label: 'Choose a sport:', :label_html => {:class => 'label-style'}, collection: Sport.all, selected: 'Tennis' %>
-          </div>
-          <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+              <%= f.association :sport, label: 'Choose a sport:', :label_html => {:class => 'label-style'}, collection: Sport.all, value_method: :id, include_blank: true %>
+            </div>
+            <div class="col-md-4">
             <%= f.input :category, label: 'Choose a type of competition:', :label_html => {:class => 'label-style'}, collection: ["Knockout"], selected: 'Knockout' %>
+            </div>
           </div>
-          <div class="col-md-3">
-             <%= f.input :number_of_players, label: 'Choose a # of players:', :label_html => {:class => 'label-style'}, collection: [2, 4, 8, 16, 32], selected: '8' %>
+          <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+              <%= f.input :team_competition,
+                    :as => :select,
+                    :collection => [['Team competition',true],['Individual competition',false]],
+                    :include_blank => true,
+                    :selected => :blank,
+                    :label => "Team or Individuals" %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <h3>Invite the participants</h3>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="team_competition_partial">
+              <%= render "team_competition_new", competition: @competition, f: f %>
+            </div>
+            <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="individual_competition_partial">
+              <%= render "individual_competition_new", competition: @competition, f: f %>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <select class="form-control select optional chosen-select" data-placeholder=" " multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
-              <% current_user.friends.each do |friend| %>
-                <option value="<%= friend.id %>"><%= friend.first_name %> <%= friend.last_name %>
-                </option>
-              <% end %>
-            </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <ul class="competition-new-participants"></ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 text-center">
-            <%= f.button :submit, class: 'competition-new-btn' %>
-          </div>
-        </div>
         <% end %>
       </div>
     </div>
   </div>
-</body>
-
-
-
-
-
+</div>
 
 <% content_for(:after_js) do %>
   <script>
 
+    // Team vs Indiv Select
+    $("select[name='competition[team_competition]']").change(function(){
+      // unselect all choices if change from one hidden form to another
+       $.each( $(".search-choice"), function( key, value ) {
+          $(".search-choice-close").click();
+        });
+      if ($(this).val() == "false"){
+       $('#individual_competition_partial').removeClass('hide');
+       $('#team_competition_partial').addClass('hide');
+      }
+      else if ($(this).val() == "true"){
+        $('#team_competition_partial').removeClass('hide');
+        $('#individual_competition_partial').addClass('hide');
+      }
+    });
+
+    // Chosen.js for friends selection with list append
     var friends_cards = {};
     var total_friends = <%= current_user.friends.count %>
 
@@ -76,6 +78,7 @@
       friends_cards["<%= friend.id %>"] = "<%= j render 'friend_card', friend: friend %>"
     <% end %>
 
+    // Selection of teams and individuals
     $(document).ready(function () {
       $('.chosen-select').chosen({
         allow_single_deselect: true,
@@ -88,12 +91,20 @@
         setTimeout(function() {
           $(".chosen-choices a").each(function(index, link){
             var playerIndex = parseInt($(link).attr("data-option-array-index"));
-            var id = $(".chosen-select option").eq(playerIndex).val();
+            // only individuals have pictures.. need to write something for teams to have pics too
+            // need to make teams_card[id]
+            var id = $(".individual-chosen-select option").eq(playerIndex).val();
             $(".competition-new-participants").append(friends_cards[id]);
           });
         }, delay);
-
      })
+    });
+
+    // Invite Teams DropDowns based on which sport it is
+    $("select[name='competition[sport_id]']").change(function () {
+        var sportID = $(this).val();
+        $(".team-dropdown-selection").addClass("hide");
+        $("#dropdown-selection-" + sportID).removeClass("hide");
     });
   </script>
 <% end %>

@@ -8,6 +8,9 @@ class User < ApplicationRecord
   after_create :own_friend
 
   has_many :messages, dependent: :destroy
+  has_many :team_memberships
+  has_many :teams, through: :team_memberships
+  has_many :owned_teams, :class_name => 'Team', :foreign_key => 'captain_id'
 
   def full_name
     "#{first_name} #{last_name}"
@@ -89,6 +92,20 @@ class User < ApplicationRecord
 
   def own_friend
     Friendship.create(user: self, friend: self)
+  end
+
+  def friend_captain_teams_for(sport)
+    captains = []
+    self.friends.each do |friend|
+      captains << friend if friend.owned_teams.length > 0
+    end
+    teams = []
+    captains.each do |captain|
+      captain.owned_teams.each do |team|
+        teams << team if team.sport == sport
+      end
+    end
+    return teams
   end
 
 
