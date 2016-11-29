@@ -57,20 +57,71 @@ class User < ApplicationRecord
   # matches the player has won
   has_many :wins, :class_name => 'Match', :foreign_key => 'winner_id'
 
-  # matches the player has played in that have an assigned winner
+  # matches the player has played (by sport)
+  def matches_for(sport_name_string)
+    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_matches = []
+    self.matches.each do |match|
+      sport_matches << match if match.sport == sport_to_search
+    end
+    return sport_matches
+  end
+
+  # matches the player has played in that HAVE an assigned winner
   def played_matches
     self.matches.where.not(winner_id: nil)
   end
 
-  # matches the player has played in that DO NOT have an assigned winner
+  # mathces the player has played in that HAVE an assigned winner (by sport)
+  def played_matches_for(sport_name_string)
+    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_matches = []
+    self.played_matches.each do |match|
+      sport_matches << match if match.sport == sport_to_search
+    end
+    return sport_matches
+  end
+
+  # matches the player has played in that DO NOT HAVE an assigned winner
   def unplayed_matches
     self.matches.where(winner_id: nil)
+  end
+
+  # matches the player has played in that DO NOT HAVE an assigned winner (by sport)
+  def unplayed_matches_for(sport_name_string)
+    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_matches = []
+    self.unplayed_matches.each do |match|
+      sport_matches << match if match.sport == sport_to_search
+    end
+    return sport_matches
+  end
+
+  # matches the player has been the winner of (by sport)
+  def wins_for(sport_name_string)
+    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_wins = []
+    self.wins.each do |match|
+      sport_wins << match if match.sport == sport_to_search
+    end
+    return sport_wins
   end
 
   # matches the player has not been the winner of
   def losses
     played_matches.where.not(winner_id: id)
   end
+
+  # matches the player has not been the winner of
+  def losses_for(sport_name_string)
+    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_losses = []
+    self.losses.each do |match|
+      sport_losses << match if match.sport == sport_to_search
+    end
+    return sport_losses
+  end
+
 
 #Friend side
   # pending friend request the user sent

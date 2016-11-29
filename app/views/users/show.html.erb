@@ -139,7 +139,66 @@
               </div>
             </div>
           </div>
-          <div class="profile-tabs-content hidden" id="statistics"></div>
+          <div class="profile-tabs-content hidden" id="statistics">
+            <div class="row">
+              <div class="col-sm-2 col-sm-offset-1">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Tennis</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">matches</th>
+                      <td style="text-align: center;"><%= @user.played_matches.count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">wins</th>
+                      <td style="text-align: center;"><%= @user.wins.count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">losses</th>
+                      <td style="text-align: center;"><%= @user.wins.count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">cups</th>
+                      <td style="text-align: center;"><%= @user.championships.count %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm-2 col-sm-offset-1">
+                <table class="table table-sm">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Squash</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">matches</th>
+                      <td style="text-align: center;"><%= @user.played_matches.count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">wins</th>
+                      <td style="text-align: center;"><%= @user.wins.count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">losses</th>
+                      <td style="text-align: center;"><%= @user.wins.count %></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">cups</th>
+                      <td style="text-align: center;"><%= @user.championships.count %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
           <div class="profile-tabs-content hidden" id="teams"></div>
           <div class="profile-tabs-content hidden" id="photos-videos"></div>
         </div>
