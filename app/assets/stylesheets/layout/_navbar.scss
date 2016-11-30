@@ -11,6 +11,14 @@
   transition: all 0.3s ease;
 }
 
+.navbar-home {
+  background: transparent;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  box-shadow: none;
+}
+
 /* Navbar logo */
 .navbar-logo img {
   width: 150px;
