@@ -27,7 +27,7 @@ class CompetitionsController < ApplicationController
     @competition.create_matches(competition_params)
     players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
     @competition.add_players(players_ary)
-    @competition.assign_matches(params[:category]) if @competition.players.count == @competition.number_of_players
+    @competition.assign_matches(competition_params[:category]) if @competition.players.count == @competition.number_of_players
     @competition.new_chat
     redirect_to competition_path(@competition)
   end

@@ -25,7 +25,7 @@
               <%= f.association :sport, label: 'Choose a sport:', :label_html => {:class => 'label-style'}, collection: Sport.all, value_method: :id, include_blank: true %>
             </div>
             <div class="col-md-4">
-            <%= f.input :category, label: 'Choose a type of competition:', :label_html => {:class => 'label-style'}, collection: ["Knockout"], selected: 'Knockout' %>
+            <%= f.input :category, label: 'Choose a type of competition:', :label_html => {:class => 'label-style'}, collection: ["Knockout", "League"], selected: 'Knockout' %>
             </div>
           </div>
           <div class="row">
