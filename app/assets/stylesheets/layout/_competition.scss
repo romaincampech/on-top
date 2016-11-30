@@ -1,0 +1,42 @@
+.competition-container {
+  display: flex;
+  background: #F4F4F4;
+}
+
+.board-container {
+  flex: 1;
+  height: calc(100vh - 70px);
+  h1 {
+    font-size: 20px;
+    margin: 0;
+  }
+}
+.chat-container {
+  width: 400px;
+  width: 400px;
+  background: white;
+  padding: 27px;
+  border-left: 1px solid lightgrey;
+  height: calc(100vh - 70px);
+}
+.board-header {
+  height: 70px;
+}
+
+
+.modal {
+  margin: 0 50px;
+}
+.modal-header {
+  background: #f7f7f7;
+  border: none;
+}
+.modal-footer {
+  border: none;
+  padding: 0;
+  .btn {
+    border-radius: 0 !important;
+    margin-top: 20px;
+    padding: 15px 0;
+  }
+}
