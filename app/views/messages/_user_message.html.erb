@@ -1,6 +1,9 @@
 <li>
   <div class="message">
     <div class="message-block">
+      <div class="message-bubble-user">
+        <%= message.body %>
+      </div><br>
       <div class="message-user">
         <span class="text-muted">
           <%= link_to user_path(message.user), "data-toggle" => "tooltip", title: "#{message.user.full_name}" do %>
@@ -15,13 +18,9 @@
           <% elsif DateTime.now.to_date - 1 == message.created_at.to_date %>
           <%= " yesterday" %>
           <% end %>
-        </span><br>
-      </div>
-      <div class="message-bubble">
-        <%= message.body %>
+        </span>
       </div>
     </div>
   </div>
 </li>
-
 
