@@ -6,6 +6,12 @@
   margin: 0;
   text-align: center;
   color: white;
+  position: fixed;
+  width: 300px;
+  left: 50%;
+  margin-left: -150px;
+  top: 60px;
+  z-index: 100;
 }
 .alert-info {
   background: #58D063;

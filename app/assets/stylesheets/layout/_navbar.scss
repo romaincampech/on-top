@@ -9,6 +9,9 @@
   align-items: center;
   justify-content: space-between;
   transition: all 0.3s ease;
+  .avatar {
+    width: 50px;
+  }
 }
 
 .navbar-home {
@@ -105,14 +108,15 @@
 
 
 // /* Navbar standard link */
-// .navbar-wagon-link {
-//   color: #616668;
-//   font-size: 14px;
-// }
-// .navbar-wagon-link:hover {
-//   color: #da552f;
-//   text-decoration: none;
-// }
+.navbar-wagon-link {
+  color: #616668;
+  font-size: 14px;
+  padding: 10px;
+}
+.navbar-wagon-link:hover {
+  color: #da552f;
+  text-decoration: none;
+}
 
 
   // /* Navbar Sign Out Button */

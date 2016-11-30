@@ -1,0 +1,32 @@
+.competition-step {
+  color: $green !important;
+  font-size: 25px;
+}
+.competition-step-number {
+  width: 40px;
+  height: 40px;
+  background: $green;
+  color: white;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.competition-step-two {
+  min-height: 500px;
+  padding-bottom: 200px;
+}
+.team-choice {
+  margin-top: 30px;
+  opacity: 0.4;
+  p {
+    margin-top: 17px;
+  }
+  &.active {
+    opacity: 1;
+  }
+}
+.chosen-choices {
+  min-height: 36px !important;
+  border-radius: 8px !important;
+  width: 100% !important;
+}

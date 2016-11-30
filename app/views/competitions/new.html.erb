@@ -2,49 +2,79 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 competition-new-title">
-        <h1>COMPETITION CREATION DESK</h1>
+        <h1>Create your competition</h1>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-8 col-xs-offset-2 competition-new-board">
         <div class="row">
           <div class="col-xs-12">
-            <h3>Define the basic info</h3>
+            <h3 class="competition-step flexbox-center">
+              <div class="competition-step-number flexbox">1</div> <div>Basic info</div>
+            </h3>
           </div>
         </div>
         <%= simple_form_for @competition do |f| %>
 
           <% f.error_notification %>
           <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-              <%= f.input :name, label: false, placeholder: "Name your competition" %>
+            <div class="col-md-8 col-md-offset-2">
+              <%= f.input :name, label: "Choose a name", placeholder: "London Tennis League" %>
             </div>
           </div>
           <div class="row">
             <div class="col-md-4 col-md-offset-2">
-              <%= f.association :sport, label: 'Choose a sport:', :label_html => {:class => 'label-style'}, collection: Sport.all, value_method: :id, include_blank: true %>
+              <%= f.association :sport, label: 'Choose a sport:', :label_html => {:class => 'label-style'}, collection: Sport.all, value_method: :id, include_blank: true, prompt: "Which sport?" %>
             </div>
             <div class="col-md-4">
             <%= f.input :category, label: 'Choose a type of competition:', :label_html => {:class => 'label-style'}, collection: ["Knockout", "League"], selected: 'Knockout' %>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-              <%= f.input :team_competition,
-                    :as => :select,
+            <div class="col-md-8 col-md-offset-2">
+              <% f.input :team_competition,
+                    :as => :radio_buttons,
                     :collection => [['Team competition',true],['Individual competition',false]],
                     :include_blank => true,
                     :selected => :blank,
                     :label => "Team or Individuals" %>
+
+              <div id="player-section"></div>
+               <div class="form-group flexbox radio_buttons optional competition_team_competition">
+                <label class="control-label radio_buttons optional hidden">Team or Individuals</label>
+                <input type="hidden" name="competition[team_competition]" value="">
+
+                <div class="team-choice text-center">
+                  <span class="radio"></span>
+                  <label for="competition_team_competition_true">
+                    <%= image_tag "player.png", width: "50px" %>
+                    <%= image_tag "player.png", width: "50px" %>
+                    <%= image_tag "player.png", width: "50px" %>
+                    <p>Team competition</p>
+                  </label>
+                  <input class="radio_buttons optional hidden" type="radio" value="true" name="competition[team_competition]" id="competition_team_competition_true">
+                </div>
+
+                <div class="team-choice text-center">
+                  <span class="radio"></span>
+                  <label for="competition_team_competition_false">
+                    <%= image_tag "player.png", width: "50px" %>
+                    <p>Individual competition</p>
+                  </label>
+                  <input class="radio_buttons optional hidden" readonly="readonly" type="radio" value="false" checked="checked" name="competition[team_competition]" id="competition_team_competition_false">
+                </div>
+              </div>
             </div>
 
           </div>
-          <div class="row">
-            <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="team_competition_partial">
-              <%= render "team_competition_new", competition: @competition, f: f %>
-            </div>
-            <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="individual_competition_partial">
-              <%= render "individual_competition_new", competition: @competition, f: f %>
+          <div class="competition-step-two">
+            <div class="row">
+              <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="team_competition_partial">
+                <%= render "team_competition_new", competition: @competition, f: f %>
+              </div>
+              <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="individual_competition_partial">
+                <%= render "individual_competition_new", competition: @competition, f: f %>
+              </div>
             </div>
           </div>
         <% end %>
@@ -57,7 +87,7 @@
   <script>
 
     // Team vs Indiv Select
-    $("select[name='competition[team_competition]']").change(function(){
+    $("[name='competition[team_competition]']").change(function(){
       // unselect all choices if change from one hidden form to another
        $.each( $(".search-choice"), function( key, value ) {
           $(".search-choice-close").click();
@@ -100,6 +130,21 @@
           });
         }, delay);
      })
+
+      $(".team-choice .radio_buttons").click(function(){
+        $(".team-choice").removeClass("active");
+        $(this).parent().toggleClass("active");
+
+        var target = $("#player-section");
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 1000);
+        }
+      })
+
+
     });
 
     // Invite Teams DropDowns based on which sport it is
