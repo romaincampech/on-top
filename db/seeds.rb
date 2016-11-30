@@ -16,6 +16,7 @@ Sport.destroy_all
 Sport.create!(name: "Tennis")
 Sport.create!(name: "Table-Tennis")
 Sport.create!(name: "Squash")
+Sport.create!(name: "Football")
 
 user = User.new(first_name: "Julianne", last_name: "Joswiak", email: "Julianne@test.com", password: "123456", city: "London")
 url = "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/7/005/064/0ec/1749a12.jpg"

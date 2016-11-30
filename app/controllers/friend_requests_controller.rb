@@ -8,15 +8,18 @@ class FriendRequestsController < ApplicationController
 
   def create
     friend = User.find(params[:user_id])
-    @friend_request = current_user.friend_requests.new(friend: friend)
+    @friend_request = current_user.pending_friends_requests.new(friend: friend)
     @friend_request.save
     authorize(@friend_request)
 
-    # redirect_to user_path(friend)
+    redirect_to user_path(friend)
   end
 
   def update
     @friend_request.accept
+    authorize(@friend_request)
+
+    redirect_to user_path(@friend_request.friend)
   end
 
   def destroy

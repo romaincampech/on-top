@@ -1,4 +1,4 @@
-class FriendRequestPolicy < ApplicationPolicy
+class TeamPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope
@@ -9,8 +9,7 @@ class FriendRequestPolicy < ApplicationPolicy
     true
   end
 
-  def update?
-    # @friend_request.friend == @user
+  def show?
     true
   end
 end
