@@ -1,0 +1,53 @@
+.form-login {
+  background: white;
+  padding: 10px 20px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  margin: 80px;
+  h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 4px solid $green;
+    margin: 30px 120px;
+  }
+  .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .btn-facebook {
+    background-color: #334F8D;
+    color: white;
+  }
+
+  .or {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    span {
+      padding: 10px;
+      font-size: 20px;
+      color: lightgrey;
+    }
+    .or-line {
+      flex: 1 0 auto;
+      height: 1px;
+      background: lightgrey;
+    }
+  }
+  .other-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a {
+      padding: 10px;
+      color: lightgrey;
+      &:hover {
+        color: grey;
+      }
+    }
+  }
+}

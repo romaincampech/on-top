@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  def after_sign_in_path_for(resource)
+      request.env['omniauth.origin'] || stored_location_for(resource) || new_competition_path
+  end
+
   protected
 
   def configure_permitted_parameters

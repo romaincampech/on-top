@@ -1,6 +1,6 @@
 <%= simple_form_for([@competition, @message], remote: true) do |form| %>
-  <%= form.input :body, label: "New Message" %>
-  <%= form.button :submit, id: "message-btn" %>
+  <%= form.input :body, label: false, placeholder: "Nice game dude!" %>
+  <%= form.button :submit, id: "message-btn", class: "hidden" %>
 <% end %>
 
 <% content_for(:after_js) do %>

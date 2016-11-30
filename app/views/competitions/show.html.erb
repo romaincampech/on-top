@@ -1,119 +1,84 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6" id="competition-show-name">
-      <h1><%= @competition.name %></h1>
-    </div>
-    <div class="col-md-1"></div>
-    <div class="col-md-4" id="competition-show-info">
-      <div class="row">
-        <div class="col-md-6">
-          <p><b>Sport:</b> <%= @competition.sport.name %></p>
-          <p><b>Type:</b> <%= @competition.category %></p>
-          <p><b>Players:</b> <%= @competition.number_of_players %></p>
-        </div>
-        <div class="col-md-6">
-          <p><b>Status:</b> <%= @competition.status %></p>
-          <p><b>Creator:</b> <%= @competition.creator.first_name %> <%= @competition.creator.last_name %></p>
-          <p><b>Winner:</b> <%= @competition.champion %></p>
-        </div>
+<div class="competition-container">
+  <div class="board-container">
+
+    <div class="board-header flexbox">
+      <div class="left">
+        <h1>
+          <%= @competition.name %>
+        </h1>
+        <p><%= @competition.sport.name %>, <%= @competition.category %></p>
       </div>
+      <div class="right">
+        <p><span><%= @competition.number_of_players %></span> players</p>
+      </div>
+    </div>
+
+    <div class="wrapper-competition-table">
+      <% if @competition.category == "Knockout" %>
+      <%= render 'knockout_competition' %>
+      <% else %>
+      <%= render 'league_competition' %>
+      <% end %>
     </div>
   </div>
-</div>
 
-<div class="wrapper-competition-table">
-  <% if @competition.category == "Knockout" %>
-  <%= render 'knockout_competition' %>
-  <% else %>
-  <%= render 'league_competition' %>
-  <% end %>
-</div>
 
-<div class="container-fluid" style="margin-bottom: 30px;">
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <div class="chatbox">
-        <div class="row">
-          <div class="col-sm-12">
-            <h4 style="text-align: center; margin: 20px;">Message Board</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-10 col-sm-offset-1">
-            <div id="messages">
-              <ul id="message-list">
-                <% @chat_room.messages.order("created_at asc").each do |message| %>
-                <%= render message, message: message %>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <%= render 'messages/form', competition: @competition, message: @message %>
-      </div>
+  <div class="chat-container">
+    <div class="text-center chat-header">
+      <%= image_tag "microphone.png" %>
+      <h4>Discuss the game</h4>
     </div>
-    <div class="col-sm-3">
-      <div class="participants">
-        <div class="row">
-          <div class="col-sm-12"><h4 style="text-align: center;">Participants</h4></div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <ul style="text-align: center; list-style: none; padding: 0;">
-              <% @competition.players.each do |player| %>
-              <li>
-                <%= link_to "#{player.first_name} #{player.last_name}", user_path(player) %>
-              </li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <div id="messages">
+      <ul id="message-list">
+        <% @chat_room.messages.order("created_at asc").each do |message| %>
+        <%= render message, message: message %>
+        <% end %>
+      </ul>
     </div>
+    <%= render 'messages/form', competition: @competition, message: @message %>
   </div>
 </div>
-
 
 <% content_for(:after_js) do %>
 <script>
   $(document).ready(function() {
 
-// this code makes it so it load the chat at the bottom of the page
-$('#messages').scrollTop($('#messages')[0].scrollHeight)
+    // this code makes it so it load the chat at the bottom of the page
+    $('#messages').scrollTop($('#messages')[0].scrollHeight)
 
-// this code is for the ActionCable
-App.messages = App.cable.subscriptions.create('MessagesChannel', {
-  received: function(data) {
-    return $('#messages ul').append(this.renderMessage(data)),
-// scrolling to bottom of page with every message render
-$('#messages').scrollTop($('#messages')[0].scrollHeight)
-},
-// how the message displays
-renderMessage: function(data) {
-  return "<li><div class='message'> \
-  <div class='message-block'> \
-    <div class='row'> \
-      <div class='col-md-1'> \
-      </div> \
-      <div class='col-md-11'> \
-        <p class='message-text'> \
-          <span class='text-muted'>"
-            + data.user +
-            "<br>"
-            + data.time +
-            "</span><br>"
-            + data.body +
-            "</p> \
-          </div> \
+    // this code is for the ActionCable
+    App.messages = App.cable.subscriptions.create('MessagesChannel', {
+      received: function(data) {
+        return $('#messages ul').append(this.renderMessage(data)),
+    // scrolling to bottom of page with every message render
+    $('#messages').scrollTop($('#messages')[0].scrollHeight)
+    },
+    // how the message displays
+    renderMessage: function(data) {
+      return "<li><div class='message'> \
+      <div class='message-block'> \
+        <div class='message-user'> \
+           <span class='text-muted'>"
+             + data.user +
+             "<br>"
+             + data.time +
+             "</span><br>"
+             +
+          "</p> \
         </div> \
-      </div> \
-    </div></li> ";
-  }
-});
+        <div class='message-bubble'><p>"
+          + data.body +
+          "</p> \
+        </div> \
+      </div>\
+      </div></li> ";
+      }
+    });
+
+    $('[data-toggle="tooltip"]').tooltip();
 
 });
 
-  <% end %>
 </script>
+<% end %>
 

@@ -23,3 +23,14 @@
 .bg-dark-blue {
   background: #3b5998;
 }
+.flexbox {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flexbox-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

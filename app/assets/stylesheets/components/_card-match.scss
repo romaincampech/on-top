@@ -1,13 +1,32 @@
-.card-match {
+.card-final-score {
+  width: 100%;
+  background: white;
+}
+.card-versus {
   padding: 5px;
   padding-top: 10px;
-  border: 1px solid #d9d9d9;
-  line-height: 0.5;
-  box-shadow: 1px 1px 3px #EFEFEF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
   // display: flex;
   // justify-content: space-around;
   height: 71px;
-  width: 220px;
+  width: 100%;
+  border-radius: 5px 5px 0 0 ;
+  span {
+    padding: 10px 20px;
+    color: $red;
+    opacity: 0.7;
+  }
+}
+.card-match {
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  border-radius: 5px;
+  .btn {
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+  }
 }
 
 #card-played {
