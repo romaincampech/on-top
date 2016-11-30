@@ -1,23 +1,22 @@
 <li>
   <div class="message">
     <div class="message-block">
+      <div class="message-bubble-user">
+        <%= message.body %>
+      </div><br>
       <div class="message-user">
         <span class="text-muted">
-          <div class="avatar-div" style="background-image: url('<%= cl_image_path(message.user.photo.path) %>')">
-          </div>
-          <%= message.timestamp%>
+        <div class="avatar-div" style="background-image: url('<%= cl_image_path(message.user.photo.path) %>')">
+        </div>
+        <%= message.timestamp%>
            <% if DateTime.now.to_date != message.created_at.to_date %>
            <%= " " + message.daystamp   %>
            <% elsif DateTime.now.to_date - 1 == message.created_at.to_date %>
            <%= " yesterday" %>
            <% end %>
-           </span><br>
-      </div>
-      <div class="message-bubble">
-        <%= message.body %>
+           </span>
       </div>
     </div>
   </div>
 </li>
-
 

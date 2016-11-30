@@ -116,6 +116,7 @@
 .message-block {
   display: flex;
   justify-content: space-between;
+  padding-right: 5px;
 }
 .message-bubble {
   min-height: 70px;
@@ -124,8 +125,20 @@
   flex: 1;
   margin: 10px;
   margin-top: 0;
-  border-radius: 0 10px 10px 10px;
+  border-radius: 0 12px 12px 12px;
 }
+
+.message-bubble-user {
+  min-height: 70px;
+  padding: 10px;
+  background: rgba(113, 208, 201, 0.15);
+  flex: 1;
+  margin: 10px;
+  margin-top: 0;
+  border-radius: 12px 0 12px 12px;
+}
+
+
 .message-user {
   font-size: 13px;
 }

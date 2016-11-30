@@ -31,7 +31,11 @@
     <div id="messages">
       <ul id="message-list">
         <% @chat_room.messages.order("created_at asc").each do |message| %>
-        <%= render message, message: message %>
+          <% if message.user == current_user %>
+            <%= render 'messages/user_message', message: message %>
+          <% else %>
+            <%= render 'messages/message', message: message %>
+          <% end %>
         <% end %>
       </ul>
     </div>
