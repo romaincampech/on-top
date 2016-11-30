@@ -6,15 +6,19 @@
       </div><br>
       <div class="message-user">
         <span class="text-muted">
-        <div class="avatar-div" style="background-image: url('<%= cl_image_path(message.user.photo.path) %>')">
-        </div>
-        <%= message.timestamp%>
-           <% if DateTime.now.to_date != message.created_at.to_date %>
-           <%= " " + message.daystamp   %>
-           <% elsif DateTime.now.to_date - 1 == message.created_at.to_date %>
-           <%= " yesterday" %>
-           <% end %>
-           </span>
+          <%= link_to user_path(message.user), "data-toggle" => "tooltip", title: "#{message.user.full_name}" do %>
+          <div class="avatar-div" style="background-image: url('<%= cl_image_path(message.user.photo.path) %>')">
+          </div>
+          <% end %>
+          <div class="timestamp">
+            <%= message.timestamp%>
+          </div>
+          <% if DateTime.now.to_date != message.created_at.to_date %>
+          <%= " " + message.daystamp   %>
+          <% elsif DateTime.now.to_date - 1 == message.created_at.to_date %>
+          <%= " yesterday" %>
+          <% end %>
+        </span>
       </div>
     </div>
   </div>
