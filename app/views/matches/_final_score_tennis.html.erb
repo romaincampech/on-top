@@ -1,4 +1,4 @@
-<table>
+<table class="final-score">
   <thead>
     <tr>
       <th>Player</th>
@@ -14,7 +14,12 @@
     <% else %>
     <%= "loser" %>
     <% end %>>
-      <th><%= match.players.first.first_name %></th>
+      <th class="text-center">
+        <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
+          <div class="avatar-div avatar-div-small" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
+          </div>
+        <% end %>
+      </th>
       <th><%= match.score["player_set_total"]["player_1"] %></th>
       <td><%= match.score["set1"]["player_1"] %></td>
       <td><%= match.score["set2"]["player_1"] %></td>
@@ -25,7 +30,12 @@
     <% else %>
     <%= "loser" %>
     <% end %>>
-      <th><%= match.players.last.first_name %></th>
+      <th class="text-center">
+        <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
+          <div class="avatar-div avatar-div-small" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
+          </div>
+        <% end %>
+      </th>
       <th><%= match.score["player_set_total"]["player_2"] %></th>
       <td><%= match.score["set1"]["player_2"] %></td>
       <td><%= match.score["set2"]["player_2"] %></td>

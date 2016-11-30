@@ -1,15 +1,16 @@
 <div class="competition-container">
   <div class="board-container">
 
-    <div class="board-header flexbox text-center">
-      <h1><%= @competition.name %>
-        <%= @competition.sport.name %>,
-        <%= @competition.category %>,
-        <%= @competition.number_of_players %> players,
-        <%= @competition.status %>
-        <%= @competition.creator.first_name %> <%= @competition.creator.last_name %>,
-        Winner: <%= @competition.champion %>
-      </p>
+    <div class="board-header flexbox">
+      <div class="left">
+        <h1>
+          <%= @competition.name %>
+        </h1>
+        <p><%= @competition.sport.name %>, <%= @competition.category %></p>
+      </div>
+      <div class="right">
+        <p><span><%= @competition.number_of_players %></span> players</p>
+      </div>
     </div>
 
     <div class="wrapper-competition-table">
@@ -23,7 +24,10 @@
 
 
   <div class="chat-container">
-    <h4>Message Board</h4>
+    <div class="text-center chat-header">
+      <%= image_tag "microphone.png" %>
+      <h4>Discuss the game</h4>
+    </div>
     <div id="messages">
       <ul id="message-list">
         <% @chat_room.messages.order("created_at asc").each do |message| %>
@@ -53,22 +57,21 @@
     renderMessage: function(data) {
       return "<li><div class='message'> \
       <div class='message-block'> \
-        <div class='row'> \
-          <div class='col-md-1'> \
-          </div> \
-          <div class='col-md-11'> \
-            <p class='message-text'> \
-              <span class='text-muted'>"
-                + data.user +
-                "<br>"
-                + data.time +
-                "</span><br>"
-                + data.body +
-                "</p> \
-              </div> \
-            </div> \
-          </div> \
-        </div></li> ";
+        <div class='message-user'> \
+           <span class='text-muted'>"
+             + data.user +
+             "<br>"
+             + data.time +
+             "</span><br>"
+             +
+          "</p> \
+        </div> \
+        <div class='message-bubble'><p>"
+          + data.body +
+          "</p> \
+        </div> \
+      </div>\
+      </div></li> ";
       }
     });
 

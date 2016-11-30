@@ -113,16 +113,37 @@
   box-shadow: 1px 1px 2px lightgray;
   max-height: 70vh;
 }
-
+.message-block {
+  display: flex;
+  justify-content: space-between;
+}
+.message-bubble {
+  min-height: 70px;
+  padding: 10px;
+  background: rgba(88, 208, 99, 0.15);
+  flex: 1;
+  margin: 10px;
+  margin-top: 0;
+  border-radius: 0 10px 10px 10px;
+}
+.message-user {
+  font-size: 13px;
+}
 #messages {
-  background-color: #F6F6F6;
-  border-radius: 1px;
+  /* background-color: #F6F6F6; */
+  /* border-radius: 1px; */
   height: calc(100vh - 300px);
   overflow-x: hidden;
-  border-style: solid;
-  border-color: #CCCCCC;
-  border-width: 1px;
+  /* border-style: solid; */
+  /* border-color: #CCCCCC; */
+  /* border-width: 1px; */
   margin-left: 5px;
+}
+
+.chat-header {
+  padding: 10px;
+  border-top: 1px solid #D4D4D4;
+  border-bottom: 1px solid #D4D4D4;
 }
 
 #message-list {

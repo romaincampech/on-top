@@ -9,7 +9,11 @@
         <%= "#{match.match_number}" %>
         <% end %>>
         <% if match.played? %>
-        <%= render "matches/final_score_#{@competition.sport.name.downcase}", match: match %>
+
+          <div class="card-final-score">
+           <%= render "matches/final_score_#{@competition.sport.name.downcase}", match: match %>
+          </div>
+
         <% else %>
 
         <div class="card-versus">

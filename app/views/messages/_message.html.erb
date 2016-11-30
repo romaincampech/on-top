@@ -1,22 +1,17 @@
 <li>
   <div class="message">
     <div class="message-block">
-      <div class="row">
-        <div class="col-md-1">
-          <%#= TODO: put image for user here  %>
-        </div>
-        <div class="col-md-11">
-          <p class="message-text">
-            <span class="text-muted"><%= message.user.first_name + " " + message.user.last_name%> <br> <%= message.timestamp%>
-            <% if DateTime.now.to_date != message.created_at.to_date %>
-            <%= " " + message.daystamp   %>
-            <% elsif DateTime.now.to_date - 1 == message.created_at.to_date %>
-            <%= " yesterday" %>
-            <% end %>
-            </span><br>
-            <%= message.body %>
-          </p>
-        </div>
+      <div class="message-user">
+        <span class="text-muted"><%= message.user.first_name + " " + message.user.last_name%> <br> <%= message.timestamp%>
+           <% if DateTime.now.to_date != message.created_at.to_date %>
+           <%= " " + message.daystamp   %>
+           <% elsif DateTime.now.to_date - 1 == message.created_at.to_date %>
+           <%= " yesterday" %>
+           <% end %>
+           </span><br>
+      </div>
+      <div class="message-bubble">
+        <%= message.body %>
       </div>
     </div>
   </div>
