@@ -13,6 +13,7 @@
           </div>
         </div>
         <%= simple_form_for @competition do |f| %>
+
           <% f.error_notification %>
           <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -36,6 +37,7 @@
                     :selected => :blank,
                     :label => "Team or Individuals" %>
             </div>
+
           </div>
           <div class="row">
             <div class="col-xs-8 col-xs-offset-2 competition-new-board hide" id="team_competition_partial">

@@ -38,11 +38,37 @@ class Competition < ApplicationRecord
     self.matches.where(round: 1)
   end
 
-  def assign_matches
-    player_ary = self.players.to_a
-    select_round_1.each do |match|
-      2.times do
-        MatchParticipant.create(player: rem_sample(player_ary), match: match)
+  def assign_matches(category)
+    if category == "Knockout"
+      player_ary = self.players.to_a
+      select_round_1.each do |match|
+        2.times do
+          MatchParticipant.create(player: rem_sample(player_ary), match: match)
+        end
+      end
+    else
+      games = self.players.to_a.combination(2).to_a
+      fixtures = {}
+      y = 1
+      until y == self.number_of_players
+        round = []
+        mn = 0
+        until round.count == (self.number_of_players / 2)
+          unless round.flatten.include?(games[mn][0]) || round.flatten.include?(games[mn][1])
+            round << games[mn]
+            games.delete_at(mn)
+          else
+            mn += 1
+          end
+        end
+        x = ((self.number_of_players / 2)*y - ((self.number_of_players / 2) - 1))
+        round.each do |fixture|
+          MatchParticipant.create(player: fixture[0], match: self.matches.where(match_number: x).first)
+          MatchParticipant.create(player: fixture[1], match: self.matches.where(match_number: x).first)
+          x += 1
+        end
+        fixtures["round_#{y}"] = round
+        y += 1
       end
     end
   end
@@ -95,21 +121,28 @@ class Competition < ApplicationRecord
   def number_of_rounds(category)
     if category == "Knockout"
       Math.log2(self.number_of_players).to_i
-    else
+    elsif category == "League"
+      self.number_of_players - 1
     end
   end
 
-  def create_matches_knockout(category)
-    if category == "Knockout"
+  def create_matches(params)
     round_number = 1
     match_number = 0
-      until self.number_of_players / 2**round_number < 1 do
+    if self.category == "Knockout"
+      until self.number_of_players / 2**round_number < 1
         (self.number_of_players / 2**round_number).times do
           Match.create(competition_id: self.id, round: round_number, status: "To be played", match_number: match_number += 1)
+          end
+          round_number += 1
         end
-        round_number += 1
-      end
     else
+      until round_number == self.number_of_players
+        (self.number_of_players / 2).times do
+          Match.create(competition_id: self.id, round: round_number, status: "To be played", match_number: match_number += 1)
+          end
+          round_number += 1
+        end
     end
   end
 end

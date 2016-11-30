@@ -24,10 +24,10 @@ class CompetitionsController < ApplicationController
     end
     @competition.save
     @competition.create_activity :create, owner: current_user
-    @competition.create_matches_knockout(params[:competition][:category])
+    @competition.create_matches(competition_params)
     players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
     @competition.add_players(players_ary)
-    @competition.assign_matches if @competition.players.count == @competition.number_of_players
+    @competition.assign_matches(params[:category]) if @competition.players.count == @competition.number_of_players
     @competition.new_chat
     redirect_to competition_path(@competition)
   end
