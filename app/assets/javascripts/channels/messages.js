@@ -19,9 +19,10 @@ $(document).ready(function() {
       return "<li><div class='message'> \
       <div class='message-block'> \
         <div class='message-user'> \
-           <span class='text-muted'>"
-             + data.user +
-             "<br>"
+           <span class='text-muted'>\
+          <div class='avatar-div'> \
+            <img src='" + data.image_source + "' </a>  \
+          </div>&nbsp"
              + data.time +
              "</span><br>"
              +
@@ -32,7 +33,7 @@ $(document).ready(function() {
           "</p> \
         </div> \
       </div>\
-      </div></li> ";
+      </div></li>";
     }
   });
 

@@ -32,9 +32,9 @@
       <ul id="message-list">
         <% @chat_room.messages.order("created_at asc").each do |message| %>
           <% if message.user == current_user %>
-            <%= render 'messages/user_message', message: message %>
-          <% else %>
             <%= render 'messages/message', message: message %>
+          <% else %>
+            <%= render 'messages/user_message', message: message %>
           <% end %>
         <% end %>
       </ul>

@@ -24,18 +24,18 @@
                   Friend request sent
                 </div>
               <% elsif !current_user.friends.include?(@user) %>
-                <%= button_to 'Add Friend', user_friend_requests_path(@user), method: :post unless current_user == @user %>
+                <%= link_to 'Add Friend', user_friend_requests_path(@user), class: "btn-friend", method: :post unless current_user == @user %>
               <% else %>
-                <%= button_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), method: :delete, data: { confirm: "Are you sure?" } unless current_user == @user %>
+                <%= link_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), class: "btn-unfriend", method: :delete, data: { confirm: "Are you sure?" } unless current_user == @user %>
               <% end %>
             </li>
           </ul>
         </div>
       </div>
       <div class="col-sm-5">
+      <% if current_user == @user %>
         <div class="profile-banner-right">
           <div class="col-xs-12 col-md-5">
-            <% if current_user == @user %>
               <div class="profile-banner-right">
                 <ul>
                   <% @user.friend_requests.each do |friend_request| %>

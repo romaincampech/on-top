@@ -75,7 +75,7 @@ class User < ApplicationRecord
 
   # competitions the player has been the winner of (by sport)
   def championships_for(sport_name_string)
-    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_to_search = Sport.find_by(name: sport_name_string)
     sport_championships = []
     self.championships.each do |championship|
       sport_championships << championship if championship.sport == sport_to_search
@@ -93,7 +93,7 @@ class User < ApplicationRecord
 
   # matches the player has played (by sport)
   def matches_for(sport_name_string)
-    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_to_search = Sport.find_by(name: sport_name_string)
     sport_matches = []
     self.matches.each do |match|
       sport_matches << match if match.sport == sport_to_search
@@ -108,7 +108,7 @@ class User < ApplicationRecord
 
   # mathces the player has played in that HAVE an assigned winner (by sport)
   def played_matches_for(sport_name_string)
-    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_to_search = Sport.find_by(name: sport_name_string)
     sport_matches = []
     self.played_matches.each do |match|
       sport_matches << match if match.sport == sport_to_search
@@ -123,7 +123,7 @@ class User < ApplicationRecord
 
   # matches the player has played in that DO NOT HAVE an assigned winner (by sport)
   def unplayed_matches_for(sport_name_string)
-    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_to_search = Sport.find_by(name: sport_name_string)
     sport_matches = []
     self.unplayed_matches.each do |match|
       sport_matches << match if match.sport == sport_to_search
@@ -133,7 +133,7 @@ class User < ApplicationRecord
 
   # matches the player has been the winner of (by sport)
   def wins_for(sport_name_string)
-    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_to_search = Sport.find_by(name: sport_name_string)
     sport_wins = []
     self.wins.each do |match|
       sport_wins << match if match.sport == sport_to_search
@@ -148,7 +148,7 @@ class User < ApplicationRecord
 
   # matches the player has not been the winner of
   def losses_for(sport_name_string)
-    sport_to_search = Sport.find_by(name: sport_name_string.capitalize)
+    sport_to_search = Sport.find_by(name: sport_name_string)
     sport_losses = []
     self.losses.each do |match|
       sport_losses << match if match.sport == sport_to_search
