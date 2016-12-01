@@ -25,7 +25,7 @@
           <% end %>
           <span>vs</span>
           <% if match.players.last != match.players.first %>
-            <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
+            <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
               <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
               </div>
             <% end %>
