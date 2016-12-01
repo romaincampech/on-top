@@ -35,7 +35,7 @@
           <% if message.user == current_user %>
             <%= render 'messages/message', message: message %>
           <% else %>
-            <%= render 'messages/user_message', message: message %>
+            <%= render 'messages/message', message: message %>
           <% end %>
         <% end %>
       </ul>
