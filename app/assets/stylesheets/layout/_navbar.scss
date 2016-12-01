@@ -45,6 +45,12 @@
   margin: 0 5px;
   border-radius: 3px;
   box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+  &:hover {
+    background-color: #58D063;
+    color: white;
+    opacity: 1;
+    box-shadow: 1px 1px 3px rgba(80,80,80,0.5);
+  }
 }
 
 /* Team button */

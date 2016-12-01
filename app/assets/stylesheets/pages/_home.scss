@@ -24,7 +24,7 @@ body {
 }
 
 .home-page-background {
-  background-image: linear-gradient(-225deg, rgba(30,30,30,0.2) 30%, rgba(46,46,46,0.2) 80%), image-url('field-home.jpg');
+  background-image: linear-gradient(-225deg, rgba(30,30,30,0.4) 30%, rgba(46,46,46,0.4) 80%), image-url('champion.jpeg');
   background-size: cover;
   background-position: 50% 30%;
   min-height: 100vh;
@@ -74,6 +74,11 @@ body {
   font-size: 19px;
   font-weight: bold;
   margin-top: 15px;
+
+  &:hover {
+    opacity: 1;
+    box-shadow: 1px 1px 3px rgba(80,80,80,0.5);
+  }
 }
 
 .home-content {
