@@ -121,6 +121,6 @@ id = User.find_by(email: "guv@test.com").id + 1
 
 puts "friendships between us and other users should be seeded"
 
-
+User.reindex
 
 
