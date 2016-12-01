@@ -10,7 +10,8 @@ class MessagesController < ApplicationController
         time: @message.timestamp,
         full_name: @message.user.full_name,
         image_source: 'http://res.cloudinary.com/dkyjujcrz/image/upload/' + @message.user.photo.path,
-        id: @message.user.id
+        id: @message.user.id,
+        chat_room_id: @message.chat_room_id
       head :ok
     end
   end

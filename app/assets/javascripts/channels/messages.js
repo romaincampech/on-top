@@ -10,6 +10,8 @@ $(document).ready(function() {
 // this code is for the ActionCable
   App.messages = App.cable.subscriptions.create('MessagesChannel', {
     received: function(data) {
+      if(data.chat_room_id != $('#chat_room_id').val())
+        return;
       return $('#messages ul').append(this.renderMessage(data)),
 // scrolling to bottom of page with every message render
       $('#messages').scrollTop($('#messages')[0].scrollHeight)

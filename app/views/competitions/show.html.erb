@@ -27,6 +27,7 @@
     <div class="text-center chat-header">
       <%= image_tag "microphone.png" %>
       <h4>Discuss the game</h4>
+      <input type="hidden" id="chat_room_id" value="<%=@chat_room.id%>"/>
     </div>
     <div id="messages">
       <ul id="message-list">
