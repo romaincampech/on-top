@@ -29,4 +29,12 @@
     height: 30px;
     margin: auto;
   }
+  img {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    background-image: url('http://res.cloudinary.com/dkyjujcrz/image/upload/v1480544120/rcwjqqqmcdpjxheohdvw.jpg')
+  }
 }

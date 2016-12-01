@@ -7,8 +7,10 @@ class MessagesController < ApplicationController
     if @message.save
       ActionCable.server.broadcast 'messages',
         body: @message.body,
-        user: @message.user.first_name + " " + @message.user.last_name,
-        time: @message.timestamp
+        time: @message.timestamp,
+        full_name: @message.user.full_name,
+        image_source: 'http://res.cloudinary.com/dkyjujcrz/image/upload/' + @message.user.photo.path,
+        id: @message.user.id
       head :ok
     end
   end

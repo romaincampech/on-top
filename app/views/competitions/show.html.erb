@@ -32,9 +32,9 @@
       <ul id="message-list">
         <% @chat_room.messages.order("created_at asc").each do |message| %>
           <% if message.user == current_user %>
-            <%= render 'messages/user_message', message: message %>
-          <% else %>
             <%= render 'messages/message', message: message %>
+          <% else %>
+            <%= render 'messages/user_message', message: message %>
           <% end %>
         <% end %>
       </ul>
@@ -56,27 +56,7 @@
         return $('#messages ul').append(this.renderMessage(data)),
     // scrolling to bottom of page with every message render
     $('#messages').scrollTop($('#messages')[0].scrollHeight)
-    },
-    // how the message displays
-    renderMessage: function(data) {
-      return "<li><div class='message'> \
-      <div class='message-block'> \
-        <div class='message-user'> \
-           <span class='text-muted'>"
-             + data.user +
-             "<br>"
-             + data.time +
-             "</span><br>"
-             +
-          "</p> \
-        </div> \
-        <div class='message-bubble'><p>"
-          + data.body +
-          "</p> \
-        </div> \
-      </div>\
-      </div></li> ";
-      }
+    }
     });
 
     $('[data-toggle="tooltip"]').tooltip();

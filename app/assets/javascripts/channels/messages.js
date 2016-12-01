@@ -18,22 +18,22 @@ $(document).ready(function() {
     renderMessage: function(data) {
       return "<li><div class='message'> \
       <div class='message-block'> \
-        <div class='row'> \
-          <div class='col-md-1'> \
-          </div> \
-          <div class='col-md-11'> \
-            <p class='message-text'> \
-              <span class='text-muted'>"
-              + data.user +
-              "<br>"
-              + data.time +
-              "</span><br>"
-              + data.body +
-            "</p> \
-          </div> \
+        <div class='message-user'> \
+           <span class='text-muted'>\
+          <div class='avatar-div'> \
+            <img src='" + data.image_source + "' </a>  \
+          </div>&nbsp"
+             + data.time +
+             "</span><br>"
+             +
+          "</p> \
         </div> \
-      </div> \
-  </div></li> ";
+        <div class='message-bubble'><p>"
+          + data.body +
+          "</p> \
+        </div> \
+      </div>\
+      </div></li>";
     }
   });
 
