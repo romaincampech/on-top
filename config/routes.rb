@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   mount Attachinary::Engine => "/attachinary"
+
   root to: 'pages#home'
 
   resources :users, only: [ :show ] do
     resources :friend_requests, only: [ :create ]
     get "/infos", to: "users#infos"
+      resources :friendships, only: [:index]
   end
   resources :friend_requests, only: [:update]
   resources :friendships, only: [ :destroy ]

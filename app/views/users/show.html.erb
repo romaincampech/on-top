@@ -4,56 +4,51 @@
       <div class="col-sm-5 col-sm-offset-1">
         <div class="profile-banner-left">
           <% if @user.photo? %>
-            <%= cl_image_tag @user.photo.path %>
+          <%= cl_image_tag @user.photo.path %>
           <% else %>
-            <%= image_tag "profile-avatar-default.jpg" %>
+          <%= image_tag "profile-avatar-default.jpg" %>
           <% end %>
           <ul>
             <li><h3><%= @user.full_name %></h3></li>
             <li><i class="fa fa-map-marker"></i> <h4 style="display: inline;"><%= @user.city %></h4></li>
             <li><i class="fa fa-users" aria-hidden="true"></i>
               <p style="display: inline;">
-                <%= link_to "#" do %>
-                  <%= @user.friends.count - 1 %> friends
+                <%= link_to user_friendships_path(@user) do %>
+                <%= @user.friends.count - 1 %> friends
                 <% end %>
               </p>
             </li>
             <li>
               <% if current_user.pending_friends.include?(@user) %>
-                <div class="request-sent">
-                  Friend request sent
-                </div>
+              <div class="request-sent">
+                Friend request sent
+              </div>
               <% elsif !current_user.friends.include?(@user) %>
-                <%= link_to 'Add Friend', user_friend_requests_path(@user), class: "btn-friend", method: :post unless current_user == @user %>
+              <%= link_to 'Add Friend', user_friend_requests_path(@user), class: "btn-friend", method: :post unless current_user == @user %>
               <% else %>
-                <%= link_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), class: "btn-unfriend", method: :delete, data: { confirm: "Are you sure?" } unless current_user == @user %>
+              <%= link_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), class: "btn-unfriend", method: :delete, data: { confirm: "Are you sure?" } unless current_user == @user %>
               <% end %>
             </li>
           </ul>
         </div>
       </div>
       <div class="col-sm-5">
-      <% if current_user == @user %>
-        <div class="profile-banner-right">
-          <div class="col-xs-12 col-md-5">
-              <div class="profile-banner-right">
-                <ul>
-                  <% @user.friend_requests.each do |friend_request| %>
-                    <li>
-                      <%= link_to friend_request.user.full_name %>
-                      wants to be your friend:
-                      <%= button_to 'Accept', friend_request_path(friend_request), method: :patch %>
-                    </li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-          </div>
-        </div>
+
+        <ul>
+          <% @user.friend_requests.each do |friend_request| %>
+          <li>
+            <%= link_to friend_request.user.full_name %>
+            wants to be your friend:
+            <%= button_to 'Accept', friend_request_path(friend_request), method: :patch %>
+          </li>
+          <% end %>
+        </ul>
       </div>
+
     </div>
   </div>
 </div>
+
 
 <div class="container">
     <div class="row">
