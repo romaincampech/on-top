@@ -13,7 +13,7 @@
             <li><i class="fa fa-map-marker"></i> <h4 style="display: inline;"><%= @user.city %></h4></li>
             <li><i class="fa fa-users" aria-hidden="true"></i>
               <p style="display: inline;">
-                <%= link_to user_friendships_path(@user) do %>
+                <%= link_to '#' do %>
                 <%= @user.friends.count - 1 %> friends
                 <% end %>
               </p>
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="col-sm-5">
-
+      <% if current_user == @user %>
         <ul>
           <% @user.friend_requests.each do |friend_request| %>
           <li>
@@ -43,6 +43,7 @@
           </li>
           <% end %>
         </ul>
+        <% end %>
       </div>
 
     </div>
@@ -281,16 +282,4 @@
 
 
 
-                      <div class="col-xs-12 col-md-5">
-                        <div class="profile-banner-right">
-                          <ul>
-                            <% @user.friend_requests.each do |friend_request| %>
-                              <li>
-                                <%= link_to friend_request.user.full_name %>
-                                wants to be your friend:
-                                <%= button_to 'Accept', friend_request_path(friend_request), method: :patch %>
-                              </li>
-                            <% end %>
-                          </ul>
-                        </div>
-                      </div>
+
