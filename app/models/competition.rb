@@ -1,7 +1,7 @@
 class Competition < ApplicationRecord
   has_one :chat_room, dependent: :destroy
 
-  has_many :competition_participants
+  has_many :competition_participants, dependent: :destroy
   has_many :users, through: :competition_participants
 
   has_many :competition_players, -> { where(player: true) }, class_name: "CompetitionParticipant"
