@@ -155,6 +155,27 @@
           </div>
           <div class="profile-tabs-content hidden" id="statistics">
             <div class="row">
+              <h3 class="text-center">Choose a sport:</h3>
+            </div>
+            <div class="row">
+              <div class="flexbox sport-icon-choice">
+                <%= image_tag "tennis-ball.png", width: "40px", "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Tennis" %>
+                <%= image_tag "ping-pong.png", width: "40px", "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Table-Tennis" %>
+                <%= image_tag "football.png", width: "40px", "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Football" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1" id="tennis-stats-partial">
+                <h2 class="text-center">Tennis</h2>
+              </div>
+              <div class="col-md-10 col-md-offset-1" id="ping-pong-stats-partial">
+                <h2 class="text-center">Ping-Pong</h2>
+              </div>
+              <div class="col-md-10 col-md-offset-1" id="football-stats-partial">
+                <h2 class="text-center">Football</h2>
+              </div>
+            </div>
+            <!-- <div class="row">
               <div class="col-sm-2 col-sm-offset-1">
                 <table class="table table-sm">
                   <thead>
@@ -271,7 +292,7 @@
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="profile-tabs-content hidden" id="teams"></div>
           <div class="profile-tabs-content hidden" id="photos-videos"></div>
@@ -280,8 +301,15 @@
     </div>
 </div>
 
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function(){
 
+      $('[data-toggle="tooltip"]').tooltip();
 
+    });
+  </script>
+<% end %>
 
 
 
