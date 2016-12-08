@@ -1,51 +1,51 @@
 <div class="container-competition-table">
-    <% round_number = 1 %>
-    <% until round_number - 1 == @rounds do %>
-    <div class=<%= "flex-" + "#{@rounds}" %>>
-      <% @competition.matches.order("match_number asc").select { |r| r.round == round_number }.each do |match| %>
-      <div class="card-match" id=<% if match.played? %>
-        <%= "card-played" %>
-        <% else %>
-        <%= "#{match.match_number}" %>
-        <% end %>>
-        <% if match.played? %>
+  <% round_number = 1 %>
+  <% until round_number - 1 == @rounds do %>
+  <div class=<%= "flex-" + "#{@rounds}" %>>
+    <% @competition.matches.order("match_number asc").select { |r| r.round == round_number }.each do |match| %>
+    <div class="card-match" id=<% if match.played? %>
+      <% "card-played" %>
+      <% else %>
+      <% "#{match.match_number}" %>
+      <% end %>>
+      <% if match.played? %>
 
-          <div class="card-final-score">
-           <%= render "matches/final_score_#{@competition.sport.name.downcase}", match: match %>
-          </div>
+      <div class="card-final-score">
+        <%= render "matches/final_score_#{@competition.sport.name.downcase}", match: match %>
+      </div>
 
-        <% else %>
+      <% else %>
 
-        <div class="card-versus">
-          <% if match.players.first %>
-            <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
-              <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
-              </div>
-            <% end %>
-          <% end %>
-          <span>vs</span>
-          <% if match.players.last != match.players.first %>
-            <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
-              <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
-              </div>
-            <% end %>
-          <% end %>
+      <div class="card-versus">
+        <% if match.players.first %>
+        <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
+        <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
         </div>
-
-        <% if current_user == @competition.creator %>
-        <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
-        <% elsif current_user == match.players.first || current_user == match.players.last %>
-        <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
-        <% else %>
-        <p><em><%= match.status %></em></p>
         <% end %>
-        <%= render 'matches/edit', match: match %>
+        <% end %>
+        <span>vs</span>
+        <% if match.players.last != match.players.first %>
+        <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
+        <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
+        </div>
+        <% end %>
         <% end %>
       </div>
 
-      <%= render 'champion', match: match if match.played? && round_number == @rounds %>
+      <% if current_user == @competition.creator %>
+      <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+      <% elsif current_user == match.players.first || current_user == match.players.last %>
+      <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+      <% else %>
+      <p><em><%= match.status %></em></p>
+      <% end %>
+      <%= render 'matches/edit', match: match %>
       <% end %>
     </div>
-    <% round_number += 1 %>
+
+    <%= render 'champion', match: match if match.played? && round_number == @rounds %>
     <% end %>
   </div>
+  <% round_number += 1 %>
+  <% end %>
+</div>

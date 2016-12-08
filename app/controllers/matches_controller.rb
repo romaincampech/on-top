@@ -9,6 +9,7 @@ class MatchesController < ApplicationController
     @winner = @match.assign_winner(@match.score)
     @competition = @match.competition
     @match.save
+    @match.league_points
     @match.last_match_knockout(@competition)
     redirect_to competition_path(@match.competition_id)
   end
