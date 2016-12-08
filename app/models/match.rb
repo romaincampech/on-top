@@ -94,7 +94,7 @@ class Match < ApplicationRecord
   end
 
   def points_league
-    if
+
   end
 
   def last_match_knockout(competition)
