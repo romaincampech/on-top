@@ -29,6 +29,11 @@ gem "algoliasearch-rails"
 gem 'chosen-rails'
 gem 'public_activity'
 
+gem 'chartkick'
+gem 'groupdate'
+gem 'active_median'
+gem 'hightop'
+
 
 group :development, :test do
   gem 'binding_of_caller'
