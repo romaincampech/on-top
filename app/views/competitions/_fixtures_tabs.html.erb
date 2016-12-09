@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="row">
+    <% round_number = 1 %>
+    <% until round_number == @competition.number_of_players %>
+      <div class="col-md-3">
+        <div class="profile-tabs">
+          <a class="profile-tab" data-target="#round_<%= round_number %>">Round: <%= round_number %></a>
+            <% @competition.matches.where(round: round_number).each do |match| %>
