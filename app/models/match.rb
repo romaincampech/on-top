@@ -87,14 +87,25 @@ class Match < ApplicationRecord
 
     if score["player_set_total"]["player_1"] > score["player_set_total"]["player_2"]
       self.winner_id = self.players.first.id
-    else
+    elsif score["player_set_total"]["player_1"] < score["player_set_total"]["player_2"]
       self.winner_id = self.players.last.id
+    else
+      self.winner_id = nil
     end
 
   end
 
-  def points_league
-
+  def league_points
+    @competition_participant = CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.winner_id).first
+    if self.sport == "Football" && self.winner_id != nil
+      @competition_participant.points += 3
+    elsif (self.sport == "Tennis" || self.sport == "Table-Tennis" || self.sport == "Squash") && self.winner_id != nil
+      @competition_participant.points += 2
+    else
+      CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.players.first.id).first.points += 1
+      CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.players.last.id).first.points += 1
+    end
+    @competition_participant.save
   end
 
   def last_match_knockout(competition)

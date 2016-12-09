@@ -69,7 +69,7 @@ load at: http://db.lewagon.org
 <part>id</part>
 </key>
 </table>
-<table x="276" y="356" name="competitions*">
+<table x="267" y="347" name="competitions*">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -119,7 +119,7 @@ load at: http://db.lewagon.org
 <part>id</part>
 </key>
 </table>
-<table x="368" y="553" name="sports">
+<table x="478" y="458" name="sports">
 <row name="id" null="1" autoincrement="1">
 <datatype>TINYINT</datatype>
 <default>NULL</default></row>
@@ -147,6 +147,9 @@ load at: http://db.lewagon.org
 </row>
 <row name="player(if not, spectator)" null="1" autoincrement="0">
 <datatype>TINYINT</datatype>
+<default>NULL</default></row>
+<row name="points" null="1" autoincrement="0">
+<datatype>INT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>

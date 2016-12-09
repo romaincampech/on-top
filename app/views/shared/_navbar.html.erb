@@ -80,7 +80,8 @@
 
               return card
 
-            }
+            },
+            footer: '<span class="branding">Powered by <img src="https://www.algolia.com/assets/algolia128x40.png" /></span>'
         }
     }]).on('autocomplete:selected', function(event, suggestion, dataset) {
         var url = "<%= ENV['HOST'] %>users/";
