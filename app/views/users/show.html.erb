@@ -155,23 +155,29 @@
           </div>
           <div class="profile-tabs-content hidden" id="statistics">
             <div class="row">
-              <h3 class="text-center">Choose a sport:</h3>
+              <h4 class="text-center">Choose a sport:</h4>
             </div>
             <div class="row">
-              <div class="flexbox sport-icon-choice">
-                <%= image_tag "tennis-ball.png", width: "40px", "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Tennis" %>
-                <%= image_tag "ping-pong.png", width: "40px", "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Table-Tennis" %>
-                <%= image_tag "football.png", width: "40px", "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Football" %>
+              <div class="flexbox stat-tabs">
+                <div class="stat-tab active" data-target="#tennis">
+                  <%= image_tag "tennis-ball.png", width: "40px", "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Tennis" %>
+                </div>
+                <div class="stat-tab" data-target="#table-tennis">
+                  <%= image_tag "ping-pong.png", width: "40px", "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Table-Tennis" %>
+                </div>
+                <div class="stat-tab" data-target="#football">
+                  <%= image_tag "football.png", width: "40px", "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Football" %>
+                </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-10 col-md-offset-1" id="tennis-stats-partial">
+              <div class="col-md-10 col-md-offset-1 stat-tabs-content" id="tennis">
                 <h2 class="text-center">Tennis</h2>
               </div>
-              <div class="col-md-10 col-md-offset-1" id="ping-pong-stats-partial">
+              <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="table-tennis">
                 <h2 class="text-center">Ping-Pong</h2>
               </div>
-              <div class="col-md-10 col-md-offset-1" id="football-stats-partial">
+              <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="football">
                 <h2 class="text-center">Football</h2>
               </div>
             </div>
@@ -305,7 +311,19 @@
   <script>
     $(document).ready(function(){
 
+      // Tooltip when hovering over sports icons
       $('[data-toggle="tooltip"]').tooltip();
+
+      // Change of statistics content when clicking on sports icons
+        $(".stat-tab").on("click", function(e){
+          // Change active tab
+          $(".stat-tab").removeClass('active');
+          $(this).addClass('active');
+          // Hide all tab-content (use class="hidden")
+          $(".stat-tabs-content").addClass('hidden');
+          // Show target tab-content (use class="hidden")
+          $($(this).data('target')).removeClass('hidden');
+        });
 
     });
   </script>
