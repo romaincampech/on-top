@@ -90,7 +90,7 @@ class Match < ApplicationRecord
     elsif score["player_set_total"]["player_1"] < score["player_set_total"]["player_2"]
       self.winner_id = self.players.last.id
     else
-      self.winner_id = nil
+      self.winner_id = 0
     end
 
   end
@@ -99,10 +99,10 @@ class Match < ApplicationRecord
     @competition_participant = CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.winner_id).first
     @competition_participant1 = CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.players.first.id).first
     @competition_participant2 = CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.players.last.id).first
-    if self.sport.name == "Football" && self.winner_id != nil
+    if self.sport.name == "Football" && self.winner_id != 0
       @competition_participant.points += 3
       @competition_participant.save
-    elsif (self.sport.name == "Tennis" || self.sport.name == "Table-Tennis" || self.sport.name == "Squash") && self.winner_id != nil
+    elsif (self.sport.name == "Tennis" || self.sport.name == "Table-Tennis" || self.sport.name == "Squash") && self.winner_id != 0
       @competition_participant.points += 2
       @competition_participant.save
     else

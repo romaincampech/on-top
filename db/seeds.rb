@@ -20,6 +20,9 @@ Sport.create!(name: "Football")
 Sport.create!(name: "Basketball")
 Sport.create!(name: "Rugby")
 
+user = User.new(id: 0, first_name: "Drawn", last_name: "Match", email: "draw@test.com", password: "123456", city: "Beijing")
+user.save
+
 user = User.new(first_name: "Julianne", last_name: "Joswiak", email: "Julianne@test.com", password: "123456", city: "London")
 url = "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/7/005/064/0ec/1749a12.jpg"
 user.photo_url = url

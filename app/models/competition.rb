@@ -118,6 +118,10 @@ class Competition < ApplicationRecord
     self.matches.where.not(winner_id: nil)
   end
 
+  def drawn_matches
+    self.matches.where(winner_id: 0)
+  end
+
   def number_of_rounds(category)
     if category == "Knockout"
       Math.log2(self.number_of_players).to_i

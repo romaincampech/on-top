@@ -19,10 +19,10 @@
         <tr>
           <td><%= x %></td>
           <td><%= player.user.first_name %></td>
-          <td>1</td>
-          <td>0</td>
-          <td>0</td>
-          <td>1</td>
+          <td><%= player.user.played_matches.where(competition_id: @competition.id).count %></td>
+          <td><%= player.user.played_matches.where(competition_id: @competition.id, winner_id: player.user.id).count %></td>
+          <td><%= player.user.played_matches.where(competition_id: @competition.id, winner_id: 0).count %></td>
+          <td><%= player.user.played_matches.where(competition_id: @competition.id).count - (player.user.played_matches.where(competition_id: @competition.id, winner_id: player.user.id).count + player.user.played_matches.where(competition_id: @competition.id, winner_id: 0).count) %></td>
           <td><strong><%= player.points %></strong></td>
         </tr>
         <% x += 1 %>
