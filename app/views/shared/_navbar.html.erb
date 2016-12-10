@@ -75,17 +75,17 @@
             //'suggestion' templating function used to render a single suggestion
             suggestion: function(suggestion) {
               var link = "<form action='<%= ENV['HOST'] %>users/" + suggestion.id + "/friend_requests' method='post' id='addfriend' style='color: lightgreen'> <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'> <button type='submit' name='user_id' value='" + suggestion.id + "' class='btn-link'>Add</button></form>";
-              var card = "<span>" + "<img src=http://res.cloudinary.com/dkyjujcrz/image/upload/w_400,h_400/" + suggestion.photo.path + " alt='' class='avatar'> " +
+              var card = "<span>" + "<img src=<%= ENV['CLOUDINARY_SECOND_URL']  %>" + suggestion.photo.path + " alt='' class='avatar'> " +
                 suggestion._highlightResult.first_name.value + " " + suggestion._highlightResult.last_name.value + "</span><span>" + link +"</span>";
 
               return card
 
             },
-            footer: '<span class="branding">Powered by <img src="https://www.algolia.com/assets/algolia128x40.png" /></span>'
+            footer: '<div class="branding text-right">Search powered by <img src="https://www.algolia.com/assets/algolia128x40.png" /></div>'
         }
+
     }]).on('autocomplete:selected', function(event, suggestion, dataset) {
         var url = "<%= ENV['HOST'] %>users/";
-        // need to extract this to have different url for development vs production
         window.location.assign(url + suggestion.id)});
 
 
