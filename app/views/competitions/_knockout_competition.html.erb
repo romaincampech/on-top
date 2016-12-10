@@ -32,6 +32,7 @@
         <% end %>
       </div>
 
+
       <% if current_user == @competition.creator %>
       <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
       <% elsif current_user == match.players.first || current_user == match.players.last %>
@@ -41,6 +42,7 @@
       <% end %>
       <%= render 'matches/edit', match: match %>
       <% end %>
+
     </div>
 
     <%= render 'champion', match: match if match.played? && round_number == @rounds %>

@@ -1,0 +1,26 @@
+<div class="modal-body score-form-tennis">
+  <%= form_tag match_path(match), method: :patch do %>
+  <table>
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Goals</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><%= match.players.first.first_name if match.players.first %></th>
+        <td><%= number_field_tag "set1player1", nil, max: 7, min: 0 %></td>
+      </tr>
+      <tr>
+        <th><%= match.players.last.first_name if match.players.last != match.players.first %></th>
+        <td><%= number_field_tag "set1player2", nil, max: 7, min: 0 %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+
+  <%= submit_tag 'Submit', class: "btn btn-sm result-input-btn" %>
+  <% end %>
+</div>
