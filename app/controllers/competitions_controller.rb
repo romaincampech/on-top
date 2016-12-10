@@ -7,6 +7,8 @@ class CompetitionsController < ApplicationController
     @message = Message.new
     if @competition.category == "Knockout"
       @competition.winner_match_assignment
+    elsif @competition.category == "League"
+      @competition_participants_by_points = @competition.competition_participants.order('points DESC')
     end
   end
 

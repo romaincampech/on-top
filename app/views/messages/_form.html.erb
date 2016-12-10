@@ -1,5 +1,5 @@
 <%= simple_form_for([@competition, @message], remote: true) do |form| %>
-  <%= form.input :body, label: false, placeholder: "Nice game dude!" %>
+  <%= form.input :body, label: false, placeholder: "Nice game!" %>
   <%= form.button :submit, id: "message-btn", class: "hidden" %>
 <% end %>
 

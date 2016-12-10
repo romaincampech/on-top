@@ -41,13 +41,13 @@ class Match < ApplicationRecord
     player_set_total[:player_2] = 0
     if score[:set1][:player_1] > score[:set1][:player_2]
       player_set_total[:player_1] += 1
-    else
+    elsif score[:set1][:player_2] > score[:set1][:player_1]
       player_set_total[:player_2] += 1
     end
 
     if score[:set2][:player_1] > score[:set2][:player_2]
       player_set_total[:player_1] += 1
-    else
+    elsif score[:set2][:player_2] > score[:set2][:player_1]
       player_set_total[:player_2] += 1
     end
 
@@ -97,15 +97,20 @@ class Match < ApplicationRecord
 
   def league_points
     @competition_participant = CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.winner_id).first
-    if self.sport == "Football" && self.winner_id != nil
+    @competition_participant1 = CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.players.first.id).first
+    @competition_participant2 = CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.players.last.id).first
+    if self.sport.name == "Football" && self.winner_id != nil
       @competition_participant.points += 3
-    elsif (self.sport == "Tennis" || self.sport == "Table-Tennis" || self.sport == "Squash") && self.winner_id != nil
+      @competition_participant.save
+    elsif (self.sport.name == "Tennis" || self.sport.name == "Table-Tennis" || self.sport.name == "Squash") && self.winner_id != nil
       @competition_participant.points += 2
+      @competition_participant.save
     else
-      CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.players.first.id).first.points += 1
-      CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.players.last.id).first.points += 1
+      @competition_participant1.points += 1
+      @competition_participant2.points += 1
+      @competition_participant1.save
+      @competition_participant2.save
     end
-    @competition_participant.save
   end
 
   def last_match_knockout(competition)

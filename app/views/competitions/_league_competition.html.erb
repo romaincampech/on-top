@@ -15,15 +15,15 @@
 
       <tbody>
         <% x = 1 %>
-        <% @competition.players.each do |player| %>
+        <% @competition_participants_by_points.each do |player| %>
         <tr>
           <td><%= x %></td>
-          <td><%= player.first_name %></td>
+          <td><%= player.user.first_name %></td>
           <td>1</td>
           <td>0</td>
           <td>0</td>
           <td>1</td>
-          <td><strong><%= @competition.competition_participants.where(user_id: player.id).first.points %></strong></td>
+          <td><strong><%= player.points %></strong></td>
         </tr>
         <% x += 1 %>
         <% end %>
