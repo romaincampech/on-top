@@ -35,6 +35,7 @@ class Match < ApplicationRecord
     set_5[:player_2] = params["set5player2"].to_i
     score[:set5] = set_5
 
+    # calculate which player has won each set and count the sets won
     player_set_total = {}
 
     player_set_total[:player_1] = 0
@@ -85,6 +86,7 @@ class Match < ApplicationRecord
     #   self.winner_id = self.players.last.id
     # end
 
+    # assign winner or draw
     if score["player_set_total"]["player_1"] > score["player_set_total"]["player_2"]
       self.winner_id = self.players.first.id
     elsif score["player_set_total"]["player_1"] < score["player_set_total"]["player_2"]
@@ -99,12 +101,15 @@ class Match < ApplicationRecord
     @competition_participant = CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.winner_id).first
     @competition_participant1 = CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.players.first.id).first
     @competition_participant2 = CompetitionParticipant.where(competition_id: self.competition_id, user_id: self.players.last.id).first
+    # add 3 points to total if win football match
     if self.sport.name == "Football" && self.winner_id != 0
       @competition_participant.points += 3
       @competition_participant.save
+    # add 2 points to total if win
     elsif (self.sport.name == "Tennis" || self.sport.name == "Table-Tennis" || self.sport.name == "Squash") && self.winner_id != 0
       @competition_participant.points += 2
       @competition_participant.save
+    # add one point to both players if draw
     else
       @competition_participant1.points += 1
       @competition_participant2.points += 1
@@ -113,6 +118,7 @@ class Match < ApplicationRecord
     end
   end
 
+  # if last match of knockout competition -> assign winner as competition champion
   def last_match_knockout(competition)
     if self.round == Math.log2(competition.number_of_players).to_i
       competition.champion = self.winner

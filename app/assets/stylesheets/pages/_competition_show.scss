@@ -196,9 +196,14 @@
   justify-content: center;
 }
 
+
 #league-table-avatar {
   display: flex;
   justify-content: space-around;
+}
+
+.header-league {
+  background-color: rgba(141, 218, 147, 0.5)
 }
 
 .league-table {
