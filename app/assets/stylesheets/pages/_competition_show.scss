@@ -89,11 +89,6 @@
   box-shadow: 1px 1px 3px #d9d9d9;
 }
 
-.result-input-league-btn {
-  background-color: #58D063;
-  color: white;
-  text-decoration: none;
-}
 
 /* Lower section (chatbox + participants) */
 #messages {
@@ -200,6 +195,7 @@
 #league-table-avatar {
   display: flex;
   justify-content: space-around;
+  padding: 1px;
 }
 
 .header-league {
