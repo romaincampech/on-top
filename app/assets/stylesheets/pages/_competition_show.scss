@@ -196,6 +196,11 @@
   justify-content: center;
 }
 
+#league-table-avatar {
+  display: flex;
+  justify-content: space-around;
+}
+
 .league-table {
   border-collapse: collapse;
   border: 1px solid #CDCDCD;
@@ -217,5 +222,11 @@
   }
   thead {
     font-weight: 800;
+    background-color: rgba(83, 199, 92, 0.5);
   }
+}
+
+.league-table-player {
+  display: flex;
+  justify-content: center;
 }

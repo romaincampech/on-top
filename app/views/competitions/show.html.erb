@@ -1,66 +1,71 @@
 <div class="competition-container">
-  <div class="board-container">
-
-    <div class="board-header flexbox">
-      <div class="left">
-        <h1>
-          <%= @competition.name %>
-        </h1>
-        <p><%= @competition.sport.name %>, <%= @competition.category %></p>
+    <div class="board-container">
+      <div class="board-header flexbox">
+        <div class="left">
+          <h1>
+            <%= @competition.name %>
+          </h1>
+          <p><%= @competition.sport.name %>, <%= @competition.category %></p>
+        </div>
+        <div class="right">
+          <p><span><%= @competition.number_of_players %></span> players</p>
+        </div>
       </div>
-      <div class="right">
-        <p><span><%= @competition.number_of_players %></span> players</p>
-      </div>
-    </div>
 
-    <div class="wrapper-competition-table">
-      <% if @competition.category == "Knockout" %>
-      <%= render 'knockout_competition' %>
-      <% else %>
-      <%= render 'league_competition' %>
-      <% end %>
-    </div>
-  </div>
-
-
-  <div class="chat-container">
-    <div class="text-center chat-header">
-      <%= image_tag "microphone.png" %>
-      <h4>Discuss the game</h4>
-      <input type="hidden" id="chat_room_id" value="<%=@chat_room.id%>"/>
-    </div>
-    <div id="messages">
-      <ul id="message-list">
-        <% @chat_room.messages.order("created_at asc").each do |message| %>
-          <% if message.user == current_user %>
-            <%= render 'messages/message', message: message %>
-          <% else %>
-            <%= render 'messages/message', message: message %>
-          <% end %>
+      <div class="wrapper-competition-table">
+        <% if @competition.category == "Knockout" %>
+        <%= render 'knockout_competition' %>
+        <% else %>
+        <%= render 'league_table' %>
         <% end %>
-      </ul>
+      </div>
     </div>
-    <%= render 'messages/form', competition: @competition, message: @message %>
-  </div>
+
+
+    <div class="chat-container">
+      <div class="text-center chat-header">
+        <%= image_tag "microphone.png" %>
+        <h4>Discuss the game</h4>
+        <input type="hidden" id="chat_room_id" value="<%=@chat_room.id%>"/>
+      </div>
+      <div id="messages">
+        <ul id="message-list">
+          <% @chat_room.messages.order("created_at asc").each do |message| %>
+          <% if message.user == current_user %>
+          <%= render 'messages/message', message: message %>
+          <% else %>
+          <%= render 'messages/message', message: message %>
+          <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <%= render 'messages/form', competition: @competition, message: @message %>
+    </div>
 </div>
+
+  <% if @competition.category == "League" %>
+  <%= render 'league_fixtures' %>
+  <% end %>
+
+
 
 <% content_for(:after_js) do %>
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
 
-    // this code makes it so it load the chat at the bottom of the page
-    $('#messages').scrollTop($('#messages')[0].scrollHeight)
+  // this code makes it so it load the chat at the bottom of the page
+  $('#messages').scrollTop($('#messages')[0].scrollHeight)
 
-    // this code is for the ActionCable
-    App.messages = App.cable.subscriptions.create('MessagesChannel', {
-      received: function(data) {
-        return $('#messages ul').append(this.renderMessage(data)),
-    // scrolling to bottom of page with every message render
-    $('#messages').scrollTop($('#messages')[0].scrollHeight)
-    }
-    });
+  // this code is for the ActionCable
+  App.messages = App.cable.subscriptions.create('MessagesChannel', {
+    received: function(data) {
+      return $('#messages ul').append(this.renderMessage(data)),
+  // scrolling to bottom of page with every message render
+  $('#messages').scrollTop($('#messages')[0].scrollHeight)
+  }
+  });
 
-    $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip"]').tooltip();
 
 });
 
