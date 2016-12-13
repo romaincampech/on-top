@@ -9,5 +9,4 @@ $(document).ready(function(){
     // Show target tab-content (use class="hidden")
     $($(this).data('target')).removeClass('hidden');
   });
-
 });

@@ -1,19 +1,22 @@
-
+<div class="fixtures-header">
+<h4>League Fixtures/Results</h4>
+</div>
+<div class="row fixtures-display">
 <div class="tabs">
   <a class="fixtures-tab active" data-target="#round1">
-    <h4>Round 1 Fixtures/Results</h4>
+    <h4>Round 1</h4>
   </a>
   <% round_number = 2 %>
     <% until round_number == @competition.number_of_players %>
     <a class="fixtures-tab" data-target=<%= "#round#{round_number}" %>>
-    <h4>Round <%= round_number %> Fixtures/Results</h4>
+    <h4>Round <%= round_number %></h4>
     </a>
     <% round_number += 1 %>
     <% end %>
 </div>
 
-<div class="fixtures" id="#round1">
-<h5> Round 1 Fixtures/Results </h5>
+<div class="league-fixtures">
+<div class="fixtures" id="round1">
 <% @competition.matches.where(round: 1).each do |match| %>
     <div class="card-match-league">
       <% if match.players.first %>
@@ -44,8 +47,7 @@
 
 <% round_number = 2 %>
 <% until round_number == @competition.number_of_players %>
-<div class="fixtures hidden" id=<%= "#round#{round_number}" %>>
-<h5> Round <%= round_number %> Fixtures/Results </h5>
+<div class="fixtures hidden" id=<%= "round#{round_number}" %>>
   <% @competition.matches.where(round: round_number).each do |match| %>
     <div class="card-match-league">
       <% if match.players.first %>
@@ -72,5 +74,7 @@
     </div>
   <% end %>
 <% round_number += 1 %>
+</div>
 <% end %>
+</div>
 </div>

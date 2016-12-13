@@ -1,8 +1,25 @@
+.fixtures-display{
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 100px;
+  margin-bottom: 30px;
+}
+
+.fixtures-header {
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+.league-fixtures{
+  background-color: white;
+}
+
 .tabs {
   background: $green2;
   display: flex;
   flex-direction: column;
-  width: 25%;
+  width: auto;
   padding: 10px 0 10px 10px;
 }
 .tabs a {
@@ -14,23 +31,22 @@
   opacity: 0.7;
 }
 .tabs h3 {
-  font-size: 13px;
+  font-size: 11px;
   margin-top: 0;
 }
 
-.tab {
+.fixtures-tab {
   background: $green2;
-  flex: 0 0 25%;
   text-align: center;
-  padding: 5px 0;
+  padding: 2px 25px;
 }
-.tab:first-child {
+.fixtures-tab:first-child {
   border-radius: 5px 0 0 0;
 }
-.tab:last-child {
-  border-radius: 0 5px 0 0;
+.fixtures-tab:last-child {
+  border-radius: 0 0 0 5px;
 }
-.tab.active {
+.fixtures-tab.active {
   background: white;
   color: black;
 }
@@ -38,6 +54,6 @@
 .card-match-league {
   display: flex;
   justify-content: space-around;
-  width: 50%;
+  width: 500px;
   padding-top: 40px;
 }
