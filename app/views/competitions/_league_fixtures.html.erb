@@ -1,0 +1,80 @@
+<div class="fixtures-header">
+<h4>League Fixtures/Results</h4>
+</div>
+<div class="row fixtures-display">
+<div class="tabs">
+  <a class="fixtures-tab active" data-target="#round1">
+    <h4>Round 1</h4>
+  </a>
+  <% round_number = 2 %>
+    <% until round_number == @competition.number_of_players %>
+    <a class="fixtures-tab" data-target=<%= "#round#{round_number}" %>>
+    <h4>Round <%= round_number %></h4>
+    </a>
+    <% round_number += 1 %>
+    <% end %>
+</div>
+
+<div class="league-fixtures">
+<div class="fixtures" id="round1">
+<% @competition.matches.where(round: 1).each do |match| %>
+    <div class="card-match-league">
+      <% if match.players.first %>
+        <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
+        <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
+        </div>
+        <% end %>
+        <% end %>
+        <span>vs</span>
+        <% if match.players.last != match.players.first %>
+        <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
+        <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
+        </div>
+        <% end %>
+        <% end %>
+        <% if current_user == @competition.creator %>
+        <%= link_to "Score", edit_match_path(match), class: 'btn btn-sm result-input-league-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+        <% elsif current_user == match.players.first || current_user == match.players.last %>
+        <%= link_to "Score", edit_match_path(match), class: 'btn btn-sm result-input-league-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+        <% else %>
+        <p><em><%= match.status %></em></p>
+        <% end %>
+        <%= render 'matches/edit', match: match %>
+    </div>
+  <% end %>
+</div>
+
+
+<% round_number = 2 %>
+<% until round_number == @competition.number_of_players %>
+<div class="fixtures hidden" id=<%= "round#{round_number}" %>>
+  <% @competition.matches.where(round: round_number).each do |match| %>
+    <div class="card-match-league">
+      <% if match.players.first %>
+        <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
+        <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
+        </div>
+        <% end %>
+        <% end %>
+        <span>vs</span>
+        <% if match.players.last != match.players.first %>
+        <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
+        <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
+        </div>
+        <% end %>
+        <% end %>
+        <% if current_user == @competition.creator %>
+        <%= link_to "Score", edit_match_path(match), class: 'btn btn-sm result-input-league-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+        <% elsif current_user == match.players.first || current_user == match.players.last %>
+        <%= link_to "Score", edit_match_path(match), class: 'btn btn-sm result-input-league-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+        <% else %>
+        <p><em><%= match.status %></em></p>
+        <% end %>
+        <%= render 'matches/edit', match: match %>
+    </div>
+  <% end %>
+<% round_number += 1 %>
+</div>
+<% end %>
+</div>
+</div>

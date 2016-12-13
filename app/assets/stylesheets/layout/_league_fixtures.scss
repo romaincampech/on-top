@@ -1,0 +1,59 @@
+.fixtures-display{
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 100px;
+  margin-bottom: 30px;
+}
+
+.fixtures-header {
+  font-weight: bold;
+  margin-left: 30px;
+}
+
+.league-fixtures{
+  background-color: white;
+}
+
+.tabs {
+  background: $green2;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding: 10px 0 10px 10px;
+}
+.tabs a {
+  color: white;
+}
+.tabs a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.7;
+}
+.tabs h3 {
+  font-size: 11px;
+  margin-top: 0;
+}
+
+.fixtures-tab {
+  background: $green2;
+  text-align: center;
+  padding: 2px 25px;
+}
+.fixtures-tab:first-child {
+  border-radius: 5px 0 0 0;
+}
+.fixtures-tab:last-child {
+  border-radius: 0 0 0 5px;
+}
+.fixtures-tab.active {
+  background: white;
+  color: black;
+}
+
+.card-match-league {
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+  padding-top: 40px;
+}
