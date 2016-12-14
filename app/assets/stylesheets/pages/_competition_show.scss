@@ -89,11 +89,6 @@
   box-shadow: 1px 1px 3px #d9d9d9;
 }
 
-.result-input-league-btn {
-  background-color: #58D063;
-  color: white;
-  text-decoration: none;
-}
 
 /* Lower section (chatbox + participants) */
 #messages {
@@ -197,43 +192,4 @@
 }
 
 
-#league-table-avatar {
-  display: flex;
-  justify-content: space-around;
-}
 
-.header-league {
-  background-color: rgba(141, 218, 147, 0.5)
-}
-
-.league-table {
-  border-collapse: collapse;
-  border: 1px solid #CDCDCD;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
-  td input {
-    width: 20px;
-    height: 20px;
-    font-size: 20px;
-    text-align: center;
-  }
-  th, td {
-    color: #999;
-    border: 1px solid #CDCDCD;
-    padding: 8px;
-    border-collapse: collapse;
-    text-align: center;
-    font-size: 15px;
-  }
-  thead {
-    font-weight: 800;
-    background-color: rgba(83, 199, 92, 0.5);
-  }
-}
-
-.league-table-player {
-  display: flex;
-  justify-content: left;
-  text-align: center;
-  padding-left: 10px;
-}

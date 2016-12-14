@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <table class="league-table col-md-8 col-md-offset-2">
+    <table class="league-table">
       <thead>
         <tr>
           <td>Pos.</td>
@@ -21,7 +21,7 @@
           <td><div class="league-table-player"><%= link_to user_path(player), "data-toggle" => "tooltip", title: "#{player.user.full_name}" do %>
           <div class="avatar-div" id="league-table-avatar" style="background-image: url('<%= cl_image_path(player.user.photo.path) %>')"></div>
           <% end %>
-          <%= player.user.first_name %></div></td>
+          <span><%= player.user.first_name %></span></div></td>
           <td><%= player.user.played_matches.where(competition_id: @competition.id).count %></td>
           <td><%= player.user.played_matches.where(competition_id: @competition.id, winner_id: player.user.id).count %></td>
           <td><%= player.user.played_matches.where(competition_id: @competition.id, winner_id: 0).count %></td>
