@@ -172,7 +172,7 @@
             </div>
             <div class="row">
               <div class="col-md-10 col-md-offset-1 stat-tabs-content" id="tennis">
-                <%= pie_chart @user.played_matches_for("Tennis").count %>
+                <%= pie_chart({"wins" => "#{@user.wins_for('Tennis').count}", "losses" => "#{@user.losses_for('Tennis').count}"}) %>
               </div>
               <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="table-tennis">
                 <h2 class="text-center">Ping-Pong</h2>
