@@ -13,7 +13,6 @@
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_include_tag "//www.google.com/jsapi" %>
     <%= javascript_include_tag 'chartkick' %>
-
   </head>
   <body>
 
@@ -25,8 +24,10 @@
 
     <%= render 'shared/flashes' %>
     <%= yield %>
+
     <%= javascript_include_tag 'application' %>
     <%= cloudinary_js_config %>
     <%= yield(:after_js) %>
+
   </body>
 </html>

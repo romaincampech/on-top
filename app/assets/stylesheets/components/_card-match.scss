@@ -2,9 +2,15 @@
   width: 100%;
   background: white;
 }
+
+.card-final-score-league {
+  width: 100%;
+  background: white;
+  height: 71px;
+}
+
 .card-versus {
   padding: 5px;
-  padding-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,7 +36,7 @@
   background: white;
   // display: flex;
   // justify-content: space-around;
-  height: 71px;
+  height: 90px;
   width: 100%;
   border-radius: 5px 5px 0 0 ;
   span {
@@ -39,9 +45,8 @@
     opacity: 0.7;
   }
 }
+
 .card-match {
-  display: flex;
-  justify-content: space-around;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   border-radius: 5px;
   .btn {
@@ -50,6 +55,8 @@
   }
 }
 
+
+
 #card-played {
   padding: 5px;
   border: 0px solid #d9d9d9;
@@ -57,6 +64,13 @@
   box-shadow: 0px 0px 0px #EFEFEF;
   display: flex;
   justify-content: center;
+}
+
+#card-played-league {
+  padding: 5px;
+  border: 0px solid #d9d9d9;
+  line-height: 0.5;
+  box-shadow: 0px 0px 0px #EFEFEF;
 }
 
 .card-blank {

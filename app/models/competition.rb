@@ -38,7 +38,9 @@ class Competition < ApplicationRecord
     self.matches.where(round: 1)
   end
 
+
   def assign_matches(category)
+    # creating match participants for all first round matches in a knockout
     if category == "Knockout"
       player_ary = self.players.to_a
       select_round_1.each do |match|
@@ -46,6 +48,7 @@ class Competition < ApplicationRecord
           MatchParticipant.create(player: rem_sample(player_ary), match: match)
         end
       end
+    # creating match participants for all matches in league competition
     else
       games = self.players.to_a.combination(2).to_a
       fixtures = {}
@@ -74,6 +77,7 @@ class Competition < ApplicationRecord
   end
 
  def winner_match_assignment
+  # creating match participants in the correct next round match once a match has been played and won
   self.matches.each do |match|
       if match.match_number == 1 && match.played?
         MatchParticipant.create(player: match.winner, match: self.matches.where(match_number: (self.number_of_players / 2 + 1)).first)
@@ -118,6 +122,10 @@ class Competition < ApplicationRecord
     self.matches.where.not(winner_id: nil)
   end
 
+  def drawn_matches
+    self.matches.where(winner_id: 0)
+  end
+
   def number_of_rounds(category)
     if category == "Knockout"
       Math.log2(self.number_of_players).to_i
@@ -127,6 +135,7 @@ class Competition < ApplicationRecord
   end
 
   def create_matches(params)
+    # creating all matches in knockout or league competition
     round_number = 1
     match_number = 0
     if self.category == "Knockout"

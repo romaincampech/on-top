@@ -4,18 +4,26 @@
 }
 
 .board-container {
-  flex: 1;
+  // flex: 1;
   height: calc(100vh - 70px);
+  width: 70%;
   h1 {
     font-size: 20px;
     margin: 0;
   }
 }
+
+.scroller_anchor{
+  height:0px;
+  margin:0;
+  padding:0;
+}
+
 .chat-container {
-  width: 400px;
-  width: 400px;
+  width: 30%;
   background: white;
-  position: relative;
+  margin-left: 70%;
+  position: absolute;
   border-left: 1px solid lightgrey;
   height: calc(100vh - 70px);
   h4 {
@@ -36,7 +44,7 @@
     right: 0;
     border: none;
     min-height: 100px;
-    font-size: 17px;
+    font-size: 15px;
   }
 }
 

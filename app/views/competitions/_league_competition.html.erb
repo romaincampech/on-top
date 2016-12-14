@@ -2,7 +2,7 @@
   <div class="row">
     <table class="league-table col-md-8 col-md-offset-2">
       <thead>
-        <tr>
+        <tr class=header-league>
           <td>Pos.</td>
           <td>Team/Player</td>
           <td>Pl</td>
@@ -15,15 +15,15 @@
 
       <tbody>
         <% x = 1 %>
-        <% @competition.players.each do |player| %>
+        <% @competition_participants_by_points.each do |player| %>
         <tr>
           <td><%= x %></td>
-          <td><%= player.first_name %></td>
-          <td>1</td>
-          <td>0</td>
-          <td>0</td>
-          <td>1</td>
-          <td><strong>0</strong></td>
+          <td><%= player.user.first_name %></td>
+          <td><%= player.user.played_matches.where(competition_id: @competition.id).count %></td>
+          <td><%= player.user.played_matches.where(competition_id: @competition.id, winner_id: player.user.id).count %></td>
+          <td><%= player.user.played_matches.where(competition_id: @competition.id, winner_id: 0).count %></td>
+          <td><%= player.user.played_matches.where(competition_id: @competition.id).count - (player.user.played_matches.where(competition_id: @competition.id, winner_id: player.user.id).count + player.user.played_matches.where(competition_id: @competition.id, winner_id: 0).count) %></td>
+          <td><strong><%= player.points %></strong></td>
         </tr>
         <% x += 1 %>
         <% end %>
@@ -35,24 +35,38 @@
   <div class="row">
     <% round_number = 1 %>
     <% until round_number == @competition.number_of_players %>
-    <div class="col-md-3">
-      <h4>Round: <%= round_number %></h4>
-      <% @competition.matches.where(round: round_number).each do |match| %>
+    <div class="col-md-4">
+    <h4>Round: <%= round_number %></h4>
+    <% @competition.matches.where(round: round_number).each do |match| %>
 
-      <div class="card-versus-league">
-        <% if match.players.first %>
-        <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
-        <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
+      <div class="card-match-league" id=<% if match.played? %>
+        <% "card-played-league" %>
+        <% else %>
+        <% "#{match.match_number}" %>
+        <% end %>>
+
+        <% if match.played? %>
+
+        <div class="card-final-score-league">
+          <%= render "matches/final_score_#{@competition.sport.name.downcase}", match: match %>
         </div>
-        <% end %>
-        <% end %>
-        <span>vs</span>
-        <% if match.players.last != match.players.first %>
-        <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
-        <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
-        </div>
-        <% end %>
-        <% end %>
+
+        <% else %>
+
+        <div class="card-versus-league">
+          <% if match.players.first %>
+          <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
+          <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
+          </div>
+          <% end %>
+          <% end %>
+          <span>vs</span>
+          <% if match.players.last != match.players.first %>
+          <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
+          <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
+          </div>
+          <% end %>
+          <% end %>
           <% if current_user == @competition.creator %>
           <%= link_to "Score", edit_match_path(match), class: 'btn btn-sm result-input-league-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
           <% elsif current_user == match.players.first || current_user == match.players.last %>
@@ -61,11 +75,20 @@
           <p><em><%= match.status %></em></p>
           <% end %>
           <%= render 'matches/edit', match: match %>
+        </div>
+
+        <% end %>
+
+
+        </div>
+        <% end %>
       </div>
-      <% end %>
-    </div>
+
     <% round_number += 1 %>
     <% end %>
   </div>
 
 </div>
+
+
+
