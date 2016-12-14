@@ -18,6 +18,9 @@
   <div class="league-fixtures">
     <div class="fixtures" id="round1">
       <% @competition.matches.where(round: 1).each do |match| %>
+      <% if match.played? %>
+      <%= render "matches/league_final_score_#{match.sport.name.downcase}", match: match %>
+      <% else %>
       <div class="card-match-league">
         <% if match.players.first %>
           <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
@@ -41,6 +44,7 @@
           <% end %>
           <%= render 'matches/edit', match: match %>
       </div>
+      <% end %>
       <% end %>
     </div>
 

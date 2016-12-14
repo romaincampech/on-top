@@ -18,7 +18,7 @@
         <% @competition_participants_by_points.each do |player| %>
         <tr>
           <td><%= x %></td>
-          <td><div class="league-table-player"><%= link_to user_path(player), "data-toggle" => "tooltip", title: "#{player.user.full_name}" do %>
+          <td><div class="league-table-player"><%= link_to user_path(player.user), "data-toggle" => "tooltip", title: "#{player.user.full_name}" do %>
           <div class="avatar-div" id="league-table-avatar" style="background-image: url('<%= cl_image_path(player.user.photo.path) %>')"></div>
           <% end %>
           <span><%= player.user.first_name %></span></div></td>

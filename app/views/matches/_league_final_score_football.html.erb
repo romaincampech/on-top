@@ -1,0 +1,36 @@
+<table class="league-final-score">
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class=<% if match.players.first == match.winner %>
+    <%= "highlight" %>
+    <% else %>
+    <%= "loser" %>
+    <% end %>>
+      <th class="text-center">
+        <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
+          <div class="avatar-div avatar-div-small" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
+          </div>
+        <% end %>
+      </th>
+      <td><%= match.score["set1"]["player_1"] %></td>
+    </tr>
+    <tr class=<% if match.players.last == match.winner %>
+    <%= "highlight" %>
+    <% else %>
+    <%= "loser" %>
+    <% end %>>
+      <th class="text-center">
+        <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
+          <div class="avatar-div avatar-div-small" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
+          </div>
+        <% end %>
+      </th>
+      <td><%= match.score["set1"]["player_2"] %></td>
+    </tr>
+  </tbody>
+</table>
