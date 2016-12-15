@@ -1,51 +1,53 @@
 <div class="container">
-  <div class="profile-banner">
-    <div class="row">
-      <div class="col-sm-5 col-sm-offset-1">
-        <div class="profile-banner-left">
-          <% if @user.photo? %>
-          <%= cl_image_tag @user.photo.path %>
-          <% else %>
-          <%= image_tag "profile-avatar-default.jpg" %>
-          <% end %>
-          <ul>
-            <li><h3><%= @user.full_name %></h3></li>
-            <li><i class="fa fa-map-marker"></i> <h4 style="display: inline;"><%= @user.city %></h4></li>
-            <li><i class="fa fa-users" aria-hidden="true"></i>
-              <p style="display: inline;">
-                <%= link_to '#' do %>
-                <%= @user.friends.count - 1 %> friends
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1 profile-banner">
+      <div class="row">
+        <div class="col-sm-5 col-sm-offset-1">
+          <div class="profile-banner-left">
+            <% if @user.photo? %>
+            <%= cl_image_tag @user.photo.path %>
+            <% else %>
+            <%= image_tag "profile-avatar-default.jpg" %>
+            <% end %>
+            <ul>
+              <li><h3><%= @user.full_name %></h3></li>
+              <li><i class="fa fa-map-marker"></i> <h4 style="display: inline;"><%= @user.city %></h4></li>
+              <li><i class="fa fa-users" aria-hidden="true"></i>
+                <p style="display: inline;">
+                  <%= link_to '#' do %>
+                  <%= @user.friends.count - 1 %> friends
+                  <% end %>
+                </p>
+              </li>
+              <li>
+                <% if current_user.pending_friends.include?(@user) %>
+                <div class="request-sent">
+                  Friend request sent
+                </div>
+                <% elsif !current_user.friends.include?(@user) %>
+                <%= link_to 'Add Friend', user_friend_requests_path(@user), class: "btn-friend", method: :post unless current_user == @user %>
+                <% else %>
+                <%= link_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), class: "btn-unfriend", method: :delete, data: { confirm: "Are you sure?" } unless current_user == @user %>
                 <% end %>
-              </p>
-            </li>
-            <li>
-              <% if current_user.pending_friends.include?(@user) %>
-              <div class="request-sent">
-                Friend request sent
-              </div>
-              <% elsif !current_user.friends.include?(@user) %>
-              <%= link_to 'Add Friend', user_friend_requests_path(@user), class: "btn-friend", method: :post unless current_user == @user %>
-              <% else %>
-              <%= link_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), class: "btn-unfriend", method: :delete, data: { confirm: "Are you sure?" } unless current_user == @user %>
-              <% end %>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-5">
-      <% if current_user == @user %>
-        <ul>
-          <% @user.friend_requests.each do |friend_request| %>
-          <li>
-            <%= link_to friend_request.user.full_name %>
-            wants to be your friend:
-            <%= button_to 'Accept', friend_request_path(friend_request), method: :patch %>
-          </li>
+        <div class="col-sm-5">
+        <% if current_user == @user %>
+          <ul>
+            <% @user.friend_requests.each do |friend_request| %>
+            <li>
+              <%= link_to friend_request.user.full_name %>
+              wants to be your friend:
+              <%= button_to 'Accept', friend_request_path(friend_request), method: :patch %>
+            </li>
+            <% end %>
+          </ul>
           <% end %>
-        </ul>
-        <% end %>
-      </div>
+        </div>
 
+      </div>
     </div>
   </div>
 </div>
@@ -53,7 +55,7 @@
 
 <div class="container">
     <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
+      <div class="col-md-10 col-md-offset-1" style="padding: 0;">
         <div class="profile-tabs">
           <a class="profile-tab active" data-target="#competitions">Competitions</a>
           <a class="profile-tab" data-target="#statistics">Statistics</a>
@@ -63,7 +65,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
+      <div class="col-sm-10 col-sm-offset-1" style="padding: 0;">
         <div class="profile-tabs-container">
           <div class="profile-tabs-content" id="competitions">
             <div class="active-competitions-tab">
@@ -155,11 +157,11 @@
           </div>
           <div class="profile-tabs-content hidden" id="statistics">
             <div class="row">
-              <h4 class="text-center">Choose a sport:</h4>
+              <h4 class="text-center" style="margin: 30px 0; font-weight: lighter;">Choose a sport:</h4>
             </div>
             <div class="row">
               <div class="flexbox stat-tabs">
-                <div class="stat-tab active" data-target="#tennis">
+                <div class="stat-tab" data-target="#tennis">
                   <%= image_tag "tennis-ball.png", width: "40px", "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Tennis" %>
                 </div>
                 <div class="stat-tab" data-target="#table-tennis">
@@ -171,14 +173,15 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-10 col-md-offset-1 stat-tabs-content" id="tennis">
-                <%= pie_chart({"wins" => "#{@user.wins_for('Tennis').count}", "losses" => "#{@user.losses_for('Tennis').count}"}) %>
+              <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="tennis">
+                <%= pie_chart({"wins" => "#{@user.wins_for('Tennis').count}", "losses" => "#{@user.losses_for('Tennis').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
               </div>
               <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="table-tennis">
-                <h2 class="text-center">Ping-Pong</h2>
+                <%= pie_chart({"wins" => "#{@user.wins_for('Table-Tennis').count}", "losses" => "#{@user.losses_for('Table-Tennis').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
               </div>
               <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="football">
-                <h2 class="text-center">Football</h2>
+                <%= pie_chart({"wins" => "#{@user.wins_for('Football').count}", "losses" => "#{@user.losses_for('Football').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
+                </div>
               </div>
             </div>
             <!-- <div class="row">
