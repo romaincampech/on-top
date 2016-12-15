@@ -68,22 +68,14 @@
 .profile-tabs {
   background: transparent;
   display: flex;
-  padding: 10px 10px 0 10px;
 
   .profile-tab {
     flex: 0 0 25%;
     background-color: #CACACA;
     text-align: center;
-    margin-top: 15px;
     padding: 15px 0;
     color: white;
 
-    &:first-child {
-      border-radius: 3px 0 0 0;
-    }
-    &:last-child {
-      border-radius: 0 3px 0 0;
-    }
     &.active {
       background-color: #65D06E;
       text-decoration: none;
@@ -98,7 +90,6 @@
 .profile-tabs-container {
   background-color: white;
   height: 50vh;
-  margin: 0 10px 50px 10px;
   border-radius: 0 0 3px 3px;
 
   .active-competitions-tab {
@@ -130,7 +121,17 @@
     }
   }
 
-  #statistics .col-sm-2 {
-    margin-left: 80px;
+  .stat-tabs {
+    margin-bottom: 50px;
+
+    .stat-tab {
+      padding: 5px;
+      opacity: 0.7;
+
+      &.active {
+        border-bottom: 4px solid $green;
+        opacity: 1;
+      }
+    }
   }
 }

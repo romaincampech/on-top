@@ -32,6 +32,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_median (0.1.4)
+      activerecord
     activejob (5.0.0.1)
       activesupport (= 5.0.0.1)
       globalid (>= 0.3.6)
@@ -68,6 +70,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.6)
+    chartkick (2.2.1)
     chosen-rails (1.5.2)
       coffee-rails (>= 3.2)
       railties (>= 3.0)
@@ -106,7 +109,11 @@ GEM
       sass (>= 3.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    groupdate (3.1.1)
+      activesupport (>= 3)
     hashie (3.4.6)
+    hightop (0.1.4)
+      activerecord
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.2.4)
@@ -257,12 +264,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_median
   algoliasearch-rails
   attachinary!
   autoprefixer-rails
   better_errors
   binding_of_caller
   bootstrap-sass
+  chartkick
   chosen-rails
   cloudinary (= 1.1.0)
   coffee-rails
@@ -270,6 +279,8 @@ DEPENDENCIES
   faker
   figaro
   font-awesome-sass
+  groupdate
+  hightop
   jbuilder (~> 2.0)
   jquery-fileupload-rails
   jquery-rails

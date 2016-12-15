@@ -7,4 +7,5 @@
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
 //= require algolia/v3/algoliasearch.min
+//= require chartkick
 //= require_tree .
