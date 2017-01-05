@@ -28,6 +28,7 @@ class Competition < ApplicationRecord
     array.each do |user|
       CompetitionParticipant.create(player: true, user: user, competition: self)
     end
+    CompetitionParticipant.create(player: true, user: User.find(0), competition: self) if self.players.count.odd?
   end
 
   def rem_sample(array)
@@ -37,7 +38,6 @@ class Competition < ApplicationRecord
   def select_round_1
     self.matches.where(round: 1)
   end
-
 
   def assign_matches(category)
     # creating match participants for all first round matches in a knockout

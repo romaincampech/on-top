@@ -26,6 +26,7 @@ class CompetitionsController < ApplicationController
     else
       @competition.number_of_players = params[:competition][:number_of_players]
     end
+    @competition.number_of_players += 1 if @competition.number_of_players.odd?
     @competition.save
     @competition.create_activity :create, owner: current_user
     @competition.create_matches(competition_params)
