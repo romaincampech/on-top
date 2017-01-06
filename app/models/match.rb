@@ -76,16 +76,6 @@ class Match < ApplicationRecord
   end
 
   def assign_winner(score)
-    # if score["set1"]["player_1"] > score["set1"]["player_2"] && score["set2"]["player_1"] > score["set2"]["player_2"]
-    #   self.winner_id = self.players.first.id
-    # elsif score["set1"]["player_1"] > score["set1"]["player_2"] && score["set3"]["player_1"] > score["set3"]["player_2"]
-    #   self.winner_id = self.players.first.id
-    # elsif score["set2"]["player_1"] > score["set2"]["player_2"] && score["set3"]["player_1"] > score["set3"]["player_2"]
-    #   self.winner_id = self.players.first.id
-    # else
-    #   self.winner_id = self.players.last.id
-    # end
-
     # assign winner or draw
     if score["player_set_total"]["player_1"] > score["player_set_total"]["player_2"]
       self.winner_id = self.players.first.id
@@ -94,7 +84,6 @@ class Match < ApplicationRecord
     else
       self.winner_id = 0
     end
-
   end
 
   def league_points
