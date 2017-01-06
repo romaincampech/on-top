@@ -20,7 +20,9 @@ Sport.create!(name: "Football")
 Sport.create!(name: "Basketball")
 Sport.create!(name: "Rugby")
 
-user = User.new(id: 0, first_name: "Drawn", last_name: "Match", email: "draw@test.com", password: "123456", city: "Beijing")
+user = User.new(id: 0, first_name: "No", last_name: "Match", email: "draw@test.com", password: "123456", city: "Beijing")
+url = "app/assets/images/profile-avatar-default.jpg"
+user.photo_url = url
 user.save
 
 user = User.new(first_name: "Julianne", last_name: "Joswiak", email: "Julianne@test.com", password: "123456", city: "London")

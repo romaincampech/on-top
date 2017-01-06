@@ -16,6 +16,7 @@
       <tbody>
         <% x = 1 %>
         <% @competition_participants_by_points.each do |player| %>
+        <% unless player.user_id == 0 %>
         <tr>
           <td><%= x %></td>
           <td><div class="league-table-player"><%= link_to user_path(player.user), "data-toggle" => "tooltip", title: "#{player.user.full_name}" do %>
@@ -29,7 +30,8 @@
           <td><strong><%= player.points %></strong></td>
         </tr>
         <% x += 1 %>
-        <% end %>
+        <% end
+        end %>
       </tbody>
     </table>
   </div>
