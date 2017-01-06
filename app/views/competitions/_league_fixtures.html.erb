@@ -35,12 +35,12 @@
           </div>
           <% end %>
           <% end %>
-          <% if current_user == @competition.creator %>
+          <% if match.players.first.id == 0 || match.players.last.id == 0 %>
+            <p><em>No match</em></p>
+          <% elsif current_user == @competition.creator %>
           <%= link_to "Enter Score", edit_match_path(match), class: 'btn btn-sm result-input-league-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
           <% elsif current_user == match.players.first || current_user == match.players.last %>
           <%= link_to "Enter Score", edit_match_path(match), class: 'btn btn-sm result-input-league-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
-          <% elsif match.players.first.id == 0 || match.players.last.id == 0 %>
-            <p><em>No match</em></p>
           <% else %>
             <p><em><%= match.status %></em></p>
           <% end %>
@@ -69,12 +69,12 @@
             </div>
             <% end %>
             <% end %>
-            <% if current_user == @competition.creator %>
+            <% if match.players.first.id == 0 || match.players.last.id == 0 %>
+            <p><em>No  match</em></p>
+            <% elsif current_user == @competition.creator %>
             <%= link_to "Enter Score", edit_match_path(match), class: 'btn btn-sm result-input-league-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
             <% elsif current_user == match.players.first || current_user == match.players.last %>
             <%= link_to "Enter Score", edit_match_path(match), class: 'btn btn-sm result-input-league-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
-            <% elsif match.players.first.id == 0 || match.players.last.id == 0 %>
-              <p><em>No match</em></p>
             <% else %>
               <p><em><%= match.status %></em></p>
             <% end %>
