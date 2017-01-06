@@ -6,8 +6,13 @@ Rails.application.configure do
   config.cache_classes = true
 
   # Action Cable for Heroku
-  config.web_socket_server_url = "wss://on-top.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = ['https://on-top.herokuapp.com', 'http://on-top.herokuapp.com']
+  # config.web_socket_server_url = "wss://on-top.herokuapp.com/cable"
+  # config.action_cable.allowed_request_origins = ['https://on-top.herokuapp.com', 'http://on-top.herokuapp.com']
+
+  # Action Cable for new domain
+  config.web_socket_server_url = "wss://ontop-beta.com/cable"
+  config.action_cable.allowed_request_origins = ['https://ontop-beta.com', 'http://ontop-beta.com']
+
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
