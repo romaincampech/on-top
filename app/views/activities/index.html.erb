@@ -1,25 +1,17 @@
-<!-- <h1>News Feed</h1>
+<h1>News Feed</h1>
 
-<% @activities.each do |activity| %>
-  <div class="activity">
-    <%= link_to activity.owner.full_name, activity.owner if activity.owner %>
-    created the competitition
-    <% if activity.trackable %>
-      <%= link_to activity.trackable.name, activity.trackable %>
-    <% end %> - <%= timeago_tag activity.created_at, nojs: true, limit: 100.days.ago %>
-
-
-  </div>
-<% end %>
- -->
 <div class="col-md-8 col-md-offset-2">
-  <div class="col-md-12">
+  <div class="col-md-10">
     <%= @activities.each do |activity| %>
       <div class="activity-card" style="background-color: white; margin: 15px;">
+        <%= cl_image_tag activity.owner.photo.path, class: "avatar" %>
         <%= link_to activity.owner.full_name, activity.owner if activity.owner %>
         created the competition:
         <% if activity.trackable %>
           <%= link_to activity.trackable.name, activity.trackable %>
+          <hr>
+          <%= activity.trackable.category %>
+          <%= activity.trackable.number_of_players %> players
         <% end %> -
         <%= timeago_tag activity.created_at, nojs: true, limit: 100.days.ago %>
       </div>
