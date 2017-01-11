@@ -18,7 +18,8 @@ class Competition < ApplicationRecord
 
   validates :creator_id, presence: true
 
-  include PublicActivity::Common
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
 
   def new_chat
     ChatRoom.create(competition: self)

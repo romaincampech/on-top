@@ -8,4 +8,5 @@
 //= require attachinary
 //= require algolia/v3/algoliasearch.min
 //= require chartkick
+//= require rails-timeago-all
 //= require_tree .

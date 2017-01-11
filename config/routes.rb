@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
+  resources :activities, only: [ :index ]
+
   resources :users, only: [ :show ] do
     resources :friend_requests, only: [ :create ]
     get "/infos", to: "users#infos"
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
   resources :friend_requests, only: [:update]
   resources :friendships, only: [ :destroy ]
 
-  resources :activities
+  resources :activities, only: [ :index ]
 
   # for chat
   mount ActionCable.server => '/cable'

@@ -28,6 +28,7 @@ gem "algoliasearch-rails"
 
 gem 'chosen-rails'
 gem 'public_activity'
+gem 'rails-timeago', '~> 2.0'
 
 gem 'chartkick'
 gem 'groupdate'
