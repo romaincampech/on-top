@@ -1,3 +1,5 @@
+/* Displaying fixtures of league competition */
+
 .fixtures-display {
   padding: 10px;
   display: flex;
@@ -23,6 +25,7 @@
   justify-content: center;
 }
 
+/* Tabs for displaying league fixtures */
 .tabs {
   background: $green2;
   display: flex;
@@ -59,6 +62,7 @@
   color: black;
 }
 
+/* League match */
 .card-match-league {
   display: flex;
   justify-content: space-around;

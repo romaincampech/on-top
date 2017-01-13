@@ -3,6 +3,7 @@
   background: #F4F4F4;
 }
 
+/* Container containing knockout skeleton or league table */
 .board-container {
   // flex: 1;
   height: calc(100vh - 70px);
@@ -13,12 +14,35 @@
   }
 }
 
+.board-header {
+  height: 70px;
+  justify-content: space-between;
+  padding: 0 30px;
+  h1, p {
+    margin: 0;
+  }
+  h1 {
+    font-weight: bold;
+    margin-bottom: 7px;
+  }
+  .left p {
+    font-weight: lighter;
+    color: #a7a7a7;
+  }
+  .right p {
+    font-weight: bold;
+    font-size: 18px;
+    color: #8D8D8D;
+  }
+}
+
 .scroller_anchor{
   height:0px;
   margin:0;
   padding:0;
 }
 
+/* Container for chat features */
 .chat-container {
   width: 30%;
   background: white;
@@ -48,28 +72,7 @@
   }
 }
 
-.board-header {
-  height: 70px;
-  justify-content: space-between;
-  padding: 0 30px;
-  h1, p {
-    margin: 0;
-  }
-  h1 {
-    font-weight: bold;
-    margin-bottom: 7px;
-  }
-  .left p {
-    font-weight: lighter;
-    color: #a7a7a7;
-  }
-  .right p {
-    font-weight: bold;
-    font-size: 18px;
-    color: #8D8D8D;
-  }
-}
-
+/* Enter score modal */
 .modal {
   margin: 0 50px;
 }
@@ -77,6 +80,35 @@
   background: #f7f7f7;
   border: none;
 }
+
+.modal-content {
+  table {
+    border-collapse: collapse;
+    border: 1px solid #CDCDCD;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    height: 71px;
+    width: 350px;
+    height: 220px;
+    td input {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      text-align: center;
+    }
+    th, td {
+      color: #999;
+      border: 1px solid #CDCDCD;
+      padding: 8px 8px;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 14px;
+    }
+    th {
+      font-weight: 600;
+    }
+  }
+}
+
 .modal-footer {
   border: none;
   padding: 0;
