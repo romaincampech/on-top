@@ -1,31 +1,4 @@
-.modal-content {
-  table {
-    border-collapse: collapse;
-    border: 1px solid #CDCDCD;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    height: 71px;
-    width: 350px;
-    height: 220px;
-    td input {
-      width: 50px;
-      height: 50px;
-      font-size: 20px;
-      text-align: center;
-    }
-    th, td {
-      color: #999;
-      border: 1px solid #CDCDCD;
-      padding: 8px 8px;
-      border-collapse: collapse;
-      text-align: center;
-      font-size: 14px;
-    }
-    th {
-      font-weight: 600;
-    }
-  }
-}
-
+/* Final score display */
 .score-form-tennis {
   display: flex;
   justify-content: center;

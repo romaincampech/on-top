@@ -39,11 +39,6 @@
     <h4>Round: <%= round_number %></h4>
     <% @competition.matches.where(round: round_number).each do |match| %>
 
-      <div class="card-match-league" id=<% if match.played? %>
-        <% "card-played-league" %>
-        <% else %>
-        <% "#{match.match_number}" %>
-        <% end %>>
 
         <% if match.played? %>
 
