@@ -1,4 +1,30 @@
-<h1>News Feed</h1>
+<div class="flexbox">
+  <div class="newsfeed-container">
+    <div class="newsfeed-content flexbox-center">
+      <% @activities.each do |activity| %>
+        <div class="newsfeed-card">
+          <%= cl_image_tag activity.owner.photo.path, class: "avatar" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="venuesearch-container">
+    <div class="venuesearch-content flexbox-center">
+      hello
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <h1>News Feed</h1>
 
 <div class="col-md-8 col-md-offset-2">
   <div class="col-md-10">
@@ -17,4 +43,4 @@
       </div>
     <% end %>
   </div>
-</div>
+</div> -->
