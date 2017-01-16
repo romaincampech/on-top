@@ -51,8 +51,8 @@ class Competition < ApplicationRecord
     # creating match participants for all matches in league competition
     else
       games = self.players.to_a.combination(2).to_a
+      mn = 1
       games.each do |fixture|
-        mn = 1
         MatchParticipant.create(player: fixture[0], match: self.matches.where(match_number: mn).first)
         MatchParticipant.create(player: fixture[1], match: self.matches.where(match_number: mn).first)
         mn += 1
@@ -130,7 +130,7 @@ class Competition < ApplicationRecord
           round_number += 1
         end
     else
-      ((self.number_of_players ** 2) / 2) - (self.number_of_players / 2).times do
+      (((self.number_of_players ** 2) - self.number_of_players) / 2).times do
         Match.create(competition_id: self.id, status: "To be played", match_number: match_number += 1)
       end
     end
