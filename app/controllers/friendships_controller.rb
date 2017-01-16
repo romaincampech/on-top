@@ -1,7 +1,8 @@
 class FriendshipsController < ApplicationController
 
   def index
-    @friends = current_user.friends
+    @user = User.find(params[:user_id])
+    @friends = policy_scope(@user.friends)
   end
 
   def destroy
