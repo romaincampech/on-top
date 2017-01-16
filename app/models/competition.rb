@@ -28,7 +28,7 @@ class Competition < ApplicationRecord
     array.each do |user|
       CompetitionParticipant.create(player: true, user: user, competition: self)
     end
-    CompetitionParticipant.create(player: true, user: User.find(0), competition: self) if self.players.count.odd?
+    # CompetitionParticipant.create(player: true, user: User.find(0), competition: self) if self.players.count.odd?
   end
 
   def rem_sample(array)
@@ -51,27 +51,11 @@ class Competition < ApplicationRecord
     # creating match participants for all matches in league competition
     else
       games = self.players.to_a.combination(2).to_a
-      fixtures = {}
-      y = 1
-      until y == self.number_of_players
-        round = []
-        mn = 0
-        until round.count == (self.number_of_players / 2)
-          unless round.flatten.include?(games[mn][0]) || round.flatten.include?(games[mn][1])
-            round << games[mn]
-            games.delete_at(mn)
-          else
-            mn += 1
-          end
-        end
-        x = ((self.number_of_players / 2)*y - ((self.number_of_players / 2) - 1))
-        round.each do |fixture|
-          MatchParticipant.create(player: fixture[0], match: self.matches.where(match_number: x).first)
-          MatchParticipant.create(player: fixture[1], match: self.matches.where(match_number: x).first)
-          x += 1
-        end
-        fixtures["round_#{y}"] = round
-        y += 1
+      mn = 1
+      games.each do |fixture|
+        MatchParticipant.create(player: fixture[0], match: self.matches.where(match_number: mn).first)
+        MatchParticipant.create(player: fixture[1], match: self.matches.where(match_number: mn).first)
+        mn += 1
       end
     end
   end
@@ -146,11 +130,8 @@ class Competition < ApplicationRecord
           round_number += 1
         end
     else
-      until round_number == self.number_of_players
-        (self.number_of_players / 2).times do
-          Match.create(competition_id: self.id, round: round_number, status: "To be played", match_number: match_number += 1)
-          end
-        round_number += 1
+      (((self.number_of_players ** 2) - self.number_of_players) / 2).times do
+        Match.create(competition_id: self.id, status: "To be played", match_number: match_number += 1)
       end
     end
   end
