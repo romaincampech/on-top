@@ -167,6 +167,9 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships, :foreign_key => 'friend_id'
 
+  def friendlist
+    self.friends.reject{|u| u == self}
+  end
 
   def get_friendship(friend)
     friend.friendships.select{|fr| fr.friend == self}.first

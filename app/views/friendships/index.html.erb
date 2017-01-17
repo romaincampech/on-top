@@ -1,1 +1,71 @@
-<h1>oi</h1>
+<div class="container">
+  <div class="row" style="margin-top: 50px;">
+    <div class="col-xs-8 col-md-3 go-back">
+      <%= link_to user_path(@user) do %>
+        <i class="fa fa-long-arrow-left fa-lg" aria-hidden="true"></i>
+        <h5>Back to <span><%= @user.first_name %></span>'s profile</h5>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="flexbox-center">
+      <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 30px;">
+    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 friendlist-header">
+      <%= cl_image_tag(@user.photo.path, class: "avatar-friendlist") %>
+      <h4><%= @user.full_name %>'</h4>
+      <h5>s friends</h5>
+      <p>(<%= @user.friends.count - 1 %>)</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 friendlist-content">
+      <% @user.friendlist.each do |friend| %>
+        <div class="col-xs-12 col-md-6">
+          <div class="card-friendlist">
+            <% if friend.photo %>
+              <%= link_to user_path(friend) do %>
+                <%= cl_image_tag(friend.photo.path, class: "card-friendlist-photo") %>
+              <% end %>
+            <% else %>
+              <%= image_tag "profile-avatar-default.jpg", class: "card-friendlist-photo" %>
+            <% end %>
+            <div class="card-friendlist-name">
+              <%= link_to user_path(friend) do %>
+                <%= friend.full_name %>
+              <% end %>
+            </div>
+            <div class="card-friendlist-city">
+              <i class="fa fa-map-marker"></i>
+              <%= friend.city %>
+            </div>
+            <div class="card-friendlist-friendship">
+              <% if current_user.pending_friends.include?(friend) %>
+                <div class="card-friendlist-friendship-pending-btn">
+                  <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                  Pending
+                </div>
+              <% elsif !current_user.friends.include?(friend) %>
+                <%= link_to user_friend_requests_path(friend), method: :post do %>
+                  <div class="card-friendlist-friendship-friend-btn">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Add Friend
+                  </div>
+                <% end %>
+              <% else %>
+                <%= link_to friendship_path(friend.get_friendship(current_user), {user_id: friend.id}), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <div class="card-friendlist-friendship-unfriend-btn">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    Unfriend
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -14,7 +14,7 @@
               <li><i class="fa fa-map-marker"></i> <h4 style="display: inline;"><%= @user.city %></h4></li>
               <li><i class="fa fa-users" aria-hidden="true"></i>
                 <p style="display: inline;">
-                  <%= link_to '#' do %>
+                  <%= link_to user_friendships_path(@user) do %>
                   <%= @user.friends.count - 1 %> friends
                   <% end %>
                 </p>

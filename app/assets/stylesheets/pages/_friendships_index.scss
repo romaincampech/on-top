@@ -1,0 +1,129 @@
+.go-back {
+  margin-left: 30px;
+  i {
+    float: left;
+  }
+  h5 {
+    position: relative;
+    bottom: 12px;
+    left: 10px;
+    span {
+      color: $green;
+    }
+  }
+  a {
+    color: #404040;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.friendlist-header {
+  background-color: #F6F7F9;
+  padding: 15px;
+  border-radius: 2px 2px 0 0;
+  border: 1px solid #D3D6DB;
+  img {
+    float: left;
+  }
+  h4 {
+    position: relative;
+    float: left;
+    padding-top: 5px;
+    padding-left: 10px;
+  }
+  h5 {
+    position: relative;
+    float: left;
+    padding-top: 9px;
+  }
+  p {
+    position: relative;
+    float: left;
+    padding-top: 21px;
+    padding-left: 5px;
+    color: #89919C;
+    font-size: 12px;
+  }
+}
+
+.friendlist-content {
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 50px;
+  border-radius: 0 0 2px 2px;
+  border-right: 1px solid #D3D6DB;
+  border-bottom: 1px solid #D3D6DB;
+  border-left: 1px solid #D3D6DB;
+}
+
+// Card friendlist
+.card-friendlist {
+  border: 1px solid #D3D6DB;
+  margin: 7px 3px;
+  height: 100px;
+  position: relative;
+  img {
+    height: 98px;
+    width: 98px;
+    border-right: 1px solid #D3D6DB;
+  }
+}
+.card-friendlist-photo {
+  position: absolute;
+}
+.card-friendlist-name {
+  position: absolute;
+  top: 15px;
+  left: 110px;
+  a {
+    color: #333333;
+  }
+}
+.card-friendlist-city {
+  position: absolute;
+  top: 35px;
+  left: 110px;
+  font-size: 12px;
+  color: #89919C;
+}
+.card-friendlist-friendship {
+  position: absolute;
+  bottom: 7px;
+  right: 5px;
+  a:hover {
+    color: #333333;
+    text-decoration: none;
+  }
+}
+.card-friendlist-friendship-friend-btn {
+  background-color: $green;
+  border-radius: 2px;
+  padding: 5px;
+  color: white;
+  font-size: 12px;
+  &:hover {
+    background-color: #3EC149;
+  }
+}
+.card-friendlist-friendship-pending-btn {
+  background-color: #E9EBEE;
+  border: 1px solid #D3D6DB;
+  border-radius: 2px;
+  padding: 5px;
+  color: #333333;
+  font-size: 12px;
+}
+.card-friendlist-friendship-unfriend-btn {
+  background-color: #E9EBEE;
+  border: 1px solid #D3D6DB;
+  border-radius: 2px;
+  padding: 5px;
+  color: #333333;
+  font-size: 12px;
+  &:hover {
+    background-color: #E2E5E9;
+  }
+}
