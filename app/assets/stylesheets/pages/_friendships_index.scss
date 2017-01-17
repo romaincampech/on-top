@@ -1,5 +1,5 @@
 .go-back {
-  margin-left: 40px;
+  margin-left: 30px;
   i {
     float: left;
   }
@@ -37,12 +37,12 @@
   h5 {
     position: relative;
     float: left;
-    padding-top: 10px;
+    padding-top: 9px;
   }
   p {
     position: relative;
     float: left;
-    padding-top: 22px;
+    padding-top: 21px;
     padding-left: 5px;
     color: #89919C;
     font-size: 12px;
@@ -58,8 +58,38 @@
   border-left: 1px solid #D3D6DB;
 }
 
+// Card friendlist
 .card-friendlist {
   border-radius: 0 0 1px 1px;
   border: 1px solid #D3D6DB;
   margin: 7px 3px;
+  height: 100px;
+  position: relative;
+  img {
+    height: 98px;
+    width: 98px;
+    border-right: 1px solid #D3D6DB;
+  }
+}
+.card-friendlist-photo {
+  position: absolute;
+}
+.card-friendlist-name {
+  position: absolute;
+  top: 15px;
+  left: 110px;
+  a {
+    color: #333333;
+  }
+}
+.card-friendlist-city {
+  position: absolute;
+  top: 35px;
+  left: 110px;
+  font-size: 12px;
+  color: #89919C;
+}
+.card-friendlist-friendship {
+  bottom: 10px;
+  right: 10px;
 }
