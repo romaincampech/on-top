@@ -91,6 +91,39 @@
 }
 .card-friendlist-friendship {
   position: absolute;
-  bottom: -5px;
-  right: 10px;
+  bottom: 7px;
+  right: 5px;
+  a:hover {
+    color: #333333;
+    text-decoration: none;
+  }
+}
+.card-friendlist-friendship-friend-btn {
+  background-color: $green;
+  border-radius: 2px;
+  padding: 5px;
+  color: white;
+  font-size: 12px;
+  &:hover {
+    background-color: #3EC149;
+  }
+}
+.card-friendlist-friendship-pending-btn {
+  background-color: #E9EBEE;
+  border: 1px solid #D3D6DB;
+  border-radius: 2px;
+  padding: 5px;
+  color: #333333;
+  font-size: 12px;
+}
+.card-friendlist-friendship-unfriend-btn {
+  background-color: #E9EBEE;
+  border: 1px solid #D3D6DB;
+  border-radius: 2px;
+  padding: 5px;
+  color: #333333;
+  font-size: 12px;
+  &:hover {
+    background-color: #E2E5E9;
+  }
 }

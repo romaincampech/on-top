@@ -43,13 +43,24 @@
             </div>
             <div class="card-friendlist-friendship">
               <% if current_user.pending_friends.include?(friend) %>
-                <div class="request-sent">
-                  Friend request sent
+                <div class="card-friendlist-friendship-pending-btn">
+                  <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                  Pending
                 </div>
-                <% elsif !current_user.friends.include?(friend) %>
-                <%= link_to 'Add Friend', user_friend_requests_path(friend), class: "btn-friend", method: :post unless current_user == friend %>
-                <% else %>
-                <%= link_to 'Unfriend', friendship_path(friend.get_friendship(current_user), {user_id: friend.id}), class: "btn-unfriend", method: :delete, data: { confirm: "Are you sure?" } unless current_user == friend %>
+              <% elsif !current_user.friends.include?(friend) %>
+                <%= link_to user_friend_requests_path(friend), method: :post do %>
+                  <div class="card-friendlist-friendship-friend-btn">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Add Friend
+                  </div>
+                <% end %>
+              <% else %>
+                <%= link_to friendship_path(friend.get_friendship(current_user), {user_id: friend.id}), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <div class="card-friendlist-friendship-unfriend-btn">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    Unfriend
+                  </div>
+                <% end %>
               <% end %>
             </div>
           </div>
