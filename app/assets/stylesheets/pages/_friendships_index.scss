@@ -52,6 +52,7 @@
 .friendlist-content {
   background-color: white;
   padding: 15px;
+  margin-bottom: 50px;
   border-radius: 0 0 2px 2px;
   border-right: 1px solid #D3D6DB;
   border-bottom: 1px solid #D3D6DB;
@@ -60,7 +61,6 @@
 
 // Card friendlist
 .card-friendlist {
-  border-radius: 0 0 1px 1px;
   border: 1px solid #D3D6DB;
   margin: 7px 3px;
   height: 100px;
@@ -90,6 +90,7 @@
   color: #89919C;
 }
 .card-friendlist-friendship {
-  bottom: 10px;
+  position: absolute;
+  bottom: -5px;
   right: 10px;
 }

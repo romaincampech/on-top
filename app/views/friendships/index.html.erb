@@ -42,7 +42,15 @@
               <%= friend.city %>
             </div>
             <div class="card-friendlist-friendship">
-
+              <% if current_user.pending_friends.include?(friend) %>
+                <div class="request-sent">
+                  Friend request sent
+                </div>
+                <% elsif !current_user.friends.include?(friend) %>
+                <%= link_to 'Add Friend', user_friend_requests_path(friend), class: "btn-friend", method: :post unless current_user == friend %>
+                <% else %>
+                <%= link_to 'Unfriend', friendship_path(friend.get_friendship(current_user), {user_id: friend.id}), class: "btn-unfriend", method: :delete, data: { confirm: "Are you sure?" } unless current_user == friend %>
+              <% end %>
             </div>
           </div>
         </div>
