@@ -1,11 +1,12 @@
 .footer-container {
-  height: 160px;
-  margin-top: 30px;
+  min-height: 150px;
+  margin-top: 75px;
   background-color: #1A1A1A;
 }
 
 .footer-list {
   flex: 0 0 20%;
+  margin-top: 20px;
   ul {
     padding: 0;
     list-style: none;
@@ -30,8 +31,28 @@
 
 .credits {
   font-size: 10px;
-  color: white;
+  color: $green;
   font-weight: lighter;
   opacity: 0.8;
-  padding-top: 4px;
+  margin: 8px 0;
+}
+
+@media (max-width: 750px) {
+  .footer-container {
+    padding: 0;
+  }
+  .footer-list {
+    ul {
+      li:first-child {
+        font-size: 10px;
+      }
+      a {
+        font-size: 7px;
+      }
+    }
+  }
+
+  .credits {
+    font-size: 6px;
+  }
 }
