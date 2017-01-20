@@ -6,22 +6,21 @@
   </div>
 </div>
 
-<div class="col-md-8 col-md-offset-2 text-center margin-me">
+<div class="col-xs-12 col-md-8 col-md-offset-2 text-center margin-me">
 
     <label class="control-label select optional label-style" for="competition_number_of_players">Choose a # of teams:</label>
 
-     <select class="form-control select optional" name="competition[number_of_teams]" id="competition_number_of_teams"><option value=""></option>
+     <select class="col-xs-12 form-control select optional" name="competition[number_of_teams]" id="competition_number_of_teams"><option value=""></option>
        <option value="2">2</option>
        <option value="4">4</option>
        <option value="8">8</option>
        <option value="16">16</option>
-       <option value="32">32</option>
      </select>
 </div>
 <div class="row">
   <% Sport.all.each do |sport| %>
   <div class="col-md-12 text-center hide team-dropdown-selection" id="dropdown-selection-<%= sport.id %>">
-   <select class="form-control select optional chosen-select" data-placeholder=" " multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
+   <select class="col-xs-12 form-control select optional chosen-select" data-placeholder=" " multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
     <% current_user.friend_captain_teams_for(sport).each do |team| %>
       <option value="<%= team.captain.id %>"><%= team.name %></option>
     <% end %>
@@ -30,7 +29,7 @@
   <% end %>
 </div>
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
     <ul class="team-competition-new-participants"></ul>
   </div>
 </div>
