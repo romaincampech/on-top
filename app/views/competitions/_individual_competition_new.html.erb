@@ -6,14 +6,14 @@
   </div>
 </div>
 
-<div class="col-md-8 col-md-offset-2 text-center margin-me-individ">
+<div class="col-xs- 12 col-md-8 col-md-offset-2 text-center margin-me-individ">
   <%= f.input :number_of_players, label: 'Choose a # of players:', :label_html => {:class => 'label-style'}, collection: [2, 4, 5, 7, 8, 16, 32], prompt: "How many?" %>
 </div>
 <div class="row">
-  <div class="col-md-8 col-md-offset-2 text-center">
+  <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
     <label class="control-label select optional label-style" style="margin-top: 0px">Choose your players</label>
     <br>
-    <select class="form-control select optional chosen-select individual-chosen-select" data-placeholder=" " multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
+    <select class="col-xs-12 form-control select optional chosen-select individual-chosen-select" data-placeholder=" " multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
       <% current_user.friends.each do |friend| %>
         <option value="<%= friend.id %>"><%= friend.first_name %> <%= friend.last_name %>
         </option>
@@ -22,7 +22,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
     <ul class="competition-new-participants"></ul>
   </div>
 </div>
