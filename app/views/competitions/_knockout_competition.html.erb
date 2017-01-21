@@ -3,7 +3,7 @@
   <% until round_number - 1 == @rounds do %>
   <div class=<%= "flex-" + "#{@rounds}" %>>
     <% @competition.matches.order("match_number asc").select { |r| r.round == round_number }.each do |match| %>
-    <div class="card-match" id=<%= "#{match.match_number}" %>>
+    <div class="card-match" >
       <% if match.played? %>
 
       <div class="card-final-score">
@@ -30,17 +30,23 @@
 
 
       <% if current_user == @competition.creator %>
-      <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn' %>
+      <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', id: "#{match.match_number}", 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
       <% elsif current_user == match.players.first || current_user == match.players.last %>
-      <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn' %>
+      <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', id: "#{match.match_number}", 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
       <% else %>
       <p><em><%= match.status %></em></p>
       <% end %>
-      <div class="edit-score" id=<%= "#{match.match_number}_link" %>>
-        <%= render 'matches/edit_two', match: match %>
-      </div>
+        <div class="edit-score" id=<%= "edit-#{match.match_number}" %>>
+          <%= render 'matches/edit_two', match: match %>
+        </div>
       <% end %>
-
+      <script>
+        $(document).ready(function(){
+          $("#<%= "#{match.match_number}" %>").click(function() {
+            $("#<%= "{}edit-#{match.match_number}" %>").slideToggle("slow");
+          });
+        });
+      </script>
     </div>
 
     <%= render 'champion', match: match if match.played? && round_number == @rounds %>
@@ -49,3 +55,4 @@
   <% round_number += 1 %>
   <% end %>
 </div>
+
