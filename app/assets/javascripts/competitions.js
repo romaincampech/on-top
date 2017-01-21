@@ -1,3 +1,11 @@
+// for (i=1; i=21; i++) {
+//  $(document).ready(function(){
+//   $("#${i}").click(function() {
+//     $("#edit-${i}").slideToggle(800);
+//   });
+// });
+// }
+
 $(document).ready(function(){
   $("#1").click(function() {
     $("#edit-1").slideToggle(800);
@@ -99,20 +107,17 @@ $(document).ready(function(){
   });
 });
 
-
 $(document).ready(function(){
   $("#16").click(function() {
     $("#edit-16").slideToggle(800);
   });
 });
 
-
 $(document).ready(function(){
   $("#17").click(function() {
     $("#edit-17").slideToggle(800);
   });
 });
-
 
 $(document).ready(function(){
   $("#18").click(function() {
