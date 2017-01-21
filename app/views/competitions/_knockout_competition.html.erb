@@ -40,17 +40,11 @@
           <%= render 'matches/edit_two', match: match %>
         </div>
       <% end %>
-      <script>
-        $(document).ready(function(){
-          $("#<%= "#{match.match_number}" %>").click(function() {
-            $("#<%= "{}edit-#{match.match_number}" %>").slideToggle("slow");
-          });
-        });
-      </script>
+
     </div>
 
     <%= render 'champion', match: match if match.played? && round_number == @rounds %>
-    <% end %>
+    <% end%>
   </div>
   <% round_number += 1 %>
   <% end %>
