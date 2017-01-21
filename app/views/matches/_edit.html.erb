@@ -2,14 +2,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-
         <div class="text-center">
           <%= image_tag "score.png", width: "100px" %>
           <h4>Enter score</h4>
         </div>
       </div>
       <%= render "matches/#{@competition.sport.name.downcase}_score_form", match: match %>
-
       </div>
     </div>
   </div>

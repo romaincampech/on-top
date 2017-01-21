@@ -11,6 +11,8 @@
 // // Set focus to the first element
 // $('#edit').on('shown.bs.modal', function () {
 //     $('.first_input').focus()
-//   })
-$("<%= #{@match.match_number} %>").removeClass("card-versus").addClass("card-final-score");
-$(".card-final-score").append("<%= j render 'matches/final_score_#{@competition.sport.name.downcase}', match: match %>");
+// //   })
+// $(".result-input-btn").click(function(){
+//   $("#<%= '#{match.match_number}' %>").removeClass("card-versus").addClass("card-final-score");
+//   $(".card-final-score").append("<%= j render 'matches/final_score_#{@competition.sport.name.downcase}', match: match %>");
+// });

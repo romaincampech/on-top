@@ -3,11 +3,7 @@
   <% until round_number - 1 == @rounds do %>
   <div class=<%= "flex-" + "#{@rounds}" %>>
     <% @competition.matches.order("match_number asc").select { |r| r.round == round_number }.each do |match| %>
-    <div class="card-match" id=<% if match.played? %>
-      <% "card-played" %>
-      <% else %>
-      <% "#{match.match_number}" %>
-      <% end %>>
+    <div class="card-match" id=<%= "#{match.match_number}" %>>
       <% if match.played? %>
 
       <div class="card-final-score">
@@ -34,13 +30,15 @@
 
 
       <% if current_user == @competition.creator %>
-      <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+      <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn' %>
       <% elsif current_user == match.players.first || current_user == match.players.last %>
-      <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+      <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn' %>
       <% else %>
       <p><em><%= match.status %></em></p>
       <% end %>
-      <%= render 'matches/edit', match: match %>
+      <div class="edit-score" id=<%= "#{match.match_number}_link" %>>
+        <%= render 'matches/edit_two', match: match %>
+      </div>
       <% end %>
 
     </div>
