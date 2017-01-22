@@ -1,0 +1,52 @@
+<div class="fixtures-header">
+  <h4><strong>League Fixtures/Results</strong></h4>
+</div>
+<div class="fixtures-display">
+  <div class="tabs">
+    <% @competition.players.each do |player| %>
+    <a class="fixtures-tab" data-target=<%= "##{player.first_name}" %>>
+      <h4><%= player.first_name %></h4>
+    </a>
+    <% end %>
+  </div>
+
+  <div class="league-fixtures">
+    <% @competition.players.each do |player|%>
+    <div class="fixtures hidden" id=<%= "#{player.first_name}" %>>
+      <% @competition.matches.each do |match| %>
+      <% if match.players.first == player || match.players.last == player %>
+      <div class="match-league" >
+      <% if match.players.first %>
+        <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
+        <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
+        </div>
+        <% end %>
+        <% end %>
+        <span>vs</span>
+        <% if match.players.last != match.players.first %>
+        <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
+        <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
+        </div>
+        <% end %>
+        <% end %>
+        <% if current_user == @competition.creator %>
+          <%= link_to "Enter Score", edit_match_path(match), class: 'btn btn-sm league-result-input-btn', id: "#{match.match_number}" %>
+        <% elsif current_user == match.players.first || current_user == match.players.last %>
+          <%= link_to "Enter Score", edit_match_path(match), class: 'btn btn-sm league-result-input-btn', id: "#{match.match_number}" %>
+        <% else %>
+          <p><em><%= match.status %></em></p>
+        <% end %>
+      </div>
+      <div class="score-form" id="edit-<%="#{match.match_number}" %>">
+        <%= match.match_number %>
+        <ul>
+          <li>Shit</li>
+          <li>Face</li>
+        </ul>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

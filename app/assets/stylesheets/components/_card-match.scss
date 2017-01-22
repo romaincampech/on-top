@@ -83,6 +83,26 @@
   height: 60px;
 }
 
+.match-league {
+  height: 70px;
+  width: 300px;
+  border: 1px solid lightgrey;
+  display: flex;
+  justify-content: space-around;
+  .league-result-input-btn {
+    background-color: $green2;
+    color: white;
+    text-decoration: none;
+    width: 30%;
+  }
+  .league-result-input-btn:hover {
+    background-color: $green;
+    color: white;
+    text-decoration: none;
+    box-shadow: 1px 1px 3px #d9d9d9;
+  }
+}
+
 .edit-score {
   display: none;
 }
