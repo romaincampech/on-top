@@ -30,9 +30,9 @@
         <% end %>
         <% end %>
         <% if current_user == @competition.creator %>
-          <%= link_to "Enter Score", edit_match_path(match), class: 'btn btn-sm league-result-input-btn', id: "#{match.match_number}" %>
+          <div class="btn btn-sm league-result-input-btn", id=<%= "#{match.match_number}" %>>Enter Score</div>
         <% elsif current_user == match.players.first || current_user == match.players.last %>
-          <%= link_to "Enter Score", edit_match_path(match), class: 'btn btn-sm league-result-input-btn', id: "#{match.match_number}" %>
+          <div class="btn btn-sm league-result-input-btn", id=<%= "#{match.match_number}" %>>Enter Score</div>
         <% else %>
           <p><em><%= match.status %></em></p>
         <% end %>

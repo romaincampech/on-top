@@ -84,16 +84,24 @@
 }
 
 .match-league {
-  height: 70px;
+  height: 60px;
   width: 300px;
-  border: 1px solid lightgrey;
+  padding-top: 9px;
+  // border: 1px solid #F3F3F3;
   display: flex;
   justify-content: space-around;
+  vertical-align: center;
+  margin: 5px;
+  span {
+    color: $red;
+    padding-top: 8px;
+  }
   .league-result-input-btn {
     background-color: $green2;
     color: white;
     text-decoration: none;
-    width: 30%;
+    height: 40px;
+    padding-top: 8px;
   }
   .league-result-input-btn:hover {
     background-color: $green;
