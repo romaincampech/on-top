@@ -15,7 +15,7 @@
     <div class="fixtures hidden" id=<%= "#{player.first_name}" %>>
       <% @competition.matches.each do |match| %>
       <% if match.players.first == player || match.players.last == player %>
-      <div class="match-league" >
+      <div class="match-league" id=<%= "match#{match.match_number}" %>>
       <% if match.players.first %>
         <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
         <div class="avatar-div" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
@@ -38,11 +38,7 @@
         <% end %>
       </div>
       <div class="score-form" id="edit-<%="#{match.match_number}" %>">
-        <%= match.match_number %>
-        <ul>
-          <li>Shit</li>
-          <li>Face</li>
-        </ul>
+        <%= render 'matches/edit_two', match: match %>
       </div>
       <% end %>
       <% end %>
@@ -50,3 +46,5 @@
     <% end %>
   </div>
 </div>
+
+

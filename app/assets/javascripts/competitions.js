@@ -1,10 +1,3 @@
-// for (i=1; i=21; i++) {
-//  $(document).ready(function(){
-//   $("#${i}").click(function() {
-//     $("#edit-${i}").slideToggle(800);
-//   });
-// });
-// }
 
 $(document).ready(function(){
   $("#1").click(function() {

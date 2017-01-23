@@ -2,4 +2,4 @@
   <%= image_tag "score.png", width: "40px" %>
   <h5>Enter score</h5>
 </div>
-<%= render "matches/#{@competition.sport.name.downcase}_score_form", match: match %>
+<%= render "matches/score_form_#{@competition.sport.name.downcase}", match: match %>

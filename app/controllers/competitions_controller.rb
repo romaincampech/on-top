@@ -1,5 +1,5 @@
 class CompetitionsController < ApplicationController
-  before_action :set_competition, only: [:show]
+  before_action :set_competition, only: [:show, :update]
 
   def show
     @rounds = @competition.number_of_rounds(@competition.category)
@@ -34,6 +34,13 @@ class CompetitionsController < ApplicationController
     @competition.assign_matches if @competition.players.count == @competition.number_of_players
     @competition.new_chat
     redirect_to competition_path(@competition)
+  end
+
+  def update
+    respond_to do |format|
+    #   format.html { redirect_to competition_path(@match.competition_id) }
+      format.js
+    end
   end
 
   private

@@ -14,11 +14,10 @@ class MatchesController < ApplicationController
     else
       @match.last_match_knockout(@competition)
     end
-    # respond_to do |format|
-    #   format.html {
-    redirect_to competition_path(@match.competition_id)
-    #   format.js
-    # end
+    respond_to do |format|
+    #   format.html { redirect_to competition_path(@match.competition_id) }
+      format.js { :location => competition_path(@match.competition_id), method: :patch }
+    end
   end
 
   def show
