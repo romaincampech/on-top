@@ -24,60 +24,90 @@ body {
   padding: 0;
 }
 
-.home-page-background {
-  background-image: linear-gradient(-225deg, rgba(30,30,30,0.4) 30%, rgba(46,46,46,0.4) 80%), image-url('champion.jpeg');
+
+
+
+// landing main
+.landing-main {
+  background-image: linear-gradient(-225deg, rgba(30,30,30,0.2) 30%, rgba(46,46,46,0.2) 80%), url('landing.jpg');
   background-size: cover;
-  background-position: 50% 30%;
-  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 90vh;
+}
+.landing-header {
+  padding: 15px 35px;
+  img {
+    width: 130px;
+  }
+  a {
+    color: white;
+    font-weight: lighter;
+    font-size: 15px;
+  }
+}
+.landing-headline {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin-top: 150px;
+  color: white;
   h1 {
     font-size: 60px;
     font-weight: bold;
-    color: white;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   }
   p {
-    font-size: 30px;
     opacity: 0.7;
+    font-size: 30px;
     font-weight: lighter;
-    color: white;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   }
 }
-
-// h1 {
-//   color: white;
-//   font-size: 80px;
-//   font-weight: 900;
-//   // font-family: 'Coda', cursive;
-// }
-
-// h3 {
-//   color: white;
-//   font-size: 50px;
-//   font-weight: 700;
-//   // font-family: 'Coda', cursive;
-// }
-
-.home-signup-btn {
-  background-color: #53C75C;
-  opacity: 0.9;
+.landing-btn {
   color: white;
-  border: none;
-  width: 180px;
-  padding: 10px;
-  margin: 0 5px;
-  border-radius: 3px;
-  box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
-  font-size: 19px;
-  font-weight: bold;
-  margin-top: 15px;
-
+  font-size: 20px;
+  opacity: 0.9;
+  background-color: $green;
+  padding: 12px 30px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  margin-top: 50px;
+  border-radius: 2px;
   &:hover {
-    opacity: 1;
-    box-shadow: 1px 1px 3px rgba(80,80,80,0.5);
+    color: white;
+    text-decoration: none;
+    background-color: #50BF5B;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
+}
+
+// landing how it works
+.landing-how {
+  h2 {
+    text-align: center;
+  }
+}
+.landing-icons {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 130px;
+    margin-bottom: 35px;
+  }
+    li {
+      margin: 20px 0;
+      h4 {
+        font-weight: lighter;
+      }
+    }
+}
+.landing-future {
+  margin-top: 75px;
+  img {
+    width: 40px;
+    margin-left: 40px;
+  }
+  h5 {
+    margin-right: 40px;
   }
 }

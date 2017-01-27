@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
+#root: activity feed for logged in users / landing page for logged out users
+  authenticated :user do
+    root to: 'activities#index', as: :authenticated_root
+  end
+  root to: 'pages#home'
+
   resources :matches, only: [:update, :edit, :show]
 
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   mount Attachinary::Engine => "/attachinary"
-
-  root to: 'pages#home'
 
   resources :users, only: [ :show ] do
     resources :friend_requests, only: [ :create ]
@@ -15,8 +19,6 @@ Rails.application.routes.draw do
   end
   resources :friend_requests, only: [:update]
   resources :friendships, only: [ :destroy ]
-
-  resources :activities
 
   # for chat
   mount ActionCable.server => '/cable'

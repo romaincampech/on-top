@@ -1,4 +1,4 @@
-<div class="home-page-background">
+<!-- <div class="home-page-background">
 
   <div class="home-content">
     <h1>Create.Compete.Compare.</h1>
@@ -8,4 +8,53 @@
     </div>
   </div>
 
+</div> -->
+
+<div class="landing-main">
+  <div class="landing-header flexbox-between">
+    <%= image_tag('logo-white.png') %>
+    <%=  link_to user_session_path do %>
+      Log in
+    <% end %>
+  </div>
+  <div class="landing-headline">
+    <h1>Create.Compete.Compare.</h1>
+    <p>Become the best player among your friends</p>
+  </div>
+  <div class="flexbox-center">
+    <%= link_to "Start Now", new_user_session_path, class: "landing-btn" %>
+  </div>
 </div>
+
+<div class="landing-how">
+  <h2>HOW IT WORKS</h2>
+  <div class="col-xs-12 col-md-4 landing-icons">
+    <%= image_tag('landing-icon-1.png') %>
+    <ul>
+      <li><h4>Find <b>friends</b></h4></li>
+      <li><h4>Create your <b>teams</b></h4></li>
+      <li><h4>Create your <b>Knockouts/leagues</b> in a few clicks</h4></li>
+    </ul>
+  </div>
+  <div class="col-xs-12 col-md-4 landing-icons">
+    <%= image_tag('landing-icon-2.png') %>
+    <ul>
+      <li><h4>Play sport & Be a <b>hero</b> on the pitch/court ;)</h4></li>
+      <li><h4>Discuss on the competition <b>chat</b></h4></li>
+    </ul>
+  </div>
+  <div class="col-xs-12 col-md-4 landing-icons">
+    <%= image_tag('landing-icon-3.png') %>
+    <ul>
+      <li><h4>Compare your <b>statistics</b> to your friends'</h4></li>
+      <li><h4>Check your <b>activity feed</b> with your friends' latest results</h4></li>
+    </ul>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <div class="flexbox landing-future">
+      <%= image_tag('alarm.png') %>
+      <h5>More exciting features coming up soon!</h5>
+    </div>
+  </div>
+</div>
+
