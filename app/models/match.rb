@@ -11,6 +11,14 @@ class Match < ApplicationRecord
     self.winner_id?
   end
 
+  def player_one
+    self.players[0]
+  end
+
+  def player_two
+    self.players[1]
+  end
+
   def set_build_score(params)
     score = {}
 

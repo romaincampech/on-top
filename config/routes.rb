@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :matches, only: [:update, :edit, :show]
+  resources :matches, only: [:index, :update, :edit, :show]
 
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
@@ -31,3 +31,5 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 end
+
+

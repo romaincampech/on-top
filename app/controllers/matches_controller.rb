@@ -1,5 +1,9 @@
 class MatchesController < ApplicationController
-  before_action :set_match
+  before_action :set_match, except: [:index]
+
+  def index
+    @matches = Match.all
+  end
 
   def edit
   end
@@ -15,8 +19,8 @@ class MatchesController < ApplicationController
       @match.last_match_knockout(@competition)
     end
     respond_to do |format|
-    #   format.html { redirect_to competition_path(@match.competition_id) }
-      format.js { :location => competition_path(@match.competition_id), method: :patch }
+      format.html { redirect_to competition_path(@match.competition_id) }
+      format.js # { :location => competition_path(@match.competition_id), method: :patch }
     end
   end
 

@@ -1,3 +1,11 @@
+// $(document).ready(function(){
+//   for (var i = 1; i < 211; i++) {
+//     $("#" + i + "").click(function() {
+//       $("#edit-" + i + "").slideToggle(800);
+//       console.log(i);
+//     }s);
+//   }
+// });
 
 $(document).ready(function(){
   $("#1").click(function() {

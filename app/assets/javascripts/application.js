@@ -8,4 +8,7 @@
 //= require attachinary
 //= require algolia/v3/algoliasearch.min
 //= require chartkick
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .

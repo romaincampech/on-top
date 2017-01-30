@@ -36,12 +36,12 @@ class CompetitionsController < ApplicationController
     redirect_to competition_path(@competition)
   end
 
-  def update
-    respond_to do |format|
-    #   format.html { redirect_to competition_path(@match.competition_id) }
-      format.js
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #   #   format.html { redirect_to competition_path(@match.competition_id) }
+  #     format.js
+  #   end
+  # end
 
   private
 
