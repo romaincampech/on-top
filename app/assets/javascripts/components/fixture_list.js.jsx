@@ -3,9 +3,10 @@ var FixtureList = React.createClass ({
     return (
       <div>
         {this.props.matches.map(function(match){
-          return <Match match={match} key={match.id} />;
-        })}
+          return <Match match={match} key={match.id}/>;
+        })
+      }
       </div>
-      );
+    );
   }
 });

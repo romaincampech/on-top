@@ -9,6 +9,7 @@ class CompetitionsController < ApplicationController
       @competition.winner_match_assignment
     elsif @competition.category == "League"
       @competition_participants_by_points = @competition.competition_participants.order('points DESC')
+      @matches = Match.where(competition_id: @competition.id)
     end
   end
 

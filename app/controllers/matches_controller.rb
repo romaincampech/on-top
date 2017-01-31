@@ -1,9 +1,9 @@
 class MatchesController < ApplicationController
   before_action :set_match, except: [:index]
 
-  def index
-    @matches = Match.all
-  end
+  # def index
+  #   @matches = Match.all
+  # end
 
   def edit
   end
