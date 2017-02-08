@@ -1,4 +1,11 @@
 var FixtureList = React.createClass ({
+  getInitialState: function() {
+    return {
+      fixtures: this.props.matches,
+      match_complete: false
+    }
+  },
+
   render: function() {
     return (
       <div>

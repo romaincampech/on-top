@@ -11,20 +11,13 @@
   </div>
 
   <div class="league-fixtures">
-    <% @competition.players.each do |player|%>
-    <div class="fixtures hidden" id=<%= "#{player.first_name}" %>>
-      <% @competition.matches.each do |match| %>
-      <% if match.player_one == player || match.player_two == player %>
-      <%= react_component "FixtureList",
-        render(template: 'matches/index.json.jbuilder') %>
-      <div class="score-form" id="edit-<%="#{match.match_number}" %>">
-        <%= render 'matches/edit_two', match: match %>
-      </div>
-      <% end %>
-      <% end %>
+    <%= react_component "FixtureList",
+        render(template: 'matches/index.json.jbuilder'),
+        prerender: true %>
+
     </div>
-    <% end %>
-  </div>
+
+
 </div>
 
 

@@ -5,11 +5,11 @@ class CompetitionsController < ApplicationController
     @rounds = @competition.number_of_rounds(@competition.category)
     @chat_room = ChatRoom.includes(:messages).find_by(competition_id: @competition.id)
     @message = Message.new
+    # @matches = Match.where(competition_id: @competition.id)
     if @competition.category == "Knockout"
       @competition.winner_match_assignment
     elsif @competition.category == "League"
       @competition_participants_by_points = @competition.competition_participants.order('points DESC')
-      @matches = Match.where(competition_id: @competition.id)
     end
   end
 

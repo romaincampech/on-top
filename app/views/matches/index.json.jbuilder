@@ -1,4 +1,5 @@
-json.matches @matches do |match|
+
+json.matches @competition.matches do |match|
 
     json.partial! 'matches/match', match: match
 
