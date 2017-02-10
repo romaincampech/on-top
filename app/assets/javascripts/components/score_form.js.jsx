@@ -1,4 +1,16 @@
 var ScoreForm = React.createClass({
+
+  handleSubmit: function(e){
+    e.preventDefault();
+    this.props.onFormSubmit();
+  },
+
+  handleChange: function(e) {
+    var name = e.target.name;
+    var points = e.target.value;
+    this.props.onUserInput(name, points);
+  },
+
   render: function(){
     return (
       <div>
@@ -6,7 +18,7 @@ var ScoreForm = React.createClass({
           <img src="images/score.png" width="60px" />
           <h4>Enter score</h4>
         </div>
-        <form className="score-form-tennis">
+        <form className="score-form-tennis" onSubmit={this.handleSubmit} >
           <table>
             <thead>
               <tr>
@@ -22,15 +34,15 @@ var ScoreForm = React.createClass({
             <tbody>
               <tr>
                 <th>{this.props.match.player_one.first_name}</th>
-                <td><input type="number" name="set1player1" /></td>
-                <td><input type="number" name="set2player1" /></td>
-                <td><input type="number" name="set3player1" /></td>
+                <td><input type="number" name="set1player1" onChange={this.handleChange} /></td>
+                <td><input type="number" name="set2player1" onChange={this.handleChange} /></td>
+                <td><input type="number" name="set3player1" onChange={this.handleChange} /></td>
               </tr>
               <tr>
                 <th>{this.props.match.player_two.first_name}</th>
-                <td><input type="number" name="set1player2" /></td>
-                <td><input type="number" name="set2player2" /></td>
-                <td><input type="number" name="set3player2" /></td>
+                <td><input type="number" name="set1player2" onChange={this.handleChange} /></td>
+                <td><input type="number" name="set2player2" onChange={this.handleChange} /></td>
+                <td><input type="number" name="set3player2" onChange={this.handleChange} /></td>
               </tr>
             </tbody>
           </table>

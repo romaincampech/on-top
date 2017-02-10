@@ -19,28 +19,28 @@ class Match < ApplicationRecord
     self.players[1]
   end
 
-  def set_build_score(params)
+  def set_build_score(score_params)
     score = {}
 
     set_1 = {}
-    set_1[:player_1] = params["set1player1"].to_i
-    set_1[:player_2] = params["set1player2"].to_i
+    set_1[:player_1] = score_params["set1player1"].to_i
+    set_1[:player_2] = score_params["set1player2"].to_i
     score[:set1] = set_1
     set_2 = {}
-    set_2[:player_1] = params["set2player1"].to_i
-    set_2[:player_2] = params["set2player2"].to_i
+    set_2[:player_1] = score_params["set2player1"].to_i
+    set_2[:player_2] = score_params["set2player2"].to_i
     score[:set2] = set_2
     set_3 = {}
-    set_3[:player_1] = params["set3player1"].to_i
-    set_3[:player_2] = params["set3player2"].to_i
+    set_3[:player_1] = score_params["set3player1"].to_i
+    set_3[:player_2] = score_params["set3player2"].to_i
     score[:set3] = set_3
     set_4 = {}
-    set_4[:player_1] = params["set4player1"].to_i
-    set_4[:player_2] = params["set4player2"].to_i
+    set_4[:player_1] = score_params["set4player1"].to_i
+    set_4[:player_2] = score_params["set4player2"].to_i
     score[:set4] = set_4
     set_5 = {}
-    set_5[:player_1] = params["set5player1"].to_i
-    set_5[:player_2] = params["set5player2"].to_i
+    set_5[:player_1] = score_params["set5player1"].to_i
+    set_5[:player_2] = score_params["set5player2"].to_i
     score[:set5] = set_5
 
     # calculate which player has won each set and count the sets won

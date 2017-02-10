@@ -1,7 +1,9 @@
 var Match = React.createClass({
   getInitialState: function() {
     return {
-      display_form: false
+      display_form: false,
+      match_complete: false,
+      score_params: {}
     };
   },
 
@@ -9,6 +11,24 @@ var Match = React.createClass({
     this.setState(prevState => ({
       display_form: !prevState.display_form
     }));
+  },
+
+  handleUserInput: function(name, points) {
+    var score = this.state.score_params;
+    score[name] = points;
+    console.log(score);
+    this.setState({score_params: score});
+  },
+
+  handleFormSubmit: function(score_params) {
+   var that = this;
+    $.ajax({
+      type: 'PUT',
+      url: Routes.match_path(this.props.match.id, { format: 'json' }),
+      success: function(data) {
+        that.setState({ product: data });
+      }
+    });
   },
 
   render: function(){
@@ -28,7 +48,8 @@ var Match = React.createClass({
         </div>
         <div>
           {display_form && <ScoreForm match={this.props.match}
-          key={this.props.match.id} />}
+          key={this.props.match.id} onFormSubmit={this.handleFormSubmit}
+          onUserInput={this.handleUserInput} />}
         </div>
       </div>
     );

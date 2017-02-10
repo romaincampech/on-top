@@ -9,7 +9,7 @@ class MatchesController < ApplicationController
   end
 
   def update
-    @match.set_build_score(params)
+    @match.set_build_score(score_params)
     @winner = @match.assign_winner(@match.score)
     @competition = @match.competition
     @match.save
