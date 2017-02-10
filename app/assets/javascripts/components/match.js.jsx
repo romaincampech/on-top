@@ -26,7 +26,10 @@ var Match = React.createClass({
         <div id={this.props.match.match_number}>
           <button onClick={this.handleToggleClick} >Enter Score</button>
         </div>
-        {display_form && <ScoreForm match={this.props.match} key={this.props.match.id} />}
+        <div>
+          {display_form && <ScoreForm match={this.props.match}
+          key={this.props.match.id} />}
+        </div>
       </div>
     );
   }
