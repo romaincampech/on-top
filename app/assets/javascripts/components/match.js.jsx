@@ -16,18 +16,14 @@ var Match = React.createClass({
   handleUserInput: function(name, points) {
     var score = this.state.score_params;
     score[name] = points;
-    console.log(score);
     this.setState({score_params: score});
   },
 
   handleFormSubmit: function(score_params) {
-   var that = this;
-    $.ajax({
-      type: 'PUT',
-      url: Routes.match_path(this.props.match.id, { format: 'json' }),
-      success: function(data) {
-        that.setState({ product: data });
-      }
+   var match = {id: this.props.match.id, score_params: this.state.score_params};
+   $.ajax({
+    type: 'PATCH',
+    url: Routes.match_path(match)
     });
   },
 

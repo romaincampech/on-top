@@ -9,7 +9,7 @@ class MatchesController < ApplicationController
   end
 
   def update
-    @match.set_build_score(score_params)
+    @match.set_build_score(match.score_params)
     @winner = @match.assign_winner(@match.score)
     @competition = @match.competition
     @match.save
@@ -35,6 +35,6 @@ class MatchesController < ApplicationController
   end
 
   def match_params
-    params.require(:match).permit(:id)
+    params.require(:match).permit(:id, :score_params)
   end
 end
