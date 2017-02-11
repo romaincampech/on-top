@@ -9,7 +9,11 @@ class MatchesController < ApplicationController
   end
 
   def update
-    @match.set_build_score(match.score_params)
+    if @match.competition.category == "League"
+      @match.set_build_score(params["score_params"])
+    else
+      @match.set_build_score(params)
+    end
     @winner = @match.assign_winner(@match.score)
     @competition = @match.competition
     @match.save
@@ -20,7 +24,7 @@ class MatchesController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to competition_path(@match.competition_id) }
-      format.js # { :location => competition_path(@match.competition_id), method: :patch }
+      format.json # { :location => competition_path(@match.competition_id), method: :patch }
     end
   end
 

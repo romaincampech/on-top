@@ -1,6 +1,7 @@
 var Match = React.createClass({
   getInitialState: function() {
     return {
+      match: this.props.match,
       display_form: false,
       match_complete: false,
       score_params: {}
@@ -13,17 +14,24 @@ var Match = React.createClass({
     }));
   },
 
+
   handleUserInput: function(name, points) {
     var score = this.state.score_params;
     score[name] = points;
+    console.log(score);
     this.setState({score_params: score});
+    this.state.match.score_params = this.state.score_params;
   },
 
-  handleFormSubmit: function(score_params) {
-   var match = {id: this.props.match.id, score_params: this.state.score_params};
-   $.ajax({
-    type: 'PATCH',
-    url: Routes.match_path(match)
+  handleFormSubmit: function() {
+    console.log(this.state.match);
+    $.ajax({
+      type: 'PATCH',
+      url: '/matches/' + this.props.match.id,
+      data: {score_params: this.state.match.score_params},
+      success: function() {
+        console.log('you did it!!!');
+      }
     });
   },
 

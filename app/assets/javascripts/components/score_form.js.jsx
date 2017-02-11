@@ -14,10 +14,6 @@ var ScoreForm = React.createClass({
   render: function(){
     return (
       <div>
-        <div className="text-center">
-          <img src="images/score.png" width="60px" />
-          <h4>Enter score</h4>
-        </div>
         <form className="score-form-tennis" onSubmit={this.handleSubmit} >
           <table>
             <thead>

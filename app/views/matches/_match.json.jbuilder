@@ -1,4 +1,4 @@
-json.extract! match, :id, :competition_id, :match_number, :round, :player_one, :player_two, :status, :score, :winner
+json.extract! match, :id, :competition_id, :match_number, :round, :player_one, :player_two, :status, :score, :winner ,:score_params
 
 # json.players do
 #   json.extract! match.players, :photo
