@@ -24,7 +24,7 @@ class MatchesController < ApplicationController
     end
     respond_to do |format|
       format.html { redirect_to competition_path(@match.competition_id) }
-      format.json # { :location => competition_path(@match.competition_id), method: :patch }
+      format.json
     end
   end
 
