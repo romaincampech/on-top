@@ -11,20 +11,17 @@ class MatchesController < ApplicationController
   def update
     if @match.competition.category == "League"
       @match.set_build_score(params["score_params"])
-    else
-      @match.set_build_score(params)
-    end
-    @winner = @match.assign_winner(@match.score)
-    @competition = @match.competition
-    @match.save
-    if @match.competition.category == "League"
+      @winner = @match.assign_winner(@match.score)
+      @competition = @match.competition
+      @match.save
       @match.league_points
     else
+      @match.set_build_score(params)
+      @winner = @match.assign_winner(@match.score)
+      @competition = @match.competition
+      @match.save
       @match.last_match_knockout(@competition)
-    end
-    respond_to do |format|
-      format.html { redirect_to competition_path(@match.competition_id) }
-      format.json
+      redirect_to competition_path(@match.competition_id)
     end
   end
 

@@ -9,6 +9,7 @@ var Match = React.createClass({
   },
 
   handleToggleClick: function() {
+    console.log('shit');
     this.setState(prevState => ({
       display_form: !prevState.display_form
     }));
@@ -28,32 +29,28 @@ var Match = React.createClass({
     $.ajax({
       type: 'PATCH',
       url: '/matches/' + this.props.match.id,
-      data: {score_params: this.state.match.score_params},
-      success: function() {
-        console.log('you did it!!!');
-      }
-    });
+      dataType: 'json',
+      data: {score_params: this.state.match.score_params}
+    }).done(function(data) {
+        this.setState({match: data});
+        this.setState({match_complete: true});
+      }.bind(this));
+    this.setState({display_form: false});
   },
 
   render: function(){
     var display_form = this.state.display_form
+    var match_complete = this.state.match_complete
 
     return (
-      <div className="match-league" id={this.props.match.match_number}>
+      <div>
+        {match_complete ? <FinalScore match={this.state.match}
+            key={this.props.match.id}/> : <Fixture match={this.props.match}
+            key={this.props.match.id} toggleClick={this.handleToggleClick} />}
         <div>
-          {this.props.match.player_one.first_name}
-        </div>
-        <span>vs</span>
-        <div>
-          {this.props.match.player_two.first_name}
-        </div>
-        <div id={this.props.match.match_number}>
-          <button onClick={this.handleToggleClick} >Enter Score</button>
-        </div>
-        <div>
-          {display_form && <ScoreForm match={this.props.match}
-          key={this.props.match.id} onFormSubmit={this.handleFormSubmit}
-          onUserInput={this.handleUserInput} />}
+            {display_form && <ScoreForm match={this.props.match}
+            key={this.props.match.id} onFormSubmit={this.handleFormSubmit}
+            onUserInput={this.handleUserInput} />}
         </div>
       </div>
     );
