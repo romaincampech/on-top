@@ -19,6 +19,10 @@ class Match < ApplicationRecord
     self.players[1]
   end
 
+  def competition_participants
+    self.competition.players.sort
+  end
+
   def set_build_score(params)
     score = {}
 

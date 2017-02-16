@@ -9,7 +9,6 @@ var Match = React.createClass({
   },
 
   handleToggleClick: function() {
-    console.log('shit');
     this.setState(prevState => ({
       display_form: !prevState.display_form
     }));
@@ -19,13 +18,11 @@ var Match = React.createClass({
   handleUserInput: function(name, points) {
     var score = this.state.score_params;
     score[name] = points;
-    console.log(score);
     this.setState({score_params: score});
     this.state.match.score_params = this.state.score_params;
   },
 
   handleFormSubmit: function() {
-    console.log(this.state.match);
     $.ajax({
       type: 'PATCH',
       url: '/matches/' + this.props.match.id,
@@ -36,6 +33,7 @@ var Match = React.createClass({
         this.setState({match_complete: true});
       }.bind(this));
     this.setState({display_form: false});
+    console.log(this.state.match);
   },
 
   render: function(){
@@ -44,13 +42,15 @@ var Match = React.createClass({
 
     return (
       <div>
-        {match_complete ? <FinalScore match={this.state.match}
-            key={this.props.match.id}/> : <Fixture match={this.props.match}
-            key={this.props.match.id} toggleClick={this.handleToggleClick} />}
         <div>
-            {display_form && <ScoreForm match={this.props.match}
-            key={this.props.match.id} onFormSubmit={this.handleFormSubmit}
-            onUserInput={this.handleUserInput} />}
+          {match_complete ? <FinalScore match={this.state.match}
+          key={this.props.match.id}/> : <Fixture match={this.props.match}
+          key={this.props.match.id} toggleClick={this.handleToggleClick} />}
+        </div>
+        <div>
+          {display_form && <ScoreForm match={this.props.match}
+          key={this.props.match.id} onFormSubmit={this.handleFormSubmit}
+          onUserInput={this.handleUserInput} />}
         </div>
       </div>
     );

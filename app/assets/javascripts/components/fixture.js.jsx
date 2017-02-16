@@ -1,7 +1,6 @@
 var Fixture = React.createClass({
   handleClick: function(e){
     e.preventDefault();
-
     this.props.toggleClick();
   },
 

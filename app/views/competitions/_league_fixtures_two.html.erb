@@ -3,7 +3,7 @@
 </div>
 <div class="fixtures-display">
   <div class="tabs">
-    <% @competition.players.each do |player| %>
+    <% @competition.players.sort.each do |player| %>
     <a class="fixtures-tab" data-target=<%= "##{player.first_name}" %>>
       <h4><%= player.first_name %></h4>
     </a>
@@ -12,7 +12,7 @@
 
   <div class="league-fixtures">
     <%= react_component "FixtureList",
-        render(template: 'matches/index.json.jbuilder') %>
+        render(template: 'matches/index.json.jbuilder', players: @competition.players.sort) %>
 
   </div>
 
