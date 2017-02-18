@@ -1,28 +1,14 @@
-<!-- <div class="home-page-background">
-
-  <div class="home-content">
-    <h1>Create.Compete.Compare.</h1>
-    <p>Become the best player among your friends</p>
-    <div class="home-buttons form-inline">
-      <%= button_to "Start now", new_user_session_path, class: "home-signup-btn", method: :get %>
-    </div>
-  </div>
-
-</div> -->
-
 <div class="landing-main">
   <div class="landing-header flexbox-between">
     <%= image_tag('logo-white.png') %>
-    <%=  link_to user_session_path do %>
-      Log in
-    <% end %>
+    <%=  link_to "Log in", new_user_session_path %>
   </div>
   <div class="landing-headline">
     <h1>Create.Compete.Compare.</h1>
     <p>Become the best player among your friends</p>
   </div>
   <div class="flexbox-center">
-    <%= link_to "Start Now", new_user_session_path, class: "landing-btn" %>
+    <%= link_to "Start Now", new_user_session_path, class: "landing-btn", 'data-toggle' => "modal", 'data-target' => "#newSession", method: :get %>
   </div>
 </div>
 
