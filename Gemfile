@@ -34,6 +34,9 @@ gem 'groupdate'
 gem 'active_median'
 gem 'hightop'
 
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
+
 
 group :development, :test do
   gem 'binding_of_caller'
