@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   end
   root to: 'pages#home'
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   resources :matches, only: [:update, :edit, :show]
 
   devise_for :users,
