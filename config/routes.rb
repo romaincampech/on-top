@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   authenticated :user do
     root to: 'activities#index', as: :authenticated_root
   end
-  root to: 'pages#home'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
@@ -34,4 +33,16 @@ Rails.application.routes.draw do
   resources :teams, only: [:new, :create, :show] do
     resources :messages, only: [:create]
   end
+
+  #Pages
+    #Home
+      root to: 'pages#home'
+    #About
+      get 'about', to: 'pages#about'
+    #Get Started
+      get 'start', to: 'pages#start'
+    #Feedbacks
+      get 'feedbacks', to: 'pages#feedbacks'
 end
+
+
