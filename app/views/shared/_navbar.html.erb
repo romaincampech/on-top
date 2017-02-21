@@ -12,7 +12,7 @@
     <!-- Right navigation -->
     <div class="navbar-right">
         <%= link_to "Create a competition", new_competition_path, class: "navbar-wagon-link navbar-wagon-item", method: :get %>
-        <%= link_to "Create a team", new_team_path, class: "navbar-wagon-link navbar-wagon-item", style: "margin-right: 10px;", method: :get %>
+        <%# link_to "Create a team", new_team_path, class: "navbar-wagon-link navbar-wagon-item", style: "margin-right: 10px;", method: :get %>
         <!-- Search form -->
         <%= render 'shared/searchform' %>
 
@@ -74,7 +74,7 @@
      templates: {
             //'suggestion' templating function used to render a single suggestion
             suggestion: function(suggestion) {
-              var link = "<form action='<%= ENV['HOST'] %>users/" + suggestion.id + "/friend_requests' method='post' id='addfriend' style='color: lightgreen'> <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'> <button type='submit' name='user_id' value='" + suggestion.id + "' class='btn-link'>Add</button></form>";
+              var link = "<form action='<%= ENV['HOST'] %>users/" + suggestion.id + "/friend_requests' method='post' id='addfriend' style='color: lightgreen'> <input name='authenticity_token' value='<%= form_authenticity_token %>' type='hidden'> <button type='submit' name='user_id' value='" + suggestion.id + "' class='btn-link'><i class='fa fa-plus-circle fa-lg' aria-hidden='true'></i></button></form>";
               var card = "<span>" + "<img src=<%= ENV['CLOUDINARY_SECOND_URL']  %>" + suggestion.photo.path + " alt='' class='avatar'> " +
                 suggestion._highlightResult.first_name.value + " " + suggestion._highlightResult.last_name.value + "</span><span>" + link +"</span>";
 
