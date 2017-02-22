@@ -15,7 +15,8 @@ var Fixture = React.createClass({
           {this.props.match.player_two.first_name}
         </div>
         <div id={this.props.match.match_number}>
-          <button onClick={this.handleClick} >Enter Score</button>
+          <button className="league-result-input-btn"
+            onClick={this.handleClick} >Enter Score</button>
         </div>
       </div>
     );

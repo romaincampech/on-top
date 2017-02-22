@@ -1,6 +1,9 @@
 /* Final score display */
 .score-form-tennis {
   justify-content: center;
+  table {
+    margin: auto;
+  }
   input {
     width: 40px;
   }

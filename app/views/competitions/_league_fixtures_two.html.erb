@@ -9,14 +9,10 @@
     </a>
     <% end %>
   </div>
-
   <div class="league-fixtures">
     <%= react_component "FixtureList",
         render(template: 'matches/index.json.jbuilder', players: @competition.players.sort) %>
-
   </div>
-
-
 </div>
 
 
