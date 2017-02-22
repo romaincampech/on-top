@@ -14,7 +14,7 @@ var ScoreForm = React.createClass({
   render: function(){
     return (
       <div>
-        <form className="score-form-tennis" onSubmit={this.handleSubmit} >
+        <form className="score-form-league tennis" onSubmit={this.handleSubmit} >
           <table>
             <thead>
               <tr>
