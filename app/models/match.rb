@@ -11,6 +11,18 @@ class Match < ApplicationRecord
     self.winner_id?
   end
 
+  def player_one
+    self.players[0]
+  end
+
+  def player_two
+    self.players[1]
+  end
+
+  def competition_participants
+    self.competition.players.sort
+  end
+
   def set_build_score(params)
     score = {}
 
@@ -78,9 +90,9 @@ class Match < ApplicationRecord
   def assign_winner(score)
     # assign winner or draw
     if score["player_set_total"]["player_1"] > score["player_set_total"]["player_2"]
-      self.winner_id = self.players.first.id
+      self.winner_id = self.player_one.id
     elsif score["player_set_total"]["player_1"] < score["player_set_total"]["player_2"]
-      self.winner_id = self.players.last.id
+      self.winner_id = self.player_two.id
     else
       self.winner_id = 0
     end
