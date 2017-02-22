@@ -89,16 +89,25 @@
   padding-top: 9px;
   border: 1px solid #F3F3F3;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   vertical-align: center;
   margin: 5px;
   span {
     color: $red;
-    padding-top: 2px;
+  }
+  .versus {
+    padding-top: 5px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    .player {
+      width: 50px;
+    }
   }
   .league-result-input-btn {
     background-color: $green;
     color: white;
+    font-size: 12px;
     border-radius: 4px;
     text-decoration: none;
     height: 30px;
@@ -110,6 +119,36 @@
     box-shadow: 1px 1px 3px #d9d9d9;
   }
 }
+
+.score-form-league {
+  justify-content: center;
+  width: 220px;
+  margin: auto;
+  padding-bottom: 10px;
+  table {
+    margin: auto;
+    width: 220px;
+  }
+  input {
+    width: 40px;
+  }
+  th, td {
+    color: #999;
+    border: 1px solid #CDCDCD;
+    padding: 2px;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 13px;
+  }
+  th {
+    font-weight: 600;
+  }
+}
+
+.score-form {
+  display: none;
+}
+
 
 .edit-score {
   display: none;
