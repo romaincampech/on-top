@@ -343,9 +343,13 @@ DEPENDENCIES
   puma
   pundit
   rails (= 5.0.0.1)
+<<<<<<< HEAD
   rails-assets-classnames!
   rails_admin (>= 1.0.0.rc)
   react-rails (~> 1.8)
+=======
+  rails_admin (>= 1.0.0.rc)
+>>>>>>> master
   redis
   remotipart!
   sass-rails

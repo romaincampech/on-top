@@ -16,10 +16,8 @@
   </head>
   <body>
 
-    <% if params[:action] == "home" %>
-      <%= render 'shared/navbar_home' %>
-    <% else %>
-       <%= render 'shared/navbar' %>
+    <% unless params[:action] == "home" %>
+      <%= render 'shared/navbar' %>
     <% end %>
 
     <%= render 'shared/flashes' %>
