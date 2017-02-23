@@ -3,7 +3,6 @@ var Match = React.createClass({
     return {
       match: this.props.match,
       display_form: false,
-      match_complete: false,
       score_params: {}
     };
   },
@@ -30,7 +29,7 @@ var Match = React.createClass({
       data: {score_params: this.state.match.score_params}
     }).done(function(data) {
         this.setState({match: data});
-        this.setState({match_complete: true});
+
       }.bind(this));
     this.setState({display_form: false});
     console.log(this.state.match);
@@ -38,12 +37,18 @@ var Match = React.createClass({
 
   render: function(){
     var display_form = this.state.display_form
-    var match_complete = this.state.match_complete
+    var match_complete = function() {
+      if (this.state.match.status == 'Played'){
+        return true;
+      } else {
+        return false;
+      }
+    };
 
     return (
       <div>
         <div>
-          {match_complete ? <FinalScore match={this.state.match}
+          {match_complete? <FinalScore match={this.props.match}
           key={this.props.match.id}/> : <Fixture match={this.props.match}
           key={this.props.match.id} toggleClick={this.handleToggleClick} />}
         </div>
