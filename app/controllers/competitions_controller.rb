@@ -1,10 +1,11 @@
 class CompetitionsController < ApplicationController
-  before_action :set_competition, only: [:show]
+  before_action :set_competition, only: [:show, :update]
 
   def show
     @rounds = @competition.number_of_rounds(@competition.category)
     @chat_room = ChatRoom.includes(:messages).find_by(competition_id: @competition.id)
     @message = Message.new
+    # @matches = Match.where(competition_id: @competition.id)
     if @competition.category == "Knockout"
       @competition.winner_match_assignment
     elsif @competition.category == "League"
@@ -35,6 +36,13 @@ class CompetitionsController < ApplicationController
     @competition.new_chat
     redirect_to competition_path(@competition)
   end
+
+  # def update
+  #   respond_to do |format|
+  #   #   format.html { redirect_to competition_path(@match.competition_id) }
+  #     format.js
+  #   end
+  # end
 
   private
 

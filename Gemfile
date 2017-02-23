@@ -34,9 +34,15 @@ gem 'groupdate'
 gem 'active_median'
 gem 'hightop'
 
+gem 'js-routes', '~> 1.3'
+gem 'react-rails', '~> 1.8'
+
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-classnames'
+end
 
 group :development, :test do
   gem 'binding_of_caller'
