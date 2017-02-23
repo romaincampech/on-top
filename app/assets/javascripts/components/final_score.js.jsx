@@ -1,4 +1,5 @@
 var FinalScore = React.createClass({
+
   render: function(){
     return(
       <div>
@@ -17,19 +18,19 @@ var FinalScore = React.createClass({
               <th className="text-center">
                 {this.props.match.player_one.first_name}
               </th>
-              <th>{this.props.match.score["player_set_total"]["player_1"]}</th>
-              <td>{this.props.match.score["set1"]["player_1"]}</td>
-              <td>{this.props.match.score["set2"]["player_1"]}</td>
-              <td>{this.props.match.score["set3"]["player_1"]}</td>
+              <th>0</th>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
             </tr>
             <tr>
               <th className="text-center">
                 {this.props.match.player_two.first_name}
               </th>
-              <th>{this.props.match.score["player_set_total"]["player_2"]}</th>
-              <td>{this.props.match.score["set1"]["player_2"]}</td>
-              <td>{this.props.match.score["set2"]["player_2"]}</td>
-              <td>{this.props.match.score["set3"]["player_2"]}</td>
+              <th>0</th>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
             </tr>
           </tbody>
         </table>
