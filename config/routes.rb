@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
 #root: activity feed for logged in users / landing page for logged out users
-  authenticated :user do
-    root to: 'activities#index', as: :authenticated_root
-  end
+  # authenticated :user do
+  #   root to: 'users#show', as: :authenticated_root
+  # end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
