@@ -31,7 +31,7 @@ var Match = React.createClass({
       dataType: 'json',
       data: {score_params: this.props.match.score_params}
     }).done(function(data) {
-        this.setState({match: data});
+        this.props.setMatch;
       }.bind(this));
     this.setState({display_form: false});
   },
