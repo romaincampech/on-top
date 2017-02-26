@@ -1,6 +1,6 @@
 var PlayerFixtures = React.createClass({
-  updateMatch: function() {
-    this.props.updateMatch();
+  updateMatch: function(data) {
+    this.props.updateMatches(data);
   },
 
   render: function() {

@@ -47,12 +47,24 @@
 }
 
 .league-final-score {
-  display: flex;
-  justify-content: space-around;
-  width: 350px;
-  padding: 20px;
-  border: 1px solid lightgrey;
-  border-radius: 1px;
+  border-collapse: collapse;
+  border: 1px solid #CDCDCD;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  margin: 2px;
+  height: 90px;
+  th, td {
+    color: #999;
+    border: 1px solid #CDCDCD;
+    padding: 2px 5px 2px 5px;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 15px;
+  }
+  th {
+    font-weight: 600;
+  }
+  tr {
+    th:first-child {
+      width: 120px;
+    }
+  }
 }
