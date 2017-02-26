@@ -1,7 +1,6 @@
 var Match = React.createClass({
   getInitialState: function() {
     return {
-      match: this.props.match,
       display_form: false,
       score_params: {}
     };
@@ -13,12 +12,15 @@ var Match = React.createClass({
     }));
   },
 
+  onMatchUpdate: function(data) {
+    this.props.matchUpdate(data);
+  },
 
   handleUserInput: function(name, points) {
     var score = this.state.score_params;
     score[name] = points;
     this.setState({score_params: score});
-    this.state.match.score_params = this.state.score_params;
+    this.props.match.score_params = this.state.score_params;
   },
 
   handleFormSubmit: function() {
@@ -26,22 +28,20 @@ var Match = React.createClass({
       type: 'PATCH',
       url: '/matches/' + this.props.match.id,
       dataType: 'json',
-      data: {score_params: this.state.match.score_params}
+      data: {score_params: this.props.match.score_params}
     }).done(function(data) {
-        this.setState({match: data});
-
+        this.props.onScoreSubmit(data);
       }.bind(this));
     this.setState({display_form: false});
-    console.log(this.props.match);
   },
 
   render: function(){
     var display_form = this.state.display_form
     var match_display;
 
-    if (this.state.match.status === 'Played') {
+    if (this.props.match.status === 'Played') {
       match_display = (
-        <FinalScore match={this.state.match}
+        <FinalScore match={this.props.match}
         key={'finalscore' + this.props.match.id}/>
       )
     } else {
