@@ -8,7 +8,7 @@ class Match < ApplicationRecord
   has_many :players, :class_name => 'User', :foreign_key => 'player_id', through: :match_participants
 
   def played?
-    self.winner_id?
+    self.winner_id ? self.status = "Played" : self.status = "To be played"
   end
 
   def player_one
@@ -96,6 +96,7 @@ class Match < ApplicationRecord
     else
       self.winner_id = 0
     end
+    self.status = "Played"
   end
 
   def league_points

@@ -3,7 +3,6 @@ var Match = React.createClass({
     return {
       match: this.props.match,
       display_form: false,
-      match_complete: false,
       score_params: {}
     };
   },
@@ -14,12 +13,15 @@ var Match = React.createClass({
     }));
   },
 
+  onMatchUpdate: function(data) {
+    this.props.matchUpdate(data);
+  },
 
   handleUserInput: function(name, points) {
     var score = this.state.score_params;
     score[name] = points;
     this.setState({score_params: score});
-    this.state.match.score_params = this.state.score_params;
+    this.props.match.score_params = this.state.score_params;
   },
 
   handleFormSubmit: function() {
@@ -27,25 +29,33 @@ var Match = React.createClass({
       type: 'PATCH',
       url: '/matches/' + this.props.match.id,
       dataType: 'json',
-      data: {score_params: this.state.match.score_params}
+      data: {score_params: this.props.match.score_params}
     }).done(function(data) {
         this.setState({match: data});
-        this.setState({match_complete: true});
       }.bind(this));
     this.setState({display_form: false});
-    console.log(this.state.match);
   },
 
   render: function(){
     var display_form = this.state.display_form
-    var match_complete = this.state.match_complete
+    var match_display;
+
+    if (this.state.match.status === 'Played') {
+      match_display = (
+        <FinalScore match={this.state.match}
+        key={'finalscore' + this.props.match.id}/>
+      )
+    } else {
+      match_display = (
+        <Fixture match={this.props.match}
+        key={this.props.match.id} toggleClick={this.handleToggleClick} />
+      )
+    }
 
     return (
       <div>
         <div>
-          {match_complete ? <FinalScore match={this.state.match}
-          key={this.props.match.id}/> : <Fixture match={this.props.match}
-          key={this.props.match.id} toggleClick={this.handleToggleClick} />}
+          { match_display }
         </div>
         <div>
           {display_form && <ScoreForm match={this.props.match}

@@ -1,9 +1,4 @@
 var PlayerFixtures = React.createClass({
-  getInitialState: function(){
-    return{
-      player: this.props.player
-    };
-  },
 
   render: function() {
     var player_matches = [];

@@ -11,11 +11,10 @@ var FixtureList = React.createClass ({
     var arr=[];
     console.log(players);
     players.forEach(function(player, i){
-
-        arr.push(<PlayerFixtures fixtures={that.props.matches} player={player} key={i} />);
-
+        arr.push(<PlayerFixtures fixtures={that.props.matches}
+          player={player} key={i} />);
     })
-    console.log(arr)
+
     return (
       <div>
         {arr}

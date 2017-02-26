@@ -13,8 +13,10 @@ class MatchesController < ApplicationController
       @match.set_build_score(params["score_params"])
       @winner = @match.assign_winner(@match.score)
       @competition = @match.competition
-      @match.save
+      # @match.save
+      # @match.played?
       @match.league_points
+      @match.save
     else
       @match.set_build_score(params)
       @winner = @match.assign_winner(@match.score)
