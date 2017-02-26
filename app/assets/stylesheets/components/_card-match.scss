@@ -85,7 +85,7 @@
 
 .match-league {
   height: 60px;
-  width: 300px;
+  width: 280px;
   padding-top: 9px;
   border: 1px solid #F3F3F3;
   display: flex;
@@ -94,15 +94,14 @@
   margin: 5px;
   span {
     color: $red;
+    width: 10px;
   }
   .versus {
     padding-top: 5px;
+    padding-right: 10px;
     width: 200px;
     display: flex;
     justify-content: space-between;
-    .player {
-      width: 50px;
-    }
   }
   .league-result-input-btn {
     background-color: $green;

@@ -1,8 +1,8 @@
 var FinalScore = React.createClass({
   render: function(){
     return(
-      <div>
-        <table className="league-final-score">
+      <div className="league-final-score">
+        <table>
           <thead>
             <tr>
               <th>Player</th>

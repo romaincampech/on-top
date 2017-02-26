@@ -47,12 +47,31 @@
 }
 
 .league-final-score {
-  display: flex;
-  justify-content: space-around;
-  width: 350px;
-  padding: 20px;
-  border: 1px solid lightgrey;
-  border-radius: 1px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  margin: 2px;
+  border-collapse: collapse;
+  border: 1px solid #CDCDCD;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  width: 100%;
+  margin-bottom: 10px;
+  th, td {
+    color: #999;
+    border: 1px solid #CDCDCD;
+    padding: 2px 10px 2px 10px;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 15px;
+  }
+  th {
+    font-weight: 800;
+  }
+  tr {
+    border-bottom: 2px solid #CDCDCD;
+    th:first-child {
+      width: 150px;
+      border-right: 2px solid #CDCDCD;
+    }
+    th:nth-child(2) {
+      border-right: 2px solid #CDCDCD;
+    }
+  }
 }
