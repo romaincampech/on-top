@@ -1,5 +1,20 @@
 var FinalScore = React.createClass({
   render: function(){
+    var highlightWinner1;
+    var highlightWinner2;
+
+    if (this.props.match.player_one.id === this.props.match.winner.id) {
+      highlightWinner1 = "highlight";
+    } else {
+      highlightWinner1 = "";
+    }
+
+    if (this.props.match.player_two.id === this.props.match.winner.id) {
+      highlightWinner2 = "highlight";
+    } else {
+      highlightWinner2 = "";
+    }
+
     return(
       <div className="league-final-score">
         <table>
@@ -13,7 +28,7 @@ var FinalScore = React.createClass({
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr className={highlightWinner1}>
               <th className="text-center">
                 {this.props.match.player_one.first_name}
               </th>
@@ -22,7 +37,7 @@ var FinalScore = React.createClass({
               <td>{this.props.match.score.set2.player_1}</td>
               <td>{this.props.match.score.set3.player_1}</td>
             </tr>
-            <tr>
+            <tr className={highlightWinner2}>
               <th className="text-center">
                 {this.props.match.player_two.first_name}
               </th>

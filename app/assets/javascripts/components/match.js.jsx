@@ -40,9 +40,9 @@ var Match = React.createClass({
     var display_form = this.state.display_form
     var match_display;
 
-    if (this.state.match.status === 'Played') {
+    if (this.props.match.status === 'Played') {
       match_display = (
-        <FinalScore match={this.state.match}
+        <FinalScore match={this.props.match}
         key={'finalscore' + this.props.match.id}/>
       )
     } else {
