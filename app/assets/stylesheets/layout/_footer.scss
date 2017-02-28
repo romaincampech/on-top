@@ -24,3 +24,15 @@
 .copyright {
   opacity: 0.8;
 }
+
+@media screen and (max-width: 736px) {
+  .footer-container {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .footer-container {
+    font-size: 11px;
+  }
+}

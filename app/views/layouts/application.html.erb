@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OnTop - your sport companion</title>
+    <title><%= yield(:title_tag).blank? ? "OnTop" : yield(:title_tag) %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 
     <%= render 'shared/flashes' %>
     <%= yield %>
-
+    <%= render 'shared/footer' %>
 
     <%= javascript_include_tag 'application' %>
     <%= cloudinary_js_config %>
