@@ -1,137 +1,141 @@
-.profile-banner {
-  background-color: #404040;
-  height: 30vh;
+// .profile-banner {
+//   background-color: #404040;
+//   height: 30vh;
 
-  .btn-friend {
-    background-color: #58D063;
-    opacity: 0.9;
-    color: white;
-    font-size: 13px;
-    border: none;
-    width: 180px;
-    padding: 7px;
-    margin: 0 5px;
-    border-radius: 3px;
-    box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
-  }
+//   .btn-friend {
+//     background-color: #58D063;
+//     opacity: 0.9;
+//     color: white;
+//     font-size: 13px;
+//     border: none;
+//     width: 180px;
+//     padding: 7px;
+//     margin: 0 5px;
+//     border-radius: 3px;
+//     box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+//   }
 
-  .btn-unfriend {
-    background-color: #CCCCCC;
-    opacity: 0.9;
-    color: black;
-    font-size: 13px;
-    border: none;
-    width: 180px;
-    padding: 7px;
-    margin: 0 5px;
-    border-radius: 3px;
-    box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
-  }
+//   .btn-unfriend {
+//     background-color: #CCCCCC;
+//     opacity: 0.9;
+//     color: black;
+//     font-size: 13px;
+//     border: none;
+//     width: 180px;
+//     padding: 7px;
+//     margin: 0 5px;
+//     border-radius: 3px;
+//     box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+//   }
 
-  .profile-banner-left {
-    display: flex;
-    align-items: center;
-    margin: 29px 0;
+//   .profile-banner-left {
+//     display: flex;
+//     align-items: center;
+//     margin: 29px 0;
 
-    img {
-      width: 12vw;
-      border-radius: 50%;
-    }
+//     img {
+//       width: 12vw;
+//       border-radius: 50%;
+//     }
 
-    ul {
-      list-style: none;
-      color: white;
-      padding-left: 15px;
+//     ul {
+//       list-style: none;
+//       color: white;
+//       padding-left: 15px;
 
-      li {
-        text-decoration: none;
-        margin: 10px;
-        h4, p {
-          font-weight: lighter;
-        }
-      }
-    }
-  }
+//       li {
+//         text-decoration: none;
+//         margin: 10px;
+//         h4, p {
+//           font-weight: lighter;
+//         }
+//       }
+//     }
+//   }
 
-  .profile-banner-right {
-    background-color: white;
-    height: 25vh;
-    margin: 20px 0;
-    border-radius: 2px;
+//   .profile-banner-right {
+//     background-color: white;
+//     height: 25vh;
+//     margin: 20px 0;
+//     border-radius: 2px;
 
-    ul {
-      list-style: none;
-    }
-  }
-}
+//     ul {
+//       list-style: none;
+//     }
+//   }
+// }
 
-.profile-tabs {
-  background: transparent;
-  display: flex;
+// .profile-tabs {
+//   background: transparent;
+//   display: flex;
 
-  .profile-tab {
-    flex: 0 0 25%;
-    background-color: #CACACA;
-    text-align: center;
-    padding: 15px 0;
-    color: white;
+//   .profile-tab {
+//     flex: 0 0 25%;
+//     background-color: #CACACA;
+//     text-align: center;
+//     padding: 15px 0;
+//     color: white;
 
-    &.active {
-      background-color: #65D06E;
-      text-decoration: none;
-    }
-    &:hover {
-      text-decoration: none;
-      opacity: 0.8;
-      cursor: pointer;
-    }
-  }
-}
-.profile-tabs-container {
-  background-color: white;
-  height: 50vh;
-  border-radius: 0 0 3px 3px;
+//     &.active {
+//       background-color: #65D06E;
+//       text-decoration: none;
+//     }
+//     &:hover {
+//       text-decoration: none;
+//       opacity: 0.8;
+//       cursor: pointer;
+//     }
+//   }
+// }
+// .profile-tabs-container {
+//   background-color: white;
+//   height: 50vh;
+//   border-radius: 0 0 3px 3px;
 
-  .active-competitions-tab {
-    height: 25vh;
-    border-bottom: 0.5px solid #404040;
+//   .active-competitions-tab {
+//     height: 25vh;
+//     border-bottom: 0.5px solid #404040;
 
-    h4 {
-      text-align: center;
-      font-weight: bolder;
-    }
+//     h4 {
+//       text-align: center;
+//       font-weight: bolder;
+//     }
 
-    .table-scroll {
-      height: 18vh;
-      overflow: scroll;
-    }
-  }
+//     .table-scroll {
+//       height: 18vh;
+//       overflow: scroll;
+//     }
+//   }
 
-  .previous-competitions-tab {
-    height: 25vh;
+//   .previous-competitions-tab {
+//     height: 25vh;
 
-    h4 {
-      text-align: center;
-      font-weight: bolder;
-    }
+//     h4 {
+//       text-align: center;
+//       font-weight: bolder;
+//     }
 
-    .table-scroll {
-      height: 18vh;
-      overflow: scroll;
-    }
-  }
+//     .table-scroll {
+//       height: 18vh;
+//       overflow: scroll;
+//     }
+//   }
 
-  .stat-tabs {
-    margin-bottom: 50px;
+//   .stat-tabs {
+//     margin-bottom: 50px;
 
-    .stat-tab {
-      padding: 5px;
-      opacity: 0.7;
+//     .stat-tab {
+//       padding: 5px;
+//       opacity: 0.7;
 
-      &.active {
-        border-bottom: 4px solid $green;
-        opacity: 1;
-      }
-    }
-  }
+//       &.active {
+//         border-bottom: 4px solid $green;
+//         opacity: 1;
+//       }
+//     }
+//   }
+// }
+
+.profile-container {
+  min-height: calc(100vh - 50px);
 }

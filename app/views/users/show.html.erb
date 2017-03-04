@@ -2,7 +2,7 @@
   OnTop - <%= @user.full_name %>
 <% end %>
 
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1 profile-banner">
       <div class="row">
@@ -187,7 +187,7 @@
                 <%= pie_chart({"wins" => "#{@user.wins_for('Football').count}", "losses" => "#{@user.losses_for('Football').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
                 </div>
               </div>
-            </div>
+            </div> -->
             <!-- <div class="row">
               <div class="col-sm-2 col-sm-offset-1">
                 <table class="table table-sm">
@@ -306,13 +306,21 @@
                 </table>
               </div>
             </div> -->
-          </div>
+<!--           </div>
           <div class="profile-tabs-content hidden" id="teams"></div>
           <div class="profile-tabs-content hidden" id="photos-videos"></div>
         </div>
       </div>
     </div>
+</div> -->
+
+<div class="profile-container">
+  <div class="profile-banner">
+
+  </div>
 </div>
+
+
 
 <% content_for(:after_js) do %>
   <script>
