@@ -46,45 +46,45 @@ url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1536608_10151972665337736_26130706
 user.photo_url = url
 user.save
 
-user = User.new(first_name: "Ben", last_name: "Taylor", email: "Ben@test.com", password: "123456", city: "London")
-url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1374283_10151576261717242_1484652063_n.jpg?oh=729ff13950789f2e08a5d6a13410158e&oe=58AFFDA3"
-user.photo_url = url
-user.save
+# user = User.new(first_name: "Ben", last_name: "Taylor", email: "Ben@test.com", password: "123456", city: "London")
+# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1374283_10151576261717242_1484652063_n.jpg?oh=729ff13950789f2e08a5d6a13410158e&oe=58AFFDA3"
+# user.photo_url = url
+# user.save
 
-user = User.new(first_name: "Cameron", last_name: "Flewitt", email: "Cameron@test.com", password: "123456", city: "London")
-url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1376606_10200857745604858_408929695_n.jpg?oh=470424313966445601919097678f0a12&oe=58B74318"
-user.photo_url = url
-user.save
+# user = User.new(first_name: "Cameron", last_name: "Flewitt", email: "Cameron@test.com", password: "123456", city: "London")
+# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1376606_10200857745604858_408929695_n.jpg?oh=470424313966445601919097678f0a12&oe=58B74318"
+# user.photo_url = url
+# user.save
 
-user = User.new(first_name: "Marco", last_name: "Gigantino", email: "Marco@test.com", password: "123456", city: "London")
-url = "https://scontent.xx.fbcdn.net/v/t1.0-9/12507116_10208305928195365_2752709793386925212_n.jpg?oh=954eec3202c9985461be4e8fbff84559&oe=58B8D2D8"
-user.photo_url = url
-user.save
+# user = User.new(first_name: "Marco", last_name: "Gigantino", email: "Marco@test.com", password: "123456", city: "London")
+# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/12507116_10208305928195365_2752709793386925212_n.jpg?oh=954eec3202c9985461be4e8fbff84559&oe=58B8D2D8"
+# user.photo_url = url
+# user.save
 
-user = User.new(first_name: "Greg", last_name: "Street", email: "Greg@test.com", password: "123456", city: "London")
-url = "https://scontent.xx.fbcdn.net/v/t1.0-9/316010_268794049816617_5508651_n.jpg?oh=a7b4c82d608441c323bee27df1b113f6&oe=58BC4371"
-user.photo_url = url
-user.save
+# user = User.new(first_name: "Greg", last_name: "Street", email: "Greg@test.com", password: "123456", city: "London")
+# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/316010_268794049816617_5508651_n.jpg?oh=a7b4c82d608441c323bee27df1b113f6&oe=58BC4371"
+# user.photo_url = url
+# user.save
 
-user = User.new(first_name: "Francine", last_name: "Counsell", email: "Francine@test.com", password: "123456", city: "London")
-url = "https://scontent.xx.fbcdn.net/v/t1.0-9/14141888_10157293299700487_1562368623698011705_n.jpg?oh=ba019140c0174392980ee0bebf373eaf&oe=58C1D4ED"
-user.photo_url = url
-user.save
+# user = User.new(first_name: "Francine", last_name: "Counsell", email: "Francine@test.com", password: "123456", city: "London")
+# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/14141888_10157293299700487_1562368623698011705_n.jpg?oh=ba019140c0174392980ee0bebf373eaf&oe=58C1D4ED"
+# user.photo_url = url
+# user.save
 
-user = User.new(first_name: "Freddie", last_name: "Wright", email: "Freddie@test.com", password: "123456", city: "London")
-url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1497525_10203587590113762_609128032_n.jpg?oh=9941bf5266cad7add79fce1e29d20733&oe=58BC319C"
-user.photo_url = url
-user.save
+# user = User.new(first_name: "Freddie", last_name: "Wright", email: "Freddie@test.com", password: "123456", city: "London")
+# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1497525_10203587590113762_609128032_n.jpg?oh=9941bf5266cad7add79fce1e29d20733&oe=58BC319C"
+# user.photo_url = url
+# user.save
 
-user = User.new(first_name: "Mark", last_name: "Rickerby", email: "Mark@test.com", password: "123456", city: "London")
-url = "https://scontent.xx.fbcdn.net/v/t1.0-9/12219451_10156322462565106_9189074120115918006_n.jpg?oh=d7f13d2ca7afe9d723ed3534a87b3aab&oe=58C98A4D"
-user.photo_url = url
-user.save
+# user = User.new(first_name: "Mark", last_name: "Rickerby", email: "Mark@test.com", password: "123456", city: "London")
+# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/12219451_10156322462565106_9189074120115918006_n.jpg?oh=d7f13d2ca7afe9d723ed3534a87b3aab&oe=58C98A4D"
+# user.photo_url = url
+# user.save
 
-user = User.new(first_name: "Tina", last_name: "Lasisi", email: "Tina@test.com", password: "123456", city: "London")
-url = "https://scontent.xx.fbcdn.net/v/t1.0-9/384245_10153800203112748_2892637335954867492_n.jpg?oh=94c74543c2b75d60d2b7f6a297f16a03&oe=58D05F19"
-user.photo_url = url
-user.save
+# user = User.new(first_name: "Tina", last_name: "Lasisi", email: "Tina@test.com", password: "123456", city: "London")
+# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/384245_10153800203112748_2892637335954867492_n.jpg?oh=94c74543c2b75d60d2b7f6a297f16a03&oe=58D05F19"
+# user.photo_url = url
+# user.save
 
 puts "'real' users seeded"
 
@@ -119,7 +119,7 @@ puts "fake users seeded"
 
 # create friendships
 id = User.find_by(email: "guv@test.com").id + 1
-20.times {
+19.times {
   Friendship.create!(user: User.find_by(email: "julianne@test.com"), friend_id: id)
   Friendship.create!(user: User.find_by(email: "romain@test.com"), friend_id: id)
   Friendship.create!(user: User.find_by(email: "guv@test.com"), friend_id: id)

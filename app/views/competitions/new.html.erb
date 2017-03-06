@@ -23,11 +23,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-4 col-md-offset-4">
               <%= f.association :sport, label: 'Choose a sport:', :label_html => {:class => 'label-style'}, collection: Sport.all, value_method: :id, include_blank: false, prompt: "Which sport?" %>
-            </div>
-            <div class="col-md-4">
-            <%= f.input :category, label: 'Choose a type of competition:', :label_html => {:class => 'label-style'}, collection: ["Knockout", "League"], prompt: 'Which type?' %>
             </div>
           </div>
           <div class="row">
@@ -41,25 +38,26 @@
 
               <div id="player-section"></div>
                <div class="form-group flexbox radio_buttons optional competition_team_competition">
+               <%= f.input :category, label: 'Choose a type of competition:', :label_html => {:class => 'label-style'}, as: :radio_buttons, collection: ["Knockout", "League"] %>
                 <label class="control-label radio_buttons optional hidden">Team or Individuals</label>
                 <input type="hidden" name="competition[team_competition]" value="">
 
                 <div class="team-choice text-center">
                   <span class="radio"></span>
                   <label for="competition_team_competition_true">
-                    <%= image_tag "Team.png", width: "100px" %>
-                    <p>Team competition</p>
+                    <%= image_tag "knockout.png", width: "70px" %>
+                    <p>Knockout competition</p>
                   </label>
-                  <input class="radio_buttons optional hidden" type="radio" value="true" name="competition[team_competition]" id="competition_team_competition_true">
+                  <input class="radio_buttons optional hidden" type="radio" value="true" name="competition[type]" id="competition_team_competition_true">
                 </div>
 
                 <div class="team-choice text-center">
                   <span class="radio"></span>
                   <label for="competition_team_competition_false">
-                    <%= image_tag "player.png", width: "50px" %>
-                    <p>Individual competition</p>
+                    <%= image_tag "league.png", width: "70px" %>
+                    <p>League competition</p>
                   </label>
-                  <input class="radio_buttons optional hidden" readonly="readonly" type="radio" value="false" name="competition[team_competition]" id="competition_team_competition_false">
+                  <input class="radio_buttons optional hidden" readonly="readonly" type="radio" value="false" name="competition[type]" id="competition_team_competition_false">
                 </div>
               </div>
             </div>
@@ -68,10 +66,10 @@
           <div class="competition-step-two">
             <div class="row">
               <div class="col-xs-8 col-xs-offset-2 hide" id="team_competition_partial">
-                <%= render "team_competition_new", competition: @competition, f: f %>
+                <%= render "knockout_competition_new", competition: @competition, f: f %>
               </div>
               <div class="col-xs-8 col-xs-offset-2 hide" id="individual_competition_partial">
-                <%= render "individual_competition_new", competition: @competition, f: f %>
+                <%= render "league_competition_new", competition: @competition, f: f %>
               </div>
             </div>
           </div>
@@ -85,7 +83,7 @@
   <script>
 
     // Team vs Indiv Select
-    $("[name='competition[team_competition]']").change(function(){
+    $("[name='competition[type]']").change(function(){
       // unselect all choices if change from one hidden form to another
        $.each( $(".search-choice"), function( key, value ) {
           $(".search-choice-close").click();
