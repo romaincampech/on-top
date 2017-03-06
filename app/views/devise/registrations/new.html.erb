@@ -14,7 +14,7 @@
       <%= f.input :email, required: true, autofocus: true %>
       <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
       <%= f.input :password_confirmation, required: true %>
-      <%= f.input :photo, as: :attachinary %>
+      <%= f.input :profile_picture, as: :attachinary %>
     </div>
     <datalist id="city-datalist"></datalist>
     <div class="form-actions" id="sign-up">

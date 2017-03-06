@@ -136,6 +136,44 @@
 //   }
 // }
 
-.profile-container {
-  min-height: calc(100vh - 50px);
+
+// Banner
+.profile-banner {
+  height: 200px;
+  background-color: $brey;
 }
+
+// Content
+.profile-content {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+  // Profile sections
+  .profile-left {
+    flex: 0 0 20%;
+  }
+
+  .profile-middle {
+    flex: 0 0 60%;
+  }
+
+  .profile-right {
+    flex: 0 0 20%;
+  }
+
+    // Cards
+    .profile-info {
+      background-color: white;
+      border-bottom-right-radius: 2px;
+    }
+
+    // Elements
+      // Profile picture
+      .profile-picture {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        border: 1px solid #E9EBEE;
+      }
+

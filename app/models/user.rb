@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
-  has_attachment :photo
+  has_attachment :profile_picture
+  has_attachment :cover_picture
 
   after_create :own_friend
 
@@ -198,8 +199,8 @@ class User < ApplicationRecord
   include AlgoliaSearch
 
   algoliasearch do
-    attribute :first_name, :last_name, :email, :id, :photo
-    attributesToIndex ['first_name', 'last_name', 'email', 'id', 'photo']
+    attribute :first_name, :last_name, :email, :id, :profile_picture
+    attributesToIndex ['first_name', 'last_name', 'email', 'id', 'profile_picture']
     # customRanking ['desc(likes_count)']
   end
 

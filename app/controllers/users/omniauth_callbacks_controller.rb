@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     user = User.find_for_facebook_oauth(request.env['omniauth.auth'])
-    user.photo_url = user.facebook_picture_url
+    user.profile_picture_url = user.facebook_picture_url
     user.save
 
 

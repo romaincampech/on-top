@@ -1,5 +1,5 @@
 <% content_for(:title_tag) do %>
-  OnTop - <%= @user.full_name %>
+  OnTop | <%= @user.full_name %>
 <% end %>
 
 <!-- <div class="container">
@@ -8,8 +8,8 @@
       <div class="row">
         <div class="col-sm-5 col-sm-offset-1">
           <div class="profile-banner-left">
-            <% if @user.photo? %>
-            <%= cl_image_tag @user.photo.path %>
+            <% if @user.profile_picture? %>
+            <%= cl_image_tag @user.profile_picture.path %>
             <% else %>
             <%= image_tag "profile-avatar-default.jpg" %>
             <% end %>
@@ -314,9 +314,39 @@
     </div>
 </div> -->
 
-<div class="profile-container">
+<div class="container">
+  <!-- Banner -->
   <div class="profile-banner">
+    <% if @user.cover_picture %>
+      <%= cl_image_path(@user.cover_picture.path) %>
+    <% end %>
+  </div>
 
+  <!-- Content (flexbox) -->
+  <div class="profile-content">
+    <!-- Left section -->
+    <div class="profile-left">
+      <!-- 1st card -->
+      <div class="profile-info">
+        <!-- Profile picture -->
+        <% if @user.profile_picture %>
+          <% user_profile_picture = cl_image_path(@user.profile_picture.path, crop: :thumb, gravity: :face) %>
+        <% else %>
+          <% user_profile_picture = image_path('profile-avatar-default.jpg') %>
+        <% end %>
+        <%= image_tag user_profile_picture, class: 'profile-picture' %>
+      </div>
+    </div>
+
+    <!-- Middle section -->
+    <div class="profile-middle">
+
+    </div>
+
+    <!-- Right section -->
+    <div class="profile-right">
+
+    </div>
   </div>
 </div>
 

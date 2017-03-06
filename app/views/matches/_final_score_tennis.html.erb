@@ -16,7 +16,7 @@
     <% end %>
       <th class="text-center">
         <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
-          <div class="avatar-div avatar-div-small" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
+          <div class="avatar-div avatar-div-small" style="background-image: url('<%= cl_image_path(match.players.first.profile_picture.path) %>')">
           </div>
         <% end %>
       </th>
@@ -32,7 +32,7 @@
     <% end %>
       <th class="text-center">
         <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
-          <div class="avatar-div avatar-div-small" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
+          <div class="avatar-div avatar-div-small" style="background-image: url('<%= cl_image_path(match.players.last.profile_picture.path) %>')">
           </div>
         <% end %>
       </th>
