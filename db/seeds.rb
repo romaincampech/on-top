@@ -30,21 +30,22 @@ url = "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/7/005/064/0ec/1749a12.
 user.photo_url = url
 user.save
 
-user = User.new(first_name: "Romain", last_name: "Campech", email: "Romain@test.com", password: "123456", city: "London")
-url = "https://scontent.xx.fbcdn.net/v/t1.0-9/396662_4904536692155_1483845542_n.jpg?oh=28d073dc50b821c20b8cd4313af04e4d&oe=58BBBD8F"
-user.photo_url = url
-user.save
+# user = User.new(first_name: "Romain", last_name: "Campech", email: "Romain@test.com", password: "123456", city: "London")
+# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/396662_4904536692155_1483845542_n.jpg?oh=28d073dc50b821c20b8cd4313af04e4d&oe=58BBBD8F"
+# user.photo_url = url
+# user.save
 
 user = User.new(first_name: "Guv", last_name: "Marwaha", email: "Guv@test.com", password: "123456", city: "London")
 url = "https://avatars1.githubusercontent.com/u/22517547?v=3&s=400"
 user.photo_url = url
+user.admin = true
 user.save
 
 
-user = User.new(first_name: "Sian", last_name: "Ditchfield", email: "Sian@test.com", password: "123456", city: "London")
-url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1536608_10151972665337736_261307068_n.jpg?oh=b809c069322a6f767130f3f9962d8ebc&oe=58CD125E"
-user.photo_url = url
-user.save
+# user = User.new(first_name: "Sian", last_name: "Ditchfield", email: "Sian@test.com", password: "123456", city: "London")
+# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1536608_10151972665337736_261307068_n.jpg?oh=b809c069322a6f767130f3f9962d8ebc&oe=58CD125E"
+# user.photo_url = url
+# user.save
 
 # user = User.new(first_name: "Ben", last_name: "Taylor", email: "Ben@test.com", password: "123456", city: "London")
 # url = "https://scontent.xx.fbcdn.net/v/t1.0-9/1374283_10151576261717242_1484652063_n.jpg?oh=729ff13950789f2e08a5d6a13410158e&oe=58AFFDA3"
@@ -119,9 +120,9 @@ puts "fake users seeded"
 
 # create friendships
 id = User.find_by(email: "guv@test.com").id + 1
-19.times {
+18.times {
   Friendship.create!(user: User.find_by(email: "julianne@test.com"), friend_id: id)
-  Friendship.create!(user: User.find_by(email: "romain@test.com"), friend_id: id)
+  # Friendship.create!(user: User.find_by(email: "romain@test.com"), friend_id: id)
   Friendship.create!(user: User.find_by(email: "guv@test.com"), friend_id: id)
   id += 1
 }
