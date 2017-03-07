@@ -335,6 +335,20 @@
           <% user_profile_picture = image_path('profile-avatar-default.jpg') %>
         <% end %>
         <%= image_tag user_profile_picture, class: 'profile-picture' %>
+        <!-- Add friend -->
+        <% if current_user.pending_friends.include?(@user) %>
+          <div class="btn-pending">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            <p>Friend request sent</p>
+          </div>
+        <% elsif !current_user.friends.include?(@user) %>
+          <%= link_to user_friend_requests_path(@user), class: 'btn-add', method: :post do %>
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            <p>Add friend</p>
+          <% end %>
+        <% else %>
+          <%= link_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), class: "btn-unfriend", method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
       </div>
     </div>
 
