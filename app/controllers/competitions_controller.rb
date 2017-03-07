@@ -22,11 +22,6 @@ class CompetitionsController < ApplicationController
     @competition = Competition.new(competition_params)
     authorize @competition
     @competition.creator = current_user
-    # if @competition.knockout_competition
-    #   @competition.category = "Knockout"
-    # else
-    #   @competition.category = "League"
-    # end
     @competition.save
     @competition.create_activity :create, owner: current_user
     @competition.create_matches
@@ -34,6 +29,7 @@ class CompetitionsController < ApplicationController
     @competition.add_players(players_ary)
     @competition.assign_matches if @competition.players.count == @competition.number_of_players
     @competition.new_chat
+    @competition.save
     redirect_to competition_path(@competition)
   end
 
