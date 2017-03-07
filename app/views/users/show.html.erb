@@ -314,6 +314,13 @@
     </div>
 </div> -->
 
+
+
+
+
+
+
+
 <div class="container">
   <!-- Banner -->
   <div class="profile-banner">
@@ -375,7 +382,20 @@
 
     <!-- Middle section -->
     <div class="profile-middle">
+      <!-- Header -->
+      <div class="profile-header">
+        <h1><%= @user.full_name %></h1>
+        <i class="fa fa-map-marker" aria-hidden="true"></i><h4><%= @user.city %></h4>
+      </div>
+      <!-- Tabs -->
+      <div class="profile-tabs">
+        <a class="profile-tab active" id="tab-competitions" data-target="#competitions"><img src="<%= asset_path('podium.png') %>" id="img-competitions" />Competitions</a>
+        <a class="profile-tab" data-target="#statistics"><%= image_tag 'statistics.png' %>Statistics</a>
+      </div>
+      <!-- Content -->
+      <div class="profile-tabs-content">
 
+      </div>
     </div>
 
     <!-- Right section -->
@@ -404,6 +424,12 @@
           // Show target tab-content (use class="hidden")
           $($(this).data('target')).removeClass('hidden');
         });
+
+    if ($("#tab-competitions").hasClass("active")) {
+      $("#img-competitions").attr('src', "<%= asset_path('podium-active.png') %>");
+    } else {
+      $("#img-competitions").stop('src', "<%= asset_path('podium-active.png') %>");
+    }
 
     });
   </script>

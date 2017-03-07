@@ -31,7 +31,7 @@ user.profile_picture_url = url
 user.save
 
 user = User.new(first_name: "Romain", last_name: "Campech", email: "Romain@test.com", password: "123456", city: "London")
-# url = "https://scontent.xx.fbcdn.net/v/t1.0-9/396662_4904536692155_1483845542_n.jpg?oh=28d073dc50b821c20b8cd4313af04e4d&oe=58BBBD8F"
+# url = "https://qph.ec.quoracdn.net/main-thumb-236819790-200-tbjfqfcckkppfthgjgpwlwxcahldtkje.jpeg"
 # user.profile_picture_url = url
 user.save
 

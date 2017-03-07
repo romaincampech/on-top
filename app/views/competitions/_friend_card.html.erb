@@ -1,3 +1,8 @@
 <li id="<%= friend.id %>">
-  <%= cl_image_tag(friend.profile_picture.path, class: "competition-new-avatar") %>
+  <% if friend.profile_picture %>
+    <% friend_profile_picture = cl_image_path(friend.profile_picture.path, crop: :thumb, gravity: :face) %>
+  <% else %>
+    <% friend_profile_picture = image_path('profile-avatar-default.jpg') %>
+  <% end %>
+  <%= image_tag friend_profile_picture, class: 'competition-new-avatar' %>
 </li>

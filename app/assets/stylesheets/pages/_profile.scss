@@ -150,11 +150,48 @@
 }
 
   // Profile sections
+  .profile-left {
+    width: 300px;
+  }
 
-    // Cards
+  .profile-middle {
+    background-color: white;
+    border-left: 1px solid rgb(215, 215, 215);
+    width: 840px;
+  }
+
+    // Cards/Containers
     .profile-friendship {
-      background-color: rgb(249, 249, 249);
       width: 300px;
+      height: 230px;
+    }
+
+    .profile-header {
+      border-bottom: 1px solid rgb(215, 215, 215);
+      min-height: 120px;
+      padding: 20px 30px;
+      h1 {
+        color: $brey;
+        font-weight: 300;
+        margin-top: 0;
+        margin-bottom: 15px;
+      }
+      i {
+        float: left;
+        margin-left: 4px;
+        margin-right: 10px;
+        color: rgb(180, 180, 180);
+      }
+      h4 {
+        font-weight: 100;
+        font-size: 17px;
+        padding-top: 2px;
+        margin: 0;
+        color: rgb(180, 180, 180);
+      }
+      img {
+        width: 20px;
+      }
     }
 
     // Elements
@@ -271,8 +308,13 @@
         a {
           color: rgb(41, 142, 201);
           text-decoration: none;
-          padding-right: 10px;
+          margin-right: 10px;
+          padding: 3px;
+          border-radius: 50%;
           font-weight: 600;
+          &:hover {
+            background-color: rgba(41, 142, 201, 0.1);
+          }
         }
       }
 
@@ -318,4 +360,38 @@
           border-left: 1px solid rgb(215, 215, 215);
           transform: rotate(45deg);
         }
+      }
+
+      // Tabs
+      .profile-tabs {
+        display: flex;
+        border-right: 1px solid rgb(215, 215, 215);
+        .profile-tab {
+          flex: 0 0 25%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          border-right: 1px solid rgb(215, 215, 215);
+          padding: 10px 0;
+          color: rgb(200, 200, 200);
+          cursor: pointer;
+          img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+          }
+          &:hover {
+            text-decoration: none;
+          }
+          &.active {
+            background-color: rgb(249, 249, 249);
+            color: $green;
+          }
+        }
+      }
+
+      .profile-tabs-content {
+        border-top: 1px solid rgb(215, 215, 215);
+        border-right: 1px solid rgb(215, 215, 215);
+        min-height: 500px;
       }
