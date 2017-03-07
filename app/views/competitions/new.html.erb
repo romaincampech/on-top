@@ -38,26 +38,26 @@
 
               <div id="player-section"></div>
                <div class="form-group flexbox radio_buttons optional competition_team_competition">
-               <%= f.input :category, label: 'Choose a type of competition:', :label_html => {:class => 'label-style'}, as: :radio_buttons, collection: ["Knockout", "League"] %>
-                <label class="control-label radio_buttons optional hidden">Team or Individuals</label>
-                <input type="hidden" name="competition[team_competition]" value="">
+
+                <label class="control-label radio_buttons optional hidden">Knockout or League</label>
+                <input type="hidden" name="competition[category]" value="">
 
                 <div class="team-choice text-center">
                   <span class="radio"></span>
-                  <label for="competition_team_competition_true">
+                  <label for="competition_category_knockout">
                     <%= image_tag "knockout.png", width: "70px" %>
                     <p>Knockout competition</p>
                   </label>
-                  <input class="radio_buttons optional hidden" type="radio" value="true" name="competition[type]" id="competition_team_competition_true">
+                  <input class="radio_buttons optional hidden" type="radio" value="Knockout" name="competition[category]" id="competition_category_knockout">
                 </div>
 
                 <div class="team-choice text-center">
                   <span class="radio"></span>
-                  <label for="competition_team_competition_false">
+                  <label for="competition_category_league">
                     <%= image_tag "league.png", width: "70px" %>
                     <p>League competition</p>
                   </label>
-                  <input class="radio_buttons optional hidden" readonly="readonly" type="radio" value="false" name="competition[type]" id="competition_team_competition_false">
+                  <input class="radio_buttons optional hidden" type="radio" value="League" name="competition[category]" id="competition_category_league">
                 </div>
               </div>
             </div>
@@ -65,10 +65,10 @@
           </div>
           <div class="competition-step-two">
             <div class="row">
-              <div class="col-xs-8 col-xs-offset-2 hide" id="team_competition_partial">
+              <div class="col-xs-8 col-xs-offset-2 hide" id="knockout_competition_partial">
                 <%= render "knockout_competition_new", competition: @competition, f: f %>
               </div>
-              <div class="col-xs-8 col-xs-offset-2 hide" id="individual_competition_partial">
+              <div class="col-xs-8 col-xs-offset-2 hide" id="league_competition_partial">
                 <%= render "league_competition_new", competition: @competition, f: f %>
               </div>
             </div>
@@ -82,20 +82,20 @@
 <% content_for(:after_js) do %>
   <script>
 
-    // Team vs Indiv Select
-    $("[name='competition[type]']").change(function(){
+    // Knockout vs League Select
+    $("[name='competition[category]']").change(function(){
       // unselect all choices if change from one hidden form to another
        $.each( $(".search-choice"), function( key, value ) {
           $(".search-choice-close").click();
         });
 
-      if ($(this).val() == "true"){
-        $('#team_competition_partial').removeClass('hide');
-        $('#individual_competition_partial').addClass('hide');
+      if ($(this).val() == "Knockout"){
+        $('#knockout_competition_partial').removeClass('hide');
+        $('#league_competition_partial').addClass('hide');
       }
-      else if ($(this).val() == "false"){
-       $('#individual_competition_partial').removeClass('hide');
-       $('#team_competition_partial').addClass('hide');
+      else if ($(this).val() == "League"){
+       $('#league_competition_partial').removeClass('hide');
+       $('#knockout_competition_partial').addClass('hide');
       }
     });
 
