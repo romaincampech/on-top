@@ -151,12 +151,10 @@
 
   // Profile sections
 
-
     // Cards
-    .profile-info {
+    .profile-friendship {
       background-color: rgb(249, 249, 249);
       width: 300px;
-      border: 1px solid black;
     }
 
     // Elements
@@ -223,3 +221,101 @@
         }
       }
 
+      .btn-unfriend {
+        background-color: white;
+        padding: 8px 25px;
+        width: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px;
+        color: $brey;
+        border: 1px solid rgb(215, 215, 215);
+        position: relative;
+        top: -75px;
+        left: 66px;
+        i {
+          flex: 0 0 25%;
+          &:last-child {
+            position: relative;
+            top: 2px;
+            left: 20px;
+          }
+        }
+        p {
+          padding-top: 5px;
+          margin-bottom: 0;
+        }
+        &:hover {
+          color: rgba(30, 42, 56, 0.8);
+          cursor: pointer;
+          text-decoration: none;
+          background-color: rgb(242, 242, 242);
+          box-shadow: 1px 1px 4px rgb(215, 215, 215);
+        }
+      }
+
+      // Friendlist
+      .profile-friendlist {
+        text-align: center;
+        position: relative;
+        top: -50px;
+        h3 {
+          font-size: 14px;
+          font-weight: 200;
+          color: rgb(80, 80, 80);
+          margin-top: 0;
+          margin-bottom: 5px;
+          padding-right: 10px;
+        }
+        a {
+          color: rgb(41, 142, 201);
+          text-decoration: none;
+          padding-right: 10px;
+          font-weight: 600;
+        }
+      }
+
+      // Dropdown
+      .friendship-dropdown-menu {
+        min-width: 120px;
+        border: 1px solid rgb(215, 215, 215);
+        box-shadow: 1px 1px 4px rgb(215, 215, 215);
+        position: absolute;
+        top: -27px;
+        left: 92px;
+        li > a {
+          font-family: "Avenir", sans-serif;
+          font-weight: lighter;
+          font-size: 13px;
+          color: $brey !important;
+          padding: 3px 12px;
+          display: flex;
+          align-items: center;
+          &:hover {
+            background-color: rgb(242, 242, 242);
+          }
+          &:last-child:hover {
+            color: $red !important;
+          }
+          i {
+            flex: 0 0 25%;
+          }
+          p {
+            margin: 0;
+            padding-top: 4px;
+          }
+        }
+        &:before {
+          content: ' ';
+          height: 10px;
+          width: 10px;
+          position: absolute;
+          right: 9px;
+          top: -5px;
+          background-color: white;
+          border-top: 1px solid rgb(215, 215, 215);
+          border-left: 1px solid rgb(215, 215, 215);
+          transform: rotate(45deg);
+        }
+      }

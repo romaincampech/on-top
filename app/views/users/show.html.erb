@@ -327,7 +327,7 @@
     <!-- Left section -->
     <div class="profile-left">
       <!-- 1st card -->
-      <div class="profile-info">
+      <div class="profile-friendship">
         <!-- Profile picture -->
         <% if @user.profile_picture %>
           <% user_profile_picture = cl_image_path(@user.profile_picture.path, crop: :thumb, gravity: :face) %>
@@ -335,7 +335,7 @@
           <% user_profile_picture = image_path('profile-avatar-default.jpg') %>
         <% end %>
         <%= image_tag user_profile_picture, class: 'profile-picture' %>
-        <!-- Add friend -->
+        <!-- Friendship -->
         <% if current_user.pending_friends.include?(@user) %>
           <div class="btn-pending">
             <i class="fa fa-check" aria-hidden="true"></i>
@@ -346,9 +346,30 @@
             <i class="fa fa-user-plus" aria-hidden="true"></i>
             <p>Add friend</p>
           <% end %>
-        <% else %>
-          <%= link_to 'Unfriend', friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), class: "btn-unfriend", method: :delete, data: { confirm: "Are you sure?" } %>
+        <% elsif current_user != @user %>
+          <div class="dropdown">
+            <div class="btn-unfriend dropdown-toggle" data-toggle="dropdown" aria-hidden="true">
+              <i class="fa fa-check" aria-hidden="true"></i>
+              <p>Friends</p>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </div>
+            <ul class="dropdown-menu friendship-dropdown-menu">
+              <li>
+                <%= link_to friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                  <p>Unfriend</p>
+                <% end %>
+              </li>
+            </ul>
+          </div>
         <% end %>
+        <!-- Friendlist -->
+        <div class="profile-friendlist">
+          <h3>FRIENDS</h3>
+            <%= link_to user_friendships_path(@user) do %>
+              <%= @user.friends.count - 1 %>
+            <% end %>
+        </div>
       </div>
     </div>
 
