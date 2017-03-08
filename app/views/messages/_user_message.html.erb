@@ -7,7 +7,7 @@
       <div class="message-user">
         <span class="text-muted">
           <%= link_to user_path(message.user), "data-toggle" => "tooltip", title: "#{message.user.full_name}" do %>
-          <div class="avatar-div" style="background-image: url('<%= cl_image_path(message.user.photo.path) %>')">
+          <div class="avatar-div" style="background-image: url('<%= cl_image_path(message.user.profile_picture.path) %>')">
           </div>
           <% end %>
           <div class="timestamp">

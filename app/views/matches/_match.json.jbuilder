@@ -1,7 +1,7 @@
 json.extract! match, :id, :competition_id, :match_number, :round, :player_one, :player_two, :status, :score, :winner ,:score_params, :competition_participants
 
 # json.players do
-#   json.extract! match.players, :photo
+#   json.extract! match.players, :profile_picture
 # end
 
 # json.competition do

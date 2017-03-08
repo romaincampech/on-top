@@ -20,7 +20,7 @@
         <tr>
           <td><%= x %></td>
           <td><div class="league-table-player"><%= link_to user_path(player.user), "data-toggle" => "tooltip", title: "#{player.user.full_name}" do %>
-          <div class="avatar-div" id="league-table-avatar" style="background-image: url('<%= cl_image_path(player.user.photo.path) %>')"></div>
+          <div class="avatar-div" id="league-table-avatar" style="background-image: url('<%= cl_image_path(player.user.profile_picture.path) %>')"></div>
           <% end %>
           <span><%= player.user.first_name %></span></div></td>
           <td><%= player.user.played_matches.where(competition_id: @competition.id).count %></td>

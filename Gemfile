@@ -40,6 +40,8 @@ gem 'react-rails', '~> 1.8'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 
+gem 'friendly_id', '~> 5.2'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-classnames'
 end
