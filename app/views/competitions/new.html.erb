@@ -14,7 +14,7 @@
             </h3>
           </div>
         </div>
-        <%= simple_form_for @competition do |f| %>
+        <%= simple_form_for @competition, remote: true do |f| %>
 
           <% f.error_notification %>
           <div class="row">
@@ -42,7 +42,7 @@
                 <label class="control-label radio_buttons optional hidden">Knockout or League</label>
                 <input type="hidden" name="competition[category]" value="">
 
-                <div class="team-choice text-center">
+                <div class="category-choice text-center">
                   <span class="radio"></span>
                   <label for="competition_category_knockout">
                     <%= image_tag "knockout.png", width: "70px" %>
@@ -51,7 +51,7 @@
                   <input class="radio_buttons optional hidden" type="radio" value="Knockout" name="competition[category]" id="competition_category_knockout">
                 </div>
 
-                <div class="team-choice text-center">
+                <div class="category-choice text-center">
                   <span class="radio"></span>
                   <label for="competition_category_league">
                     <%= image_tag "league.png", width: "70px" %>
@@ -127,7 +127,7 @@
         }, delay);
      })
 
-      $(".team-choice .radio_buttons").click(function(){
+      $(".category-choice .radio_buttons").click(function(){
         $(".team-choice").removeClass("active");
         $(this).parent().toggleClass("active");
 
