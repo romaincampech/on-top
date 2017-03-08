@@ -29,6 +29,7 @@ class CompetitionsController < ApplicationController
     @competition.add_players(players_ary)
     @competition.assign_matches if @competition.players.count == @competition.number_of_players
     @competition.new_chat
+    @competition.save
     redirect_to competition_path(@competition)
   end
 
@@ -42,8 +43,7 @@ class CompetitionsController < ApplicationController
   private
 
   def competition_params
-    binding.pry
-    params.require(:competition).permit(:category, :sport_id, :name, :team_competition)
+    params.require(:competition).permit(:category, :sport_id, :name, :number_of_players)
   end
 
   def set_competition
