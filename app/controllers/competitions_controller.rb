@@ -22,11 +22,6 @@ class CompetitionsController < ApplicationController
     @competition = Competition.new(competition_params)
     authorize @competition
     @competition.creator = current_user
-    if @competition.team_competition
-      @competition.number_of_players = params[:competition][:number_of_teams]
-    else
-      @competition.number_of_players = params[:competition][:number_of_players]
-    end
     @competition.save
     @competition.create_activity :create, owner: current_user
     @competition.create_matches
@@ -47,6 +42,7 @@ class CompetitionsController < ApplicationController
   private
 
   def competition_params
+    binding.pry
     params.require(:competition).permit(:category, :sport_id, :name, :team_competition)
   end
 
