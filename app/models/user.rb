@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  extend FriendlyId
+  friendly_id :slug, use: [:slugged, :history]
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -13,6 +16,10 @@ class User < ApplicationRecord
   has_many :team_memberships, dependent: :destroy
   has_many :teams, through: :team_memberships
   has_many :owned_teams, :class_name => 'Team', :foreign_key => 'captain_id', dependent: :destroy
+
+  def slug
+    "#{first_name.downcase}.#{last_name.downcase}"
+  end
 
   def full_name
     "#{first_name} #{last_name}"

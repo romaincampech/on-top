@@ -121,6 +121,8 @@ GEM
       railties (>= 3.2, < 5.1)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
+    friendly_id (5.2.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     groupdate (3.1.1)
@@ -334,6 +336,7 @@ DEPENDENCIES
   faker
   figaro
   font-awesome-sass
+  friendly_id (~> 5.2)
   groupdate
   hightop
   jbuilder (~> 2.0)
