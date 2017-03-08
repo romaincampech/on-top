@@ -1,137 +1,397 @@
+// .profile-banner {
+//   background-color: #404040;
+//   height: 30vh;
+
+//   .btn-friend {
+//     background-color: #58D063;
+//     opacity: 0.9;
+//     color: white;
+//     font-size: 13px;
+//     border: none;
+//     width: 180px;
+//     padding: 7px;
+//     margin: 0 5px;
+//     border-radius: 3px;
+//     box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+//   }
+
+//   .btn-unfriend {
+//     background-color: #CCCCCC;
+//     opacity: 0.9;
+//     color: black;
+//     font-size: 13px;
+//     border: none;
+//     width: 180px;
+//     padding: 7px;
+//     margin: 0 5px;
+//     border-radius: 3px;
+//     box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+//   }
+
+//   .profile-banner-left {
+//     display: flex;
+//     align-items: center;
+//     margin: 29px 0;
+
+//     img {
+//       width: 12vw;
+//       border-radius: 50%;
+//     }
+
+//     ul {
+//       list-style: none;
+//       color: white;
+//       padding-left: 15px;
+
+//       li {
+//         text-decoration: none;
+//         margin: 10px;
+//         h4, p {
+//           font-weight: lighter;
+//         }
+//       }
+//     }
+//   }
+
+//   .profile-banner-right {
+//     background-color: white;
+//     height: 25vh;
+//     margin: 20px 0;
+//     border-radius: 2px;
+
+//     ul {
+//       list-style: none;
+//     }
+//   }
+// }
+
+// .profile-tabs {
+//   background: transparent;
+//   display: flex;
+
+//   .profile-tab {
+//     flex: 0 0 25%;
+//     background-color: #CACACA;
+//     text-align: center;
+//     padding: 15px 0;
+//     color: white;
+
+//     &.active {
+//       background-color: #65D06E;
+//       text-decoration: none;
+//     }
+//     &:hover {
+//       text-decoration: none;
+//       opacity: 0.8;
+//       cursor: pointer;
+//     }
+//   }
+// }
+// .profile-tabs-container {
+//   background-color: white;
+//   height: 50vh;
+//   border-radius: 0 0 3px 3px;
+
+//   .active-competitions-tab {
+//     height: 25vh;
+//     border-bottom: 0.5px solid #404040;
+
+//     h4 {
+//       text-align: center;
+//       font-weight: bolder;
+//     }
+
+//     .table-scroll {
+//       height: 18vh;
+//       overflow: scroll;
+//     }
+//   }
+
+//   .previous-competitions-tab {
+//     height: 25vh;
+
+//     h4 {
+//       text-align: center;
+//       font-weight: bolder;
+//     }
+
+//     .table-scroll {
+//       height: 18vh;
+//       overflow: scroll;
+//     }
+//   }
+
+//   .stat-tabs {
+//     margin-bottom: 50px;
+
+//     .stat-tab {
+//       padding: 5px;
+//       opacity: 0.7;
+
+//       &.active {
+//         border-bottom: 4px solid $green;
+//         opacity: 1;
+//       }
+//     }
+//   }
+// }
+
+
+// Banner
 .profile-banner {
-  background-color: #404040;
-  height: 30vh;
+  height: 200px;
+  background-color: $brey;
+}
 
-  .btn-friend {
-    background-color: #58D063;
-    opacity: 0.9;
-    color: white;
-    font-size: 13px;
-    border: none;
-    width: 180px;
-    padding: 7px;
-    margin: 0 5px;
-    border-radius: 3px;
-    box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+// Content
+.profile-content {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+  // Profile sections
+  .profile-left {
+    width: 300px;
   }
 
-  .btn-unfriend {
-    background-color: #CCCCCC;
-    opacity: 0.9;
-    color: black;
-    font-size: 13px;
-    border: none;
-    width: 180px;
-    padding: 7px;
-    margin: 0 5px;
-    border-radius: 3px;
-    box-shadow: 1px 1px 3px rgba(80,80,80,0.25);
+  .profile-middle {
+    background-color: white;
+    border-left: 1px solid rgb(215, 215, 215);
+    width: 840px;
   }
 
-  .profile-banner-left {
-    display: flex;
-    align-items: center;
-    margin: 29px 0;
-
-    img {
-      width: 12vw;
-      border-radius: 50%;
+    // Cards/Containers
+    .profile-friendship {
+      width: 300px;
+      height: 230px;
     }
 
-    ul {
-      list-style: none;
-      color: white;
-      padding-left: 15px;
+    .profile-header {
+      border-bottom: 1px solid rgb(215, 215, 215);
+      min-height: 120px;
+      padding: 20px 30px;
+      h1 {
+        color: $brey;
+        font-weight: 300;
+        margin-top: 0;
+        margin-bottom: 15px;
+      }
+      i {
+        float: left;
+        margin-left: 4px;
+        margin-right: 10px;
+        color: rgb(180, 180, 180);
+      }
+      h4 {
+        font-weight: 100;
+        font-size: 17px;
+        padding-top: 2px;
+        margin: 0;
+        color: rgb(180, 180, 180);
+      }
+      img {
+        width: 20px;
+      }
+    }
 
-      li {
-        text-decoration: none;
-        margin: 10px;
-        h4, p {
-          font-weight: lighter;
+    // Elements
+      // Profile picture
+      .profile-picture {
+        width: 180px;
+        height: 180px;
+        position: relative;
+        top: -100px;
+        left: 54px;
+        border-radius: 50%;
+        border: 2px solid white;
+      }
+
+      // Friendship buttons
+      .btn-add {
+        background-color: $green;
+        padding: 8px 25px;
+        width: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px;
+        color: white;
+        position: relative;
+        top: -75px;
+        left: 66px;
+        i {
+          flex: 0 0 25%;
+        }
+        p {
+          padding-top: 5px;
+          margin-bottom: 0;
+        }
+        &:hover {
+          color: white;
+          text-decoration: none;
+          background-color: rgb(58, 187, 70);
+          box-shadow: 1px 1px 4px rgb(215, 215, 215);
         }
       }
-    }
-  }
 
-  .profile-banner-right {
-    background-color: white;
-    height: 25vh;
-    margin: 20px 0;
-    border-radius: 2px;
-
-    ul {
-      list-style: none;
-    }
-  }
-}
-
-.profile-tabs {
-  background: transparent;
-  display: flex;
-
-  .profile-tab {
-    flex: 0 0 25%;
-    background-color: #CACACA;
-    text-align: center;
-    padding: 15px 0;
-    color: white;
-
-    &.active {
-      background-color: #65D06E;
-      text-decoration: none;
-    }
-    &:hover {
-      text-decoration: none;
-      opacity: 0.8;
-      cursor: pointer;
-    }
-  }
-}
-.profile-tabs-container {
-  background-color: white;
-  height: 50vh;
-  border-radius: 0 0 3px 3px;
-
-  .active-competitions-tab {
-    height: 25vh;
-    border-bottom: 0.5px solid #404040;
-
-    h4 {
-      text-align: center;
-      font-weight: bolder;
-    }
-
-    .table-scroll {
-      height: 18vh;
-      overflow: scroll;
-    }
-  }
-
-  .previous-competitions-tab {
-    height: 25vh;
-
-    h4 {
-      text-align: center;
-      font-weight: bolder;
-    }
-
-    .table-scroll {
-      height: 18vh;
-      overflow: scroll;
-    }
-  }
-
-  .stat-tabs {
-    margin-bottom: 50px;
-
-    .stat-tab {
-      padding: 5px;
-      opacity: 0.7;
-
-      &.active {
-        border-bottom: 4px solid $green;
-        opacity: 1;
+      .btn-pending {
+        background-color: white;
+        padding: 8px 10px;
+        width: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px;
+        color: $brey;
+        border: 1px solid $brey;
+        position: relative;
+        top: -75px;
+        left: 66px;
+        i {
+          flex: 0 0 15%;
+        }
+        p {
+          padding-top: 4px;
+          margin-bottom: 0;
+          font-size: 14px;
+          flex: 0 0 90%;
+        }
       }
-    }
-  }
-}
+
+      .btn-unfriend {
+        background-color: white;
+        padding: 8px 25px;
+        width: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px;
+        color: $brey;
+        border: 1px solid rgb(215, 215, 215);
+        position: relative;
+        top: -75px;
+        left: 66px;
+        i {
+          flex: 0 0 25%;
+          &:last-child {
+            position: relative;
+            top: 2px;
+            left: 20px;
+          }
+        }
+        p {
+          padding-top: 5px;
+          margin-bottom: 0;
+        }
+        &:hover {
+          color: rgba(30, 42, 56, 0.8);
+          cursor: pointer;
+          text-decoration: none;
+          background-color: rgb(242, 242, 242);
+          box-shadow: 1px 1px 4px rgb(215, 215, 215);
+        }
+      }
+
+      // Friendlist
+      .profile-friendlist {
+        text-align: center;
+        position: relative;
+        top: -50px;
+        h3 {
+          font-size: 14px;
+          font-weight: 200;
+          color: rgb(80, 80, 80);
+          margin-top: 0;
+          margin-bottom: 5px;
+          padding-right: 10px;
+        }
+        a {
+          color: rgb(41, 142, 201);
+          text-decoration: none;
+          margin-right: 10px;
+          padding: 3px;
+          border-radius: 50%;
+          font-weight: 600;
+          &:hover {
+            background-color: rgba(41, 142, 201, 0.1);
+          }
+        }
+      }
+
+      // Dropdown
+      .friendship-dropdown-menu {
+        min-width: 120px;
+        border: 1px solid rgb(215, 215, 215);
+        box-shadow: 1px 1px 4px rgb(215, 215, 215);
+        position: absolute;
+        top: -27px;
+        left: 92px;
+        li > a {
+          font-family: "Avenir", sans-serif;
+          font-weight: lighter;
+          font-size: 13px;
+          color: $brey !important;
+          padding: 3px 12px;
+          display: flex;
+          align-items: center;
+          &:hover {
+            background-color: rgb(242, 242, 242);
+          }
+          &:last-child:hover {
+            color: $red !important;
+          }
+          i {
+            flex: 0 0 25%;
+          }
+          p {
+            margin: 0;
+            padding-top: 4px;
+          }
+        }
+        &:before {
+          content: ' ';
+          height: 10px;
+          width: 10px;
+          position: absolute;
+          right: 9px;
+          top: -5px;
+          background-color: white;
+          border-top: 1px solid rgb(215, 215, 215);
+          border-left: 1px solid rgb(215, 215, 215);
+          transform: rotate(45deg);
+        }
+      }
+
+      // Tabs
+      .profile-tabs {
+        display: flex;
+        border-right: 1px solid rgb(215, 215, 215);
+        .profile-tab {
+          flex: 0 0 25%;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          border-right: 1px solid rgb(215, 215, 215);
+          padding: 10px 0;
+          color: rgb(200, 200, 200);
+          cursor: pointer;
+          img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+          }
+          &:hover {
+            text-decoration: none;
+          }
+          &.active {
+            background-color: rgb(249, 249, 249);
+            color: $green;
+          }
+        }
+      }
+
+      .profile-tabs-content {
+        border-top: 1px solid rgb(215, 215, 215);
+        border-right: 1px solid rgb(215, 215, 215);
+        min-height: 500px;
+      }

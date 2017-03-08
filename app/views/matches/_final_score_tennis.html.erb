@@ -13,10 +13,17 @@
     <%= "highlight" %>
     <% else %>
     <%= "loser" %>
-    <% end %>>
+    <% end %>
       <th class="text-center">
+
+        <% if match.players.first.profile_picture %>
+          <% player_first_profile_picture =  cl_image_path(match.players.first.profile_picture.path, crop: :thumb, gravity: :face) %>
+        <% else %>
+          <% player_first_profile_picture = image_path('profile-avatar-default.jpg') %>
+        <% end %>
+
         <%= link_to user_path(match.players.first), "data-toggle" => "tooltip", title: "#{match.players.first.full_name}" do %>
-          <div class="avatar-div avatar-div-small" style="background-image: url('<%= cl_image_path(match.players.first.photo.path) %>')">
+          <div class="avatar-div avatar-div-small" style="background-image: url('<%= image_path player_first_profile_picture %>')">
           </div>
         <% end %>
       </th>
@@ -29,10 +36,17 @@
     <%= "highlight" %>
     <% else %>
     <%= "loser" %>
-    <% end %>>
+    <% end %>
       <th class="text-center">
+
+        <% if match.players.last.profile_picture %>
+          <% player_last_profile_picture =  cl_image_path(match.players.last.profile_picture.path, crop: :thumb, gravity: :face) %>
+        <% else %>
+          <% player_last_profile_picture = image_path('profile-avatar-default.jpg') %>
+        <% end %>
+
         <%= link_to user_path(match.players.last), "data-toggle" => "tooltip", title: "#{match.players.last.full_name}" do %>
-          <div class="avatar-div avatar-div-small" style="background-image: url('<%= cl_image_path(match.players.last.photo.path) %>')">
+          <div class="avatar-div avatar-div-small" style="background-image: url('<%= image_path player_last_profile_picture %>')">
           </div>
         <% end %>
       </th>

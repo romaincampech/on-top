@@ -21,7 +21,7 @@
         </div>
         <div class="row">
           <div class="col-md-3 col-md-offset-4">
-            <%= f.input :photo, as: :attachinary %>
+            <%= f.input :profile_picture, as: :attachinary %>
           </div>
           <div class="col-md-3 col-md-offset-4">
             <%= f.association :sport, label: 'Choose a sport:', :label_html => {:class => 'label-style'}, collection: Sport.all, selected: 'Tennis' %>
