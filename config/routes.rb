@@ -34,15 +34,16 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-  #Pages
-    #Home
-      root to: 'pages#home'
-    #About
-      get 'about', to: 'pages#about'
-    #Get Started
-      get 'start', to: 'pages#start'
-    #Feedbacks
-      get 'feedbacks', to: 'pages#feedbacks'
+  # Pages
+    root to: 'pages#home'
+    get 'about', to: 'pages#about'
+    get 'start', to: 'pages#start'
+    get 'feedbacks', to: 'pages#feedbacks'
+
+  # Mailbox
+    resources :conversations do
+      resources :messages
+  end
 end
 
 

@@ -18,6 +18,10 @@
     </div>
 
     <div class="navbar-right flexbox-center">
+      <!-- Mailbox -->
+      <%= link_to conversations_path do %>
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+      <% end %>
       <!-- Settings -->
       <div class="dropdown settings">
         <i class="fa fa-cog dropdown-toggle" data-toggle="dropdown" aria-hidden='true'></i>

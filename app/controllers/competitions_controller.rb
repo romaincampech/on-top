@@ -15,12 +15,10 @@ class CompetitionsController < ApplicationController
 
   def new
     @competition = Competition.new
-    authorize @competition
   end
 
   def create
     @competition = Competition.new(competition_params)
-    authorize @competition
     @competition.creator = current_user
     if @competition.team_competition
       @competition.number_of_players = params[:competition][:number_of_teams]
@@ -52,6 +50,5 @@ class CompetitionsController < ApplicationController
 
   def set_competition
     @competition = Competition.find(params[:id])
-    authorize(@competition)
   end
 end
