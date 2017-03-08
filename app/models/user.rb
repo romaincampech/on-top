@@ -7,6 +7,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
+
+  # Act_as
+  acts_as_messageable
+
   has_attachment :profile_picture
   has_attachment :cover_picture
 
@@ -211,6 +215,10 @@ class User < ApplicationRecord
     # customRanking ['desc(likes_count)']
   end
 
+# Mailbox
+  def mailboxer_email(object)
+    return nil
+  end
 
 end
 

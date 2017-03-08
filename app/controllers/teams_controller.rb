@@ -4,7 +4,6 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
-    authorize @team
   end
 
   def show
@@ -12,7 +11,6 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-    authorize @team
     @team.captain = current_user
     @team.save
     TeamMembership.create!(user: current_user, team: @team, captain: true)
@@ -31,6 +29,5 @@ class TeamsController < ApplicationController
 
   def set_team
     @team = Team.find(params[:id])
-    authorize @team
   end
 end

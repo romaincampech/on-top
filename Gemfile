@@ -8,7 +8,6 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
-gem "pundit"
 gem 'omniauth-facebook'
 
 gem 'sass-rails'
@@ -41,6 +40,9 @@ gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 
 gem 'friendly_id', '~> 5.2'
+
+# Inbox
+gem 'mailboxer', github: 'mailboxer/mailboxer'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-classnames'

@@ -15,12 +15,10 @@ class CompetitionsController < ApplicationController
 
   def new
     @competition = Competition.new
-    authorize @competition
   end
 
   def create
     @competition = Competition.new(competition_params)
-    authorize @competition
     @competition.creator = current_user
     @competition.save
     @competition.create_activity :create, owner: current_user
@@ -48,6 +46,5 @@ class CompetitionsController < ApplicationController
 
   def set_competition
     @competition = Competition.find(params[:id])
-    authorize(@competition)
   end
 end

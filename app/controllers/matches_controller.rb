@@ -34,7 +34,6 @@ class MatchesController < ApplicationController
 
   def set_match
     @match = Match.find(params[:id])
-    authorize @match
   end
 
   def match_params
