@@ -389,8 +389,8 @@
       </div>
       <!-- Tabs -->
       <div class="profile-tabs">
-        <a class="profile-tab active" id="tab-competitions" data-target="#competitions"><img src="<%= asset_path('podium.png') %>" id="img-competitions" />Competitions</a>
-        <a class="profile-tab" data-target="#statistics"><%= image_tag 'statistics.png' %>Statistics</a>
+        <a class="profile-tab active" data-target="#competitions"><img src="<%= asset_path('podium-active.png') %>" id="competitions-icon" />Competitions</a>
+        <a class="profile-tab" data-target="#statistics"><img src="<%= asset_path('statistics.png') %>" id="statistics-icon" />Statistics</a>
       </div>
       <!-- Content -->
       <div class="profile-tabs-content">
@@ -425,11 +425,22 @@
           $($(this).data('target')).removeClass('hidden');
         });
 
-    if ($("#tab-competitions").hasClass("active")) {
-      $("#img-competitions").attr('src', "<%= asset_path('podium-active.png') %>");
-    } else {
-      $("#img-competitions").stop('src', "<%= asset_path('podium-active.png') %>");
+  $(".profile-tab").on("click", function(e){
+    // Change active tab
+    $(".profile-tab").removeClass('active');
+    $("#competitions-icon").attr('src', "<%= asset_path('podium.png') %>");
+    $("#statistics-icon").attr('src', "<%= asset_path('statistics.png') %>");
+    $(this).addClass('active');
+    if ($(this).text() == "Competitions") {
+      $("#competitions-icon").attr('src', "<%= asset_path('podium-active.png') %>");
+    } else if ($(this).text() == "Statistics") {
+      $("#statistics-icon").attr('src', "<%= asset_path('statistics-active.png') %>");
     }
+    // Hide all tab-content (use class="hidden")
+    $(".profile-tabs-content").addClass('hidden');
+    // Show target tab-content (use class="hidden")
+    $($(this).data('target')).removeClass('hidden');
+  });
 
     });
   </script>
