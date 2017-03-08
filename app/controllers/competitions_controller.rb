@@ -43,7 +43,6 @@ class CompetitionsController < ApplicationController
   private
 
   def competition_params
-    binding.pry
     params.require(:competition).permit(:category, :sport_id, :name, :number_of_players)
   end
 

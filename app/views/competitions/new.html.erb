@@ -14,7 +14,7 @@
             </h3>
           </div>
         </div>
-        <%= simple_form_for @competition, remote: true do |f| %>
+        <%= simple_form_for @competition do |f| %>
 
           <% f.error_notification %>
           <div class="row">
@@ -29,13 +29,6 @@
           </div>
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <%# f.input :team_competition,
-                    :as => :radio_buttons,
-                    :collection => [['Team competition',true],['Individual competition',false]],
-                    :include_blank => true,
-                    :selected => :blank,
-                    :label => "Team or Individuals" %>
-
               <div id="player-section"></div>
                <div class="form-group flexbox radio_buttons optional competition_team_competition">
 
@@ -62,6 +55,7 @@
               </div>
             </div>
           </div>
+
           <div class="competition-step-two">
             <div class="row">
               <div class="col-xs-8 col-xs-offset-2 hide" id="knockout_competition_partial">
