@@ -1,5 +1,5 @@
 class Team < ApplicationRecord
-  has_attachment :photo
+  has_attachment :profile_picture
   belongs_to :captain, :class_name => 'User', :foreign_key => 'captain_id'
   belongs_to :sport, optional: true
   has_many :team_memberships, dependent: :destroy

@@ -1,15 +1,15 @@
 <% content_for(:title_tag) do %>
-  OnTop - <%= @user.full_name %>
+  OnTop | <%= @user.full_name %>
 <% end %>
 
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1 profile-banner">
       <div class="row">
         <div class="col-sm-5 col-sm-offset-1">
           <div class="profile-banner-left">
-            <% if @user.photo? %>
-            <%= cl_image_tag @user.photo.path %>
+            <% if @user.profile_picture? %>
+            <%= cl_image_tag @user.profile_picture.path %>
             <% else %>
             <%= image_tag "profile-avatar-default.jpg" %>
             <% end %>
@@ -187,7 +187,7 @@
                 <%= pie_chart({"wins" => "#{@user.wins_for('Football').count}", "losses" => "#{@user.losses_for('Football').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
                 </div>
               </div>
-            </div>
+            </div> -->
             <!-- <div class="row">
               <div class="col-sm-2 col-sm-offset-1">
                 <table class="table table-sm">
@@ -306,13 +306,106 @@
                 </table>
               </div>
             </div> -->
-          </div>
+<!--           </div>
           <div class="profile-tabs-content hidden" id="teams"></div>
           <div class="profile-tabs-content hidden" id="photos-videos"></div>
         </div>
       </div>
     </div>
+</div> -->
+
+
+
+
+
+
+
+
+<div class="container">
+  <!-- Banner -->
+  <div class="profile-banner">
+    <% if @user.cover_picture %>
+      <%= cl_image_path(@user.cover_picture.path) %>
+    <% end %>
+  </div>
+
+  <!-- Content (flexbox) -->
+  <div class="profile-content">
+    <!-- Left section -->
+    <div class="profile-left">
+      <!-- 1st card -->
+      <div class="profile-friendship">
+        <!-- Profile picture -->
+        <% if @user.profile_picture %>
+          <% user_profile_picture = cl_image_path(@user.profile_picture.path, crop: :thumb, gravity: :face) %>
+        <% else %>
+          <% user_profile_picture = image_path('profile-avatar-default.jpg') %>
+        <% end %>
+        <%= image_tag user_profile_picture, class: 'profile-picture' %>
+        <!-- Friendship -->
+        <% if current_user.pending_friends.include?(@user) %>
+          <div class="btn-pending">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            <p>Friend request sent</p>
+          </div>
+        <% elsif !current_user.friends.include?(@user) %>
+          <%= link_to user_friend_requests_path(@user), class: 'btn-add', method: :post do %>
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            <p>Add friend</p>
+          <% end %>
+        <% elsif current_user != @user %>
+          <div class="dropdown">
+            <div class="btn-unfriend dropdown-toggle" data-toggle="dropdown" aria-hidden="true">
+              <i class="fa fa-check" aria-hidden="true"></i>
+              <p>Friends</p>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </div>
+            <ul class="dropdown-menu friendship-dropdown-menu">
+              <li>
+                <%= link_to friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                  <p>Unfriend</p>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+        <!-- Friendlist -->
+        <div class="profile-friendlist">
+          <h3>FRIENDS</h3>
+            <%= link_to user_friendships_path(@user) do %>
+              <%= @user.friends.count - 1 %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Middle section -->
+    <div class="profile-middle">
+      <!-- Header -->
+      <div class="profile-header">
+        <h1><%= @user.full_name %></h1>
+        <i class="fa fa-map-marker" aria-hidden="true"></i><h4><%= @user.city %></h4>
+      </div>
+      <!-- Tabs -->
+      <div class="profile-tabs">
+        <a class="profile-tab active" data-target="#competitions"><img src="<%= asset_path('podium-active.png') %>" id="competitions-icon" />Competitions</a>
+        <a class="profile-tab" data-target="#statistics"><img src="<%= asset_path('statistics.png') %>" id="statistics-icon" />Statistics</a>
+      </div>
+      <!-- Content -->
+      <div class="profile-tabs-content">
+
+      </div>
+    </div>
+
+    <!-- Right section -->
+    <div class="profile-right">
+
+    </div>
+  </div>
 </div>
+
+
 
 <% content_for(:after_js) do %>
   <script>
@@ -331,6 +424,23 @@
           // Show target tab-content (use class="hidden")
           $($(this).data('target')).removeClass('hidden');
         });
+
+  $(".profile-tab").on("click", function(e){
+    // Change active tab
+    $(".profile-tab").removeClass('active');
+    $("#competitions-icon").attr('src', "<%= asset_path('podium.png') %>");
+    $("#statistics-icon").attr('src', "<%= asset_path('statistics.png') %>");
+    $(this).addClass('active');
+    if ($(this).text() == "Competitions") {
+      $("#competitions-icon").attr('src', "<%= asset_path('podium-active.png') %>");
+    } else if ($(this).text() == "Statistics") {
+      $("#statistics-icon").attr('src', "<%= asset_path('statistics-active.png') %>");
+    }
+    // Hide all tab-content (use class="hidden")
+    $(".profile-tabs-content").addClass('hidden');
+    // Show target tab-content (use class="hidden")
+    $($(this).data('target')).removeClass('hidden');
+  });
 
     });
   </script>

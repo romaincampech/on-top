@@ -1,10 +1,14 @@
 class User < ApplicationRecord
+  extend FriendlyId
+  friendly_id :slug, use: [:slugged, :history]
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
-  has_attachment :photo
+  has_attachment :profile_picture
+  has_attachment :cover_picture
 
   after_create :own_friend
 
@@ -12,6 +16,10 @@ class User < ApplicationRecord
   has_many :team_memberships, dependent: :destroy
   has_many :teams, through: :team_memberships
   has_many :owned_teams, :class_name => 'Team', :foreign_key => 'captain_id', dependent: :destroy
+
+  def slug
+    "#{first_name.downcase}.#{last_name.downcase}"
+  end
 
   def full_name
     "#{first_name} #{last_name}"
@@ -198,8 +206,8 @@ class User < ApplicationRecord
   include AlgoliaSearch
 
   algoliasearch do
-    attribute :first_name, :last_name, :email, :id, :photo
-    attributesToIndex ['first_name', 'last_name', 'email', 'id', 'photo']
+    attribute :first_name, :last_name, :email, :id, :profile_picture
+    attributesToIndex ['first_name', 'last_name', 'email', 'id', 'profile_picture']
     # customRanking ['desc(likes_count)']
   end
 
