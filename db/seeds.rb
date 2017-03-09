@@ -29,7 +29,7 @@ user.save
 
 user = User.new(first_name: "Guv", last_name: "Marwaha", email: "Guv@test.com", password: "123456", city: "London")
 url = "https://avatars1.githubusercontent.com/u/22517547?v=3&s=400"
-user.photo_url = url
+user.profile_picture_url = url
 user.admin = true
 user.save
 

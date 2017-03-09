@@ -37,6 +37,7 @@ end
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'sass-rails'
+gem 'will_paginate'
 
 # URL
 gem 'friendly_id', '~> 5.2'
@@ -62,7 +63,12 @@ gem 'groupdate'
 gem 'active_median'
 gem 'hightop'
 
+# Bootstrap
+gem 'bootstrap-sass'
+gem 'bootstrap-will_paginate'
 
+# URL
+gem 'friendly_id', '~> 5.2'
 
 
 
