@@ -13,7 +13,6 @@ gem 'omniauth-facebook'
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
-gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
@@ -39,6 +38,13 @@ gem 'react-rails', '~> 1.8'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 
+gem 'will_paginate'
+
+# Bootstrap
+gem 'bootstrap-sass'
+gem 'bootstrap-will_paginate'
+
+# URL
 gem 'friendly_id', '~> 5.2'
 
 # Inbox
