@@ -5,6 +5,10 @@ var NewCompetitionForm = React.createClass({
     }
   },
 
+  handleSubmit: function(e){
+    $.post('/competitions', {competition: this.state.competition});
+  },
+
   handleChange: function(e){
     this.setState({category: e.target.value});
   },
@@ -26,7 +30,7 @@ var NewCompetitionForm = React.createClass({
     return (
       <div>
         <h1>Create Competition Form</h1>
-        <form>
+        <form onSubmit={this.handleSubmit(e)} >
           <input name='name' placeholder='Name your competition'
           value={this.props.competition.name} />
           <select name={this.props.competition.sport_id}>
@@ -44,7 +48,6 @@ var NewCompetitionForm = React.createClass({
             { stepTwo }
           </div>
 
-          <input type='submit' value='Create Competition' className='competition-new-btn btn-individual' />
         </form>
       </div>
     );
