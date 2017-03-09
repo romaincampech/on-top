@@ -26,7 +26,7 @@ var NewCompetitionForm = React.createClass({
     return (
       <div>
         <h1>Create Competition Form</h1>
-        <form>
+
           <input name='name' placeholder='Name your competition'
           value={this.props.competition.name} />
           <select name={this.props.competition.sport_id}>
@@ -43,9 +43,27 @@ var NewCompetitionForm = React.createClass({
           <div>
             { stepTwo }
           </div>
+          <div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+    <label class="control-label select optional label-style" style="margin-top: 0px">Choose your players</label>
+    <br>
+    <select class="col-xs-12 form-control select optional chosen-select individual-chosen-select" data-placeholder=" " multiple="multiple" name="competition[user_ids][]" id="competition_user_ids">
+      <% current_user.friends.each do |friend| %>
+        <option value="<%= friend.id %>"><%= friend.first_name %> <%= friend.last_name %>
+        </option>
+      <% end %>
+    </select>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <ul class="competition-new-participants"></ul>
+  </div>
+</div>
 
-          <input type='submit' value='Create Competition' className='competition-new-btn btn-individual' />
+<input type='submit' value='Create Competition' className='competition-new-btn btn-individual' />
         </form>
+
       </div>
     );
   }
