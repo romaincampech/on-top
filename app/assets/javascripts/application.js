@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require cable
 //= require bootstrap-sprockets
@@ -8,6 +9,7 @@
 //= require attachinary
 //= require algolia/v3/algoliasearch.min
 //= require chartkick
+//= require select
 //= require react
 //= require react_ujs
 //= require components
