@@ -15,6 +15,7 @@ class CompetitionsController < ApplicationController
 
   def new
     @competition = Competition.new
+    @user = current_user
   end
 
   def create

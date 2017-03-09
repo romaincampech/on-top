@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     get 'about', to: 'pages#about'
     get 'start', to: 'pages#start'
     get 'feedbacks', to: 'pages#feedbacks'
+    get 'friends', to: 'users#friends'
 
   # Mailbox
     resources :conversations do
