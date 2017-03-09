@@ -15,11 +15,11 @@ var NewCompetitionForm = React.createClass({
 
     if (chosenCategory === "Knockout") {
       stepTwo = (
-        <NewKnockout competition={this.props.competition} key={'knockout'} />
+        <NewKnockout competition={this.props.competition} friends={this.props.friends} key={'knockout'} />
       )
     } else if (chosenCategory === "League") {
       stepTwo = (
-        <NewLeague competition={this.props.competition} key={'league'} />
+        <NewLeague competition={this.props.competition} friends={this.props.friends} key={'league'} />
       )
     };
 
@@ -43,6 +43,7 @@ var NewCompetitionForm = React.createClass({
           <div>
             { stepTwo }
           </div>
+
           <input type='submit' value='Create Competition' className='competition-new-btn btn-individual' />
         </form>
       </div>
