@@ -1,4 +1,4 @@
-var newLeague = React.createClass({
+var NewLeague = React.createClass({
   render: function() {
     return (
       <p>Step Two League, Bitches!</p>

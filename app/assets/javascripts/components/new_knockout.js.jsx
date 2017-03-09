@@ -1,7 +1,7 @@
-var newKnockout = React.createClass({
+var NewKnockout = React.createClass({
   render: function() {
     return (
-        <p>Step Two Knockout, Bitches!</p>
+        <p>Step Two Knockout Bitches!</p>
     );
   }
 })
