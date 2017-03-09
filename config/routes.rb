@@ -43,7 +43,14 @@ Rails.application.routes.draw do
   # Mailbox
     resources :conversations do
       resources :messages
-  end
+
+      collection do
+        get :inbox
+        get :all, action: :index
+        get :sent
+        get :trash
+      end
+    end
 end
 
 

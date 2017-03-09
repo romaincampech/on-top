@@ -9,36 +9,59 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'redis'
 gem 'omniauth-facebook'
-
-gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
-gem 'font-awesome-sass'
-gem 'simple_form'
 gem 'autoprefixer-rails'
+gem "coffee-rails"
+gem 'public_activity'
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
+gem 'jquery-turbolinks'
 
+
+
+# Front-end assest manager
+gem 'bower-rails'
+
+# Seed
+gem 'faker'
+
+# React
+gem 'js-routes', '~> 1.3'
+gem 'react-rails', '~> 1.8'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-classnames'
+end
+
+# Styling
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
+gem 'sass-rails'
+gem 'will_paginate'
+
+# URL
+gem 'friendly_id', '~> 5.2'
+
+# Attachments
 gem 'cloudinary', '1.1.0'
 gem "attachinary", github: "assembler/attachinary"
 gem "jquery-fileupload-rails"
-gem "coffee-rails"
-gem 'faker'
+
+# Forms
+gem 'simple_form'
+gem 'chosen-rails', '~> 1.5', '>= 1.5.2'
+
+# Search
 gem "algoliasearch-rails"
 
-gem 'chosen-rails'
-gem 'public_activity'
+# Inbox
+gem 'mailboxer', github: 'mailboxer/mailboxer'
 
+# Statistics
 gem 'chartkick'
 gem 'groupdate'
 gem 'active_median'
 gem 'hightop'
-
-gem 'js-routes', '~> 1.3'
-gem 'react-rails', '~> 1.8'
-
-gem 'remotipart', github: 'mshibuya/remotipart'
-gem 'rails_admin', '>= 1.0.0.rc'
-
-gem 'will_paginate'
 
 # Bootstrap
 gem 'bootstrap-sass'
@@ -47,12 +70,9 @@ gem 'bootstrap-will_paginate'
 # URL
 gem 'friendly_id', '~> 5.2'
 
-# Inbox
-gem 'mailboxer', github: 'mailboxer/mailboxer'
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-classnames'
-end
+
+
 
 group :development, :test do
   gem 'binding_of_caller'
