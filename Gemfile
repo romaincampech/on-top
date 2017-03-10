@@ -56,6 +56,7 @@ gem "algoliasearch-rails"
 
 # Inbox
 gem 'mailboxer', github: 'mailboxer/mailboxer'
+gem 'rails_emoji_picker'
 
 # Statistics
 gem 'chartkick'

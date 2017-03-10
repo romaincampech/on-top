@@ -1,0 +1,98 @@
+.mailbox-container {
+  width: 100vw;
+  height: calc(100vh - 50px);
+
+  // Navigation
+  .mailbox-navigation {
+    height: 100%;
+    padding: 0;
+    background-color: $brey;
+
+    .row {
+      margin: 0;
+    }
+
+    h1 a:first-child {
+      color: white;
+      font-size: 35px;
+      margin-left: 20px;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    h1 a:last-child {
+      color: white;
+      font-size: 20px;
+      float: right;
+      margin: -10px 10px 0 0;
+      padding: 3px 6px 2px 6px;
+      border-radius: 50%;
+      background: rgb(58, 187, 70);
+      &:hover {
+        background-color: rgb(58, 168, 70);
+      }
+    }
+
+    .mailbox-navigation-tabs {
+      margin: 50px 5px 0 20px;
+      display: flex;
+      flex-direction: column;
+
+      .mailbox-navigation-tab {
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 300;
+        padding: 15px 5px;
+        margin: 2px 0;
+        border-radius: 2px;
+        &.active {
+          background-color: rgba(255, 255, 255, 0.2);
+          color: white;
+        }
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.2);
+          color: white;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        i {
+          margin-right: 10px;
+        }
+
+        span {
+          float: right
+        }
+      }
+    }
+  }
+
+  // Index
+  .mailbox-index {
+    height: 100%;
+    padding: 0;
+    background-color: rgba(30, 42, 56, 0.8);
+
+    .row {
+      height: 100%;
+      margin: 0;
+    }
+
+    .mailbox-index-content {
+      height: 100%;
+
+      .mailbox-index-tab {
+        display: flex;
+        align-items: center;
+        margin: 5px 0;
+        padding: 5px;
+      }
+    }
+  }
+
+  // Discussion
+  .mailbox-discussion {
+    height: 100%;
+    padding: 0;
+  }
+}

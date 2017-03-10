@@ -2,6 +2,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require cable
+//= require rails_emoji_picker
 //= require bootstrap-sprockets
 //= require chosen-jquery
 //= require jquery-fileupload/basic

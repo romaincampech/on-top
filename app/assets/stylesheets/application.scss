@@ -9,9 +9,12 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "chosen";
+@import 'rails_emoji_picker';
 
 // Your CSS
-@import "layout/index";
 @import "components/index";
+@import "layout/index";
+@import "mailbox/index";
 @import "pages/index";
 @import "vendor/index";
+

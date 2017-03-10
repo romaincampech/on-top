@@ -10,12 +10,16 @@
 <% @conversation.receipts_for(current_user).order(created_at: 'ASC').each do |receipt| %>
   <div>
     <p><strong><%= receipt.message.sender.full_name %>:</strong></p>
-    <p><%= receipt.message.body %></p>
+    <p><%= content_with_emoji(receipt.message.body) %></p>
   </div>
 <% end %>
 
 <%= form_tag conversation_messages_path(@conversation) do %>
-  <div><%= text_area_tag :body, nil, id: 'textarea' %></div>
+  <div>
+    <p class="emoji-picker-container">
+      <%= text_area_tag :body, nil, id: "textarea", data: { emojiable: true } %>
+    </p>
+  </div>
 
   <%= submit_tag %>
 <% end %>
@@ -26,10 +30,10 @@
 <!-- After JS -->
 <%= content_for(:after_js) do %>
   <script>
-    $('#textarea').keypress(function(e){
+    $('#textarea').keydown(function(e){
       if(e.keyCode == 13 && !e.shiftKey) {
         e.preventDefault();
-        this.form.submit();
+        ("#textarea").form.submit();
       }
     });
   </script>

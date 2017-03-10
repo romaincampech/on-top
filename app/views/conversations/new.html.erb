@@ -3,7 +3,7 @@
 <%= form_tag conversations_path, method: :post do %>
   <div class="form-group">
     <%= label_tag 'recipients', 'Choose recipients' %>
-    <%= select_tag :user_ids, (@recipients, :id, :full_name), multiple: true, class: 'form-control chosen-it' %>
+    <%= select_tag :user_ids, options_from_collection_for_select(@recipients, :id, :full_name), multiple: true, class: 'form-control chosen-it' %>
   </div>
 
   <div>
