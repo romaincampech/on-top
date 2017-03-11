@@ -15,10 +15,12 @@ var NewCompetitionForm = React.createClass({
 
     var competition = {};
     var name = this.state.name;
+    var category = this.state.category;
     var sport_id = this.state.sport_id;
     var number_of_players = this.state.number_of_players;
 
     competition["name"] = name
+    competition["category"] = category
     competition["sport_id"] = sport_id
     competition["number_of_players"] = number_of_players
 
