@@ -6,7 +6,7 @@ var NewKnockout = React.createClass({
   },
 
   handleChange: function(e) {
-    this.setState({complete: true})
+    this.setState({complete: true});
     this.props.handleNumberInput(e.target.value);
   },
 
