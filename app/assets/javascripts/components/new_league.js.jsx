@@ -23,7 +23,7 @@ var NewLeague = React.createClass({
 
     return (
       <div>
-        <label for="number-of-players">Choose # of players:</label>
+        <label htmlFor="number-of-players">Choose # of players:</label>
         <select name="number-of-players" onChange={this.handleChange} >
           <option value="2">2</option>
           <option value="3">3</option>

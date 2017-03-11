@@ -23,7 +23,7 @@ var NewKnockout = React.createClass({
 
     return (
       <div>
-        <label for="number-of-players">Choose # of players:</label>
+        <label htmlFor="number-of-players">Choose # of players:</label>
         <select value={this.props.number} name="number_of_players"
           id="number-of-players" onChange={this.handleChange} >
           <option value="">How many?</option>
