@@ -28,10 +28,11 @@ var NewCompetitionForm = React.createClass({
     console.log(competition);
 
     $.ajax({
+      type: "POST",
       url: '/competitions',
       dataType: 'json',
-      type: 'POST',
-      data: {competition: competition}
+      data: {competition: competition},
+      success: function(data) {$.get(‘/competitions/‘ + {data.id})},
     });
   },
 
