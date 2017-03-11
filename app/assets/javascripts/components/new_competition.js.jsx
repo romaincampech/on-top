@@ -62,8 +62,8 @@ var NewCompetitionForm = React.createClass({
       )
     } else if (chosenCategory === "League") {
       stepTwo = (
-        <NewLeague competition={this.props.competition}
-          friends={this.props.friends} key={'league'} />
+        <NewLeague friends={this.props.friends} key={'league'}
+          handleNumberInput={this.handleNumberChange} />
       )
     };
 

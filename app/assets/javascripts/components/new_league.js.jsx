@@ -6,7 +6,8 @@ var NewLeague = React.createClass({
   },
 
   handleChange: function(e) {
-    this.setState({complete: true})
+    this.setState({complete: true});
+    this.props.handleNumberInput(e.target.value);
   },
 
   render: function() {
@@ -23,8 +24,7 @@ var NewLeague = React.createClass({
     return (
       <div>
         <label for="number-of-players">Choose # of players:</label>
-        <select name={this.props.competition.number_of_players}
-          id="number-of-players" onChange={this.handleChange} >
+        <select name="number-of-players" onChange={this.handleChange} >
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
