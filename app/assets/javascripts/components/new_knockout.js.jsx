@@ -6,7 +6,8 @@ var NewKnockout = React.createClass({
   },
 
   handleChange: function(e) {
-    this.setState({complete: true})
+    this.setState({complete: true});
+    this.props.handleNumberInput(e.target.value);
   },
 
   render: function() {
@@ -22,8 +23,8 @@ var NewKnockout = React.createClass({
 
     return (
       <div>
-        <label for="number-of-players">Choose # of players:</label>
-        <select name={this.props.competition.number_of_players}
+        <label htmlFor="number-of-players">Choose # of players:</label>
+        <select value={this.props.number} name="number_of_players"
           id="number-of-players" onChange={this.handleChange} >
           <option value="">How many?</option>
           <option value="2">2</option>

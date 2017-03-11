@@ -1,7 +1,11 @@
 var SelectPlayers = React.createClass({
   render: function() {
+    console.log(this.props.friends);
     return (
-    <p>Step Three MotherFuckers!</p>
+    <div>
+      <p>Step Three MotherFuckers!</p>
+      <input type='submit' value='Create Competition' className='competition-new-btn btn-individual' />
+    </div>
     );
   }
 })
