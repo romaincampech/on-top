@@ -1,8 +1,10 @@
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require cable
 //= require bootstrap-sprockets
 //= require chosen-jquery
+//= require scaffold
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
@@ -12,3 +14,4 @@
 //= require react_ujs
 //= require components
 //= require_tree .
+//= require turbolinks
