@@ -17,7 +17,7 @@ var NewLeague = React.createClass({
     if (complete === true) {
       stepThree = (
       <SelectPlayers competition={this.props.competition}
-        friends={this.props.friends}/>
+        friends={this.props.friends} selectedPlayers={this.props.selectedPlayers} />
       )
     };
 

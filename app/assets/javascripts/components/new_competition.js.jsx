@@ -5,8 +5,7 @@ var NewCompetitionForm = React.createClass({
       name: "",
       sport_id: "",
       number_of_players: 0,
-      user_ids: [],
-      type: "",
+      user_ids: []
     }
   },
 
@@ -15,20 +14,25 @@ var NewCompetitionForm = React.createClass({
 
     var competition = {};
     var name = this.state.name;
+    var category = this.state.category;
     var sport_id = this.state.sport_id;
     var number_of_players = this.state.number_of_players;
+    var user_ids = this.state.user_ids;
 
     competition["name"] = name
+    competition["category"] = category
     competition["sport_id"] = sport_id
     competition["number_of_players"] = number_of_players
+    competition["user_ids"] = user_ids
 
     console.log(competition);
 
     $.ajax({
+      type: "POST",
       url: '/competitions',
       dataType: 'json',
-      type: 'POST',
-      data: {competition: competition}
+      data: {competition: competition},
+      success: function(data) {window.location.href = "/competitions/" + data.id;},
     });
   },
 
@@ -51,6 +55,10 @@ var NewCompetitionForm = React.createClass({
     this.setState({number_of_players: obj});
   },
 
+  handlePlayerSelection: function(obj) {
+    this.setState({user_ids: obj})
+  },
+
   render: function() {
     var chosenCategory = this.state.category;
     var stepTwo;
@@ -58,12 +66,14 @@ var NewCompetitionForm = React.createClass({
     if (chosenCategory === "Knockout") {
       stepTwo = (
         <NewKnockout friends={this.props.friends}
-          key={'knockout'} handleNumberInput={this.handleNumberChange} />
+          key={'knockout'} handleNumberInput={this.handleNumberChange}
+            selectedPlayers={this.handlePlayerSelection} />
       )
     } else if (chosenCategory === "League") {
       stepTwo = (
         <NewLeague friends={this.props.friends} key={'league'}
-          handleNumberInput={this.handleNumberChange} />
+          handleNumberInput={this.handleNumberChange}
+            selectedPlayers={this.handlePlayerSelection} />
       )
     };
 
