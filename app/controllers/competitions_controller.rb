@@ -29,7 +29,7 @@ class CompetitionsController < ApplicationController
       @competition.assign_matches if @competition.players.count == @competition.number_of_players
       @competition.new_chat
       @competition.save
-      render json: @competition
+      render json: @competition, status: :created
     else
       render json: @competition.errors, status: :unprocessable_entity
     end

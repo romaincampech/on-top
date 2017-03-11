@@ -32,9 +32,10 @@ var NewCompetitionForm = React.createClass({
       url: '/competitions',
       dataType: 'json',
       data: {competition: competition},
-      success: function(data) {$.get(‘/competitions/‘ + {data.id})},
+      success: function(data) {window.location.href = "/competitions/" + data.id;},
     });
   },
+
 
   handleNameChange: function(e) {
     var name = e.target.name;
