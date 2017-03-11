@@ -89,6 +89,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap-will_paginate (0.0.10)
       will_paginate
+    bower-rails (0.11.0)
     builder (3.2.2)
     byebug (9.0.6)
     carrierwave (1.0.0)
@@ -348,8 +349,9 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   bootstrap-will_paginate
+  bower-rails
   chartkick
-  chosen-rails
+  chosen-rails (~> 1.5, >= 1.5.2)
   cloudinary (= 1.1.0)
   coffee-rails
   devise
@@ -383,7 +385,6 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
-  turbolinks
   uglifier
   will_paginate
 

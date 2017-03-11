@@ -36,7 +36,6 @@ var NewCompetitionForm = React.createClass({
     });
   },
 
-
   handleNameChange: function(e) {
     var name = e.target.name;
     obj = {};
