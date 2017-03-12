@@ -81,8 +81,7 @@ var NewCompetitionForm = React.createClass({
       <div>
         <h1>Create Competition Form</h1>
         <form onSubmit={this.handleSubmit} >
-          <input name='name' placeholder='Name your competition'
-          value={this.state.name} onChange={this.handleNameChange} />
+          <h3>I would like to create a</h3>
           <select name="sport_id" value= {this.state.sport_id}
             onChange={this.handleSportChange} >
             <option value="">Which Sport?</option>
@@ -96,9 +95,14 @@ var NewCompetitionForm = React.createClass({
             <option value="Knockout">Knockout</option>
             <option value="League">League</option>
           </select>
+          <h3>competition called</h3>
+          <input name='name' placeholder='Name your competition'
+          value={this.state.name} onChange={this.handleNameChange} />
+
           <div>
             { stepTwo }
           </div>
+
         </form>
       </div>
     );
