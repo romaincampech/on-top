@@ -15,15 +15,18 @@
 }
 
 .board-header {
+  margin-top: 5px;
+  padding-top: 4px;
   height: 70px;
   justify-content: space-between;
   padding: 0 30px;
   h1, p {
     margin: 0;
+    margin-bottom: 2px;
   }
   h1 {
     font-weight: bold;
-    margin-bottom: 7px;
+    margin-bottom: 4px;
   }
   .left p {
     font-weight: lighter;
@@ -33,6 +36,14 @@
     font-weight: bold;
     font-size: 18px;
     color: #8D8D8D;
+  }
+  button {
+    margin-left: 2px;
+    background-color: #58D063;
+    color: white;
+    text-decoration: none;
+    box-shadow: 1px 1px 3px #d9d9d9;
+    border-radius: 5px;
   }
 }
 
