@@ -80,6 +80,17 @@ class User < ApplicationRecord
     self.playing_competitions.where(champion_id: nil)
   end
 
+  def not_invited_friends(competition_id)
+    not_invited_friends = []
+
+    self.friends.each do |friend|
+      unless friend.competitions.include?(Competition.find(competition_id))
+        not_invited_friends << friend
+      end
+    end
+    return not_invited_friends
+  end
+
   # competitions the player has not been the winner of
   def lost_championships
     played_competitions.where.not(champion_id: id)
