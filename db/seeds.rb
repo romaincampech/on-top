@@ -27,7 +27,7 @@ url = "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/7/005/064/0ec/1749a12.
 user.profile_picture_url = url
 user.save
 
-user = User.new(first_name: "Guv", last_name: "Marwaha", email: "Guv@test.com", password: "123456", city: "London")
+user = User.new(first_name: "Guv", last_name: "Marwaha", email: "Guv@test.com", password: "123456", city: "London", slug: "guv.marwaha")
 url = "https://avatars1.githubusercontent.com/u/22517547?v=3&s=400"
 user.profile_picture_url = url
 user.admin = true
