@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [ :show ]
+  before_action :session_conversations
 
   def show
   end

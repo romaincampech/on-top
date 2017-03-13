@@ -3,8 +3,6 @@
   <head>
     <%= render 'application/favicon' %>
     <title><%= yield(:title_tag).blank? ? "OnTop" : yield(:title_tag) %></title>
-    <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -14,16 +12,20 @@
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_include_tag "//www.google.com/jsapi" %>
     <%= javascript_include_tag 'chartkick' %>
+    <%= csrf_meta_tags %>
   </head>
   <body>
 
     <% unless params[:action] == "home" %>
       <%= render 'shared/navbar' %>
     <% end %>
-
     <%= render 'shared/flashes' %>
+
     <%= yield %>
-    <%= render 'shared/footer' %>
+
+    <% if params[:action] == 'home' %>
+      <%= render 'shared/footer' %>
+    <% end %>
 
     <%= javascript_include_tag 'application' %>
     <%= cloudinary_js_config %>

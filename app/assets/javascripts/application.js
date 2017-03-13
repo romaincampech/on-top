@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require cable
+//= require rails_emoji_picker
 //= require bootstrap-sprockets
 //= require chosen-jquery
 //= require scaffold
@@ -10,6 +10,8 @@
 //= require attachinary
 //= require algolia/v3/algoliasearch.min
 //= require chartkick
+//= require rails-timeago
+//= require rails-timeago-all
 //= require select
 //= require react
 //= require react_ujs

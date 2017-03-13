@@ -17,7 +17,6 @@ class TeamsController < ApplicationController
     # @team.create_activity :create, owner: current_user
     users_ary = params[:team][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
     @team.add_users(users_ary)
-    @team.new_chat
     redirect_to team_path(@team)
   end
 

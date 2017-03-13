@@ -20,7 +20,7 @@ gem 'jquery-turbolinks'
 
 
 
-# Front-end assest manager
+# Front-end assests manager
 gem 'bower-rails'
 
 # Seed
@@ -55,13 +55,14 @@ gem 'chosen-rails', '~> 1.5', '>= 1.5.2'
 gem "algoliasearch-rails"
 
 # Inbox
-gem 'mailboxer', github: 'mailboxer/mailboxer'
+gem 'rails_emoji_picker'
 
 # Statistics
 gem 'chartkick'
 gem 'groupdate'
 gem 'active_median'
 gem 'hightop'
+gem 'rails-timeago', '~> 2.15'
 
 # Bootstrap
 gem 'bootstrap-sass'
