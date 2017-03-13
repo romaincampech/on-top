@@ -23,7 +23,7 @@ var NewKnockout = React.createClass({
 
     return (
       <div>
-        <h3>with</h3>
+        with
         <select value={this.props.number} name="number_of_players"
           id="number-of-players" onChange={this.handleChange} >
           <option value="">How many?</option>
@@ -32,7 +32,7 @@ var NewKnockout = React.createClass({
           <option value="8">8</option>
           <option value="16">16</option>
         </select>
-        <h3>players.</h3>
+        players.
         <div>
           {stepThree}
         </div>
