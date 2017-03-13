@@ -79,26 +79,22 @@ var NewCompetitionForm = React.createClass({
 
     return (
       <div>
-        <h1>Create Competition Form</h1>
-        <form onSubmit={this.handleSubmit} >
-          <input name='name' placeholder='Name your competition'
-          value={this.state.name} onChange={this.handleNameChange} />
-          <select name="sport_id" value= {this.state.sport_id}
+        <h1 className="form-title">Create Your Competition!</h1>
+        <form className="competition-creation-form" onSubmit={this.handleSubmit} >
+          I would like to create a<select name="sport_id" value= {this.state.sport_id}
             onChange={this.handleSportChange} >
             <option value="">Which Sport?</option>
             <option value='1'>Tennis</option>
             <option value='2'>Table-Tennis</option>
             <option value='3'>Squash</option>
-          </select>
-          <select name="category" value= {this.state.category}
+          </select><select name="category" value= {this.state.category}
             onChange={this.handleCategoryChange}>
             <option value="">Competition Type</option>
             <option value="Knockout">Knockout</option>
             <option value="League">League</option>
           </select>
-          <div>
-            { stepTwo }
-          </div>
+          competition called<input name='name' placeholder='Name your competition'
+          value={this.state.name} onChange={this.handleNameChange} />{ stepTwo }
         </form>
       </div>
     );
