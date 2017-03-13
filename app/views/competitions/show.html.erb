@@ -6,13 +6,11 @@
           <%= @competition.name %>
         </h1>
         <p><%= @competition.sport.name %>, <%= @competition.category %></p>
+        <% if @competition.players.count < @competition.number_of_players %>
+        <p><strong>Round 1 matches will be assigned once <%= @competition.number_of_players %> players have been added</strong><%= react_component "InvitePlayersButton", {competition: @competition, friends: @not_invited_friends} %><p><% end %>
       </div>
       <div class="right">
-        <p><span><% if @competition.players.include?(user_id: 0)%>
-        <%= @competition.number_of_players - 1 %>
-        <% else %>
-        <%= @competition.number_of_players %>
-        <% end %></span> players</p>
+        <p><span><%= @competition.number_of_players %></span> players</p>
       </div>
     </div>
 

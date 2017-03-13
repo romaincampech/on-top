@@ -3,6 +3,7 @@ class CompetitionsController < ApplicationController
 
   def show
     @rounds = @competition.number_of_rounds(@competition.category)
+    @not_invited_friends = current_user.not_invited_friends(@competition.id)
     # @matches = Match.where(competition_id: @competition.id)
     if @competition.category == "Knockout"
       @competition.winner_match_assignment
@@ -19,22 +20,31 @@ class CompetitionsController < ApplicationController
   def create
     @competition = Competition.new(competition_params)
     @competition.creator = current_user
-    @competition.save
-    @competition.create_activity :create, owner: current_user
-    @competition.create_matches
+    if @competition.save
+      @competition.create_activity :create, owner: current_user
+      @competition.create_matches
+      players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
+      @competition.add_players(players_ary)
+      @competition.assign_matches if @competition.players.count == @competition.number_of_players
+      @competition.new_chat
+      @competition.save
+      render json: @competition, status: :created
+    else
+      render json: @competition.errors, status: :unprocessable_entity
+    end
+
+  end
+
+  def update
     players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
     @competition.add_players(players_ary)
     @competition.assign_matches if @competition.players.count == @competition.number_of_players
-    @competition.save
-    redirect_to competition_path(@competition)
+    if @competition.save
+      render json: @competition, status: :created
+    else
+      render json: @competition.errors, status: :unprocessable_entity
+    end
   end
-
-  # def update
-  #   respond_to do |format|
-  #   #   format.html { redirect_to competition_path(@match.competition_id) }
-  #     format.js
-  #   end
-  # end
 
   private
 

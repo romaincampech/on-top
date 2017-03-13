@@ -1,3 +1,32 @@
+.competition-creation-form {
+  font-size: 30px;
+  font-weight: 800;
+  color: $brey;
+  line-height: 2;
+  margin: 50px 200px 50px 200px;
+  select {
+    color: grey;
+    font-weight: 500;
+    margin: 0px 5px 0px 5px;
+  }
+  input {
+    line-height: 1.4;
+    border-radius: 5px;
+    margin-left: 5px;
+    padding: 0px 5px 0px 5px;
+  }
+}
+
+.form-title {
+  font-size: 40px;
+  font-weight: 1200;
+  color: $brey;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
 .competition-new-title h1 {
   text-align: center;
   color: white;
@@ -31,8 +60,8 @@
     background-color: #58D063;
     opacity: 0.9;
     color: white;
-    margin: 24px;
-    padding: 15px;
+    margin: 20px;
+    padding: 10px;
     font-weight: bolder;
     border: none;
     border-radius: 3px;
@@ -42,7 +71,7 @@
     box-shadow: 1px 1px 3px rgba(80,80,80,0.5);
     }
     margin-top: 25px;
-    padding: 20px 70px;
+    padding: 10px 60px;
   }
 
   .btn-individual {

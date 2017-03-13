@@ -4,6 +4,7 @@
 //= require rails_emoji_picker
 //= require bootstrap-sprockets
 //= require chosen-jquery
+//= require scaffold
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
