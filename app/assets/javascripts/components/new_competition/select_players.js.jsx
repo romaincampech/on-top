@@ -16,7 +16,7 @@ var SelectPlayers = React.createClass({
 
     return (
       <div>
-        <label>Choose your players:</label>
+        I would like to invite
         <select className="select optional chosen-select individual-chosen-select"
           data-placeholder=" " multiple="multiple" name="competition[user_ids][]"
             id="competition_user_ids" onChange={this.handleChange} >
@@ -27,7 +27,8 @@ var SelectPlayers = React.createClass({
               })
             }
         </select>
-        <input type='submit' value='Create Competition' className='competition-new-btn btn-individual' />
+        to the competition.
+        <input type='submit' value='Create Competition' className='competition-new-btn' />
       </div>
     );
   }
