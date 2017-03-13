@@ -1,5 +1,4 @@
 class Competition < ApplicationRecord
-  has_one :chat_room, dependent: :destroy
 
   has_many :competition_participants, dependent: :destroy
   has_many :users, through: :competition_participants
@@ -19,10 +18,6 @@ class Competition < ApplicationRecord
   validates :creator_id, presence: true
 
   include PublicActivity::Common
-
-  def new_chat
-    ChatRoom.create(competition: self)
-  end
 
   def add_players(array)
     array.each do |user|

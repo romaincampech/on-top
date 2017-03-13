@@ -21,9 +21,6 @@ Rails.application.routes.draw do
   resources :friend_requests, only: [:update]
   resources :friendships, only: [ :destroy ]
 
-  # for chat
-  mount ActionCable.server => '/cable'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :competitions, only: [:index, :new, :create, :show, :edit, :update] do
@@ -40,17 +37,14 @@ Rails.application.routes.draw do
     get 'start', to: 'pages#start'
     get 'feedbacks', to: 'pages#feedbacks'
 
-  # Mailbox
+  # Direct Messages
     resources :conversations do
-      resources :messages
-
-      collection do
-        get :inbox
-        get :all, action: :index
-        get :sent
-        get :trash
+      member do
+        post :close
       end
+      resources :messages
     end
+
 end
 
 

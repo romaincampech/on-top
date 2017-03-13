@@ -8,15 +8,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
 
-  # Act_as
-  acts_as_messageable
-
   has_attachment :profile_picture
   has_attachment :cover_picture
 
   after_create :own_friend
 
-  has_many :messages, dependent: :destroy
+  # Direct Messages
+  has_many :conversations, foreign_key: :sender_id
+  has_many :messages
+
   has_many :team_memberships, dependent: :destroy
   has_many :teams, through: :team_memberships
   has_many :owned_teams, :class_name => 'Team', :foreign_key => 'captain_id', dependent: :destroy
@@ -224,11 +224,6 @@ class User < ApplicationRecord
     attribute :first_name, :last_name, :email, :id, :profile_picture
     attributesToIndex ['first_name', 'last_name', 'email', 'id', 'profile_picture']
     # customRanking ['desc(likes_count)']
-  end
-
-# Mailbox
-  def mailboxer_email(object)
-    return nil
   end
 
 end
