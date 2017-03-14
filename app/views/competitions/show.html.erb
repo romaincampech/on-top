@@ -19,12 +19,13 @@
       <%= render 'knockout_competition' %>
       <% else %>
       <%= render 'league_table' %>
+      <%= react_component "LeagueTable", players: @competition_participants_by_points %>
       <% end %>
     </div>
 
     <div class="fixtures-wrapper">
       <% if @competition.category == "League" %>
-      <%= render 'league_fixtures_two', current_user_id: @current_user_id %>
+      <%= render 'league_fixtures_two' %>
       <% end %>
     </div>
   </div>
