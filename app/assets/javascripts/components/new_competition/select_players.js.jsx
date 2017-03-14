@@ -27,7 +27,7 @@ var SelectPlayers = React.createClass({
               })
             }
         </select>
-        to the competition.
+        to the competition.<br/>
         <input type='submit' value='Create Competition' className='competition-new-btn' />
       </div>
     );

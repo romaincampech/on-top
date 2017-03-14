@@ -10,14 +10,26 @@
   margin: 30px 200px 50px 200px;
   select {
     color: grey;
+    background-color: transparent;
     font-weight: 500;
     margin: 0px 5px 0px 5px;
+    border: 0px;
+    option {
+      background-color: $green;
+      color: $brey;
+    }
+  }
+  select:focus {
+    outline: none;
   }
   input {
     line-height: 1.4;
     border-radius: 5px;
     margin-left: 5px;
     padding: 0px 5px 0px 5px;
+  }
+  input:focus {
+    outline: none;
   }
 }
 
