@@ -8,7 +8,7 @@
       <% end %>
     </div>
 
-    <div class="navbar-middle flexbox-between">
+    <div class="navbar-middle flexbox-between hidden-xs">
       <!-- Create -->
       <%= link_to new_competition_path, class: "navbar-create", method: :get do %>
         <h5>Create competition</h5>
@@ -17,7 +17,7 @@
       <%= render 'shared/searchform' %>
     </div>
 
-    <div class="navbar-right flexbox-center">
+    <div class="navbar-right flexbox-center hidden-xs">
       <!-- Settings -->
       <div class="dropdown settings">
         <i class="fa fa-cog dropdown-toggle" data-toggle="dropdown" aria-hidden='true'></i>

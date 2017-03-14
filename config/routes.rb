@@ -38,11 +38,11 @@ Rails.application.routes.draw do
     get 'feedbacks', to: 'pages#feedbacks'
 
   # Direct Messages
-    resources :conversations do
+    resources :conversations, only: [:create] do
       member do
         post :close
       end
-      resources :messages
+      resources :messages, only: [:create]
     end
 
 end

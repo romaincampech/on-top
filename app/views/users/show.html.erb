@@ -321,28 +321,31 @@
 
 
 
-<div class="container">
-  <!-- Banner -->
+<!-- <div class="container">
+
   <div class="profile-banner">
     <% if @user.cover_picture %>
       <%= cl_image_path(@user.cover_picture.path) %>
+    <% else %>
+      <% default_cover_picture = image_path('default_cover_picture.jpg') %>
+      <%= image_tag default_cover_picture %>
     <% end %>
   </div>
 
-  <!-- Content (flexbox) -->
+
   <div class="profile-content">
-    <!-- Left section -->
+
     <div class="profile-left">
-      <!-- 1st card -->
+
       <div class="profile-friendship">
-        <!-- Profile picture -->
+
         <% if @user.profile_picture %>
           <% user_profile_picture = cl_image_path(@user.profile_picture.path, crop: :thumb, gravity: :face) %>
         <% else %>
           <% user_profile_picture = image_path('profile-avatar-default.jpg') %>
         <% end %>
         <%= image_tag user_profile_picture, class: 'profile-picture' %>
-        <!-- Friendship -->
+
         <% if current_user.pending_friends.include?(@user) %>
           <div class="btn-pending">
             <i class="fa fa-check" aria-hidden="true"></i>
@@ -370,7 +373,7 @@
             </ul>
           </div>
         <% end %>
-        <!-- Friendlist -->
+
         <div class="profile-friendlist">
           <h3>FRIENDS</h3>
             <%= link_to user_friendships_path(@user) do %>
@@ -380,9 +383,9 @@
       </div>
     </div>
 
-    <!-- Middle section -->
+
     <div class="profile-middle">
-      <!-- Header -->
+
       <div class="profile-header">
         <h1><%= @user.full_name %></h1>
         <i class="fa fa-map-marker" aria-hidden="true"></i><h4><%= @user.city %></h4>
@@ -397,25 +400,19 @@
         </div>
       </div>
 
-      <!-- Tabs -->
-      <div class="profile-tabs">
-        <a class="profile-tab active" data-target="#competitions"><img src="<%= asset_path('podium-active.png') %>" id="competitions-icon" />Competitions</a>
-        <a class="profile-tab" data-target="#statistics"><img src="<%= asset_path('statistics.png') %>" id="statistics-icon" />Statistics</a>
-      </div>
-      <!-- Content -->
       <div class="profile-tabs-content">
 
       </div>
     </div>
 
-    <!-- Right section -->
+
     <div class="profile-right">
 
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-3" style="position: fixed; bottom: 0; right: 0;">
       <ul id="conversations-list">
         <% @conversations.each do |conversation|  %>
           <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
@@ -424,10 +421,70 @@
     </div>
   </div>
 
+</div> -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <% if @user.cover_picture %>
+        <% cover_picture = cl_image_path(@user.cover_picture.path) %>
+        <div class="profile-banner" style="background-image: url(<%= image_path cover_picture %>);"></div>
+      <% else %>
+        <div class="profile-banner"></div>
+      <% end %>
+      <% if @user.profile_picture %>
+        <% profile_picture = cl_image_path(@user.profile_picture.path) %>
+      <% else %>
+        <% profile_picture = cl_image_path("profile-avatar-default.jpg") %>
+      <% end %>
+      <%= image_tag profile_picture, class: "profile-avatar" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-1">
+      <div class="profile-friendship">
+
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="profile-header">
+        <h1><%= @user.full_name %></h1>
+        <div class="profile-location">
+          <i class="em em-round_pushpin"></i><h4><%= @user.city %></h4>
+        </div>
+      </div>
+      <div class="profile-tabs">
+        <a class="profile-tab active" data-target="#competitions"><img src="<%= asset_path('podium-active.png') %>" id="competitions-icon" />Competitions</a>
+        <a class="profile-tab" data-target="#statistics"><img src="<%= asset_path('statistics.png') %>" id="statistics-icon" />Statistics</a>
+      </div>
+      <div class="profile-tabs-content" id="competitions"></div>
+      <div class="profile-tabs-content" id="statistics"></div>
+    </div>
+    <div class="col-md-2">
+      <div class="profile-conversation">
+        <div class="panel-body">
+            <%= link_to conversations_path(user_id: @user.id),remote: true, method: :post do %>
+              <% conversation_bubble = image_path("conversation-bubble.png") %>
+              <%= image_tag conversation_bubble, class: "conversatoin-bubble" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3" style="position: fixed; bottom: 0; right: 0;">
+      <ul id="conversations-list">
+        <% @conversations.each do |conversation|  %>
+          <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
 
 
-
+<!-- After JS -->
 <% content_for(:after_js) do %>
   <script>
     $(document).ready(function(){
