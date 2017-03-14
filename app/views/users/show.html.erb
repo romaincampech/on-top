@@ -458,8 +458,121 @@
         <a class="profile-tab active" data-target="#competitions"><img src="<%= asset_path('podium-active.png') %>" id="competitions-icon" />Competitions</a>
         <a class="profile-tab" data-target="#statistics"><img src="<%= asset_path('statistics.png') %>" id="statistics-icon" />Statistics</a>
       </div>
-      <div class="profile-tabs-content" id="competitions"></div>
-      <div class="profile-tabs-content" id="statistics"></div>
+      <div class="profile-tabs-content" id="competitions">
+        <div class="competitions-tabs">
+          <a class="competitions-tab active" data-target="#active">Active</a>
+          <span>|</span>
+          <a class="competitions-tab" data-target="#previous">Previous</a>
+        </div>
+        <div class="competitions-tabs-content" id="active">
+          <% if @user.unplayed_competitions.count > 0 %>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <% @user.unplayed_competitions.each do |competition| %>
+                  <%= link_to competition_path(competition) do %>
+                    <div class="profile-competition-card">
+                      <div class="profile-competition-card-header">
+                        <h4><%= competition.name %></h4>
+                      </div>
+                      <div class="profile-competition-card-content">
+                        <div class="flexbox-column">
+                          <h5>Category</h5>
+                          <p><%= competition.category %></p>
+                        </div>
+                        <div class="flexbox-column">
+                          <h5>Sport</h5>
+                          <% if competition.sport.name == "Tennis" %>
+                            <%= image_tag "tennis-icon.png", class: "profile-sports-icon" %>
+                          <% elsif competition.sport.name == "Squash" %>
+                            <%= image_tag "squash-icon.png", class: "profile-sports-icon" %>
+                          <% elsif competition.sport.name == "Table-Tennis" %>
+                            <%= image_tag "ping-pong-icon.png", class: "profile-sports-icon" %>
+                          <% end %>
+                        </div>
+                        <div class="flexbox-column">
+                          <h5>Players</h5>
+                          <p><%= competition.number_of_players %></p>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="flexbox-column">
+                  <% if @user == current_user %>
+                    <p>You don't have any active competition at the moment...</p><%= link_to "Create one now!", new_competition_path, class: "btn-competition-profile" %>
+                  <% else %>
+                    <p><%= @user.first_name %> doesn't have any active competition at the moment...</p><%= link_to "Play together now!", new_competition_path, class: "btn-competition-profile" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="competitions-tabs-content hidden" id="previous">
+          <% if @user.played_competitions.count > 0 %>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <% @user.played_competitions.each do |competition| %>
+                  <%= link_to competition_path(competition) do %>
+                    <div class="profile-competition-card">
+                      <div class="profile-competition-card-header">
+                        <h4><%= competition.name %></h4>
+                      </div>
+                      <div class="profile-played-competition-card-content">
+                        <div class="flexbox-column">
+                          <h5>Category</h5>
+                          <p><%= competition.category %></p>
+                        </div>
+                        <div class="flexbox-column">
+                          <h5>Sport</h5>
+                          <% if competition.sport.name == "Tennis" %>
+                            <%= image_tag "tennis-icon.png", class: "profile-sports-icon" %>
+                          <% elsif competition.sport.name == "Squash" %>
+                            <%= image_tag "squash-icon.png", class: "profile-sports-icon" %>
+                          <% elsif competition.sport.name == "Table-Tennis" %>
+                            <%= image_tag "ping-pong-icon.png", class: "profile-sports-icon" %>
+                          <% end %>
+                        </div>
+                        <div class="flexbox-column">
+                          <h5>Players</h5>
+                          <p><%= competition.number_of_players %></p>
+                        </div>
+                        <div class="flexbox-column">
+                          <h5>Winner</h5>
+                          <% if competition.champion.profile_picture %>
+                            <% winner_avatar = cl_image_path(competition.champion.profile_picture.path) %>
+                          <% else %>
+                            <% winner_avatar = cl_image_path("profile-avatar-default.jpg") %>
+                          <% end %>
+                          <%= image_tag winner_avatar, class: "profile-winner-avatar" %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="flexbox-column">
+                  <% if @user == current_user %>
+                    <p>You haven't played any competition yet...</p><%= link_to "Create one now!", new_competition_path, class: "btn-competition-profile" %>
+                  <% else %>
+                    <p><%= @user.first_name %> hasn't played any competition yet...</p><%= link_to "Play together now!", new_competition_path, class: "btn-competition-profile" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="profile-tabs-content hidden" id="statistics"></div>
     </div>
     <div class="col-md-2">
       <div class="profile-conversation">
@@ -516,6 +629,16 @@
     }
     // Hide all tab-content (use class="hidden")
     $(".profile-tabs-content").addClass('hidden');
+    // Show target tab-content (use class="hidden")
+    $($(this).data('target')).removeClass('hidden');
+  });
+
+  $(".competitions-tab").on("click", function(e){
+    // Change active tab
+    $(".competitions-tab").removeClass('active');
+    $(this).addClass('active');
+    // Hide all tab-content (use class="hidden")
+    $(".competitions-tabs-content").addClass('hidden');
     // Show target tab-content (use class="hidden")
     $($(this).data('target')).removeClass('hidden');
   });

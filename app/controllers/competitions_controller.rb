@@ -26,7 +26,6 @@ class CompetitionsController < ApplicationController
       players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
       @competition.add_players(players_ary)
       @competition.assign_matches if @competition.players.count == @competition.number_of_players
-      @competition.new_chat
       @competition.save
       render json: @competition, status: :created
     else
