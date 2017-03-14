@@ -19,7 +19,7 @@
       <%= render 'knockout_competition' %>
       <% else %>
       <%= render 'league_table' %>
-      <%= react_component "LeagueTable", players: @competition_participants_by_points %>
+      <%= react_component "LeagueTable", players: @competition_participants_by_points, data: @league_table_data %>
       <% end %>
     </div>
 

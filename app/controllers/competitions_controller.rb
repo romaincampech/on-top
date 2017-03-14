@@ -10,6 +10,7 @@ class CompetitionsController < ApplicationController
     elsif @competition.category == "League"
       @current_user_id = @current_user.id
       @competition_participants_by_points = @competition.competition_participants.order('points DESC')
+      @league_table_data = @competition.league_table_data(@competition_participants_by_points)
     end
   end
 

@@ -130,4 +130,20 @@ class Competition < ApplicationRecord
       end
     end
   end
+
+  def league_table_data(players)
+    league_table_data = []
+
+    players.each do |player|
+      player_data = {}
+      player_data["name"] = player.user.first_name
+      player_data["matches_played"] = player.user.played_matches.where(competition_id: self.id).count
+      player_data["matches_won"] = player.user.played_matches.where(competition_id: self.id, winner_id: player.user.id).count
+      player_data["matches_drawn"] = player.user.played_matches.where(competition_id: self.id, winner_id: 0).count
+      player_data["matches_lost"] = player.user.played_matches.where(competition_id: self.id).count - (player.user.played_matches.where(competition_id: self.id, winner_id: player.user.id).count + player.user.played_matches.where(competition_id: self.id, winner_id: 0).count)
+
+      league_table_data << player_data
+    end
+    return league_table_data
+  end
 end
