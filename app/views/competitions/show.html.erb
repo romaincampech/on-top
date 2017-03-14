@@ -24,7 +24,7 @@
 
     <div class="fixtures-wrapper">
       <% if @competition.category == "League" %>
-      <%= render 'league_fixtures_two' %>
+      <%= render 'league_fixtures_two', current_user_id: @current_user_id %>
       <% end %>
     </div>
   </div>

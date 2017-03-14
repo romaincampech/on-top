@@ -43,7 +43,7 @@ var Match = React.createClass({
     if (this.props.match.status === 'Played') {
       match_display = (
         <FinalScore match={this.props.match}
-        key={'finalscore' + this.props.match.id}/>
+        key={'finalscore' + this.props.match.id} toggleClick={this.handleToggleClick}/>
       )
     } else {
       match_display = (
@@ -59,8 +59,7 @@ var Match = React.createClass({
         </div>
         <div>
           {display_form && <ScoreForm match={this.props.match}
-          key={this.props.match.id} onFormSubmit={this.handleFormSubmit}
-          onUserInput={this.handleUserInput} />}
+          key={this.props.match.id} onFormSubmit={this.handleFormSubmit}/>}
         </div>
       </div>
     );

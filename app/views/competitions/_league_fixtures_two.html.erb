@@ -11,8 +11,7 @@
   </div>
   <div class="league-fixtures">
     <%= react_component "FixtureList",
-        render(template: 'matches/index.json.jbuilder', players: @competition.players.sort) %>
+        render(template: 'matches/index.json.jbuilder') %>
   </div>
 </div>
-
 

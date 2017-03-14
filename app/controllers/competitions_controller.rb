@@ -8,6 +8,7 @@ class CompetitionsController < ApplicationController
     if @competition.category == "Knockout"
       @competition.winner_match_assignment
     elsif @competition.category == "League"
+      @current_user_id = @current_user.id
       @competition_participants_by_points = @competition.competition_participants.order('points DESC')
     end
   end

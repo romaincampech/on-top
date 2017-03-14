@@ -1,7 +1,13 @@
 var FinalScore = React.createClass({
+  handleClick: function(e){
+    e.preventDefault();
+    this.props.toggleClick();
+  },
+
   render: function(){
     var highlightWinner1;
     var highlightWinner2;
+    var editButton;
 
     if (this.props.match.player_one.id === this.props.match.winner.id) {
       highlightWinner1 = "highlight";
@@ -14,6 +20,15 @@ var FinalScore = React.createClass({
     } else {
       highlightWinner2 = "";
     }
+
+    // if current user is competition creator
+      editButton = (
+        <div id={this.props.match.match_number}>
+          <button className="btn league-result-input-btn"
+            onClick={this.handleClick} >Edit Score</button>
+        </div>
+      )
+
 
     return(
       <div className="league-final-score">

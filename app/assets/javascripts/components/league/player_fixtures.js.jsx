@@ -9,7 +9,7 @@ var PlayerFixtures = React.createClass({
 
     {this.props.fixtures.map(function(match, j){
       if (match.player_one.id === player.id || match.player_two.id === player.id) {
-          player_matches.push(<Match match={match} key={j} score_params={match.score_params} setMatch={this.updateMatch} />);
+          player_matches.push(<Match match={match} key={j} score_params={match.score_params} setMatch={this.updateMatch} current_user={this.props.current_user}/>);
       }
     }.bind(this))}
 

@@ -6,6 +6,7 @@ var FixtureList = React.createClass ({
   },
 
 
+
   setNewMatch: function(data) {
     console.log(data["matches"]);
     this.setState({fixtures: data["matches"]});
@@ -17,7 +18,7 @@ var FixtureList = React.createClass ({
 
     players.forEach(function(player, i){
         arr.push(<PlayerFixtures fixtures={this.state.fixtures}
-          player={player} key={i} updateMatches={this.setNewMatch} />);
+          player={player} key={i} updateMatches={this.setNewMatch} current_user={this.props.current_user} />);
     }.bind(this))
 
     return (
