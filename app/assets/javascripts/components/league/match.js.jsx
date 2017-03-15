@@ -59,7 +59,8 @@ var Match = React.createClass({
         </div>
         <div>
           {display_form && <ScoreForm match={this.props.match}
-          key={this.props.match.id} onFormSubmit={this.handleFormSubmit}/>}
+          key={this.props.match.id} onFormSubmit={this.handleFormSubmit}
+            onUserInput={this.handleUserInput} />}
         </div>
       </div>
     );

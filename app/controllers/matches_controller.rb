@@ -27,6 +27,10 @@ class MatchesController < ApplicationController
     end
   end
 
+  def update_mistake
+    #find previous winner, minus the points, save new score, add points.
+  end
+
   def show
   end
 
