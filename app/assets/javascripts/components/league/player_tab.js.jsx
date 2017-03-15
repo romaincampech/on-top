@@ -6,8 +6,14 @@ var PlayerTab = React.createClass({
   },
 
   render: function() {
+    var active_tab;
+
+    if (this.props.active === this.props.player.id) {
+      active_tab = "active";
+    };
+
     return (
-      <div className="fixtures-tab" onClick={this.handleClick}>
+      <div className={"fixtures-tab " + active_tab} onClick={this.handleClick}>
          <h4>{this.props.player.first_name}</h4>
       </div>
     )

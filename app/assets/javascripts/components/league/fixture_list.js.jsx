@@ -20,7 +20,8 @@ var FixtureList = React.createClass ({
     var tabs = [];
     var players = this.props.matches[0]["competition_participants"];
     players.map(function(player, i){
-        tabs.push(<PlayerTab player={player} key={i} handleClick={this.handleTab}/>);
+        tabs.push(<PlayerTab player={player} key={i} handleClick={this.handleTab}
+            active={this.state.active_tab} />);
     }.bind(this))
 
     var arr=[];
