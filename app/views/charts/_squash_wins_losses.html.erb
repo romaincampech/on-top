@@ -1,6 +1,6 @@
 <script>
   $(function(){
-    new Highcharts.Chart("tennis-wins-losses", {
+    new Highcharts.Chart("squash-wins-losses", {
 
       chart: {
         type: "pie",
@@ -27,12 +27,12 @@
 
       series: [{
         data: [{
-          y: <%= @user.losses_for("Tennis").count %>,
+          y: <%= @user.losses_for("Squash").count %>,
           name: "Losses",
           color: "#800000",
           legendIndex: 1
         }, {
-          y: <%= @user.wins_for("Tennis").count %>,
+          y: <%= @user.wins_for("Squash").count %>,
           name: "Wins",
           color: "rgb(101, 208, 110)",
           legendIndex: 0,
