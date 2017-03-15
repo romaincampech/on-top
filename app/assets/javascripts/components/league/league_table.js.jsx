@@ -1,12 +1,6 @@
 var LeagueTable = React.createClass({
   render: function() {
-
-
     var tableRows = [];
-
-
-
-
 
     {this.props.data.map(function(player, j) {
             tableRows.push(<LeagueTableRow player={player} key={j} />)
@@ -25,12 +19,8 @@ var LeagueTable = React.createClass({
             <td><strong>Pts</strong></td>
           </tr>
         </thead>
-
         <tbody>
           {tableRows}
-
-
-
         </tbody>
       </table>
     )

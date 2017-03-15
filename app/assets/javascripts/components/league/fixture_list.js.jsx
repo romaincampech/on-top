@@ -13,9 +13,10 @@ var FixtureList = React.createClass ({
   },
 
   render: function() {
+    console.log(this.props.matches)
     var players = this.props.matches[0]["competition_participants"];
     var arr=[];
-
+    console.log(this.state.fixtures);
     players.forEach(function(player, i){
         arr.push(<PlayerFixtures fixtures={this.state.fixtures}
           player={player} key={i} updateMatches={this.setNewMatch} current_user={this.props.current_user} />);
