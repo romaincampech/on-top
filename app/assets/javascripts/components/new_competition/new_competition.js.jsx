@@ -79,11 +79,12 @@ var NewCompetitionForm = React.createClass({
 
     return (
       <div>
-        <h1 className="form-title">Create Your Competition!</h1>
+
         <form className="competition-creation-form" onSubmit={this.handleSubmit} >
+        <h1 className="form-title">Create Your Competition!</h1>
           I would like to create a<select name="sport_id" value= {this.state.sport_id}
-            onChange={this.handleSportChange} >
-            <option value="">Which Sport?</option>
+            onChange={this.handleSportChange} className="custom-select" >
+            <option value="">Sport</option>
             <option value='1'>Tennis</option>
             <option value='2'>Table-Tennis</option>
             <option value='3'>Squash</option>

@@ -8,7 +8,11 @@ class CompetitionsController < ApplicationController
     if @competition.category == "Knockout"
       @competition.winner_match_assignment
     elsif @competition.category == "League"
-      @competition_participants_by_points = @competition.competition_participants.order('points DESC')
+      @current_user_id = @current_user.id
+      @matches = Match.all.where(competition_id: @competition.id)
+      @competition_participants = @competition.competition_participants
+      @competition_participants_by_points = @competition.competition_participants_by_points
+      @league_table_data = @competition.league_table_data(@competition_participants_by_points)
     end
   end
 
@@ -26,13 +30,11 @@ class CompetitionsController < ApplicationController
       players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
       @competition.add_players(players_ary)
       @competition.assign_matches if @competition.players.count == @competition.number_of_players
-      @competition.new_chat
       @competition.save
       render json: @competition, status: :created
     else
       render json: @competition.errors, status: :unprocessable_entity
     end
-
   end
 
   def update

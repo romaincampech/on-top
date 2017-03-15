@@ -130,4 +130,28 @@ class Competition < ApplicationRecord
       end
     end
   end
+
+  def competition_participants_by_points
+    self.competition_participants.order('points DESC')
+  end
+
+  def league_table_data(players)
+    league_table_data = []
+    x = 1
+    players.each do |player|
+
+      player_data = {}
+      player_data["position"] = x
+      player_data["name"] = player.user.first_name
+      player_data["matches_played"] = player.user.played_matches.where(competition_id: self.id).count
+      player_data["matches_won"] = player.user.played_matches.where(competition_id: self.id, winner_id: player.user.id).count
+      player_data["matches_drawn"] = player.user.played_matches.where(competition_id: self.id, winner_id: 0).count
+      player_data["matches_lost"] = player.user.played_matches.where(competition_id: self.id).count - (player.user.played_matches.where(competition_id: self.id, winner_id: player.user.id).count + player.user.played_matches.where(competition_id: self.id, winner_id: 0).count)
+      player_data["points"] = player.points
+
+      league_table_data << player_data
+      x += 1
+    end
+    return league_table_data
+  end
 end

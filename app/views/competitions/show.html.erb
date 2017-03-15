@@ -18,15 +18,11 @@
       <% if @competition.category == "Knockout" %>
       <%= render 'knockout_competition' %>
       <% else %>
-      <%= render 'league_table' %>
+      <%= react_component "LeagueCompetition", render(template: 'competitions/show.json.jbuilder') %>
       <% end %>
     </div>
 
-    <div class="fixtures-wrapper">
-      <% if @competition.category == "League" %>
-      <%= render 'league_fixtures_two' %>
-      <% end %>
-    </div>
+
   </div>
 </div>
 
