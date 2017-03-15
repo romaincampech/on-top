@@ -178,13 +178,13 @@
             </div>
             <div class="row">
               <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="tennis">
-                <%= pie_chart({"wins" => "#{@user.wins_for('Tennis').count}", "losses" => "#{@user.losses_for('Tennis').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
+                <%# pie_chart({"wins" => "#{@user.wins_for('Tennis').count}", "losses" => "#{@user.losses_for('Tennis').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
               </div>
               <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="table-tennis">
-                <%= pie_chart({"wins" => "#{@user.wins_for('Table-Tennis').count}", "losses" => "#{@user.losses_for('Table-Tennis').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
+                <%# pie_chart({"wins" => "#{@user.wins_for('Table-Tennis').count}", "losses" => "#{@user.losses_for('Table-Tennis').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
               </div>
               <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="football">
-                <%= pie_chart({"wins" => "#{@user.wins_for('Football').count}", "losses" => "#{@user.losses_for('Football').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
+                <%# pie_chart({"wins" => "#{@user.wins_for('Football').count}", "losses" => "#{@user.losses_for('Football').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
                 </div>
               </div>
             </div> -->
@@ -423,16 +423,19 @@
 
 </div> -->
 
-
+<!-- Container -->
 <div class="container">
+  <!-- Banner -->
   <div class="row">
     <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <!-- Cover picture -->
       <% if @user.cover_picture %>
         <% cover_picture = cl_image_path(@user.cover_picture.path) %>
         <div class="profile-banner" style="background-image: url(<%= image_path cover_picture %>);"></div>
       <% else %>
         <div class="profile-banner"></div>
       <% end %>
+      <!-- Profile picture -->
       <% if @user.profile_picture %>
         <% profile_picture = cl_image_path(@user.profile_picture.path) %>
       <% else %>
@@ -441,44 +444,61 @@
       <%= image_tag profile_picture, class: "profile-avatar" %>
     </div>
   </div>
+  <!-- Content -->
   <div class="row">
+    <!-- Left section -->
     <div class="col-md-2 col-md-offset-1">
+      <!-- Friendship -->
       <div class="profile-friendship">
 
       </div>
     </div>
+    <!-- Middle section -->
     <div class="col-md-6">
+      <!-- Header -->
       <div class="profile-header">
+        <!-- Name -->
         <h1><%= @user.full_name %></h1>
+        <!-- Location -->
         <div class="profile-location">
           <i class="em em-round_pushpin"></i><h4><%= @user.city %></h4>
         </div>
       </div>
+      <!-- Main tabs -->
       <div class="profile-tabs">
         <a class="profile-tab active" data-target="#competitions"><img src="<%= asset_path('podium-active.png') %>" id="competitions-icon" />Competitions</a>
         <a class="profile-tab" data-target="#statistics"><img src="<%= asset_path('statistics.png') %>" id="statistics-icon" />Statistics</a>
       </div>
+      <!-- Main tabs content competition-->
       <div class="profile-tabs-content" id="competitions">
+        <!-- Competitions tabs -->
         <div class="competitions-tabs">
           <a class="competitions-tab active" data-target="#active">Active</a>
           <span>|</span>
           <a class="competitions-tab" data-target="#previous">Previous</a>
         </div>
+        <!-- Competitions tabs content active -->
         <div class="competitions-tabs-content" id="active">
+          <!-- If @user has active competitions -->
           <% if @user.unplayed_competitions.count > 0 %>
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
                 <% @user.unplayed_competitions.each do |competition| %>
                   <%= link_to competition_path(competition) do %>
+                    <!-- Competition card -->
                     <div class="profile-competition-card">
+                      <!-- Competition card header -->
                       <div class="profile-competition-card-header">
                         <h4><%= competition.name %></h4>
                       </div>
+                      <!-- Competition card content -->
                       <div class="profile-competition-card-content">
+                        <!-- Category -->
                         <div class="flexbox-column">
                           <h5>Category</h5>
                           <p><%= competition.category %></p>
                         </div>
+                        <!-- Sport -->
                         <div class="flexbox-column">
                           <h5>Sport</h5>
                           <% if competition.sport.name == "Tennis" %>
@@ -486,9 +506,10 @@
                           <% elsif competition.sport.name == "Squash" %>
                             <%= image_tag "squash-icon.png", class: "profile-sports-icon" %>
                           <% elsif competition.sport.name == "Table-Tennis" %>
-                            <%= image_tag "ping-pong-icon.png", class: "profile-sports-icon" %>
+                            <%= image_tag "table-tennis-icon.png", class: "profile-sports-icon" %>
                           <% end %>
                         </div>
+                        <!-- Players -->
                         <div class="flexbox-column">
                           <h5>Players</h5>
                           <p><%= competition.number_of_players %></p>
@@ -499,6 +520,7 @@
                 <% end %>
               </div>
             </div>
+          <!-- Elsif @user doesn't have active competitions -->
           <% else %>
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
@@ -513,21 +535,28 @@
             </div>
           <% end %>
         </div>
+        <!-- Competitions tabs content previous -->
         <div class="competitions-tabs-content hidden" id="previous">
+          <!-- If @user has active competitions -->
           <% if @user.played_competitions.count > 0 %>
             <div class="row">
               <div class="col-md-10 col-md-offset-1">
                 <% @user.played_competitions.each do |competition| %>
                   <%= link_to competition_path(competition) do %>
+                    <!-- Competition card -->
                     <div class="profile-competition-card">
+                      <!-- Competition card header -->
                       <div class="profile-competition-card-header">
                         <h4><%= competition.name %></h4>
                       </div>
+                      <!-- Competition card content -->
                       <div class="profile-played-competition-card-content">
+                        <!-- Category -->
                         <div class="flexbox-column">
                           <h5>Category</h5>
                           <p><%= competition.category %></p>
                         </div>
+                        <!-- Sport -->
                         <div class="flexbox-column">
                           <h5>Sport</h5>
                           <% if competition.sport.name == "Tennis" %>
@@ -538,10 +567,12 @@
                             <%= image_tag "ping-pong-icon.png", class: "profile-sports-icon" %>
                           <% end %>
                         </div>
+                        <!-- Players -->
                         <div class="flexbox-column">
                           <h5>Players</h5>
                           <p><%= competition.number_of_players %></p>
                         </div>
+                        <!-- Winner -->
                         <div class="flexbox-column">
                           <h5>Winner</h5>
                           <% if competition.champion.profile_picture %>
@@ -557,6 +588,7 @@
                 <% end %>
               </div>
             </div>
+          <!-- Elsif @user doesn't have previous competitions -->
           <% else %>
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
@@ -572,9 +604,38 @@
           <% end %>
         </div>
       </div>
-      <div class="profile-tabs-content hidden" id="statistics"></div>
+      <!-- Main tabs content statistics -->
+      <div class="profile-tabs-content hidden" id="statistics">
+        <!-- Statistics tabs -->
+        <div class="statistics-tabs">
+          <a class="statistics-tab active" data-target="#all-sports">All</a>
+          <span>|</span>
+          <a class="statistics-tab" data-target="#tennis"><img src="<%= asset_path('tennis-icon.png') %>"/></a>
+          <span>|</span>
+          <a class="statistics-tab" data-target="#squash"><img src="<%= asset_path('squash-icon.png') %>"/></a>
+          <span>|</span>
+          <a class="statistics-tab" data-target="#table-tennis"><img src="<%= asset_path('table-tennis-icon.png') %>"/></a>
+        </div>
+        <!-- Statistics tabs content all -->
+        <div class="statistics-tabs-content" id="all-sports"></div>
+        <!-- Statistics tabs content tennis -->
+        <div class="statistics-tabs-content hidden" id="tennis">
+          <!-- Tennis wins / losses -->
+          <div id="tennis-wins-losses"></div>
+          <%= render "charts/tennis_wins_losses" %>
+          <!-- Tennis activity tracker -->
+          <div id="tennis-activity-tracker"></div>
+          <%= render "charts/tennis_activity_tracker" %>
+        </div>
+        <!-- Statistics tabs content squash -->
+        <div class="statistics-tabs-content hidden" id="squash"></div>
+        <!-- Statistics tabs content table-tennis -->
+        <div class="statistics-tabs-content hidden" id="table-tennis"></div>
+      </div>
     </div>
+    <!-- Right section -->
     <div class="col-md-2">
+      <!-- Send message -->
       <div class="profile-conversation">
         <div class="panel-body">
             <%= link_to conversations_path(user_id: @user.id),remote: true, method: :post do %>
@@ -585,6 +646,7 @@
       </div>
     </div>
   </div>
+  <!-- Conversations -->
   <div class="row">
     <div class="col-md-3" style="position: fixed; bottom: 0; right: 0;">
       <ul id="conversations-list">
@@ -639,6 +701,16 @@
     $(this).addClass('active');
     // Hide all tab-content (use class="hidden")
     $(".competitions-tabs-content").addClass('hidden');
+    // Show target tab-content (use class="hidden")
+    $($(this).data('target')).removeClass('hidden');
+  });
+
+  $(".statistics-tab").on("click", function(e){
+    // Change active tab
+    $(".statistics-tab").removeClass('active');
+    $(this).addClass('active');
+    // Hide all tab-content (use class="hidden")
+    $(".statistics-tabs-content").addClass('hidden');
     // Show target tab-content (use class="hidden")
     $($(this).data('target')).removeClass('hidden');
   });

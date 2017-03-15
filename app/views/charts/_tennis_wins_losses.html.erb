@@ -1,0 +1,31 @@
+<script>
+  $(function(){
+    new Highcharts.Chart("tennis-wins-losses", {
+
+      chart: {
+        type: "pie"
+      },
+
+      title: {
+        text: "Wins / Losses ratio"
+      },
+
+      tooltip: {
+        pointFormat: "<b>{point.percentage}%</b>"
+      },
+
+      series: [{
+        data: [{
+          y: <%= @user.wins_for("Tennis").count %>,
+          name: "Wins",
+          color: "rgb(101, 208, 110)"
+        }, {
+          y: <%= @user.losses_for("Tennis").count %>,
+          name: "Losses",
+          color: "red"
+        }]
+      }]
+
+    });
+  });
+</script>

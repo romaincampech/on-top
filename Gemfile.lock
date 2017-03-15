@@ -84,7 +84,6 @@ GEM
     bower-rails (0.11.0)
     builder (3.2.2)
     byebug (9.0.6)
-    chartkick (2.2.1)
     chosen-rails (1.5.2)
       coffee-rails (>= 3.2)
       railties (>= 3.0)
@@ -135,6 +134,8 @@ GEM
     haml (4.0.7)
       tilt
     hashie (3.4.6)
+    highcharts-rails (5.0.7)
+      railties (>= 3.1)
     hightop (0.1.4)
       activerecord
     http-cookie (1.0.3)
@@ -345,7 +346,6 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-will_paginate
   bower-rails
-  chartkick
   chosen-rails (~> 1.5, >= 1.5.2)
   cloudinary (= 1.1.0)
   coffee-rails
@@ -355,6 +355,7 @@ DEPENDENCIES
   font-awesome-sass
   friendly_id (~> 5.2)
   groupdate
+  highcharts-rails
   hightop
   jbuilder (~> 2.0)
   jquery-fileupload-rails
