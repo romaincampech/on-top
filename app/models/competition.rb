@@ -131,6 +131,10 @@ class Competition < ApplicationRecord
     end
   end
 
+  def competition_participants_by_points
+    self.competition_participants.order('points DESC')
+  end
+
   def league_table_data(players)
     league_table_data = []
     x = 1

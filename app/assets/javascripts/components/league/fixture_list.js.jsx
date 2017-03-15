@@ -7,8 +7,8 @@ var FixtureList = React.createClass ({
   },
 
   setNewMatch: function(data) {
-    console.log(data["matches"]);
     this.setState({fixtures: data["matches"]});
+    this.props.updateTable(data["league_table_data"]);
   },
 
   handleTab: function(x) {
@@ -27,7 +27,7 @@ var FixtureList = React.createClass ({
     var arr=[];
     players.forEach(function(player, i){
         arr.push(<PlayerFixtures fixtures={this.state.fixtures}
-          player={player} key={i} updateMatches={this.setNewMatch}
+          player={player} key={i} updateLeague={this.setNewMatch}
             active={this.state.active_tab} />);
     }.bind(this))
 
