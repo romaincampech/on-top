@@ -32,7 +32,7 @@ var FixtureList = React.createClass ({
     }.bind(this))
 
     return (
-      <div>
+      <div className="all-fixtures">
         <div className="tabs">
           {tabs}
         </div>

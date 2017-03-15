@@ -1,4 +1,8 @@
 /* Displaying fixtures of league competition */
+.all-fixtures {
+  display: flex;
+  justify-content: space-around;
+}
 
 .fixtures-display {
   padding: 10px;
