@@ -64,12 +64,7 @@ gem 'active_median'
 gem 'hightop'
 gem 'rails-timeago', '~> 2.15'
 
-# Bootstrap
-gem 'bootstrap-sass'
-gem 'bootstrap-will_paginate'
 
-# URL
-gem 'friendly_id', '~> 5.2'
 
 
 

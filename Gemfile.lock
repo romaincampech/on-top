@@ -79,8 +79,6 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bootstrap-will_paginate (0.0.10)
-      will_paginate
     bower-rails (0.11.0)
     builder (3.2.2)
     byebug (9.0.6)
@@ -344,7 +342,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
-  bootstrap-will_paginate
   bower-rails
   chosen-rails (~> 1.5, >= 1.5.2)
   cloudinary (= 1.1.0)
