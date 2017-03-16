@@ -5,6 +5,7 @@ var Fixture = React.createClass({
   },
 
   render: function(){
+    console.log(this.props.match)
     return(
       <div className="match-league" id={this.props.match.match_number}>
         <div className="versus">

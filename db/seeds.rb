@@ -27,7 +27,7 @@ url = "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/7/005/064/0ec/1749a12.
 user.profile_picture_url = url
 user.save
 
-user = User.new(first_name: "Guv", last_name: "Marwaha", email: "Guv@test.com", password: "123456", city: "London", slug: "guv.marwaha")
+user = User.new(first_name: "Guv", last_name: "Marwaha", email: "Guv@test.com", password: "123456", city: "London", slug: "guv")
 url = "https://avatars1.githubusercontent.com/u/22517547?v=3&s=400"
 user.profile_picture_url = url
 user.admin = true
@@ -51,9 +51,7 @@ users_urls = [
 "https://s-media-cache-ak0.pinimg.com/236x/0a/79/44/0a7944d75ef6357aa115fe8767785fb7.jpg",
 "http://i.dailymail.co.uk/i/pix/2015/01/25/2506543700000578-0-image-m-36_1422177963594.jpg",
 "https://s-media-cache-ak0.pinimg.com/564x/62/20/d1/6220d1d825e63ec484bcf81eb0d57217.jpg",
-"http://i.imgur.com/zj0t895.jpg",
-"http://www.amiaceleb.com/media/galleries/197/675_profile.jpg",
-"http://www.amiaceleb.com/media/galleries/182/629_profile.jpg"
+"http://i.imgur.com/zj0t895.jpg"
 ]
 
 users_urls.each do |user_url|
@@ -66,7 +64,7 @@ puts "fake users seeded"
 
 # create friendships
 id = User.find_by(email: "guv@test.com").id + 1
-18.times {
+16.times {
   Friendship.create!(user: User.find_by(email: "julianne@test.com"), friend_id: id)
   # Friendship.create!(user: User.find_by(email: "romain@test.com"), friend_id: id)
   Friendship.create!(user: User.find_by(email: "guv@test.com"), friend_id: id)
