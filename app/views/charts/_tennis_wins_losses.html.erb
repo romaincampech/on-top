@@ -1,0 +1,46 @@
+<script>
+  $(function(){
+    new Highcharts.Chart("tennis-wins-losses", {
+
+      chart: {
+        type: "pie",
+      },
+
+      title: {
+        text: "Wins / Losses ratio"
+      },
+
+      tooltip: {
+        pointFormat: "<b>{point.percentage:.2f}%</b>"
+      },
+
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+
+      series: [{
+        data: [{
+          y: <%= @user.losses_for("Tennis").count %>,
+          name: "Losses",
+          color: "#800000",
+          legendIndex: 1
+        }, {
+          y: <%= @user.wins_for("Tennis").count %>,
+          name: "Wins",
+          color: "rgb(101, 208, 110)",
+          legendIndex: 0,
+          sliced: true,
+          selected: true
+        }]
+      }],
+
+    });
+  });
+</script>

@@ -9,7 +9,9 @@
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
 //= require algolia/v3/algoliasearch.min
-//= require chartkick
+//= require highcharts
+//= require highcharts/modules/exporting
+//= require highcharts/modules/no-data-to-display
 //= require rails-timeago
 //= require rails-timeago-all
 //= require select

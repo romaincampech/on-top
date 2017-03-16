@@ -1,7 +1,3 @@
-<% content_for(:title_tag) do %>
-  OnTop | <%= @user.full_name %>
-<% end %>
-
 <!-- <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1 profile-banner">
@@ -178,13 +174,13 @@
             </div>
             <div class="row">
               <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="tennis">
-                <%= pie_chart({"wins" => "#{@user.wins_for('Tennis').count}", "losses" => "#{@user.losses_for('Tennis').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
+                <%# pie_chart({"wins" => "#{@user.wins_for('Tennis').count}", "losses" => "#{@user.losses_for('Tennis').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
               </div>
               <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="table-tennis">
-                <%= pie_chart({"wins" => "#{@user.wins_for('Table-Tennis').count}", "losses" => "#{@user.losses_for('Table-Tennis').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
+                <%# pie_chart({"wins" => "#{@user.wins_for('Table-Tennis').count}", "losses" => "#{@user.losses_for('Table-Tennis').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
               </div>
               <div class="col-md-10 col-md-offset-1 stat-tabs-content hidden" id="football">
-                <%= pie_chart({"wins" => "#{@user.wins_for('Football').count}", "losses" => "#{@user.losses_for('Football').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
+                <%# pie_chart({"wins" => "#{@user.wins_for('Football').count}", "losses" => "#{@user.losses_for('Football').count}"}, {title: "Wins/Losses ratio", colors: ["#58D063", "red"]}) %>
                 </div>
               </div>
             </div> -->
@@ -321,28 +317,14 @@
 
 
 
-<div class="container">
-  <!-- Banner -->
-  <div class="profile-banner">
-    <% if @user.cover_picture %>
-      <%= cl_image_path(@user.cover_picture.path) %>
-    <% end %>
-  </div>
+<!-- <div class="container">
 
-  <!-- Content (flexbox) -->
   <div class="profile-content">
-    <!-- Left section -->
+
     <div class="profile-left">
-      <!-- 1st card -->
+
       <div class="profile-friendship">
-        <!-- Profile picture -->
-        <% if @user.profile_picture %>
-          <% user_profile_picture = cl_image_path(@user.profile_picture.path, crop: :thumb, gravity: :face) %>
-        <% else %>
-          <% user_profile_picture = image_path('profile-avatar-default.jpg') %>
-        <% end %>
-        <%= image_tag user_profile_picture, class: 'profile-picture' %>
-        <!-- Friendship -->
+
         <% if current_user.pending_friends.include?(@user) %>
           <div class="btn-pending">
             <i class="fa fa-check" aria-hidden="true"></i>
@@ -370,7 +352,7 @@
             </ul>
           </div>
         <% end %>
-        <!-- Friendlist -->
+
         <div class="profile-friendlist">
           <h3>FRIENDS</h3>
             <%= link_to user_friendships_path(@user) do %>
@@ -380,9 +362,9 @@
       </div>
     </div>
 
-    <!-- Middle section -->
+
     <div class="profile-middle">
-      <!-- Header -->
+
       <div class="profile-header">
         <h1><%= @user.full_name %></h1>
         <i class="fa fa-map-marker" aria-hidden="true"></i><h4><%= @user.city %></h4>
@@ -397,25 +379,19 @@
         </div>
       </div>
 
-      <!-- Tabs -->
-      <div class="profile-tabs">
-        <a class="profile-tab active" data-target="#competitions"><img src="<%= asset_path('podium-active.png') %>" id="competitions-icon" />Competitions</a>
-        <a class="profile-tab" data-target="#statistics"><img src="<%= asset_path('statistics.png') %>" id="statistics-icon" />Statistics</a>
-      </div>
-      <!-- Content -->
       <div class="profile-tabs-content">
 
       </div>
     </div>
 
-    <!-- Right section -->
+
     <div class="profile-right">
 
     </div>
   </div>
 
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-3" style="position: fixed; bottom: 0; right: 0;">
       <ul id="conversations-list">
         <% @conversations.each do |conversation|  %>
           <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
@@ -424,10 +400,287 @@
     </div>
   </div>
 
+</div> -->
+
+<!-- Tab title -->
+<% content_for(:title_tag) do %>
+  OnTop | <%= @user.full_name %>
+<% end %>
+
+<!-- Container -->
+<div class="container">
+  <!-- Banner -->
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <!-- Cover picture -->
+      <% if @user.cover_picture %>
+        <% cover_picture = cl_image_path(@user.cover_picture.path) %>
+        <div class="profile-banner" style="background-image: url(<%= image_path cover_picture %>);"></div>
+      <% else %>
+        <div class="profile-banner"></div>
+      <% end %>
+      <!-- Profile picture -->
+      <% if @user.profile_picture %>
+        <% profile_picture = cl_image_path(@user.profile_picture.path) %>
+      <% else %>
+        <% profile_picture = cl_image_path("profile-avatar-default.jpg") %>
+      <% end %>
+      <%= image_tag profile_picture, class: "profile-avatar" %>
+    </div>
+  </div>
+  <!-- Content -->
+  <div class="row">
+    <!-- Left section -->
+    <div class="col-md-2 col-md-offset-1">
+      <!-- Friendship -->
+      <div class="profile-friendship">
+        <!-- Pending -->
+        <% if current_user.pending_friends.include?(@user) %>
+          <div class="btn-pending">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            <p>Friend request sent</p>
+          </div>
+        <!-- Add -->
+        <% elsif !current_user.friends.include?(@user) %>
+          <%= link_to user_friend_requests_path(@user), class: 'btn-add', method: :post do %>
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            <p>Add friend</p>
+          <% end %>
+        <!-- Friends -->
+        <% elsif current_user != @user %>
+          <div class="dropdown">
+            <div class="btn-unfriend dropdown-toggle" data-toggle="dropdown" aria-hidden="true">
+              <i class="fa fa-check" aria-hidden="true"></i>
+              <p>Friends</p>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </div>
+            <!-- Unfriend -->
+            <ul class="dropdown-menu friendship-dropdown-menu">
+              <li>
+                <%= link_to friendship_path(@user.get_friendship(current_user), {user_id: @user.id}), method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                  <p>Unfriend</p>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <!-- Middle section -->
+    <div class="col-md-6">
+      <!-- Header -->
+      <div class="profile-header">
+        <!-- Name -->
+        <h1><%= @user.full_name %></h1>
+        <!-- Location -->
+        <div class="profile-location">
+          <i class="em em-round_pushpin"></i><h4><%= @user.city %></h4>
+        </div>
+      </div>
+      <!-- Main tabs -->
+      <div class="profile-tabs">
+        <a class="profile-tab active" data-target="#competitions"><img src="<%= asset_path('podium-active.png') %>" id="competitions-icon" />Competitions</a>
+        <a class="profile-tab" data-target="#statistics"><img src="<%= asset_path('statistics.png') %>" id="statistics-icon" />Statistics</a>
+      </div>
+      <!-- Main tabs content competition-->
+      <div class="profile-tabs-content" id="competitions">
+        <!-- Competitions tabs -->
+        <div class="competitions-tabs">
+          <a class="competitions-tab active" data-target="#active">Active</a>
+          <span>|</span>
+          <a class="competitions-tab" data-target="#previous">Previous</a>
+        </div>
+        <!-- Competitions tabs content active -->
+        <div class="competitions-tabs-content" id="active">
+          <!-- If @user has active competitions -->
+          <% if @user.unplayed_competitions.count > 0 %>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <% @user.unplayed_competitions.each do |competition| %>
+                  <%= link_to competition_path(competition) do %>
+                    <!-- Competition card -->
+                    <div class="profile-competition-card">
+                      <!-- Competition card header -->
+                      <div class="profile-competition-card-header">
+                        <h4><%= competition.name %></h4>
+                      </div>
+                      <!-- Competition card content -->
+                      <div class="profile-competition-card-content">
+                        <!-- Category -->
+                        <div class="flexbox-column">
+                          <h5>Category</h5>
+                          <p><%= competition.category %></p>
+                        </div>
+                        <!-- Sport -->
+                        <div class="flexbox-column">
+                          <h5>Sport</h5>
+                          <% if competition.sport.name == "Tennis" %>
+                            <%= image_tag "tennis-icon.png", class: "profile-sports-icon" %>
+                          <% elsif competition.sport.name == "Squash" %>
+                            <%= image_tag "squash-icon.png", class: "profile-sports-icon" %>
+                          <% elsif competition.sport.name == "Table-Tennis" %>
+                            <%= image_tag "table-tennis-icon.png", class: "profile-sports-icon" %>
+                          <% end %>
+                        </div>
+                        <!-- Players -->
+                        <div class="flexbox-column">
+                          <h5>Players</h5>
+                          <p><%= competition.number_of_players %></p>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <!-- Elsif @user doesn't have active competitions -->
+          <% else %>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="flexbox-column">
+                  <% if @user == current_user %>
+                    <p>You don't have any active competition at the moment...</p><%= link_to "Create one now!", new_competition_path, class: "btn-competition-profile" %>
+                  <% else %>
+                    <p><%= @user.first_name %> doesn't have any active competition at the moment...</p><%= link_to "Play together now!", new_competition_path, class: "btn-competition-profile" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <!-- Competitions tabs content previous -->
+        <div class="competitions-tabs-content hidden" id="previous">
+          <!-- If @user has active competitions -->
+          <% if @user.played_competitions.count > 0 %>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <% @user.played_competitions.each do |competition| %>
+                  <%= link_to competition_path(competition) do %>
+                    <!-- Competition card -->
+                    <div class="profile-competition-card">
+                      <!-- Competition card header -->
+                      <div class="profile-competition-card-header">
+                        <h4><%= competition.name %></h4>
+                      </div>
+                      <!-- Competition card content -->
+                      <div class="profile-played-competition-card-content">
+                        <!-- Category -->
+                        <div class="flexbox-column">
+                          <h5>Category</h5>
+                          <p><%= competition.category %></p>
+                        </div>
+                        <!-- Sport -->
+                        <div class="flexbox-column">
+                          <h5>Sport</h5>
+                          <% if competition.sport.name == "Tennis" %>
+                            <%= image_tag "tennis-icon.png", class: "profile-sports-icon" %>
+                          <% elsif competition.sport.name == "Squash" %>
+                            <%= image_tag "squash-icon.png", class: "profile-sports-icon" %>
+                          <% elsif competition.sport.name == "Table-Tennis" %>
+                            <%= image_tag "ping-pong-icon.png", class: "profile-sports-icon" %>
+                          <% end %>
+                        </div>
+                        <!-- Players -->
+                        <div class="flexbox-column">
+                          <h5>Players</h5>
+                          <p><%= competition.number_of_players %></p>
+                        </div>
+                        <!-- Winner -->
+                        <div class="flexbox-column">
+                          <h5>Winner</h5>
+                          <% if competition.champion.profile_picture %>
+                            <% winner_avatar = cl_image_path(competition.champion.profile_picture.path) %>
+                          <% else %>
+                            <% winner_avatar = cl_image_path("profile-avatar-default.jpg") %>
+                          <% end %>
+                          <%= image_tag winner_avatar, class: "profile-winner-avatar" %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <!-- Elsif @user doesn't have previous competitions -->
+          <% else %>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <div class="flexbox-column">
+                  <% if @user == current_user %>
+                    <p>You haven't played any competition yet...</p><%= link_to "Create one now!", new_competition_path, class: "btn-competition-profile" %>
+                  <% else %>
+                    <p><%= @user.first_name %> hasn't played any competition yet...</p><%= link_to "Play together now!", new_competition_path, class: "btn-competition-profile" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- Main tabs content statistics -->
+      <div class="profile-tabs-content hidden" id="statistics">
+        <!-- Statistics tabs -->
+        <div class="statistics-tabs">
+          <a class="statistics-tab active" data-target="#all-sports">All</a>
+          <span>|</span>
+          <a class="statistics-tab" data-target="#tennis" data-toggle="tooltip" data-placement="bottom" title="Tennis"><img src="<%= asset_path('tennis-icon.png') %>"/></a>
+          <span>|</span>
+          <a class="statistics-tab" data-target="#squash" data-toggle="tooltip" data-placement="bottom" title="Squash"><img src="<%= asset_path('squash-icon.png') %>"/></a>
+          <span>|</span>
+          <a class="statistics-tab" data-target="#table-tennis" data-toggle="tooltip" data-placement="bottom" title="Table-Tennis"><img src="<%= asset_path('table-tennis-icon.png') %>"/></a>
+        </div>
+        <!-- Statistics tabs content all -->
+        <div class="statistics-tabs-content" id="all-sports"></div>
+        <!-- Statistics tabs content tennis -->
+        <div class="statistics-tabs-content hidden" id="tennis">
+          <!-- Tennis wins / losses -->
+          <div id="tennis-wins-losses"></div>
+          <%= render "charts/tennis_wins_losses" %>
+          <!-- Tennis activity tracker -->
+          <div id="tennis-activity-tracker"></div>
+          <%= render "charts/tennis_activity_tracker" %>
+        </div>
+        <!-- Statistics tabs content squash -->
+        <div class="statistics-tabs-content hidden" id="squash">
+          <!-- Squash wins / losses -->
+          <div id="squash-wins-losses"></div>
+          <%= render "charts/squash_wins_losses" %>
+          <!-- Squash activity tracker -->
+          <div id="squash-activity-tracker"></div>
+          <%= render "charts/squash_activity_tracker" %>
+        </div>
+        <!-- Statistics tabs content table-tennis -->
+        <div class="statistics-tabs-content hidden" id="table-tennis"></div>
+      </div>
+    </div>
+    <!-- Right section -->
+    <div class="col-md-2">
+      <!-- Send message -->
+      <div class="profile-conversation">
+        <div class="panel-body">
+            <%= link_to conversations_path(user_id: @user.id),remote: true, method: :post do %>
+              <% conversation_bubble = image_path("conversation-bubble.png") %>
+              <%= image_tag conversation_bubble, class: "conversatoin-bubble" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Conversations -->
+  <div class="row">
+    <div class="col-md-3" style="position: fixed; bottom: 0; right: 0;">
+      <ul id="conversations-list">
+        <% @conversations.each do |conversation|  %>
+          <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
 
 
-
+<!-- After JS -->
 <% content_for(:after_js) do %>
   <script>
     $(document).ready(function(){
@@ -435,47 +688,67 @@
       // Tooltip when hovering over sports icons
       $('[data-toggle="tooltip"]').tooltip();
 
-      // Change of statistics content when clicking on sports icons
-        $(".stat-tab").on("click", function(e){
-          // Change active tab
-          $(".stat-tab").removeClass('active');
-          $(this).addClass('active');
-          // Hide all tab-content (use class="hidden")
-          $(".stat-tabs-content").addClass('hidden');
-          // Show target tab-content (use class="hidden")
-          $($(this).data('target')).removeClass('hidden');
-        });
+      // Main tabs
+      // on click
+      $(".profile-tab").on("click", function(e){
+        // remove class 'active' on all tabs
+        $(".profile-tab").removeClass('active');
+        // change all icons to grey
+        $("#competitions-icon").attr('src', "<%= asset_path('podium.png') %>");
+        $("#statistics-icon").attr('src', "<%= asset_path('statistics.png') %>");
+        // add class 'active' on clicked tab
+        $(this).addClass('active');
+        // change clicked icon to green
+        if ($(this).text() == "Competitions") {
+          $("#competitions-icon").attr('src', "<%= asset_path('podium-active.png') %>");
+        } else if ($(this).text() == "Statistics") {
+          $("#statistics-icon").attr('src', "<%= asset_path('statistics-active.png') %>");
+        }
+        // add class 'hidden' on all contents
+        $(".profile-tabs-content").addClass('hidden');
+        // remove class 'hidden' on content linked to clicked tab
+        $($(this).data('target')).removeClass('hidden');
+      });
 
-  $(".profile-tab").on("click", function(e){
-    // Change active tab
-    $(".profile-tab").removeClass('active');
-    $("#competitions-icon").attr('src', "<%= asset_path('podium.png') %>");
-    $("#statistics-icon").attr('src', "<%= asset_path('statistics.png') %>");
-    $(this).addClass('active');
-    if ($(this).text() == "Competitions") {
-      $("#competitions-icon").attr('src', "<%= asset_path('podium-active.png') %>");
-    } else if ($(this).text() == "Statistics") {
-      $("#statistics-icon").attr('src', "<%= asset_path('statistics-active.png') %>");
-    }
-    // Hide all tab-content (use class="hidden")
-    $(".profile-tabs-content").addClass('hidden');
-    // Show target tab-content (use class="hidden")
-    $($(this).data('target')).removeClass('hidden');
-  });
+      // Competitions tabs
+      // on click
+      $(".competitions-tab").on("click", function(e){
+        // remove class 'active' on all tabs
+        $(".competitions-tab").removeClass('active');
+        // add class 'active' on clicked tab
+        $(this).addClass('active');
+        // add class 'hidden' on all contents
+        $(".competitions-tabs-content").addClass('hidden');
+        // remove class 'hidden' on content linked to clicked tab
+        $($(this).data('target')).removeClass('hidden');
+      });
 
-  $(document).on('click', '.toggle-window', function(e) {
-    e.preventDefault();
-    var panel = $(this).parent().parent();
-    var messages_list = panel.find('.messages-list');
+      // Statistics tabs
+      // on click
+      $(".statistics-tab").on("click", function(e){
+        // remove class 'active' on all tabs
+        $(".statistics-tab").removeClass('active');
+        // add class 'active' on clicked tab
+        $(this).addClass('active');
+        // add class 'hidden' on all contents
+        $(".statistics-tabs-content").addClass('hidden');
+        // remove class 'hidden' on content linked to clicked tab
+        $($(this).data('target')).removeClass('hidden');
+      });
 
-    panel.find('.panel-body').toggle();
-    panel.attr('class', 'panel panel-default');
+      $(document).on('click', '.toggle-window', function(e) {
+        e.preventDefault();
+        var panel = $(this).parent().parent();
+        var messages_list = panel.find('.messages-list');
 
-    if (panel.find('.panel-body').is(':visible')) {
-      var height = messages_list[0].scrollHeight;
-      messages_list.scrollTop(height);
-    }
-  });
+        panel.find('.panel-body').toggle();
+        panel.attr('class', 'panel panel-default');
+
+        if (panel.find('.panel-body').is(':visible')) {
+          var height = messages_list[0].scrollHeight;
+          messages_list.scrollTop(height);
+        }
+      });
 
     });
   </script>

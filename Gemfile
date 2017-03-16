@@ -58,7 +58,7 @@ gem "algoliasearch-rails"
 gem 'rails_emoji_picker'
 
 # Statistics
-gem 'chartkick'
+gem "highcharts-rails"
 gem 'groupdate'
 gem 'active_median'
 gem 'hightop'
