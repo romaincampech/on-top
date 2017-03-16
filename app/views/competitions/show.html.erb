@@ -16,7 +16,7 @@
 
     <div class="wrapper-competition-table">
       <% if @competition.category == "Knockout" %>
-      <%= render 'knockout_competition_react' %>
+      <%= react_component "KnockoutCompetition", render(template: 'competitions/show.json.jbuilder') %>
       <% else %>
       <%= react_component "LeagueCompetition", render(template: 'competitions/show.json.jbuilder') %>
       <% end %>

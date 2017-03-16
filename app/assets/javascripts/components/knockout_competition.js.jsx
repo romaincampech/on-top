@@ -1,19 +1,20 @@
 var KnockoutCompetition = React.createClass({
+
+
   render: function() {
-    var round_number = 1
+    console.log(this.props.matches[0].competition.number_of_rounds);
 
+    var rounds_display = [];
+    var rounds = this.props.matches[0].competition.number_of_rounds;
 
-    <div class="container-competition-table">
-  <% round_number = 1 %>
-  <% until round_number - 1 == @rounds do %>
-  <div class=<%= "flex-" + "#{@rounds}" %>>
-    <% @competition.matches.order("match_number asc").select { |r| r.round == round_number }.each do |match| %>
-    <%= react_component "Match", { match: render(partial: 'matches/match', formats: :json, locals: {match: match})} %>
-    <% end %>
-  </div>
-  <% round_number += 1 %>
-  <% end %>
-</div>
+    for (var i=1; i=rounds; i++) {
+      rounds_display.push(<KnockoutRound matches={this.props.matches} round={i} key={i} />);
+    }
 
+    return (
+      <div>
+      {rounds_display}
+      </div>
+    );
   }
 })
