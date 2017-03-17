@@ -17,6 +17,14 @@ var Match = React.createClass({
     this.props.matchUpdate(data);
   },
 
+  onComplete: function(data) {
+    var next;
+    if (this.props.match.competition.category === "League") {
+      next = (
+        this.props.setMatch(data))
+    }
+  },
+
   handleUserInput: function(name, points) {
     var score = this.state.score_params;
     score[name] = points;
