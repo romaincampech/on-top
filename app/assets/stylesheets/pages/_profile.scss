@@ -601,7 +601,6 @@
       border-radius: 2px;
       .profile-competition-card-header {
         height: 30px;
-        color: $green;
         background-color: #F9F9F9;
         border-bottom: 1px solid #E6E6E6;
         h4 {
@@ -609,6 +608,7 @@
           font-weight: 300;
           padding: 6px;
           margin: 0;
+          color: $green;
         }
       }
       .profile-unplayed-competition-card-content {
