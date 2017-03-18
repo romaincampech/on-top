@@ -6,7 +6,6 @@ class UserMailer < ApplicationMailer
   #   en.user_mailer.welcome.subject
   #
   def welcome(user)
-    @greeting = "Hi"
     @user = user
     mail(to: user.email, subject: "Welcome to OnTop!")
   end

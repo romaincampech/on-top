@@ -2,7 +2,7 @@ class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show, :update]
 
   def show
-    @rounds = @competition.number_of_rounds(@competition.category)
+    @rounds = @competition.number_of_rounds
     @not_invited_friends = current_user.not_invited_friends(@competition.id)
     # @matches = Match.where(competition_id: @competition.id)
     if @competition.category == "Knockout"
@@ -31,6 +31,7 @@ class CompetitionsController < ApplicationController
       @competition.add_players(players_ary)
       @competition.assign_matches if @competition.players.count == @competition.number_of_players
       @competition.save
+      CompetitionMailer.competition_created(@competition).deliver_now
       render json: @competition, status: :created
     else
       render json: @competition.errors, status: :unprocessable_entity
@@ -51,7 +52,6 @@ class CompetitionsController < ApplicationController
   private
 
   def competition_params
-    binding.pry
     params.require(:competition).permit(:category, :sport_id, :name, :number_of_players)
   end
 

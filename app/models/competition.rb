@@ -105,10 +105,10 @@ class Competition < ApplicationRecord
     self.matches.where(winner_id: 0)
   end
 
-  def number_of_rounds(category)
-    if category == "Knockout"
+  def number_of_rounds
+    if self.category == "Knockout"
       Math.log2(self.number_of_players).to_i
-    elsif category == "League"
+    elsif self.category == "League"
       self.number_of_players - 1
     end
   end

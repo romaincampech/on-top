@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_attachment :profile_picture
   has_attachment :cover_picture
 
-  after_create :own_friend
+  after_create :own_friend, :send_welcome_email
 
   # Direct Messages
   has_many :conversations, foreign_key: :sender_id
@@ -20,6 +20,11 @@ class User < ApplicationRecord
   has_many :team_memberships, dependent: :destroy
   has_many :teams, through: :team_memberships
   has_many :owned_teams, :class_name => 'Team', :foreign_key => 'captain_id', dependent: :destroy
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
+
 
   def slug
     "#{first_name.downcase}.#{last_name.downcase}"
