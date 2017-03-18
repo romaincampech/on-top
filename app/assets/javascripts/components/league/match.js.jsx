@@ -53,7 +53,8 @@ var Match = React.createClass({
     if (this.props.match.status === 'Played') {
       match_display = (
         <FinalScore match={this.props.match}
-        key={'finalscore' + this.props.match.id} toggleClick={this.handleToggleClick}/>
+        key={'finalscore' + this.props.match.id}
+          toggleClick={this.handleToggleClick}/>
       )
     } else {
       match_display = (
