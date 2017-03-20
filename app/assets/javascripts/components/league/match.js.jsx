@@ -49,7 +49,9 @@ var Match = React.createClass({
         url: '/matches/' + this.props.match.id,
         dataType: 'json',
         data: {score_params: this.props.match.score_params}
-      });
+      }).done(function() {
+        location.reload();
+      })
     }
   },
 

@@ -19,6 +19,10 @@ class Match < ApplicationRecord
     self.players[1] ? self.players[1] : ""
   end
 
+  def player_one_avatar
+    self.players[0].profile_picture
+  end
+
   def competition_participants
     self.competition.players.sort
   end
