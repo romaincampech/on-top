@@ -1,0 +1,11 @@
+<div class="container-competition-table">
+  <% round_number = 1 %>
+  <% until round_number - 1 == @rounds do %>
+  <div class=<%= "flex-" + "#{@rounds}" %>>
+    <% @competition.matches.order("match_number asc").select { |r| r.round == round_number }.each do |match| %>
+    <%= react_component "Match", {match: JSON.parse(render(partial: 'matches/match.json.jbuilder', formats: :json, locals: {match: match}))} %>
+    <% end %>
+  </div>
+  <% round_number += 1 %>
+  <% end %>
+</div>

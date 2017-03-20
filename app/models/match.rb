@@ -16,7 +16,11 @@ class Match < ApplicationRecord
   end
 
   def player_two
-    self.players[1]
+    self.players[1] ? self.players[1] : ""
+  end
+
+  def player_one_avatar
+    self.players[0].profile_picture
   end
 
   def competition_participants

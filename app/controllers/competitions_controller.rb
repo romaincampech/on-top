@@ -2,7 +2,7 @@ class CompetitionsController < ApplicationController
   before_action :set_competition, only: [:show, :update]
 
   def show
-    @rounds = @competition.number_of_rounds(@competition.category)
+    @rounds = @competition.number_of_rounds
     @not_invited_friends = current_user.not_invited_friends(@competition.id)
     # @matches = Match.where(competition_id: @competition.id)
     if @competition.category == "Knockout"
@@ -26,6 +26,7 @@ class CompetitionsController < ApplicationController
     @competition.creator = current_user
     if @competition.save
       @competition.create_activity :create, owner: current_user
+      @competition.number_of_rounds = @competition.number_of_rounds
       @competition.create_matches
       players_ary = params[:competition][:user_ids].select { |id| !id.blank? }. map { |x| User.find(x) }
       @competition.add_players(players_ary)
@@ -51,7 +52,6 @@ class CompetitionsController < ApplicationController
   private
 
   def competition_params
-    binding.pry
     params.require(:competition).permit(:category, :sport_id, :name, :number_of_players)
   end
 

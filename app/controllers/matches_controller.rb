@@ -22,12 +22,13 @@ class MatchesController < ApplicationController
         format.json { render template: 'competitions/show', status: :created }
       end
     else
-      @match.set_build_score(params)
+      @match.set_build_score(params["score_params"])
       @winner = @match.assign_winner(@match.score)
       @competition = @match.competition
       @match.save
       @match.last_match_knockout(@competition)
-      redirect_to competition_path(@match.competition_id)
+      redirect_to competition_path(@competition), status: 303
+      puts "shit"
     end
   end
 

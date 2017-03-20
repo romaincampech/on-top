@@ -5,6 +5,17 @@ var Fixture = React.createClass({
   },
 
   render: function(){
+    console.log(this.props.match)
+    var playerTwo;
+
+    if (this.props.match.player_one.first_name !== this.props.match.player_two.first_name) {
+      playerTwo = (
+        this.props.match.player_two.first_name
+        );
+    } else {
+      playerTwo = ("");
+    }
+
     return(
       <div className="match-league" id={this.props.match.match_number}>
         <div className="versus">
@@ -13,7 +24,7 @@ var Fixture = React.createClass({
           </div>
           <span>vs</span>
           <div className="player">
-            {this.props.match.player_two.first_name}
+            {playerTwo}
           </div>
         </div>
         <div id={this.props.match.match_number}>

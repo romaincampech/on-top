@@ -17,6 +17,14 @@ var Match = React.createClass({
     this.props.matchUpdate(data);
   },
 
+  onComplete: function(data) {
+    var next;
+    if (this.props.match.competition.category === "League") {
+      next = (
+        this.props.setMatch(data))
+    }
+  },
+
   handleUserInput: function(name, points) {
     var score = this.state.score_params;
     score[name] = points;
@@ -25,26 +33,38 @@ var Match = React.createClass({
   },
 
   handleFormSubmit: function() {
-    $.ajax({
-      type: 'PATCH',
-      url: '/matches/' + this.props.match.id,
-      dataType: 'json',
-      data: {score_params: this.props.match.score_params}
-    }).done(function(data) {
-        console.log(data);
-        this.props.setMatch(data);
-      }.bind(this));
     this.setState({display_form: false});
+    if (this.props.match.competition.category === "League") {
+      $.ajax({
+        type: 'PATCH',
+        url: '/matches/' + this.props.match.id,
+        dataType: 'json',
+        data: {score_params: this.props.match.score_params}
+      }).done(function(data) {
+          this.props.setMatch(data);
+        }.bind(this));
+    } else {
+      $.ajax({
+        type: 'PATCH',
+        url: '/matches/' + this.props.match.id,
+        dataType: 'json',
+        data: {score_params: this.props.match.score_params}
+      }).done(function() {
+        location.reload();
+      })
+    }
   },
 
   render: function(){
     var display_form = this.state.display_form
     var match_display;
+    console.log(this.props)
 
     if (this.props.match.status === 'Played') {
       match_display = (
         <FinalScore match={this.props.match}
-        key={'finalscore' + this.props.match.id} toggleClick={this.handleToggleClick}/>
+        key={'finalscore' + this.props.match.id}
+          toggleClick={this.handleToggleClick}/>
       )
     } else {
       match_display = (
