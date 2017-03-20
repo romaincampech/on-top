@@ -33,16 +33,24 @@ var Match = React.createClass({
   },
 
   handleFormSubmit: function() {
-    $.ajax({
-      type: 'PATCH',
-      url: '/matches/' + this.props.match.id,
-      dataType: 'json',
-      data: {score_params: this.props.match.score_params}
-    }).done(function(data) {
-        console.log(data);
-        this.props.setMatch(data);
-      }.bind(this));
     this.setState({display_form: false});
+    if (this.props.match.competition.category === "League") {
+      $.ajax({
+        type: 'PATCH',
+        url: '/matches/' + this.props.match.id,
+        dataType: 'json',
+        data: {score_params: this.props.match.score_params}
+      }).done(function(data) {
+          this.props.setMatch(data);
+        }.bind(this));
+    } else {
+      $.ajax({
+        type: 'PATCH',
+        url: '/matches/' + this.props.match.id,
+        dataType: 'json',
+        data: {score_params: this.props.match.score_params}
+      });
+    }
   },
 
   render: function(){

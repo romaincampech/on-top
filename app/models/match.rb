@@ -16,7 +16,7 @@ class Match < ApplicationRecord
   end
 
   def player_two
-    self.players[1]
+    self.players[1] ? self.players[1] : ""
   end
 
   def competition_participants

@@ -27,7 +27,8 @@ class MatchesController < ApplicationController
       @competition = @match.competition
       @match.save
       @match.last_match_knockout(@competition)
-      redirect_to competition_path(@competition)
+      redirect_to competition_path(@competition), status: 303
+      puts "shit"
     end
   end
 
