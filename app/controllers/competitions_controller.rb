@@ -33,6 +33,7 @@ class CompetitionsController < ApplicationController
       @competition.assign_matches if @competition.players.count == @competition.number_of_players
       @competition.save
       CompetitionMailer.competition_created(@competition).deliver_now
+      CompetitionMailer.invited_participants(@competition)
       render json: @competition, status: :created
     else
       render json: @competition.errors, status: :unprocessable_entity
