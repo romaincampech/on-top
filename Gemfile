@@ -81,6 +81,7 @@ end
 
 group :development do
   gem 'rails_real_favicon'
+  gem 'letter_opener'
 end
 
 
