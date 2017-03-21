@@ -5,7 +5,6 @@ var Fixture = React.createClass({
   },
 
   render: function(){
-    console.log(this.props.match)
     var playerTwo;
 
     if (this.props.match.player_one.first_name !== this.props.match.player_two.first_name) {

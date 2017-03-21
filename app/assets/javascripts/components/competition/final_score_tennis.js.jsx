@@ -1,4 +1,4 @@
-var FinalScore = React.createClass({
+var FinalScoreTennis = React.createClass({
   handleClick: function(e){
     e.preventDefault();
     this.props.toggleClick();

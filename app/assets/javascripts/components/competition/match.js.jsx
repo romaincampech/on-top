@@ -58,11 +58,10 @@ var Match = React.createClass({
   render: function(){
     var display_form = this.state.display_form
     var match_display;
-    console.log(this.props)
 
     if (this.props.match.status === 'Played') {
       match_display = (
-        <FinalScore match={this.props.match}
+        <FinalScoreTennis match={this.props.match}
         key={'finalscore' + this.props.match.id}
           toggleClick={this.handleToggleClick}/>
       )
@@ -79,7 +78,7 @@ var Match = React.createClass({
           { match_display }
         </div>
         <div>
-          {display_form && <ScoreForm match={this.props.match}
+          {display_form && <ScoreFormTennis match={this.props.match}
           key={this.props.match.id} onFormSubmit={this.handleFormSubmit}
             onUserInput={this.handleUserInput} />}
         </div>
