@@ -1,0 +1,295 @@
+<script>
+  $(function(){
+
+  // Wins / Losses
+    // All
+    new Highcharts.Chart("all-wins-losses", {
+
+      chart: {
+        type: "pie"
+      },
+
+      title: {
+        text: "All Sports Wins / Losses ratio"
+      },
+
+      tooltip: {
+        pointFormat: "<b>{point.percentage:.2f}%</b>"
+      },
+
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+
+      series: [{
+        data: [{
+          y: <%= @user.losses.count %>,
+          name: "Losses",
+          color: "#800000",
+          legendIndex: 1
+        }, {
+          y: <%= @user.wins.count %>,
+          name: "Wins",
+          color: "rgb(101, 208, 110)",
+          legendIndex: 0,
+          sliced: true,
+          selected: true
+        }]
+      }],
+
+    });
+
+    // Tennis
+    new Highcharts.Chart("tennis-wins-losses", {
+
+      chart: {
+        type: "pie"
+      },
+
+      title: {
+        text: "Tennis Wins / Losses ratio"
+      },
+
+      tooltip: {
+        pointFormat: "<b>{point.percentage:.2f}%</b>"
+      },
+
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+
+      series: [{
+        data: [{
+          y: <%= @user.losses_for("Tennis").count %>,
+          name: "Losses",
+          color: "#800000",
+          legendIndex: 1
+        }, {
+          y: <%= @user.wins_for("Tennis").count %>,
+          name: "Wins",
+          color: "rgb(101, 208, 110)",
+          legendIndex: 0,
+          sliced: true,
+          selected: true
+        }]
+      }],
+
+    });
+
+    // Squash
+    new Highcharts.Chart("squash-wins-losses", {
+
+      chart: {
+        type: "pie"
+      },
+
+      title: {
+        text: "Squash Wins / Losses ratio"
+      },
+
+      tooltip: {
+        pointFormat: "<b>{point.percentage:.2f}%</b>"
+      },
+
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+
+      series: [{
+        data: [{
+          y: <%= @user.losses_for("Squash").count %>,
+          name: "Losses",
+          color: "#800000",
+          legendIndex: 1
+        }, {
+          y: <%= @user.wins_for("Squash").count %>,
+          name: "Wins",
+          color: "rgb(101, 208, 110)",
+          legendIndex: 0,
+          sliced: true,
+          selected: true
+        }]
+      }],
+
+    });
+
+    // Table-Tennis
+    new Highcharts.Chart("table-tennis-wins-losses", {
+
+      chart: {
+        type: "pie"
+      },
+
+      title: {
+        text: "Table-Tennis Wins / Losses ratio"
+      },
+
+      tooltip: {
+        pointFormat: "<b>{point.percentage:.2f}%</b>"
+      },
+
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: false
+          },
+          showInLegend: true
+        }
+      },
+
+      series: [{
+        data: [{
+          y: <%= @user.losses_for("Table-Tennis").count %>,
+          name: "Losses",
+          color: "#800000",
+          legendIndex: 1
+        }, {
+          y: <%= @user.wins_for("Table-Tennis").count %>,
+          name: "Wins",
+          color: "rgb(101, 208, 110)",
+          legendIndex: 0,
+          sliced: true,
+          selected: true
+        }]
+      }],
+
+    });
+
+  // Activity tracker
+    // All
+    new Highcharts.Chart("all-activity-tracker", {
+      chart: {
+        type: "column"
+      },
+
+      title: {
+        text: "All Sports Physical Activity Tracker"
+      },
+
+      yAxis: {
+        title: {
+          text: "Number of times played"
+        }
+      },
+
+      xAxis: {
+        type: "datetime"
+      },
+
+      series: [{
+        pointStart: Date.UTC(2017, 1, 27),
+        pointInterval: 604800000,
+        data: <%= @weekly_all_tracker %>
+      }]
+
+    });
+
+    // Tennis
+    new Highcharts.Chart("tennis-activity-tracker", {
+      chart: {
+        type: "column"
+      },
+
+      title: {
+        text: "Tennis Physical Activity Tracker"
+      },
+
+      yAxis: {
+        title: {
+          text: "Number of times played"
+        }
+      },
+
+      xAxis: {
+        type: "datetime"
+      },
+
+      series: [{
+        pointStart: Date.UTC(2017, 1, 27),
+        pointInterval: 604800000,
+        data: <%= @weekly_tennis_tracker %>
+      }]
+
+    });
+
+    // Squash
+    new Highcharts.Chart("squash-activity-tracker", {
+      chart: {
+        type: "column"
+      },
+
+      title: {
+        text: "Squash Physical Activity Tracker"
+      },
+
+      yAxis: {
+        title: {
+          text: "Number of times played"
+        }
+      },
+
+      xAxis: {
+        type: "datetime"
+      },
+
+      series: [{
+        pointStart: Date.UTC(2017, 1, 27),
+        pointInterval: 604800000,
+        data: <%= @weekly_squash_tracker %>
+      }]
+
+    });
+
+    // Table-Tennis
+    new Highcharts.Chart("table-tennis-activity-tracker", {
+      chart: {
+        type: "column"
+      },
+
+      title: {
+        text: "Table-Tennis Physical Activity Tracker"
+      },
+
+      yAxis: {
+        title: {
+          text: "Number of times played"
+        }
+      },
+
+      xAxis: {
+        type: "datetime"
+      },
+
+      series: [{
+        pointStart: Date.UTC(2017, 1, 27),
+        pointInterval: 604800000,
+        data: <%= @weekly_table_tennis_tracker %>
+      }]
+
+    });
+
+  });
+</script>

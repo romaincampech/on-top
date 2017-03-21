@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316141533) do
+ActiveRecord::Schema.define(version: 20170321210843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,7 +132,9 @@ ActiveRecord::Schema.define(version: 20170316141533) do
     t.integer  "match_number"
     t.jsonb    "score"
     t.jsonb    "score_params"
+    t.integer  "sport_id"
     t.index ["competition_id"], name: "index_matches_on_competition_id", using: :btree
+    t.index ["sport_id"], name: "index_matches_on_sport_id", using: :btree
     t.index ["winner_id"], name: "index_matches_on_winner_id", using: :btree
   end
 
@@ -216,6 +218,7 @@ ActiveRecord::Schema.define(version: 20170316141533) do
   add_foreign_key "match_participants", "matches"
   add_foreign_key "match_participants", "users", column: "player_id"
   add_foreign_key "matches", "competitions"
+  add_foreign_key "matches", "sports"
   add_foreign_key "matches", "users", column: "winner_id"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"

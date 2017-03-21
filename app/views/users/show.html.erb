@@ -631,27 +631,34 @@
           <a class="statistics-tab" data-target="#table-tennis" data-toggle="tooltip" data-placement="bottom" title="Table-Tennis"><img src="<%= asset_path('table-tennis-icon.png') %>"/></a>
         </div>
         <!-- Statistics tabs content all -->
-        <div class="statistics-tabs-content" id="all-sports"></div>
+        <div class="statistics-tabs-content" id="all-sports">
+          <!-- All wins / losses -->
+          <div id="all-wins-losses"></div>
+          <!-- All activity tracker -->
+          <div id="all-activity-tracker"></div>
+        </div>
         <!-- Statistics tabs content tennis -->
         <div class="statistics-tabs-content hidden" id="tennis">
           <!-- Tennis wins / losses -->
           <div id="tennis-wins-losses"></div>
-          <%= render "charts/tennis_wins_losses" %>
           <!-- Tennis activity tracker -->
           <div id="tennis-activity-tracker"></div>
-          <%= render "charts/tennis_activity_tracker" %>
         </div>
         <!-- Statistics tabs content squash -->
         <div class="statistics-tabs-content hidden" id="squash">
           <!-- Squash wins / losses -->
           <div id="squash-wins-losses"></div>
-          <%= render "charts/squash_wins_losses" %>
           <!-- Squash activity tracker -->
           <div id="squash-activity-tracker"></div>
-          <%= render "charts/squash_activity_tracker" %>
         </div>
         <!-- Statistics tabs content table-tennis -->
-        <div class="statistics-tabs-content hidden" id="table-tennis"></div>
+        <div class="statistics-tabs-content hidden" id="table-tennis">
+          <!-- Table-Tennis wins / losses -->
+          <div id="table-tennis-wins-losses"></div>
+          <!-- Table-Tennis activity tracker -->
+          <div id="table-tennis-activity-tracker"></div>
+        </div>
+        <%= render "charts/profile_statistics" %>
       </div>
     </div>
     <!-- Right section -->

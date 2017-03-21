@@ -7,6 +7,10 @@ class Match < ApplicationRecord
   # has_many :players, through: :match_participants
   has_many :players, :class_name => 'User', :foreign_key => 'player_id', through: :match_participants
 
+  def self.played_on(date)
+    where("date(matches.updated_at) = ?", date).count
+  end
+
   def played?
     self.winner_id ? self.status = "Played" : self.status = "To be played"
   end
