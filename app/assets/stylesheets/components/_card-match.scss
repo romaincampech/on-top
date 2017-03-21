@@ -119,9 +119,9 @@
   }
 }
 
-.score-form-league {
+.score-form {
   justify-content: center;
-  width: 220px;
+  width: 100%;
   margin: auto;
   padding-bottom: 10px;
   table {
@@ -144,9 +144,7 @@
   }
 }
 
-.score-form {
-  display: none;
-}
+
 
 
 .edit-score {

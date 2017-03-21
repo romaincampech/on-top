@@ -1,4 +1,4 @@
-var ScoreFormTennis = React.createClass({
+var ScoreForm = React.createClass({
 
   handleSubmit: function(e){
     e.preventDefault();
@@ -84,7 +84,7 @@ var ScoreFormTennis = React.createClass({
 
     return (
       <div>
-        <form className="score-form-league tennis" onSubmit={this.handleSubmit} >
+        <form className="score-form tennis" onSubmit={this.handleSubmit} >
             {scoreForm}
           <input type='submit' value='Submit Score' className="btn btn-sm result-input-btn" />
         </form>
