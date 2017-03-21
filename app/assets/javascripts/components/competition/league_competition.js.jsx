@@ -10,9 +10,6 @@ var LeagueCompetition = React.createClass({
   },
 
   render: function() {
-    console.log(this.props)
-
-
 
     return (
       <div>

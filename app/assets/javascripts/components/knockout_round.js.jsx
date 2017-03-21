@@ -19,7 +19,7 @@ var KnockoutRound = React.createClass({
 
     return (
       <div>
-      <h1> Fuck </h1>
+      <h1> Shit </h1>
         {round_matches}
       </div>
     )

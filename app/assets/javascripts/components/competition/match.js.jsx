@@ -58,7 +58,6 @@ var Match = React.createClass({
   render: function(){
     var display_form = this.state.display_form
     var match_display;
-    console.log(this.props)
 
     if (this.props.match.status === 'Played') {
       match_display = (
