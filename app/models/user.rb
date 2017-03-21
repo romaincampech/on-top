@@ -231,5 +231,50 @@ class User < ApplicationRecord
     # customRanking ['desc(likes_count)']
   end
 
+# Statistics
+def weekly_all_tracker
+  daily_all_count = (Date.parse('2017-02-27')..Date.today).map { |date| self.played_matches.played_on(date) }
+  weekly_all_count = daily_all_count.each_slice(7).map { |e| e.inject(:+) }
+  day_one = Date.parse('2017-02-27').strftime('%Q').to_i
+  data = []
+  weekly_all_count.each do |wac|
+    data << [day_one, wac]
+    day_one += 60800000
+  end
+end
+
+def weekly_tennis_tracker
+  daily_all_count = (Date.parse('2017-02-27')..Date.today).map { |date| self.played_matches.where(sport_id: 55).played_on(date) }
+  weekly_all_count = daily_all_count.each_slice(7).map { |e| e.inject(:+) }
+  day_one = Date.parse('2017-02-27').strftime('%Q').to_i
+  data = []
+  weekly_all_count.each do |wac|
+    data << [day_one, wac]
+    day_one += 60800000
+  end
+end
+
+def weekly_table_tennis_tracker
+  daily_all_count = (Date.parse('2017-02-27')..Date.today).map { |date| self.played_matches.where(sport_id: 56).played_on(date) }
+  weekly_all_count = daily_all_count.each_slice(7).map { |e| e.inject(:+) }
+  day_one = Date.parse('2017-02-27').strftime('%Q').to_i
+  data = []
+  weekly_all_count.each do |wac|
+    data << [day_one, wac]
+    day_one += 60800000
+  end
+end
+
+def weekly_squash_tracker
+  daily_all_count = (Date.parse('2017-02-27')..Date.today).map { |date| self.played_matches.where(sport_id: 57).played_on(date) }
+  weekly_all_count = daily_all_count.each_slice(7).map { |e| e.inject(:+) }
+  day_one = Date.parse('2017-02-27').strftime('%Q').to_i
+  data = []
+  weekly_all_count.each do |wac|
+    data << [day_one, wac]
+    day_one += 60800000
+  end
+end
+
 end
 

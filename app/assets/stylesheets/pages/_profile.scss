@@ -684,6 +684,15 @@
   }
   .statistics-tabs-content {
     margin: 25px 0;
+    #all-wins-losses {
+      height: 450px;
+      margin: 60px 60px;
+      border-bottom: 1px solid #E6E6E6;
+    }
+    #all-activity-tracker {
+      height: 450px;
+      margin: 0 60px;
+    }
     #tennis-wins-losses {
       height: 450px;
       margin: 60px 60px;
@@ -699,6 +708,15 @@
       border-bottom: 1px solid #E6E6E6;
     }
     #squash-activity-tracker {
+      height: 450px;
+      margin: 0 60px;
+    }
+    #table-tennis-wins-losses {
+      height: 450px;
+      margin: 60px 60px;
+      border-bottom: 1px solid #E6E6E6;
+    }
+    #table-tennis-activity-tracker {
       height: 450px;
       margin: 0 60px;
     }
