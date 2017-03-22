@@ -2,7 +2,16 @@
   <% round_number = 1 %>
   <% until round_number - 1 == @rounds do %>
   <div class=<%= "flex-" + "#{@rounds}" %>>
+  <% match_number = 1 %>
     <% @competition.matches.order("match_number asc").select { |r| r.round == round_number }.each do |match| %>
+    <% if round_number == @rounds %>
+    <div class="match-label">FINAL</div>
+    <% elsif round_number + 1 == @rounds %>
+    <div class="match-label">SEMI-FINAL</div>
+    <% else %>
+    <div class="match-label">Round: <%= round_number %>, Match: <%= match_number %></div>
+    <% end %>
+
     <div class="card-match" >
       <% if match.status == "Played" %>
 
@@ -56,7 +65,7 @@
       <% end %>
 
     </div>
-
+    <% match_number += 1 %>
     <% end%>
   </div>
   <% round_number += 1 %>

@@ -34,6 +34,74 @@
   text-align: center;
 }
 
+@media all and (max-width: 480px) {
+  .container-competition-table {
+    flex-direction: column;
+    .flex-1 {
+      width: 100%;
+      margin-bottom: 25px;
+    }
+    .flex-2 {
+      width: 100%;
+      margin-bottom: 25px;
+    }
+    .flex-3 {
+      width: 100%;
+      margin-bottom: 25px;
+    }
+    .flex-4 {
+      width: 100%;
+      margin-bottom: 25px;
+    }
+    .flex-5 {
+      width: 100%;
+      margin-bottom: 25px;
+    }
+    .card-match {
+      margin-bottom: 20px;
+    }
+    .match-label {
+      display: block;
+    }
+  }
+  .modal-content {
+    table {
+      border-collapse: collapse;
+      border: 1px solid #CDCDCD;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      height: 50px;
+      width: 240px;
+      height: 160px;
+      td input {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        text-align: center;
+      }
+      th, td {
+        color: #999;
+        border: 1px solid #CDCDCD;
+        padding: 3px 3px;
+        border-collapse: collapse;
+        text-align: center;
+        font-size: 12px;
+      }
+      th {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.enter-score-table {
+  text-align: center;
+}
+
+.match-label {
+  display: none;
+  color: grey;
+  font-size: 12px;
+}
 /* Choice of flex for Knockout competition dependent on size of competition */
 .flex-1 {
   display: flex;
@@ -90,7 +158,6 @@
   text-decoration: none;
   box-shadow: 1px 1px 3px #d9d9d9;
 }
-
 
 .participants {
   background-color: white;
