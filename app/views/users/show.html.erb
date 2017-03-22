@@ -442,7 +442,7 @@
           </div>
         <!-- Add -->
         <% elsif !current_user.friends.include?(@user) %>
-          <%= link_to user_friend_requests_path(@user), class: 'btn-add', method: :post do %>
+          <%= link_to user_friend_requests_path(:user_id => @user.id), class: 'btn-add', method: :post do %>
             <i class="fa fa-user-plus" aria-hidden="true"></i>
             <p>Add friend</p>
           <% end %>
