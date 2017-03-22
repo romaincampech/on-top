@@ -79,7 +79,6 @@ var NewCompetitionForm = React.createClass({
 
     return (
       <div>
-
         <form className="competition-creation-form" onSubmit={this.handleSubmit} >
         <h1 className="form-title">Create Your Competition!</h1>
           I would like to create a<select name="sport_id" value= {this.state.sport_id}

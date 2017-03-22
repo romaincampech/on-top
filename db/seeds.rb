@@ -57,6 +57,7 @@ users_urls = [
 users_urls.each do |user_url|
   user = User.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "123456", city: "London")
   user.profile_picture_url = user_url
+  user.slug = "#{user.first_name.downcase}"
   user.save
 end
 

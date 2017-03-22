@@ -10,7 +10,6 @@ class FriendRequestsController < ApplicationController
     friend = User.find(params[:user_id])
     @friend_request = current_user.pending_friends_requests.new(friend: friend)
     @friend_request.save
-
     redirect_to :back
   end
 
