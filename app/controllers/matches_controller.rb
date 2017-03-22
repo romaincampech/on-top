@@ -9,10 +9,10 @@ class MatchesController < ApplicationController
   end
 
   def update
-    @match.set_build_score(params["score_params"])
-    @winner = @match.assign_winner(@match.score)
-    @competition = @match.competition
     if @match.competition.category == "League"
+      @match.set_build_score(params["score_params"])
+      @winner = @match.assign_winner(@match.score)
+      @competition = @match.competition
       @match.league_points
       @match.save
       MatchMailer.score(@match).deliver_now
@@ -21,6 +21,9 @@ class MatchesController < ApplicationController
         format.json { render template: 'competitions/show', status: :created }
       end
     else
+      @match.set_build_score(params)
+      @winner = @match.assign_winner(@match.score)
+      @competition = @match.competition
       @match.save
       MatchMailer.score(@match).deliver_now
       @match.last_match_knockout(@competition)
