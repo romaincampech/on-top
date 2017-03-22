@@ -9,26 +9,22 @@ class MatchesController < ApplicationController
   end
 
   def update
+    @match.set_build_score(params["score_params"])
+    @winner = @match.assign_winner(@match.score)
+    @competition = @match.competition
     if @match.competition.category == "League"
-      @match.set_build_score(params["score_params"])
-      @winner = @match.assign_winner(@match.score)
-      @competition = @match.competition
-      # @match.save
-      # @match.played?
       @match.league_points
       @match.save
+      MatchMailer.score(@match).deliver_now
       @league_table_data = @competition.league_table_data(@competition.competition_participants_by_points)
       respond_to do |format|
         format.json { render template: 'competitions/show', status: :created }
       end
     else
-      @match.set_build_score(params["score_params"])
-      @winner = @match.assign_winner(@match.score)
-      @competition = @match.competition
       @match.save
+      MatchMailer.score(@match).deliver_now
       @match.last_match_knockout(@competition)
       redirect_to competition_path(@competition), status: 303
-      puts "shit"
     end
   end
 

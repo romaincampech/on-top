@@ -7,12 +7,12 @@ var Fixture = React.createClass({
   render: function(){
     var playerTwo;
 
-    if (this.props.match.player_one.first_name !== this.props.match.player_two.first_name) {
+    if (this.props.match.player_one.first_name === this.props.match.player_two.first_name) {
+      playerTwo = ("");
+    } else {
       playerTwo = (
         this.props.match.player_two.first_name
         );
-    } else {
-      playerTwo = ("");
     }
 
     return(
