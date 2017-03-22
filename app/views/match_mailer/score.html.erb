@@ -3,6 +3,45 @@
 
 The following score was just added in <%= @match.competition.name %>:
 
-<%= @match.score %>
+
+<table class="league-final-score">
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Sets</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class=<% if @match.players.first == @match.winner %>
+      <%= "highlight" %>
+      <% else %>
+      <%= "loser" %>
+      <% end %>>
+      <th class="text-center">
+        <%= @match.players.first.first_name %>
+      </th>
+      <th><%= @match.score["player_set_total"]["player_1"] %></th>
+      <td><%= @match.score["set1"]["player_1"] %></td>
+      <td><%= @match.score["set2"]["player_1"] %></td>
+      <td><%= @match.score["set3"]["player_1"] %></td>
+    </tr>
+    <tr class=<% if @match.players.last == @match.winner %>
+      <%= "highlight" %>
+      <% else %>
+      <%= "loser" %>
+      <% end %>>
+      <th class="text-center">
+        <%= @match.players.last.first_name %>
+      </th>
+      <th><%= @match.score["player_set_total"]["player_2"] %></th>
+      <td><%= @match.score["set1"]["player_2"] %></td>
+      <td><%= @match.score["set2"]["player_2"] %></td>
+      <td><%= @match.score["set3"]["player_2"] %></td>
+    </tr>
+  </tbody>
+</table>
 
 Please click here to confirm if this is correct
