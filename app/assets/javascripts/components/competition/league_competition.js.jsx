@@ -14,17 +14,13 @@ var LeagueCompetition = React.createClass({
     return (
       <div>
         <div>
-          <LeagueTable data={this.state.league_table_data}
-             />
+          <LeagueTable data={this.state.league_table_data} />
         </div>
         <div className="fixtures-header">
-          <h4><strong>League Fixtures/Results</strong></h4>
+          <h4><strong>Fixtures/Results</strong></h4>
         </div>
-        <div className="fixtures-display">
-
-          <div className="league-fixtures">
-            <FixtureList matches={this.props.matches} updateTable={this.updateLeagueTable} />
-          </div>
+        <div className="league-fixtures">
+          <FixtureList matches={this.props.matches} updateTable={this.updateLeagueTable} />
         </div>
       </div>
     );
