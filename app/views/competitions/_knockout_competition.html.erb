@@ -18,7 +18,12 @@
       <div class="card-final-score">
         <%= render "matches/final_score_#{@competition.sport.name.downcase}", match: match %>
       </div>
-
+        <% if current_user == @competition.creator %>
+        <%= link_to "Input Score", edit_match_path(match), class: 'btn btn-sm result-input-btn', id: "#{match.match_number}", 'data-toggle' => 'modal', 'data-target' => "##{match.match_number}_link" %>
+        <div class="edit-score" id=<%= "edit-#{match.match_number}" %>>
+          <%= render 'matches/edit', match: match %>
+        </div>
+        <% end %>
       <% else %>
 
       <div class="card-versus">
