@@ -10,7 +10,7 @@
 
 .league-fixtures{
   background-color: #F4F4F4;
-  width: 800px;
+  width: 300px;
   display: flex;
   justify-content: center;
 }
@@ -40,6 +40,7 @@
   background: $green2;
   text-align: center;
   padding: 1px 25px;
+  border-bottom: 1px solid #CDCDCD;
 }
 .fixtures-tab:first-child {
   border-radius: 5px 0 0 0;
@@ -49,9 +50,20 @@
 }
 .fixtures-tab.active {
   background: #F4F4F4;
-  color: black;
+  color: $brey;
+  border: 1px solid #CDCDCD;
 }
 
+@media all and (max-width: 480px) {
+  .tabs {
+    flex-direction: column;
+  }
+}
+
+.fixtures {
+  border: 1px solid #CDCDCD;
+  width: 300px;
+}
 /* League match */
 .card-match-league {
   display: flex;

@@ -39,6 +39,15 @@
   }
 }
 
+@media all and (max-width: 480px) {
+  .league-table {
+    -webkit-transform:scale(0.85);
+    -moz-transform:scale(0.85);
+    -ms-transform:scale(0.85);
+    transform:scale(0.85);
+  }
+}
+
 .league-table-player {
   display: flex;
   justify-content: left;
