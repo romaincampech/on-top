@@ -13,7 +13,8 @@ class User < ApplicationRecord
   has_attachment :profile_picture
   has_attachment :cover_picture
 
-  after_create :own_friend, :send_welcome_email
+  after_create :own_friend
+  # :send_welcome_email
 
   # Direct Messages
   has_many :conversations, foreign_key: :sender_id
