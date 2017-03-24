@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_validation :generate_slug
+  # before_validation :generate_slug
 
   extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
@@ -277,9 +277,9 @@ def weekly_squash_tracker
     day_one += 60800000
   end
 end
-  private
+  # private
 
-  def generate_slug
-    self.slug = "#{first_name.downcase}"
-  end
+  # def generate_slug
+  #   self.slug = "#{first_name.downcase}"
+  # end
 end
