@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  # before_validation :generate_slug
+  before_validation :generate_slug
 
   extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
@@ -13,8 +13,7 @@ class User < ApplicationRecord
   has_attachment :profile_picture
   has_attachment :cover_picture
 
-  after_create :own_friend
-  # :send_welcome_email
+  after_create :own_friend, :send_welcome_email
 
   # Direct Messages
   has_many :conversations, foreign_key: :sender_id
@@ -278,9 +277,9 @@ def weekly_squash_tracker
     day_one += 60800000
   end
 end
-  # private
+  private
 
-  # def generate_slug
-  #   self.slug = "#{first_name.downcase}"
-  # end
+  def generate_slug
+    self.slug = "#{first_name.downcase}"
+  end
 end
