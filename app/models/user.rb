@@ -1,8 +1,4 @@
 class User < ApplicationRecord
-  before_validation :generate_slug
-
-  extend FriendlyId
-  friendly_id :slug, use: [:slugged, :history]
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -25,11 +21,6 @@ class User < ApplicationRecord
 
   def send_welcome_email
     UserMailer.welcome(self).deliver_now
-  end
-
-
-  def slug
-    "#{first_name.downcase}.#{last_name.downcase}"
   end
 
   def full_name
@@ -246,7 +237,7 @@ def weekly_all_tracker
 end
 
 def weekly_tennis_tracker
-  daily_all_count = (Date.parse('2017-02-27')..Date.today).map { |date| self.played_matches.where(sport_id: 55).played_on(date) }
+  daily_all_count = (Date.parse('2017-02-27')..Date.today).map { |date| self.played_matches.where(sport_id: 1).played_on(date) }
   weekly_all_count = daily_all_count.each_slice(7).map { |e| e.inject(:+) }
   day_one = Date.parse('2017-02-27').strftime('%Q').to_i
   data = []
@@ -257,7 +248,7 @@ def weekly_tennis_tracker
 end
 
 def weekly_table_tennis_tracker
-  daily_all_count = (Date.parse('2017-02-27')..Date.today).map { |date| self.played_matches.where(sport_id: 56).played_on(date) }
+  daily_all_count = (Date.parse('2017-02-27')..Date.today).map { |date| self.played_matches.where(sport_id: 2).played_on(date) }
   weekly_all_count = daily_all_count.each_slice(7).map { |e| e.inject(:+) }
   day_one = Date.parse('2017-02-27').strftime('%Q').to_i
   data = []
@@ -268,7 +259,7 @@ def weekly_table_tennis_tracker
 end
 
 def weekly_squash_tracker
-  daily_all_count = (Date.parse('2017-02-27')..Date.today).map { |date| self.played_matches.where(sport_id: 57).played_on(date) }
+  daily_all_count = (Date.parse('2017-02-27')..Date.today).map { |date| self.played_matches.where(sport_id: 3).played_on(date) }
   weekly_all_count = daily_all_count.each_slice(7).map { |e| e.inject(:+) }
   day_one = Date.parse('2017-02-27').strftime('%Q').to_i
   data = []
@@ -277,9 +268,5 @@ def weekly_squash_tracker
     day_one += 60800000
   end
 end
-  private
 
-  def generate_slug
-    self.slug = "#{first_name.downcase}"
-  end
 end

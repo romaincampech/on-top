@@ -27,7 +27,7 @@ url = "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/7/005/064/0ec/1749a12.
 user.profile_picture_url = url
 user.save
 
-user = User.new(first_name: "Guv", last_name: "Marwaha", email: "Guv@test.com", password: "123456", city: "London", slug: "guv")
+user = User.new(first_name: "Guv", last_name: "Marwaha", email: "Guv@test.com", password: "123456", city: "London")
 url = "https://avatars1.githubusercontent.com/u/22517547?v=3&s=400"
 user.profile_picture_url = url
 user.admin = true
@@ -57,7 +57,6 @@ users_urls = [
 users_urls.each do |user_url|
   user = User.new(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "123456", city: "London")
   user.profile_picture_url = user_url
-  user.slug = "#{user.first_name.downcase}"
   user.save
 end
 

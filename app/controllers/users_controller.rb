@@ -17,9 +17,6 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    @user = User.friendly.find(params[:id])
-    if request.path != user_path(@user)
-      redirect_to @user, status: :moved_permanently
-    end
+    @user = User.find(params[:id])
   end
 end
