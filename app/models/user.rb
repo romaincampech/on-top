@@ -276,7 +276,7 @@ def weekly_squash_tracker
     data << [day_one, wac]
     day_one += 60800000
   end
-
+end
   private
 
   def generate_slug
