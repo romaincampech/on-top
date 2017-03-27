@@ -1,0 +1,206 @@
+#league-table-avatar {
+  display: flex;
+  justify-content: space-around;
+  padding: 1px;
+}
+
+.header-league {
+  background-color: rgba(141, 218, 147, 0.5)
+}
+
+.league-table {
+  border-collapse: collapse;
+  margin-top: 36px;
+  margin-bottom: 60px;
+  border: 1px solid #CDCDCD;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  td input {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    text-align: center;
+  }
+  th, td {
+    color: #999;
+    border: 1px solid #CDCDCD;
+    padding: 6px 20px;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 16px;
+  }
+  thead {
+    font-weight: 800;
+    background-color: rgba(83, 199, 92, 0.5);
+  }
+  span {
+    padding-top: 11px;
+    padding-left: 6px;
+  }
+}
+
+.league-table-player {
+  display: flex;
+  justify-content: left;
+  text-align: center;
+  padding-left: 10px;
+}
+
+.league-final-score {
+  border-collapse: collapse;
+  border: 1px solid #CDCDCD;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  width: 95%;
+  margin-bottom: 10px;
+  table {
+    width: 100%
+  }
+  th, td {
+    color: #999;
+    border: 1px solid #CDCDCD;
+    padding: 2px 10px 2px 10px;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 15px;
+  }
+  th {
+    font-weight: 800;
+  }
+  tr {
+    border-bottom: 2px solid #CDCDCD;
+    th:first-child {
+      width: 150px;
+      border-right: 2px solid #CDCDCD;
+    }
+    th:nth-child(2) {
+      border-right: 2px solid #CDCDCD;
+    }
+  }
+}
+
+.league-competition {
+  display: flex;
+  padding-top: 15px;
+}
+
+/* Displaying fixtures of league competition */
+.fixtures-display {
+  padding: 10px;
+
+  justify-content: flex-start;
+  margin-left: 100px;
+  margin-bottom: 30px;
+  background-color: #F4F4F4;
+}
+
+.league-fixtures{
+  background-color: #F4F4F4;
+  justify-content: center;
+  flex-direction: row;
+  p {
+    color:#999;
+    margin-left: 12px;
+  }
+}
+
+.tabs-and-fixtures{
+  display: flex;
+}
+
+.all-fixtures {
+  margin-left: 35px;
+  margin-right: 35px;
+  margin-top: -5px;
+}
+/* Tabs for displaying league fixtures */
+.tabs {
+  background: #F4F4F4;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding: 6px 0 6px 5px;
+}
+.tabs a {
+  color: white;
+}
+.tabs a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.7;
+}
+.tabs h3 {
+  font-size: 10px;
+  margin-top: 0;
+}
+
+.fixtures-tab {
+  background: $green2;
+  text-align: center;
+  padding: 1px 25px;
+  border-bottom: 1px solid #CDCDCD;
+}
+.fixtures-tab:first-child {
+  border-radius: 5px 0 0 0;
+}
+.fixtures-tab:last-child {
+  border-radius: 0 5px 0 0;
+}
+.fixtures-tab.active {
+  background: #F4F4F4;
+  color: $brey;
+}
+
+@media all and (max-width: 480px) {
+  .tabs {
+    flex-direction: column;
+  }
+}
+
+.fixtures {
+  width: 300px;
+}
+/* League match */
+.card-match-league {
+  display: flex;
+  justify-content: space-around;
+  width: 350px;
+  padding: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 1px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  margin: 2px;
+}
+
+.result-input-league-btn {
+  background-color: rgba(83, 199, 92, 0.7);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+@media all and (max-width: 480px) {
+  .league-table {
+    -webkit-transform:scale(0.85);
+    -moz-transform:scale(0.85);
+    -ms-transform:scale(0.85);
+    transform:scale(0.85);
+  }
+
+  .tabs-and-fixtures{
+    -webkit-transform:scale(0.9);
+    -moz-transform:scale(0.9);
+    -ms-transform:scale(0.9);
+    transform:scale(0.9);
+  }
+
+  .league-competition {
+    flex-direction: column-reverse;
+  }
+
+  .league-fixtures {
+    p{
+      margin-left: 75px;
+    }
+  }
+}
