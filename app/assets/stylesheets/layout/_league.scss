@@ -186,4 +186,21 @@
     -ms-transform:scale(0.85);
     transform:scale(0.85);
   }
+
+  .tabs-and-fixtures{
+    -webkit-transform:scale(0.9);
+    -moz-transform:scale(0.9);
+    -ms-transform:scale(0.9);
+    transform:scale(0.9);
+  }
+
+  .league-competition {
+    flex-direction: column-reverse;
+  }
+
+  .league-fixtures {
+    p{
+      margin-left: 75px;
+    }
+  }
 }
