@@ -32,11 +32,11 @@ var FixtureList = React.createClass ({
     }.bind(this))
 
     return (
-      <div>
+      <div className="tabs-and-fixtures">
         <div className="tabs">
           {tabs}
         </div>
-        <div>
+        <div className="all-fixtures">
           {arr}
         </div>
       </div>
