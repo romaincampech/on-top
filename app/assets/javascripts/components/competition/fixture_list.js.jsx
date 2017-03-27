@@ -2,7 +2,7 @@ var FixtureList = React.createClass ({
   getInitialState: function() {
     return {
       fixtures: this.props.matches,
-      active_tab: ""
+      active_tab: this.props.matches[0]["competition_participants"][0].id
     }
   },
 
@@ -12,7 +12,6 @@ var FixtureList = React.createClass ({
   },
 
   handleTab: function(x) {
-    console.log(x);
     this.setState({active_tab: x});
   },
 

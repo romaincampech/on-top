@@ -14,6 +14,7 @@ var LeagueCompetition = React.createClass({
     return (
       <div className="league-competition">
         <div className="league-fixtures">
+          <p>Click on a player to see their fixtures/results</p>
           <FixtureList matches={this.props.matches} updateTable={this.updateLeagueTable} />
         </div>
         <div>
